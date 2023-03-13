@@ -1,6 +1,6 @@
 #include <iostream>
-#include "fstream"
-#include "string.h"
+#include <fstream>
+#include <string.h>
 
 using namespace std;
 
@@ -39,7 +39,7 @@ string checkValidity (ifstream &fin, string userid) {
 
 // check if the account has been locked. The locked accounts are written in Data/account-locked.txt
 bool isLock(ifstream &fin, string userid) {
-    fin.open("/home/endeavour/repo/CS162-project/Data/account-locked.txt");
+    fin.open("..\\Data\\account-locked.txt");
     while (!fin.eof()) {
         string lockid;
         fin >> lockid;
@@ -65,7 +65,7 @@ bool passwordRetry(string pass, string userpass, string userid) {
     }
     if (attempt == MAXATTEMPT) {
         ofstream fout;
-        fout.open("/home/endeavour/repo/CS162-project/Data/account-locked.txt", std::ios_base::app);
+        fout.open("..\\Data\\account-locked.txt", std::ios_base::app);
         fout << userid << endl;
         cout << "Your account has been locked due to excessive incorrect log in attempts. Contact your school's system administrator to unlock.";
         return false;
@@ -89,9 +89,9 @@ string login() {
     // check for account validity and get password
     ifstream fin;
     if (ans == 'y' || ans == 'Y')
-        fin.open("/home/endeavour/repo/CS162-project/Data/account-staff.txt");
+        fin.open("..\\Data\\account-staff.txt");
     else
-        fin.open("/home/endeavour/repo/CS162-project/Data/account-student.txt");
+        fin.open("..\\Data\\account-student.txt");
     string pass = checkValidity(fin, userid);
     fin.close();
     if (pass.compare("") == 0) {
@@ -111,8 +111,8 @@ string login() {
 }
 
 // uncomment the below code test the above functions
-// int main() {
-//     cout << "Log into your account" << endl;
-//     login();
-//     return 0;
-// }
+int main() {
+    cout << "Log into your account" << endl;
+    login();
+    return 0;
+}
