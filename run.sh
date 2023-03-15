@@ -1,3 +1,3 @@
 #! /bin/sh
 
-cd build; ./ProjectUI
+cd out/build; ./ProjectUI

@@ -1,1 +1,1 @@
-add_library(function login.cpp)
+add_library(func login.cpp)

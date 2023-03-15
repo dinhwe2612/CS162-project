@@ -8,23 +8,26 @@ add_executable(ProjectUI main.cpp)
 
 add_subdirectory(external/raylib)
 add_subdirectory(Function)
-add_subdirectory(Header)
+# add_subdirectory(Header)
 
 target_include_directories(${PROJECT_NAME} 
-    PUBLIC externalraylib/src
-    PUBLIC Header
-    PUBLIC Data
+    PUBLIC external/raylib/src
+    # PUBLIC Header
     PUBLIC Function
 )
 
 link_directories(${PROJECT_NAME} 
     PRIVATE external/raylib/src
-    PRIVATE header
-    PRIVATE function
-    PRIVATE 
+    # PRIVATE header
+    PRIVATE func
 )
 
-target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} 
+    raylib
+    # header
+    func
+)
+# set_target_properties(header PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
