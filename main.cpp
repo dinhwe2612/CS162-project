@@ -1,24 +1,16 @@
-#include "external/raylib/src/raylib.h"
+#include "UI/app.hpp"
 
 int main()
 {
     const int WindowWidth = 1280;
     const int WindowHeight = 720;
+    
+    App app(WindowWidth, WindowHeight, 60, "Hello!");
 
-    InitWindow(WindowWidth, WindowHeight, "Fuck");
-
-    SetTargetFPS(60);
-
-    while (!WindowShouldClose())
+    while (!app.AppShouldClose())
     {
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
-
-            DrawRectangle(100, 100, 100 , 300, RED);
-            DrawRectangleV((Vector2){300, 200}, (Vector2){100, 30}, BLUE);
-            DrawRectangleRec((Rectangle){200, 200, 100, 100}, GREEN);
-
-        EndDrawing();
+        app.Tick();
     }
     
+
 }
