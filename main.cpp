@@ -2,6 +2,7 @@
 
 int main()
 {
+    // init window
     const int WindowWidth = 1280;
     const int WindowHeight = 720;
     
@@ -11,6 +12,4 @@ int main()
     {
         app.Tick();
     }
-    
-
 }

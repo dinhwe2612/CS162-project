@@ -11,6 +11,8 @@ public:
     void Tick();
 
 private:
+    int windowWidth;
+    int windowHeight;
     void Update();
     void Draw();
 };
