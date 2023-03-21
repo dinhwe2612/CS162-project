@@ -1,12 +1,15 @@
 #pragma once
 #include <iostream> 
 #include <string.h>
+#include<direct.h>
 
 using namespace std;
 
 struct Semester {
     string *nameOfCourses;
     float **scroreOfCourses;
+    string* start_date;
+    string* end_date;
 };
 
 struct SchoolYear {
