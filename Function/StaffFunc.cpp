@@ -10,7 +10,7 @@ void Creat_A_Semester()
 {
     string schoolyear;
     cout << "Select School-year for the semester in term of yyyy: ";
-    cin.getline(schoolyear, 4, '\n');
+    getline(cin, schoolyear);
     cout<<'\n';
     cout << "Select the Spring, Summer or Autumn Semester by typing in 1, 2 or 3 respectively: ";
     int a; cin >> a;
@@ -20,7 +20,7 @@ void Creat_A_Semester()
     else if (a == 3) semester = "Autumn";
     // \Users\HP\OneDrive\Documents\GitHub
     // "\"
-    string address = "C:\CS162-project\Data\SchoolYear\" + schoolyear + "\" + semester;
+    const char address[] = "../Data/SchoolYear/" + schoolyear + "/" + semester;
     if(mkdir(address) == -1)
         cerr << " Error : " << strerror(errno) << '\n';
     else
