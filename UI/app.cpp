@@ -1,53 +1,43 @@
-#include "../external/raylib/src/raylib.h"
 #include "app.hpp"
-#include <assert.h>
-#include <iostream>
 
-// Constructor to init window
-App::App(int windowWidth, int windowHeight, int fps, std::string title)
+void LoginUI::Construct(int windowWidth, int windowHeight)
 {
     this->windowHeight = windowHeight;
     this->windowWidth = windowWidth;
-    assert(!GetWindowHandle() && "Window already opened.");
-    InitWindow(windowWidth, windowHeight, title.c_str());
-    SetTargetFPS(fps);
 }
 
-// Destructor
-App:: ~App() 
-{
-    assert(GetWindowHandle() && "Window already closed.");
-    CloseWindow();
-}
-
-// bool return if window should close
-bool App::AppShouldClose() const
-{
-    return WindowShouldClose();
-}
-
-// draw and update
-void App::Tick()
+void LoginUI::Draw(Texture2D& logo, Texture2D& loginBox, Texture2D& topBar)
 {
     BeginDrawing();
-    Update();
-    Draw();
+        DrawTopbar(topBar);
+        DrawLogo(logo);
+    // DrawLoginBox(loginBox);
     EndDrawing();
 }
 
-void App::Draw ()
+void LoginUI::DrawTopbar(Texture2D& topbar)
 {
-    Image logopng = LoadImage("images/fit-logo-eng--V5.png");
-    Texture2D logo = LoadTextureFromImage(logopng);
-    Vector2 logoPos = {windowWidth / 2, windowHeight / 2};
-    DrawTexture(logo, logoPos.x, logoPos.y, WHITE);
+    Rectangle src = {0, 0, topbar.width, topbar.height};
+    Rectangle dest = {0, 0, windowWidth, 0.05 * windowHeight};
+    Vector2 origin = {0, 0};
+    DrawTexturePro(topbar, src, dest, origin, 0, WHITE);
 }
 
-void App::Update ()
+void LoginUI::DrawLogo(Texture2D& logo)
 {
-    ClearBackground(BLACK);
-   
-
+    Rectangle logoSrc = {0, 0, logo.width, logo.height};
+    Rectangle logoDest = {windowWidth/2, windowHeight/2 + 0.2*windowHeight, logo.width, logo.height};
+    Vector2 LogoOrigin = {logo.width/2, logo.height/2};
+    DrawTexturePro(logo, logoSrc, logoDest, LogoOrigin, 0, WHITE);
 }
 
+void LoginUI::Update()
+{
+    ClearBackground(RAYWHITE);
+}
 
+void LoginUI::Tick(Texture2D& logo, Texture2D& loginBox, Texture2D& topBar)
+{
+    Draw(logo, loginBox, topBar);
+    Update();
+}

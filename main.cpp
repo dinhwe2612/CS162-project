@@ -1,4 +1,5 @@
 #include "UI/app.hpp"
+#include "external/raylib/src/raylib.h"
 
 int main()
 {
@@ -6,10 +7,21 @@ int main()
     const int WindowWidth = 1280;
     const int WindowHeight = 720;
     
-    App app(WindowWidth, WindowHeight, 60, "Hello!");
+    LoginUI Login;
+    Login.Construct(WindowWidth, WindowHeight);
 
-    while (!app.AppShouldClose())
+    InitWindow(WindowWidth, WindowHeight, "You lazy ass, RUN!");
+    SetTargetFPS(60);
+
+    Texture2D logo = LoadTexture("UI/images/full-logo.png");
+    Texture2D topbar = LoadTexture("UI/images/topbar.png");
+    Texture2D dummy = LoadTexture("UI/images/short-logo.png");
+
+    while (!WindowShouldClose())
     {
-        app.Tick();
+        Login.Tick(logo, dummy, topbar);
     }
+    UnloadTexture(logo);
+    UnloadTexture(topbar);
+    UnloadTexture(dummy);
 }
