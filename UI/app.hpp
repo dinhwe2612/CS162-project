@@ -8,13 +8,16 @@ struct LoginUI
 {
     int windowWidth;
     int windowHeight;
+    Texture2D background;
+    Texture2D cat;
+    Font poppins;
     void Construct(int windowWidth, int windowHeight);
+    void Deconstruct();
     void Update();
-    void Draw(Texture2D& logo, Texture2D& loginBox, Texture2D& topBar);
-    void DrawTopbar(Texture2D& topbar);
-    void DrawLogo(Texture2D& logo);
-    void DrawLoginBox(Texture2D& loginBox);
-    void Tick(Texture2D& logo, Texture2D& loginBox, Texture2D& topBar);
+    void Draw();
+    void DrawBackground();
+    void DrawLoginBox();
+    void Tick();
 };
 
 #endif

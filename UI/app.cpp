@@ -4,31 +4,50 @@ void LoginUI::Construct(int windowWidth, int windowHeight)
 {
     this->windowHeight = windowHeight;
     this->windowWidth = windowWidth;
+    cat = LoadTexture("UI/images/cat.png");
+    poppins = LoadFont("UI/font/PTSerif-Bold.ttf");
+    background = LoadTexture("UI/images/background.png");
+
 }
 
-void LoginUI::Draw(Texture2D& logo, Texture2D& loginBox, Texture2D& topBar)
+void LoginUI::Deconstruct()
+{
+    UnloadTexture(cat);
+    UnloadFont(poppins);
+}
+
+void LoginUI::Draw()
 {
     BeginDrawing();
-        DrawTopbar(topBar);
-        DrawLogo(logo);
-    // DrawLoginBox(loginBox);
+        DrawBackground();
+        DrawLoginBox();
+
     EndDrawing();
 }
 
-void LoginUI::DrawTopbar(Texture2D& topbar)
+void LoginUI::DrawBackground()
 {
-    Rectangle src = {0, 0, topbar.width, topbar.height};
-    Rectangle dest = {0, 0, windowWidth, 0.05 * windowHeight};
     Vector2 origin = {0, 0};
-    DrawTexturePro(topbar, src, dest, origin, 0, WHITE);
+
+    // background
+    Rectangle bsrc = {0, 0, background.width, background.height};
+    Rectangle bdest = {0, 0, windowWidth, windowHeight};
+    DrawTexturePro(background, bsrc, bdest, origin, 0, WHITE);
+    // focal cat
+    Rectangle csrc = {0, 0, cat.width, cat.height};
+    Rectangle cdst = {0.15*windowWidth, 0.1*windowHeight, 0.7*cat.width, 0.5*cat.height};
+    DrawTexturePro(cat, csrc, cdst, origin, 0, WHITE);
 }
 
-void LoginUI::DrawLogo(Texture2D& logo)
+void LoginUI::DrawLoginBox()
 {
-    Rectangle logoSrc = {0, 0, logo.width, logo.height};
-    Rectangle logoDest = {windowWidth/2, windowHeight/2 + 0.2*windowHeight, logo.width, logo.height};
-    Vector2 LogoOrigin = {logo.width/2, logo.height/2};
-    DrawTexturePro(logo, logoSrc, logoDest, LogoOrigin, 0, WHITE);
+    // outer box
+    Rectangle box = {0.15*windowWidth + 0.7*cat.width, 0.1*windowHeight, 0.7*cat.width, 0.5*cat.height};
+    DrawRectangleRec(box, WHITE);
+
+    // login text
+    Vector2 txtPos = {1.26*box.x, 2*box.y};
+    DrawTextEx(poppins, "Sign In", txtPos, 0.03*windowWidth, 1, BLACK);
 }
 
 void LoginUI::Update()
@@ -36,8 +55,8 @@ void LoginUI::Update()
     ClearBackground(RAYWHITE);
 }
 
-void LoginUI::Tick(Texture2D& logo, Texture2D& loginBox, Texture2D& topBar)
+void LoginUI::Tick()
 {
-    Draw(logo, loginBox, topBar);
+    Draw();
     Update();
 }
