@@ -155,9 +155,67 @@ void View_ListofCourses(string address)
     return;
 }
 
+string* Read_File(string fileaddress)
+{
+    ifstream in;
+    string* inf = new string[100];
+    in.open(fileaddress.c_str());
+    string str;
+    int i = 1;
+    while (in >> str)
+    {
+        inf[i] = str;
+        i++;
+    }
+    inf[0] = i-1;
+    in.close();
+    return inf;
+}
+
+void Update_File(string fileaddress, string* information)
+{
+    int i = 1;
+    ofstream out;
+    out.open(fileaddress.c_str());
+    while (i <= information[0])
+    {
+        out << information[i] << '\n';
+        i++;
+    }
+    out.close();
+    return;
+}
 
 void Update_CourseInformation(string address)
-{}
+{
+    View_ListofCourses(address);
+    cout << "Here are the courses, please type the course id of the course you want to update: ";
+    string course;
+    cin >> course;
+    cout << '\n';
+    address = address + "/" + course + "/Course_Info.txt";
+    string* inf;
+    inf = Read_File(address);
+    cout << "Which piece of information do you want to modify?" << '\n';
+    cout << "1. Course Name" << '\n';
+    cout << "2. Class Name" << '\n';
+    cout << "3. Teacher Name" << '\n';
+    cout << "4. Credits" << '\n';
+    cout << "5. The max number of students" << '\n';
+    cout << "6. The day of week" << '\n';
+    cout << "7. The session for the day" << '\n';
+    int choice;
+    cout << "Please choose one by typing in the number from 1 to 7: ";
+    cin >> choice;
+    cout << '\n';
+    string newinf;
+    cout << "Now typing in the new information: ";
+    cin >> newinf;
+    cout << "Thank you, the information has been updated for you!" << '\n';
+    inf[choice] = newinf;
+    Update_File(address, inf);
+    return;
+}
 
 void AddStudenttoCourse() {}
 void RemoveStudentfromCourse() {}

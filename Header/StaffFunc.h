@@ -14,5 +14,7 @@ void Update_CourseInformation(string address);
 void AddStudenttoCourse();
 void RemoveStudentfromCourse();
 
-void Display();
+//void Display();
+string* Read_File(string fileaddress);
+void Update_File(string fileaddress, string* information);
 void MultiChoices();
