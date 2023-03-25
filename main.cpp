@@ -1,5 +1,4 @@
-#include "Header/StaffFunc.h"
-#include "raylib.h"
+#include "../Header/StaffFunc.h"
 #include <iostream>
 using namespace std;
 

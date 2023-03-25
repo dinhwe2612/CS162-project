@@ -1,6 +1,6 @@
 #include <iostream>
-#include "fstream"
-#include "string.h"
+#include <fstream>
+#include <string.h>
 #include "../Header/StudentStruct.h"
 
 #include "../Header/StaffFunc.h"
@@ -21,8 +21,6 @@ void Creat_A_Semester()
     if (a == 1) semester = "Spring";
     else if (a == 2) semester = "Summer";
     else if (a == 3) semester = "Autumn";
-    // \Users\HP\OneDrive\Documents\GitHub
-    // "\"
     string address = "../Data/SchoolYear/" + schoolyear + "/" + semester;
     if(mkdir(address.c_str()) == -1)
         cerr << " Error : " << strerror(errno) << '\n';
@@ -38,6 +36,7 @@ void Creat_A_Semester()
     out << date << '\n';
     //out.open() append mode open file in which folder
     cout<<'\n';
+    cin.ignore();
     cout << "Select the date the semester ends in term of ddmmyy: ";
     cin >> date;
     out << date << '\n';
@@ -100,32 +99,40 @@ void Course_Information(string txtaddress)
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     cout << "What is the class's name, who would attend this course?" << '\n';
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     cout << "What is the teacher's name, who's in charge of this course?" << '\n';
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     cout << "What is the number of credits for this course?" << '\n';
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     cout << "What is the maximum number of students for the course, default is 50?" << '\n';
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     cout << "What is the day of the week for this course, typing in MON TUE WED THU FRI SAT?" << '\n';
     // enum?
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     cout << "What is the session in the day, typing in S1 (7:30), S2 (9:30), S3 (13:30) or S4 (15:30)?" << '\n';
     cin >> str;
     cout << '\n';
     out << str << '\n';
+    cin.ignore();
     out.close();
+    cout << "The data has been recorded!" << '\n';
     return;
 }
 
@@ -135,6 +142,7 @@ void View_ListofCourses(string address)
     ifstream in;
     string txtaddress = address + "/Semester_Info.txt";
     in.open(txtaddress.c_str());
+    //cout << (in.is_open() ? "MEOMEOMEO" : "NOPE");
     int i = 0;
     string str;
     while (in >> str)
@@ -144,10 +152,11 @@ void View_ListofCourses(string address)
         {
             ifstream another_in;
             string another_str;
-            another_str = address + str + "/Course_Info.txt";
-            another_in.open(another_str.c_str());
-            another_in >> another_str;
-            cout << "Course " << i-4 << " : " << str << " " << another_str << '\n';
+            string coursename;
+            another_str = address + "/" + str + "/Course_Info.txt";
+            another_in.open(another_str.c_str()); 
+            another_in >> coursename; 
+            cout << "Course " << i-4 << " : " << str << " " << coursename << '\n';
             another_in.close();
         }
     }
@@ -167,9 +176,9 @@ string* Read_File(string fileaddress)
         inf[i] = str;
         i++;
     }
-    inf[0] = i-1;
+    inf[0] = to_string(i-1); 
     in.close();
-    return inf;
+    return inf; 
 }
 
 void Update_File(string fileaddress, string* information)
@@ -177,7 +186,7 @@ void Update_File(string fileaddress, string* information)
     int i = 1;
     ofstream out;
     out.open(fileaddress.c_str());
-    while (i <= information[0])
+    while (i <= atoi(information[0].c_str()))
     {
         out << information[i] << '\n';
         i++;
@@ -185,7 +194,6 @@ void Update_File(string fileaddress, string* information)
     out.close();
     return;
 }
-
 void Update_CourseInformation(string address)
 {
     View_ListofCourses(address);
@@ -216,7 +224,13 @@ void Update_CourseInformation(string address)
     Update_File(address, inf);
     return;
 }
-
+//
 void AddStudenttoCourse() {}
 void RemoveStudentfromCourse() {}
 // bout to done.
+// update more information at one time.
+
+//int main() {
+//    Update_CourseInformation("../Data/SchoolYear/2122/Spring");
+//    return 0;
+//}
