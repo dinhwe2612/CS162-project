@@ -1,5 +1,9 @@
 #include "app.hpp"
 
+//---------------------------------------------------------------------------------------------//
+//                                  Construct / Deconstruct
+//---------------------------------------------------------------------------------------------//
+
 void LoginUI::Construct(int windowWidth, int windowHeight)
 {
     // window size init
@@ -32,14 +36,9 @@ void LoginUI::Deconstruct()
     UnloadFont(PT_serif_regular);
 }
 
-void LoginUI::Draw()
-{
-    BeginDrawing();
-        DrawBackground();
-        DrawLoginBox();
-
-    EndDrawing();
-}
+//---------------------------------------------------------------------------------------------//
+//                              All static elements drawn here
+//---------------------------------------------------------------------------------------------//
 
 void LoginUI::DrawBackground()
 {
@@ -94,27 +93,88 @@ void LoginUI::DrawLoginBox()
     Rectangle passIconDest = {0.381*windowWidth, 0.525*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
     Vector2 passOrigin = {0, 0};
     DrawTexturePro(passwordIcon, passIconSrc, passIconDest, passOrigin, 0, WHITE);
+}
 
+//---------------------------------------------------------------------------------------------//
+//                              All non-static elements drawn here
+//---------------------------------------------------------------------------------------------//
+
+void LoginUI::DrawSignInButton()
+{
+    // draw sign in button
+    Rectangle signInButton = {0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height};
+
+    float x = signInButton.x;
+    float y = signInButton.y;
+    float height = signInButton.height;
+    float width = signInButton.width;
+
+    // response when hover
+    if (GetMouseX() >= x && GetMouseX() <= x + width && GetMouseY() >= y && GetMouseY() <= y + height)
+        DrawRectangleRec(signInButton, BLACK);
+    else
+        DrawRectangleRec(signInButton, DARKBLUE);
+
+    // draw "sign in" text in box
+    Vector2 signInInBox = {0.475*windowWidth, 0.655*windowHeight};
+    DrawTextEx(PT_serif_regular, "Sign in", signInInBox, 0.02*windowWidth, 0.5, RAYWHITE);
+}
+
+void LoginUI::DrawStatusButtons()
+{
     // draw staff icon
     Rectangle staffIconSrc = {0, 0, staffIcon.width, staffIcon.height};
     Rectangle staffIconDest = {0.512*windowWidth, 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
     Vector2 staffIconOrigin = {0, 0};
-    DrawTexturePro(staffIcon, staffIconSrc, staffIconDest, staffIconOrigin, 0, WHITE);
 
     // draw student icon
     Rectangle studentIconSrc = {0, 0, studentIcon.width, studentIcon.height};
     Rectangle studentIconDest = {0.58*windowWidth , 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
     Vector2 studentIconPos = {0, 0};
-    DrawTexturePro(studentIcon, studentIconSrc, studentIconDest, studentIconPos, 0, WHITE);
 
-    // draw sign in button
-    Rectangle signInButton = {0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height};
-    DrawRectangleRec(signInButton, DARKBLUE);
+    bool STAFF_IS_CLICKED = true;
+    bool STUDENT_IS_CLICKED = false;
 
-    // draw "sign in" text in box
-    Vector2 signInInBox = {0.475*windowWidth, 0.655*windowHeight};
-    DrawTextEx(PT_serif_regular, "Sign in", signInInBox, 0.02*windowWidth, 0.5, RAYWHITE);
+    static bool status;
 
+    if (GetMouseX() >= staffIconDest.x && GetMouseX() <= staffIconDest.x + staffIconDest.width 
+        && GetMouseY() >= staffIconDest.y && GetMouseY() <= staffIconDest.y + staffIconDest.height
+        && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        status = STAFF_IS_CLICKED;
+    }
+    else if (GetMouseX() >= studentIconDest.x && GetMouseX() <= studentIconDest.x + studentIconDest.width 
+        && GetMouseY() >= studentIconDest.y && GetMouseY() <= studentIconDest.y + studentIconDest.height
+        && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        status = STUDENT_IS_CLICKED;
+    }
+
+    if (status == STAFF_IS_CLICKED)
+    {
+        DrawTexturePro(staffIcon, staffIconSrc, staffIconDest, staffIconOrigin, 0, WHITE);
+        DrawTexturePro(studentIcon, studentIconSrc, studentIconDest, studentIconPos, 0, GRAY);
+    }
+    else if (status == STUDENT_IS_CLICKED)
+    {
+        DrawTexturePro(staffIcon, staffIconSrc, staffIconDest, staffIconOrigin, 0, GRAY);
+        DrawTexturePro(studentIcon, studentIconSrc, studentIconDest, studentIconPos, 0, WHITE);
+    }
+}
+
+//---------------------------------------------------------------------------------------------//
+//                              All objects drawn managed here
+//---------------------------------------------------------------------------------------------//
+
+void LoginUI::Draw()
+{
+    BeginDrawing();
+        DrawBackground();
+        DrawLoginBox();
+        DrawSignInButton();
+        DrawStatusButtons();
+
+    EndDrawing();
 }
 
 void LoginUI::Update()
