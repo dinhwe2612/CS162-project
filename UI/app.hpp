@@ -9,8 +9,8 @@ struct LoginUI
     int windowWidth;
     int windowHeight;
     Texture2D background;
-    Texture2D cat;
-    Font poppins;
+    Texture2D logo;
+    Font sans_serif_bold;
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
     void Update();
