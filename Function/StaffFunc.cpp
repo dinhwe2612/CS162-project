@@ -8,6 +8,12 @@
 using namespace std;
 void MultiChoices()
 {
+    // add info to the students also.
+    // add course info to student information
+    // function record and push info to the struct to print out/ student.
+    // Students' file text. class in course, add file student enrolled, add one specific students.
+    // must change students' information.
+    // the order of information.
     // menu
     return;
 }
