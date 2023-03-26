@@ -6,6 +6,11 @@
 #include "../Header/StaffFunc.h"
 
 using namespace std;
+void MultiChoices()
+{
+    // menu
+    return;
+}
 
 
 void Creat_A_Semester()
@@ -167,7 +172,7 @@ void View_ListofCourses(string address)
 string* Read_File(string fileaddress)
 {
     ifstream in;
-    string* inf = new string[100];
+    string* inf = new string[1000];
     in.open(fileaddress.c_str());
     string str;
     int i = 1;
@@ -225,8 +230,43 @@ void Update_CourseInformation(string address)
     return;
 }
 //
-void AddStudenttoCourse() {}
-void RemoveStudentfromCourse() {}
+
+void AddClasstoCourse_CSV(string fileaddress, string courseaddress)
+{
+    string* info;
+    info = Read_File(fileaddress.c_str());
+    string newfileaddress = courseaddress + "/Student_ID.csv";
+    Update_File(newfileaddress, info);
+    return;
+}
+
+void Add1StudenttoCourse(string studentid, string courseaddress) 
+{
+    string address = courseaddress + "/Student_ID.csv";
+    ofstream out;
+    out.open(address.c_str(), ios::app);
+    out << studentid << '\n';
+    out.close();
+    cout << "This student with the ID has been added to the current course!" <<'\n';
+    return;
+}
+void Remove1StudentfromCourse(string studentid, string courseaddress) 
+{
+    string address = courseaddress + "/Student_ID.csv";
+    string* info;
+    info = Read_File(address.c_str());
+    int i = 1;
+    ofstream out;
+    out.open(address.c_str());
+    while (i <= atoi(info[0].c_str()))
+    {
+        if (studentid != info[i])  out << info[i] << '\n';
+        i++;
+    }
+    out.close();
+    cout << "This student with the ID has been removed from the current course!" <<'\n';
+    return;
+}
 // bout to done.
 // update more information at one time.
 
