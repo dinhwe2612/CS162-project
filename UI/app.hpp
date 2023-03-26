@@ -6,13 +6,27 @@
 
 struct LoginUI
 {
+    // window size
     int windowWidth;
     int windowHeight;
+
+    // resources
+        // Textures
     Texture2D background;
     Texture2D logo;
-    Font sans_serif_bold;
+    Texture2D usrIcon;
+    Texture2D passwordIcon;
+    Texture2D staffIcon;
+    Texture2D studentIcon;
+        // Fonts
+    Font PT_serif_bold;
+    Font PT_serif_regular;
+
+    // struct constructor / deconstructor
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
+
+    // draw functions
     void Update();
     void Draw();
     void DrawBackground();
