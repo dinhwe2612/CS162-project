@@ -15,6 +15,7 @@ void MultiChoices()
     // must change students' information.
     // the order of information.
     // menu
+    
     return;
 }
 
@@ -240,9 +241,43 @@ void Update_CourseInformation(string address)
 void AddClasstoCourse_CSV(string fileaddress, string courseaddress)
 {
     string* info;
-    info = Read_File(fileaddress.c_str());
+    ifstream in; ofstream out;
     string newfileaddress = courseaddress + "/Student_ID.csv";
-    Update_File(newfileaddress, info);
+    out.open(newfileaddress.c_str());
+    in.open(fileaddress.c_str(), ios::in);
+    info = new string[1000];
+
+        string* row = new string[1000];
+        string line, word, temp;
+        int index = 1;
+          while (in >> temp) 
+          {
+  
+        delete row;
+        row = new string[1000];
+  
+        getline(in, line);
+
+        stringstream s(line);
+
+        int i = 1;
+        while ( getline(s, word, ',') ) 
+        {
+            //ignore;
+            row[i] = word;
+            if (i == 1) info[index] = word;
+            out << word << ",";
+            i++;
+        }
+        out << '\n';
+        index++;
+          }
+          in.close();
+          out.close();
+          info[0] = to_string(index-1);
+  
+    string iddata = courseaddress + "/Student_ID_data.txt";
+    Update_File(iddata, info);
     return;
 }
 
