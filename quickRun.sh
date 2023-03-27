@@ -1,4 +1,4 @@
-# CS162-project
+#! /bin/sh
 
 ./configure.sh
 ./build.sh
