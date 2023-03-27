@@ -17,6 +17,10 @@ void Add1StudenttoCourse(string studentid, string courseaddress);
 void Remove1StudentfromCourse(string studentid, string courseaddress);
 void AddClasstoCourse_CSV(string fileaddress, string courseaddress);
 
+
+void AddDatatoStudentFile (string id);
+
+
 //void Display();
 string* Read_File(string fileaddress);
 void Update_File(string fileaddress, string* information);
