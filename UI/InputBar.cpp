@@ -17,12 +17,6 @@ void InputBar::Draw() {
     DrawTextEx(font, (startingInput + currentInput + (OnText ? "_" : "")).c_str(), coordText, szText, spacing, colorText);
 }
 
-bool check(Vector2 pos, Rectangle shape) {
-    if (pos.x < shape.x || shape.x + shape.width <= pos.x) return false;
-    if (pos.y < shape.y || shape.y + shape.height <= pos.y) return false;
-    return true;
-}
-
 void InputBar::SetInputText() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         if (CheckCollisionPointRec(GetMousePosition(), inputShape)) {
