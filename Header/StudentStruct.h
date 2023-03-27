@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream> 
 #include <string.h>
-#include<direct.h>
+//#include <direct.h>
+#include <filesystem>
 // IF YOU WANT TO UPDATE ONE SPECIFIC FILE, 2 FUNCTIONS IN StaffFunc.h  MAY HELP.
 // FOR SPECIFIC, THEY TAKE IN THE INFORMATION AS A BLOCK OF STRING THAT
 // YOU'RE ABLE TO UPDATE, AND THEN OVERWRITE THE OLD FILE WITH NEW INFORMATION.
