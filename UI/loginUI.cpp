@@ -1,10 +1,11 @@
 #include "LoginUI.hpp"
+#include "Button.hpp"
 
 //---------------------------------------------------------------------------------------------//
 //                                  Construct / Deconstruct
 //---------------------------------------------------------------------------------------------//
 
-void LoginUI::Construct(int windowWidth, int windowHeight)
+void LoginUI::Construct(float windowWidth, float windowHeight)
 {
     // window size init
     this->windowHeight = windowHeight;
@@ -21,6 +22,10 @@ void LoginUI::Construct(int windowWidth, int windowHeight)
     // load font
     PT_serif_bold = LoadFont("UI/font/PT_Serif/PTSerif-Bold.ttf");
     PT_serif_regular = LoadFont("UI/font/PT_Serif/PTSerif-Regular.ttf");
+    
+    //InputBar
+    inputUsername.construct(486, 295.5, 305, 45, 490, 296, 40, 2, 9, "");
+    inputPassword.construct(486, 369, 305, 45, 490, 369, 40, 2, 9, "");
 }
 
 void LoginUI::Deconstruct()
@@ -105,23 +110,13 @@ void LoginUI::DrawLoginBox()
 
 void LoginUI::DrawSignInButton()
 {
-    // draw sign in button
-    Rectangle signInButton = {0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height};
-
-    float x = signInButton.x;
-    float y = signInButton.y;
-    float height = signInButton.height;
-    float width = signInButton.width;
-
-    // response when hover
-    if (GetMouseX() >= x && GetMouseX() <= x + width && GetMouseY() >= y && GetMouseY() <= y + height)
-        DrawRectangleRec(signInButton, BLACK);
-    else
-        DrawRectangleRec(signInButton, DARKBLUE);
-
-    // draw "sign in" text in box
-    Vector2 signInInBox = {0.475*windowWidth, 0.655*windowHeight};
-    DrawTextEx(PT_serif_regular, "Sign in", signInInBox, 0.02*windowWidth, 0.5, RAYWHITE);
+    Button signInButton;
+    // set rectangle
+    signInButton.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height, BLACK, DARKBLUE);
+    // set text
+    signInButton.SetText(PT_serif_regular, "Sign in", 0.475*windowWidth, 0.655*windowHeight, 0.02*windowWidth, 0.5, RAYWHITE);
+    // draw
+    signInButton.Draw();
 }
 
 void LoginUI::DrawStatusButtons()
@@ -173,13 +168,12 @@ void LoginUI::DrawStatusButtons()
 
 void LoginUI::Draw()
 {
-    BeginDrawing();
-        DrawBackground();
-        DrawLoginBox();
-        DrawSignInButton();
-        DrawStatusButtons();
-
-    EndDrawing();
+    DrawBackground();
+    DrawLoginBox();
+    DrawSignInButton();
+    DrawStatusButtons();
+    inputUsername.Draw();
+    inputPassword.Draw();
 }
 
 void LoginUI::Update()
