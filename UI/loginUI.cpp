@@ -71,7 +71,7 @@ void LoginUI::DrawLoginBox()
     DrawTexturePro(logo, logoSrc, logoDest, logoOrigin, 0, RAYWHITE);
 
     // draw "SIGN IN" text
-    Vector2 signInPos = {0.379*windowWidth, 0.336*windowHeight};
+    Vector2 signInPos = {0.379 * windowWidth, 0.336*windowHeight};
     DrawTextEx(PT_serif_bold, "Sign in", signInPos, 0.02*windowWidth, 0.5, BLACK);
 
     // draw "Are you staff or student?" text

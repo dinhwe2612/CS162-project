@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 #include "UI/LoginUI.hpp"
+=======
+#include "UI/app.hpp"
+#include "UI/StaffUI.hpp"
+#include "UI/InputBar.hpp"
+>>>>>>> Stashed changes
 #include "external/raylib/src/raylib.h"
 
 int main()
@@ -11,13 +17,22 @@ int main()
 
     SetTargetFPS(60);
 
-    LoginUI Login;
-    Login.Construct(WindowWidth, WindowHeight);
+    // LoginUI Login;
+    // Login.Construct(WindowWidth, WindowHeight);
+    StaffUI Staff;
+    Staff.Construct(WindowWidth, WindowHeight);
+    InputBar inputUsername(486, 296, 305, 44, 486 + 4, 296, 40, 2, 15, "");
+    InputBar inputPassword(486, 369, 305, 45, 486 + 4, 369, 40, 2, 15, "");
 
     while (!WindowShouldClose())
     {
-        Login.Tick();
+        BeginDrawing();
+        Staff.Draw();
+        inputUsername.draw();
+        inputPassword.draw();
+        EndDrawing();
     }
-    Login.Deconstruct();
+    // Login.Deconstruct();
+    Staff.Deconstruct();
     CloseWindow();
 }

@@ -31,6 +31,8 @@ target_link_libraries(${PROJECT_NAME}
     func
     ui
 )
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 # set_target_properties(header PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
