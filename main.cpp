@@ -1,4 +1,4 @@
-#include "UI/app.hpp"
+#include "UI/LoginUI.hpp"
 #include "external/raylib/src/raylib.h"
 
 int main()

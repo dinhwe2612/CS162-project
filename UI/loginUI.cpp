@@ -1,4 +1,4 @@
-#include "app.hpp"
+#include "LoginUI.hpp"
 
 //---------------------------------------------------------------------------------------------//
 //                                  Construct / Deconstruct
@@ -50,6 +50,10 @@ void LoginUI::DrawBackground()
 
 void LoginUI::DrawLoginBox()
 {
+    // draw top bar
+    Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
+    DrawRectangleRec(bar, DARKBLUE);
+
     // draw outer box border
     Rectangle borders = {windowWidth/2, windowHeight/2, 0.31*windowWidth, 0.31*windowWidth};
     Vector2 bordersOrigin = {borders.width/2, borders.height/2};
@@ -132,6 +136,7 @@ void LoginUI::DrawStatusButtons()
     Rectangle studentIconDest = {0.58*windowWidth , 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
     Vector2 studentIconPos = {0, 0};
 
+    // check whether staff or student is clicked and respond
     bool STAFF_IS_CLICKED = true;
     bool STUDENT_IS_CLICKED = false;
 

@@ -1,5 +1,5 @@
-#ifndef app_hpp
-#define app_hpp
+#ifndef loginui_hpp
+#define loginui_hpp
 
 #include "../external/raylib/src/raylib.h"
 #include <iostream>
