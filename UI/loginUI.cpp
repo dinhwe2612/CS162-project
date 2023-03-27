@@ -50,10 +50,6 @@ void LoginUI::DrawBackground()
 
 void LoginUI::DrawLoginBox()
 {
-    // draw top bar
-    Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
-    DrawRectangleRec(bar, DARKBLUE);
-
     // draw outer box border
     Rectangle borders = {windowWidth/2, windowHeight/2, 0.31*windowWidth, 0.31*windowWidth};
     Vector2 bordersOrigin = {borders.width/2, borders.height/2};
