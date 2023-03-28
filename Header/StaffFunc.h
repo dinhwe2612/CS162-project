@@ -19,7 +19,7 @@ void Remove1StudentfromCourse(string studentid, string courseaddress);
 void AddClasstoCourse_CSV(string fileaddress, string courseaddress);
 
 
-void AddDatatoStudentFile (string id);
+void AddDatatoStudentFile (string id, string schoolyear, string semester, string courseid, string* data);
 
 
 //void Display();
