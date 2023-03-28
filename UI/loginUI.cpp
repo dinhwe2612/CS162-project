@@ -23,8 +23,12 @@ void LoginUI::Construct(float windowWidth, float windowHeight)
     PT_serif_regular = LoadFont("UI/font/PT_Serif/PTSerif-Regular.ttf");
     
     //InputBar
-    inputUsername.Construct(486, 295.5, 305, 45, 490, 296, 40, 2, 9, "");
-    inputPassword.Construct(486, 369, 305, 45, 490, 369, 40, 2, 9, "");
+    inputUsername.Construct(486, 295.5, 305, 45, 490, 296, 40, 2, 9, "    ");
+    inputPassword.Construct(486, 369, 305, 45, 490, 369, 40, 2, 9, "    ");
+
+    //Button sign in
+    signInButton.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height, BLACK, DARKBLUE);
+    signInButton.SetText(PT_serif_regular, "Sign in", 0.475*windowWidth, 0.655*windowHeight, 0.02*windowWidth, 0.5, RAYWHITE);
 }
 
 void LoginUI::Deconstruct()
@@ -86,36 +90,14 @@ void LoginUI::DrawLoginBox()
     Rectangle usrBox = {0.379*windowWidth, 0.409*windowHeight, 0.24*windowWidth, 0.08*logo.height};
     DrawRectangleLinesEx(usrBox, 1, BLACK);
 
-    // draw username icon
-    Rectangle usrIconSrc = {0, 0, usrIcon.width, usrIcon.height};
-    Rectangle usrIconDest = {0.381*windowWidth, 0.420*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
-    Vector2 usrIconOrigin = {0, 0};
-    DrawTexturePro(usrIcon, usrIconSrc, usrIconDest, usrIconOrigin, 0, WHITE);
-
     // draw password box
     Rectangle passBox = {0.379*windowWidth, 0.511*windowHeight, 0.24*windowWidth, 0.08*logo.height};
-    DrawRectangleLinesEx(passBox, 1, BLACK);
-
-    // draw password icon
-    Rectangle passIconSrc = {0, 0, passwordIcon.width, passwordIcon.height};
-    Rectangle passIconDest = {0.381*windowWidth, 0.525*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
-    Vector2 passOrigin = {0, 0};
-    DrawTexturePro(passwordIcon, passIconSrc, passIconDest, passOrigin, 0, WHITE);
+    DrawRectangleLinesEx(passBox, 1, BLACK);    
 }
 
 //---------------------------------------------------------------------------------------------//
 //                              All non-static elements drawn here
 //---------------------------------------------------------------------------------------------//
-
-void LoginUI::DrawSignInButton()
-{
-    // set rectangle
-    signInButton.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height, BLACK, DARKBLUE);
-    // set text
-    signInButton.SetText(PT_serif_regular, "Sign in", 0.475*windowWidth, 0.655*windowHeight, 0.02*windowWidth, 0.5, RAYWHITE);
-    // draw
-    signInButton.DrawText();
-}
 
 void LoginUI::DrawStatusButtons()
 {
@@ -129,15 +111,11 @@ void LoginUI::DrawStatusButtons()
     Rectangle studentIconDest = {0.58*windowWidth , 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
     Vector2 studentIconPos = {0, 0};
 
-    if (GetMouseX() >= staffIconDest.x && GetMouseX() <= staffIconDest.x + staffIconDest.width 
-        && GetMouseY() >= staffIconDest.y && GetMouseY() <= staffIconDest.y + staffIconDest.height
-        && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    if (CheckCollisionPointRec(GetMousePosition(), staffIconDest) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         status = STAFF_IS_CLICKED;
     }
-    else if (GetMouseX() >= studentIconDest.x && GetMouseX() <= studentIconDest.x + studentIconDest.width 
-        && GetMouseY() >= studentIconDest.y && GetMouseY() <= studentIconDest.y + studentIconDest.height
-        && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    if (CheckCollisionPointRec(GetMousePosition(), studentIconDest) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         status = STUDENT_IS_CLICKED;
     }
@@ -154,6 +132,25 @@ void LoginUI::DrawStatusButtons()
     }
 }
 
+void LoginUI::DrawLoginIcon() {
+    // draw username icon
+    Rectangle usrIconSrc = {0, 0, usrIcon.width, usrIcon.height};
+    Rectangle usrIconDest = {0.381*windowWidth, 0.420*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
+    Vector2 usrIconOrigin = {0, 0};
+    DrawTexturePro(usrIcon, usrIconSrc, usrIconDest, usrIconOrigin, 0, WHITE);
+
+    // draw password icon
+    Rectangle passIconSrc = {0, 0, passwordIcon.width, passwordIcon.height};
+    Rectangle passIconDest = {0.381*windowWidth, 0.525*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
+    Vector2 passOrigin = {0, 0};
+    DrawTexturePro(passwordIcon, passIconSrc, passIconDest, passOrigin, 0, WHITE);
+}
+
+void LoginUI::DrawRetry() {
+    Vector2 retryPos = {0.475*windowWidth - 50, 0.655*windowHeight - 50};
+    DrawTextEx(PT_serif_regular, "Please Retry Again", retryPos, 0.02*windowWidth, 0.5, BLACK);
+}
+
 //---------------------------------------------------------------------------------------------//
 //                              All objects drawn managed here
 //---------------------------------------------------------------------------------------------//
@@ -162,10 +159,12 @@ void LoginUI::Draw()
 {
     DrawBackground();
     DrawLoginBox();
-    DrawSignInButton();
-    DrawStatusButtons();
     inputUsername.Draw();
     inputPassword.Draw();
+    DrawLoginIcon();
+    signInButton.DrawText();
+    DrawStatusButtons();
+    DrawRetry();
 }
 
 void LoginUI::Update()
