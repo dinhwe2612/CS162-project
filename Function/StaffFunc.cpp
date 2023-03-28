@@ -5,6 +5,8 @@
 
 #include "../Header/StaffFunc.h"
 
+// THE MULTICHOICES FUNCTION, WHICH IS THE MENU, IS APPLIED NOT ONLY FOR FUNCTIONS IN THIS FILE
+
 using namespace std;
 void MultiChoices()
 {
@@ -15,6 +17,7 @@ void MultiChoices()
     // must change students' information.
     // the order of information.
     // menu
+    // menu 
     
     return;
 }
@@ -24,7 +27,7 @@ void Creat_A_Semester()
 {
     ifstream in; ofstream out;
     string schoolyear;
-    cout << "Select School-year for the semester in term of yyyy: ";
+    cout << "Select School-year for the semester in term of yyyy-yyyy: ";
     getline(cin, schoolyear);
     cout<<'\n';
     cout << "Select the Spring, Summer or Autumn Semester by typing in 1, 2 or 3 respectively: ";
@@ -86,13 +89,38 @@ void AddCourse(string address)
     string courseid;
     cin >> courseid;
     cout << '\n';
-    out << courseid << '\n';
-    out.close();
-    string courseaddress = address + "/" + courseid;
-    if(mkdir(courseaddress.c_str()) == -1)
+    // struct stat sb;
+    // // Calls the function with path as argument
+    // // If the file/directory exists at the path returns 0
+    // // If block executes if path exists
+    // if (stat(folder, &sb) == 0)
+    //     cout << "The path is valid!";
+    // else
+    //     cout << "The Path is invalid!";
+    //if (is_file_exist(courseaddress) != true)  
+    //{
+    string coursename;
+    cout << "What is the course name?" << '\n';
+    getline(cin, coursename);
+    cout << '\n';
+    cin.ignore();
+    // out << courseid << '\n';
+    // out.close();
+    // out << str << '\n';
+    //cin.ignore();
+    string classname;
+    cout << "What is the class's name, who would attend this course?" << '\n';
+    getline(cin, classname);
+    cout << '\n';
+    cin.ignore();
+    string courseaddress = address + "/" + courseid + "-" + classname;
+        if(mkdir(courseaddress.c_str()) == -1)
         cerr << " Error : " << strerror(errno) << '\n';
     else
         cout << "Course Created!"<<'\n';
+    //}
+    out << courseid << "-" << classname << '\n';
+    out.close();
     cout << "Now continue to complete the course information!";
     cout << '\n';
     //use data abstraction
@@ -101,21 +129,24 @@ void AddCourse(string address)
     return;
 }
 
+// bool is_file_exist( std::string& FileName ) {
+	
+// 	const std::filesystem::path p = FileName ;
+//     return ( std::filesystem::exists(p) );
+// }
+
 
 void Course_Information(string txtaddress)
 {
     ofstream out;
+    //if (is_file_exist(txtaddress) == true) out.open(txtaddress.c_str(), ios::app);
+    //else 
     out.open(txtaddress.c_str());
     string str;
-    cout << "What is the course name?" << '\n';
-    cin >> str;
-    cout << '\n';
-    out << str << '\n';
-    cin.ignore();
-    cout << "What is the class's name, who would attend this course?" << '\n';
-    cin >> str;
-    cout << '\n';
-    out << str << '\n';
+    //out << str << '\n';
+    out << courseid << "-" << classname << '\n';
+    out << coursename << '\n';
+    out << classname << '\n';
     cin.ignore();
     cout << "What is the teacher's name, who's in charge of this course?" << '\n';
     cin >> str;
@@ -157,18 +188,20 @@ void View_ListofCourses(string address)
     //cout << (in.is_open() ? "MEOMEOMEO" : "NOPE");
     int i = 0;
     string str;
-    while (in >> str)
+    while (getline(in, str))
     {
         i++;
         if (i > 4)
         {
             ifstream another_in;
             string another_str;
+            string courseid;
             string coursename;
+            string classname;
             another_str = address + "/" + str + "/Course_Info.txt";
             another_in.open(another_str.c_str()); 
-            another_in >> coursename; 
-            cout << "Course " << i-4 << " : " << str << " " << coursename << '\n';
+            another_in >> courseid >> coursename >> classname; 
+            cout << "Course " << i-4 << " : " << str << " " << coursename << classname << '\n';
             another_in.close();
         }
     }
@@ -209,11 +242,12 @@ void Update_File(string fileaddress, string* information)
 void Update_CourseInformation(string address)
 {
     View_ListofCourses(address);
-    cout << "Here are the courses, please type the course id of the course you want to update: ";
+    cout << "Here are the courses, please type the course id and the class name of the course you want to update: ";
     string course;
     cin >> course;
+    string class; cin >> class;
     cout << '\n';
-    address = address + "/" + course + "/Course_Info.txt";
+    address = address + "/" + course + "-" + class + "/Course_Info.txt";
     string* inf;
     inf = Read_File(address);
     cout << "Which piece of information do you want to modify?" << '\n';
@@ -232,7 +266,7 @@ void Update_CourseInformation(string address)
     cout << "Now typing in the new information: ";
     cin >> newinf;
     cout << "Thank you, the information has been updated for you!" << '\n';
-    inf[choice] = newinf;
+    inf[choice + 1] = newinf;
     Update_File(address, inf);
     return;
 }
@@ -240,6 +274,7 @@ void Update_CourseInformation(string address)
 
 void AddClasstoCourse_CSV(string fileaddress, string courseaddress)
 {
+    // alot of file csv.
     string* info;
     ifstream in; ofstream out;
     string newfileaddress = courseaddress + "/Student_ID.csv";
@@ -283,17 +318,32 @@ void AddClasstoCourse_CSV(string fileaddress, string courseaddress)
 
 void Add1StudenttoCourse(string studentid, string courseaddress) 
 {
-    string address = courseaddress + "/Student_ID.csv";
+    string address = courseaddress + "/Student_ID_data.txt";
+    int i = 0;
+    int cnt = 0;
+    string schoolyear = "";
+    string semester = "";
+    string course = "";
+    while (address[i] != '\0')
+    {
+        if (address[i] == '/') cnt++;
+        if (cnt == 2 && address[i] != '/') schoolyear += address[i];
+        if (cnt == 3 && address[i] != '/') semester += address[i];
+        if (cnt == 4 && address[i] != '/') course += address[i];
+    }
     ofstream out;
     out.open(address.c_str(), ios::app);
     out << studentid << '\n';
     out.close();
+    address = courseaddress + "/Course_Info.txt";
+    string* information = Read_File(address);
+    AddDatatoStudentFile(studentid, schoolyear, semester, information);
     cout << "This student with the ID has been added to the current course!" <<'\n';
     return;
 }
 void Remove1StudentfromCourse(string studentid, string courseaddress) 
 {
-    string address = courseaddress + "/Student_ID.csv";
+    string address = courseaddress + "/Student_ID_data.txt";
     string* info;
     info = Read_File(address.c_str());
     int i = 1;
@@ -305,6 +355,22 @@ void Remove1StudentfromCourse(string studentid, string courseaddress)
         i++;
     }
     out.close();
+    int index = 0;
+    int cnt = 0;
+    string schoolyear = "";
+    string semester = "";
+    string course = "";
+    while (address[i] != '\0')
+    {
+        if (address[i] == '/') cnt++;
+        if (cnt == 2 && address[i] != '/') schoolyear += address[i];
+        if (cnt == 3 && address[i] != '/') semester += address[i];
+        if (cnt == 4 && address[i] != '/') course += address[i];
+    }
+
+    address = courseaddress + "/Course_Info.txt";
+    string* information = Read_File(address);
+    AddDatatoStudentFile(studentid, schoolyear, semester, information);
     cout << "This student with the ID has been removed from the current course!" <<'\n';
     return;
 }
@@ -315,3 +381,33 @@ void Remove1StudentfromCourse(string studentid, string courseaddress)
 //    Update_CourseInformation("../Data/SchoolYear/2122/Spring");
 //    return 0;
 //}
+void AddDatatoStudentFile (string id, string schoolyear, string semester, string courseid, string* data)
+{
+    //add, remove student from course, linked list string for the data updating
+    //store class name to access the information of the class
+    string fileaddress = "../Data/Student/" + id + ".txt";
+    string* info;
+    info = Read_File(fileaddress);
+    int i = 1;
+    //ofstream out;
+    //out.open(fileaddress.c_str());
+    while (i <= atoi(info[0].c_str()))
+    {
+        if (info[i] == courseid) break;
+        i++;
+    }
+    while (i <= atoi(info[0].c_str()) - 7)
+    {
+        info[i] = info[i + 7];
+        i++;
+    }
+    int j = 1;
+    // characeter endline '\n' redundant;
+    //out.close();
+    while (j <= atoi(data[0].c_str()))
+    {
+        info[i] = data[j];
+        j++; i++;
+    }
+    Update_File(fileaddress, info);
+}
