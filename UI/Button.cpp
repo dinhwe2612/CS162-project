@@ -15,7 +15,13 @@ void Button::SetText(Font _font, string _Text, float coordX, float coordY, float
     textColor = _textColor;  
 }
 
-void Button::Draw() {
+void Button::SetTexture(string path) {
+    image = LoadTexture(path.c_str());
+    bsrc = {0, 0, image.width, image.height};
+    origin = {0, 0};
+}
+
+void Button::DrawText() {
     Color curColor;
     if (CheckCollisionPointRec(GetMousePosition(), buttonShape)) {
         curColor = inColor;
@@ -25,6 +31,17 @@ void Button::Draw() {
 
     DrawRectangleRec(buttonShape, curColor);
     DrawTextEx(font, Text.c_str(), coordText, fontSize, spacing, textColor);
+}
+
+void Button::DrawTexture() {
+    Color curColor;
+    if (CheckCollisionPointRec(GetMousePosition(), buttonShape)) {
+        curColor = inColor;
+    } else {
+        curColor = outColor;
+    }
+
+    DrawTexturePro(image, bsrc, buttonShape, origin, 0, curColor);
 }
 
 bool Button::isPRESSED(int button) {

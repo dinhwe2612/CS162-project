@@ -15,17 +15,41 @@ int main()
 
     LoginUI Login;
     Login.Construct(WindowWidth, WindowHeight);
+    StaffUI Staff;
+    Staff.Construct(WindowWidth, WindowHeight);
     
+    int menuLogin = 0;
+    enum WindowLogin{
+        LOGIN,
+        STAFF,
+        STUDENT
+    };
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
 
-            Login.Draw();
+            switch (menuLogin) {
+            default:
+                Login.Draw();
+                if (Login.signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
+                    if (Login.STAFF_IS_CLICKED) menuLogin = STAFF;
+                    if (Login.STUDENT_IS_CLICKED) menuLogin = STUDENT;
+                }
+                break;
+            case STAFF:
+                Staff.Draw();
+                if (Staff.SignOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
+                    menuLogin = LOGIN;
+                }
+                break;
+            }
         
         EndDrawing();
         
     }
     Login.Deconstruct();
+    Staff.Deconstruct();
     
     CloseWindow();
 }

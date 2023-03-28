@@ -1,6 +1,6 @@
 #include "InputBar.hpp"
 
-void InputBar::construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting) {
+void InputBar::Construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting) {
     inputShape = {x, y, width, height};
     coordText = {cX, cY};
     szText = _szText;

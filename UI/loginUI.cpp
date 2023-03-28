@@ -1,5 +1,5 @@
 #include "LoginUI.hpp"
-
+#include "StaffUI.hpp"
 //---------------------------------------------------------------------------------------------//
 //                                  Construct / Deconstruct
 //---------------------------------------------------------------------------------------------//
@@ -23,8 +23,8 @@ void LoginUI::Construct(float windowWidth, float windowHeight)
     PT_serif_regular = LoadFont("UI/font/PT_Serif/PTSerif-Regular.ttf");
     
     //InputBar
-    inputUsername.construct(486, 295.5, 305, 45, 490, 296, 40, 2, 9, "");
-    inputPassword.construct(486, 369, 305, 45, 490, 369, 40, 2, 9, "");
+    inputUsername.Construct(486, 295.5, 305, 45, 490, 296, 40, 2, 9, "");
+    inputPassword.Construct(486, 369, 305, 45, 490, 369, 40, 2, 9, "");
 }
 
 void LoginUI::Deconstruct()
@@ -114,7 +114,7 @@ void LoginUI::DrawSignInButton()
     // set text
     signInButton.SetText(PT_serif_regular, "Sign in", 0.475*windowWidth, 0.655*windowHeight, 0.02*windowWidth, 0.5, RAYWHITE);
     // draw
-    signInButton.Draw();
+    signInButton.DrawText();
 }
 
 void LoginUI::DrawStatusButtons()
@@ -128,12 +128,6 @@ void LoginUI::DrawStatusButtons()
     Rectangle studentIconSrc = {0, 0, studentIcon.width, studentIcon.height};
     Rectangle studentIconDest = {0.58*windowWidth , 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
     Vector2 studentIconPos = {0, 0};
-
-    // check whether staff or student is clicked and respond
-    bool STAFF_IS_CLICKED = true;
-    bool STUDENT_IS_CLICKED = false;
-
-    static bool status;
 
     if (GetMouseX() >= staffIconDest.x && GetMouseX() <= staffIconDest.x + staffIconDest.width 
         && GetMouseY() >= staffIconDest.y && GetMouseY() <= staffIconDest.y + staffIconDest.height
@@ -172,10 +166,6 @@ void LoginUI::Draw()
     DrawStatusButtons();
     inputUsername.Draw();
     inputPassword.Draw();
-
-    if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        cout << "YEEEE";            
-    }
 }
 
 void LoginUI::Update()

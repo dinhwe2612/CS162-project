@@ -44,5 +44,5 @@ CTestTestfile.cmake
 _deps
 CMakeLists.txt
 build
-out/build/
+out
 [Bb][Uu][Ii][Ll][Dd]/

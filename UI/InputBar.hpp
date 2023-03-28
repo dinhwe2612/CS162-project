@@ -17,7 +17,7 @@ struct InputBar {
     int MAX_SIZE = 0;
     bool OnText = false;
 
-    void construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting);
+    void Construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting);
     void SetInputText();
     void Draw();
     string GetInput();  

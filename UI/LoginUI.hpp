@@ -23,11 +23,18 @@ struct LoginUI
         // Fonts
     Font PT_serif_bold;
     Font PT_serif_regular;
-        // InputBar
+    
+    // InputBar
     InputBar inputUsername;
     InputBar inputPassword;
-        // Button sign in
+    
+    // Button sign in
     Button signInButton;
+
+    // check whether staff or student is clicked and respond
+    bool STAFF_IS_CLICKED = true;
+    bool STUDENT_IS_CLICKED = false;
+    bool status = true;
 
     // struct constructor / deconstructor
     void Construct(float windowWidth, float windowHeight);

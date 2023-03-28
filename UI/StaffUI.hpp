@@ -3,20 +3,31 @@
 
 #include "../external/raylib/src/raylib.h"
 #include <iostream>
+#include "Button.hpp"
 
 struct StaffUI {
-    int windowWidth;
-    int windowHeight;
+    float windowWidth;
+    float windowHeight;
+
     Texture2D background;
-    Texture2D logo;
-    Font sans_serif_bold;
-    void Construct(int windowWidth, int windowHeight);
+    Texture2D backButtonImage;
+    Font PT_serif_regular;
+
+    Button Back;
+    Button ViewProfile;
+    Button SignOut;
+
+    int menuStaff = 0;
+    enum windowStaff {
+        STAFF,
+        VIEWPROFILE
+    };
+
+    void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
-    void Update();
     void Draw();
     void DrawBackground();
-    void DrawLoginBox();
-    void Tick();
+    void DrawButton();
 };
 
 #endif
