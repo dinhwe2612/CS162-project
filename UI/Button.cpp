@@ -1,7 +1,7 @@
 #include "Button.hpp"
 
 void Button::SetRectangle(float x, float y, float width, float height, Color In, Color Out) {
-    buttonShape = {x, y, width, height};
+    buttonShape = (Rectangle){x, y, width, height};
     inColor = In;
     outColor = Out;
 }
@@ -9,7 +9,7 @@ void Button::SetRectangle(float x, float y, float width, float height, Color In,
 void Button::SetText(Font _font, string _Text, float coordX, float coordY, float _fontSize, float _spacing, Color _textColor) {
     font = _font;
     Text = _Text;
-    coordText = {coordX, coordY};
+    coordText = (Vector2){coordX, coordY};
     fontSize = _fontSize;
     spacing = _spacing;
     textColor = _textColor;  

@@ -14,7 +14,7 @@ add_subdirectory(UI)
 target_include_directories(${PROJECT_NAME} 
     PUBLIC external/raylib/src
     PUBLIC UI
-    #PUBLIC Header
+    PUBLIC Header
     PUBLIC Function
 )
 
