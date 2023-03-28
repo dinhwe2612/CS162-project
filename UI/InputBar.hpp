@@ -14,21 +14,13 @@ struct InputBar {
     Vector2 origin, coordText;
     float szText, spacing;
     Color colorBox = WHITE, colorText = BLACK;
-    int MAX_SIZE = 5;
+    int MAX_SIZE = 0;
+    bool OnText = false;
 
-    InputBar(float _left, float _top, float _right, float _bottom, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting) {
-        szText = _szText;
-        spacing = _spacing;
-        startingInput = Starting;
-        MAX_SIZE = _MAX_SIZE;
-        origin = {0, 0};
-        inputShape = {_left, _top, _right, _bottom};
-        font = LoadFont("UI/font/PT_Serif/PTSerif-Bold.ttf");
-        coordText = {cX, cY};
-    }
-    void draw();
+    void construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting);
     void SetInputText();
-    string GetInput();
+    void Draw();
+    string GetInput();  
 };
 
 #endif

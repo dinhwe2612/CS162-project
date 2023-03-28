@@ -3,12 +3,14 @@
 
 #include "../external/raylib/src/raylib.h"
 #include <iostream>
+#include "InputBar.hpp"
+#include "Button.hpp"
 
 struct LoginUI
 {
     // window size
-    int windowWidth;
-    int windowHeight;
+    float windowWidth;
+    float windowHeight;
 
     // resources
         // Textures
@@ -21,9 +23,14 @@ struct LoginUI
         // Fonts
     Font PT_serif_bold;
     Font PT_serif_regular;
+        // InputBar
+    InputBar inputUsername;
+    InputBar inputPassword;
+        // Button sign in
+    Button signInButton;
 
     // struct constructor / deconstructor
-    void Construct(int windowWidth, int windowHeight);
+    void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
 
     // draw functions
