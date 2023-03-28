@@ -1,1 +1,1 @@
-add_library(ui loginUI.cpp loginUI.hpp StaffUI.cpp StaffUI.hpp InputBar.cpp InputBar.hpp)
+add_library(ui LoginUI.cpp LoginUI.hpp StaffUI.cpp StaffUI.hpp InputBar.cpp InputBar.hpp)

@@ -1,12 +1,7 @@
-<<<<<<< Updated upstream
+#include "external/raylib/src/raylib.h"
 #include "UI/LoginUI.hpp"
-=======
-#include "UI/app.hpp"
 #include "UI/StaffUI.hpp"
 #include "UI/InputBar.hpp"
->>>>>>> Stashed changes
-#include "external/raylib/src/raylib.h"
-
 int main()
 {
     // init window
@@ -26,6 +21,7 @@ int main()
 
     while (!WindowShouldClose())
     {
+        // Login.Tick();
         BeginDrawing();
         Staff.Draw();
         inputUsername.draw();
