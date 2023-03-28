@@ -50,6 +50,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 CMakeLists.txt
-build
+build/
+external/
 out
 [Bb][Uu][Ii][Ll][Dd]/
