@@ -29,7 +29,13 @@
 # Executables
 *.exe
 *.out
-*.app
+*.
+
+# Build directory
+build/
+
+# Raylib
+external/raylib
 
 CMakeLists.txt.user
 CMakeCache.txt
