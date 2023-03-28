@@ -118,10 +118,3 @@ string login() {
     else
         return "";
 }
-
-// uncomment the below code test the above functions
-int main() {
-    cout << "Log into your account" << endl;
-    login();
-    return 0;
-}
