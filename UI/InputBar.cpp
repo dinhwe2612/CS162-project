@@ -8,6 +8,9 @@ void InputBar::construct(float x, float y, float width, float height, float cX, 
     MAX_SIZE = _MAX_SIZE;
     startingInput = Starting;
     origin = {0, 0};
+    OnText = false;
+    colorBox = WHITE;
+    colorText = BLACK;
     font = LoadFont("UI/font/PT_Serif/PTSerif-Bold.ttf");
 }
 

@@ -1,10 +1,4 @@
-<<<<<<< Updated upstream
 #include "UI/LoginUI.hpp"
-=======
-#include "UI/app.hpp"
-#include "UI/StaffUI.hpp"
-#include "UI/InputBar.hpp"
->>>>>>> Stashed changes
 #include "external/raylib/src/raylib.h"
 
 int main()
