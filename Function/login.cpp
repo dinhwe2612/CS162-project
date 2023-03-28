@@ -67,7 +67,7 @@ bool passwordRetry(string pass, string userpass, string userid) {
     }
     if (attempt == MAXATTEMPT) {
         ofstream fout;
-        fout.open("..\\Data\\account-locked.txt", std::ios_base::app);
+        fout.open("..\\Data\\account-locked.txt", ios_base::app);
         // uncomment below for MacOS/Linux
         // fout.open("../Data/account-locked.txt", std::ios_base::app);
         fout << userid << endl;
@@ -117,11 +117,4 @@ string login() {
         return userid;
     else
         return "";
-}
-
-// uncomment the below code test the above functions
-int main() {
-    cout << "Log into your account" << endl;
-    login();
-    return 0;
 }
