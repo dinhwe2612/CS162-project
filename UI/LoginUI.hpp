@@ -45,8 +45,9 @@ struct LoginUI
     void Draw();
         void DrawBackground();
         void DrawLoginBox();
-        void DrawSignInButton();
         void DrawStatusButtons();
+        void DrawLoginIcon();
+        void DrawRetry();
     void Tick();
 };
 
