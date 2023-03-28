@@ -1,5 +1,5 @@
-UI/CMakeFiles/ui.dir/LoginUI.cpp.o: \
-  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/LoginUI.cpp \
+UI/CMakeFiles/ui.dir/loginUI.cpp.o: \
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/loginUI.cpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/LoginUI.hpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/../external/raylib/src/raylib.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include/stdarg.h \
@@ -417,4 +417,5 @@ UI/CMakeFiles/ui.dir/LoginUI.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/InputBar.hpp \
-  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.hpp
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.hpp \
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp

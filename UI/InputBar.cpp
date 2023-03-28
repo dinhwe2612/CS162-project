@@ -1,13 +1,13 @@
 #include "InputBar.hpp"
 
 void InputBar::Construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting) {
-    inputShape = {x, y, width, height};
-    coordText = {cX, cY};
+    inputShape = (Rectangle){x, y, width, height};
+    coordText = (Vector2){cX, cY};
     szText = _szText;
     spacing = _spacing;
     MAX_SIZE = _MAX_SIZE;
     startingInput = Starting;
-    origin = {0, 0};
+    origin = (Vector2){0, 0};
     font = LoadFont("UI/font/PT_Serif/PTSerif-Bold.ttf");
 }
 
