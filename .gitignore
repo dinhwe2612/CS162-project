@@ -33,9 +33,9 @@
 
 # Build directory
 build/
-*.cmake
-*.tcl
-*.pc
+
+# Raylib
+external/raylib
 
 CMakeLists.txt.user
 CMakeCache.txt
