@@ -420,8 +420,10 @@ CMakeFiles/ProjectUI.dir/main.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/InputBar.hpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.hpp \
-  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/raylib.h
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp
 
+
+/Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/sys/_types/_fsblkcnt_t.h:
 
