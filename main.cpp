@@ -33,8 +33,13 @@ int main()
             default:
                 Login.Draw();
                 if (Login.signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
-                    if (Login.STAFF_IS_CLICKED) menuLogin = STAFF;
-                    if (Login.STUDENT_IS_CLICKED) menuLogin = STUDENT;
+                    if (Login.status == Login.STAFF_IS_CLICKED) {
+                        menuLogin = STAFF;
+                        Staff.menuStaff = 0;
+                    }
+                    if (Login.status == Login.STUDENT_IS_CLICKED) {
+                        menuLogin = STUDENT;
+                    }
                 }
                 break;
             case STAFF:

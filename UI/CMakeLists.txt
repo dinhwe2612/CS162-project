@@ -1,5 +1,5 @@
 add_library(ui 
-    loginUI.cpp
+    LoginUI.cpp
     StaffUI.cpp
     InputBar.cpp
     Button.cpp
