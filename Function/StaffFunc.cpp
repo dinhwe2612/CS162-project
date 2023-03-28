@@ -123,9 +123,18 @@ void AddCourse(string address)
     out.close();
     cout << "Now continue to complete the course information!";
     cout << '\n';
+    cin.ignore();
     //use data abstraction
     txtaddress = courseaddress + "/Course_Info.txt";
+    out.open(txtaddress.c_str());
+    
+    //out << str << '\n';
+    out << courseid << "-" << classname << '\n';
+    out << coursename << '\n';
+    out << classname << '\n';
+    out.close();
     Course_Information(txtaddress);
+    
     return;
 }
 
@@ -139,15 +148,11 @@ void AddCourse(string address)
 void Course_Information(string txtaddress)
 {
     ofstream out;
+    string str;
     //if (is_file_exist(txtaddress) == true) out.open(txtaddress.c_str(), ios::app);
     //else 
-    out.open(txtaddress.c_str());
-    string str;
-    //out << str << '\n';
-    out << courseid << "-" << classname << '\n';
-    out << coursename << '\n';
-    out << classname << '\n';
-    cin.ignore();
+    //cin.ignore();
+    out.open(txtaddress.c_str(), ios::app);
     cout << "What is the teacher's name, who's in charge of this course?" << '\n';
     cin >> str;
     cout << '\n';
@@ -245,9 +250,9 @@ void Update_CourseInformation(string address)
     cout << "Here are the courses, please type the course id and the class name of the course you want to update: ";
     string course;
     cin >> course;
-    string class; cin >> class;
+    string classname; cin >> classname;
     cout << '\n';
-    address = address + "/" + course + "-" + class + "/Course_Info.txt";
+    address = address + "/" + course + "-" + classname + "/Course_Info.txt";
     string* inf;
     inf = Read_File(address);
     cout << "Which piece of information do you want to modify?" << '\n';
@@ -336,7 +341,7 @@ void Add1StudenttoCourse(string studentid, string courseaddress)
     out << studentid << '\n';
     out.close();
     address = courseaddress + "/Course_Info.txt";
-    string* information = Read_File(address);
+    string* information; information = Read_File(address);
     AddDatatoStudentFile(studentid, schoolyear, semester, information);
     cout << "This student with the ID has been added to the current course!" <<'\n';
     return;
@@ -369,7 +374,8 @@ void Remove1StudentfromCourse(string studentid, string courseaddress)
     }
 
     address = courseaddress + "/Course_Info.txt";
-    string* information = Read_File(address);
+    string* information;
+    information = Read_File(address);
     AddDatatoStudentFile(studentid, schoolyear, semester, information);
     cout << "This student with the ID has been removed from the current course!" <<'\n';
     return;
