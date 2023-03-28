@@ -4,6 +4,7 @@
 #include "../external/raylib/src/raylib.h"
 #include <iostream>
 #include "InputBar.hpp"
+#include "Button.hpp"
 
 struct LoginUI
 {
@@ -22,9 +23,11 @@ struct LoginUI
         // Fonts
     Font PT_serif_bold;
     Font PT_serif_regular;
-    // InputBar
+        // InputBar
     InputBar inputUsername;
     InputBar inputPassword;
+        // Button sign in
+    Button signInButton;
 
     // struct constructor / deconstructor
     void Construct(float windowWidth, float windowHeight);

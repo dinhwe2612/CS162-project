@@ -1,5 +1,4 @@
 #include "LoginUI.hpp"
-#include "Button.hpp"
 
 //---------------------------------------------------------------------------------------------//
 //                                  Construct / Deconstruct
@@ -110,7 +109,6 @@ void LoginUI::DrawLoginBox()
 
 void LoginUI::DrawSignInButton()
 {
-    Button signInButton;
     // set rectangle
     signInButton.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height, BLACK, DARKBLUE);
     // set text
@@ -174,6 +172,10 @@ void LoginUI::Draw()
     DrawStatusButtons();
     inputUsername.Draw();
     inputPassword.Draw();
+
+    if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        cout << "YEEEE";            
+    }
 }
 
 void LoginUI::Update()
