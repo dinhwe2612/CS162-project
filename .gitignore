@@ -29,7 +29,13 @@
 # Executables
 *.exe
 *.out
-*.app
+*.
+
+# Build directory
+build/
+*.cmake
+*.tcl
+*.pc
 
 CMakeLists.txt.user
 CMakeCache.txt
