@@ -44,5 +44,6 @@ CTestTestfile.cmake
 _deps
 CMakeLists.txt
 build
+external/raylib
 out/build/
 [Bb][Uu][Ii][Ll][Dd]/
