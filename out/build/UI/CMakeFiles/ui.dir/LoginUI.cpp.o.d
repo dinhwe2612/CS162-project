@@ -1,5 +1,5 @@
-UI/CMakeFiles/ui.dir/loginUI.cpp.o: \
-  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/loginUI.cpp \
+UI/CMakeFiles/ui.dir/LoginUI.cpp.o: \
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/LoginUI.cpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/LoginUI.hpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/../external/raylib/src/raylib.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include/stdarg.h \

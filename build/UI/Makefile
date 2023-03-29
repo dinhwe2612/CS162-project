@@ -253,6 +253,30 @@ InputBar.cpp.s:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/InputBar.cpp.s
 .PHONY : InputBar.cpp.s
 
+LoginUI.o: LoginUI.cpp.o
+.PHONY : LoginUI.o
+
+# target to build an object file
+LoginUI.cpp.o:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/LoginUI.cpp.o
+.PHONY : LoginUI.cpp.o
+
+LoginUI.i: LoginUI.cpp.i
+.PHONY : LoginUI.i
+
+# target to preprocess a source file
+LoginUI.cpp.i:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/LoginUI.cpp.i
+.PHONY : LoginUI.cpp.i
+
+LoginUI.s: LoginUI.cpp.s
+.PHONY : LoginUI.s
+
+# target to generate assembly for a file
+LoginUI.cpp.s:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/LoginUI.cpp.s
+.PHONY : LoginUI.cpp.s
+
 StaffUI.o: StaffUI.cpp.o
 .PHONY : StaffUI.o
 
@@ -277,30 +301,6 @@ StaffUI.cpp.s:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/StaffUI.cpp.s
 .PHONY : StaffUI.cpp.s
 
-loginUI.o: loginUI.cpp.o
-.PHONY : loginUI.o
-
-# target to build an object file
-loginUI.cpp.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/loginUI.cpp.o
-.PHONY : loginUI.cpp.o
-
-loginUI.i: loginUI.cpp.i
-.PHONY : loginUI.i
-
-# target to preprocess a source file
-loginUI.cpp.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/loginUI.cpp.i
-.PHONY : loginUI.cpp.i
-
-loginUI.s: loginUI.cpp.s
-.PHONY : loginUI.s
-
-# target to generate assembly for a file
-loginUI.cpp.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/loginUI.cpp.s
-.PHONY : loginUI.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -323,12 +323,12 @@ help:
 	@echo "... InputBar.o"
 	@echo "... InputBar.i"
 	@echo "... InputBar.s"
+	@echo "... LoginUI.o"
+	@echo "... LoginUI.i"
+	@echo "... LoginUI.s"
 	@echo "... StaffUI.o"
 	@echo "... StaffUI.i"
 	@echo "... StaffUI.s"
-	@echo "... loginUI.o"
-	@echo "... loginUI.i"
-	@echo "... loginUI.s"
 .PHONY : help
 
 

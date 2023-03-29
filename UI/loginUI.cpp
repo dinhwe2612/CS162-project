@@ -23,8 +23,9 @@ void LoginUI::Construct(float windowWidth, float windowHeight)
     PT_serif_regular = LoadFont("UI/font/PT_Serif/PTSerif-Regular.ttf");
     
     //InputBar
-    inputUsername.Construct(486, 295.5, 305, 45, 490, 296, 40, 2, 9, "    ");
-    inputPassword.Construct(486, 369, 305, 45, 490, 369, 40, 2, 9, "    ");
+    // float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting
+    inputUsername.Construct(486, 295.5, 305, 45, 490, 300, 30, 0.5, 11, "       ");
+    inputPassword.Construct(486, 369, 305, 45, 490, 373, 30, 0.5, 11, "       ");
 
     //Button sign in
     signInButton.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 0.08*logo.height, BLACK, DARKBLUE);
@@ -42,6 +43,8 @@ void LoginUI::Deconstruct()
 
     UnloadFont(PT_serif_bold);
     UnloadFont(PT_serif_regular);
+    UnloadFont(inputUsername.font);
+    UnloadFont(inputPassword.font);
 }
 
 //---------------------------------------------------------------------------------------------//
@@ -61,6 +64,10 @@ void LoginUI::DrawLoginBox()
     // draw top bar
     Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
     DrawRectangleRec(bar, DARKBLUE);
+
+    // draw "You are not login" text
+    Vector2 loginStatusPos = {0.88*windowWidth, 0.01*windowHeight};
+    DrawTextEx(PT_serif_regular, "You are not logged in", loginStatusPos, 0.015*windowWidth, 0.5, RAYWHITE);
 
     // draw outer box border
     Rectangle borders = {windowWidth/2, windowHeight/2, 0.31*windowWidth, 0.31*windowWidth};
@@ -147,8 +154,8 @@ void LoginUI::DrawLoginIcon() {
 }
 
 void LoginUI::DrawRetry() {
-    Vector2 retryPos = {0.475*windowWidth - 50, 0.655*windowHeight - 50};
-    DrawTextEx(PT_serif_regular, "Please Retry Again", retryPos, 0.02*windowWidth, 0.5, BLACK);
+    Vector2 retryPos = {0.37*windowWidth, 0.61*windowHeight};
+    DrawTextEx(PT_serif_regular, "Incorrect username or password. Please try again!", retryPos, 0.015*windowWidth, 0.5, RED);
 }
 
 //---------------------------------------------------------------------------------------------//

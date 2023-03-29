@@ -1,6 +1,6 @@
 #include "InputBar.hpp"
 
-void InputBar::Construct(float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting) {
+void InputBar::Construct(float x, float y, float width, float height, float cX, float cY, int _szText, float _spacing, int _MAX_SIZE, string Starting) {
     inputShape = (Rectangle){x, y, width, height};
     coordText = (Vector2){cX, cY};
     szText = _szText;
@@ -8,7 +8,7 @@ void InputBar::Construct(float x, float y, float width, float height, float cX, 
     MAX_SIZE = _MAX_SIZE;
     startingInput = Starting;
     origin = (Vector2){0, 0};
-    font = LoadFont("UI/font/PT_Serif/PTSerif-Bold.ttf");
+    font = LoadFont("UI/font/DM_Serif_Display/DMSerifDisplay-Regular.ttf");
 }
 
 void InputBar::Draw() {
@@ -26,7 +26,7 @@ void InputBar::SetInputText() {
         }
     }
     if (OnText) {
-        colorBox = GRAY;
+        colorBox = RAYWHITE;
         int key = GetCharPressed();
         while(key > 0) {
             if (currentInput.size() <= MAX_SIZE) {
@@ -37,8 +37,9 @@ void InputBar::SetInputText() {
         if (IsKeyPressed(KEY_BACKSPACE) && !currentInput.empty()) {
             currentInput.pop_back();
         }
+
     } else {
-        colorBox = WHITE;
+        colorBox = RAYWHITE;
     }
 } 
 

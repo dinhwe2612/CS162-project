@@ -69,19 +69,19 @@ include UI/CMakeFiles/ui.dir/progress.make
 # Include the compile flags for this target's objects.
 include UI/CMakeFiles/ui.dir/flags.make
 
-UI/CMakeFiles/ui.dir/loginUI.cpp.o: UI/CMakeFiles/ui.dir/flags.make
-UI/CMakeFiles/ui.dir/loginUI.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/loginUI.cpp
-UI/CMakeFiles/ui.dir/loginUI.cpp.o: UI/CMakeFiles/ui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object UI/CMakeFiles/ui.dir/loginUI.cpp.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/loginUI.cpp.o -MF CMakeFiles/ui.dir/loginUI.cpp.o.d -o CMakeFiles/ui.dir/loginUI.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/loginUI.cpp"
+UI/CMakeFiles/ui.dir/LoginUI.cpp.o: UI/CMakeFiles/ui.dir/flags.make
+UI/CMakeFiles/ui.dir/LoginUI.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/LoginUI.cpp
+UI/CMakeFiles/ui.dir/LoginUI.cpp.o: UI/CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object UI/CMakeFiles/ui.dir/LoginUI.cpp.o"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/LoginUI.cpp.o -MF CMakeFiles/ui.dir/LoginUI.cpp.o.d -o CMakeFiles/ui.dir/LoginUI.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp"
 
-UI/CMakeFiles/ui.dir/loginUI.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/loginUI.cpp.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/loginUI.cpp" > CMakeFiles/ui.dir/loginUI.cpp.i
+UI/CMakeFiles/ui.dir/LoginUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/LoginUI.cpp.i"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp" > CMakeFiles/ui.dir/LoginUI.cpp.i
 
-UI/CMakeFiles/ui.dir/loginUI.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/loginUI.cpp.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/loginUI.cpp" -o CMakeFiles/ui.dir/loginUI.cpp.s
+UI/CMakeFiles/ui.dir/LoginUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/LoginUI.cpp.s"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp" -o CMakeFiles/ui.dir/LoginUI.cpp.s
 
 UI/CMakeFiles/ui.dir/StaffUI.cpp.o: UI/CMakeFiles/ui.dir/flags.make
 UI/CMakeFiles/ui.dir/StaffUI.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.cpp
@@ -127,7 +127,7 @@ UI/CMakeFiles/ui.dir/Button.cpp.s: cmake_force
 
 # Object files for target ui
 ui_OBJECTS = \
-"CMakeFiles/ui.dir/loginUI.cpp.o" \
+"CMakeFiles/ui.dir/LoginUI.cpp.o" \
 "CMakeFiles/ui.dir/StaffUI.cpp.o" \
 "CMakeFiles/ui.dir/InputBar.cpp.o" \
 "CMakeFiles/ui.dir/Button.cpp.o"
@@ -135,7 +135,7 @@ ui_OBJECTS = \
 # External object files for target ui
 ui_EXTERNAL_OBJECTS =
 
-UI/libui.a: UI/CMakeFiles/ui.dir/loginUI.cpp.o
+UI/libui.a: UI/CMakeFiles/ui.dir/LoginUI.cpp.o
 UI/libui.a: UI/CMakeFiles/ui.dir/StaffUI.cpp.o
 UI/libui.a: UI/CMakeFiles/ui.dir/InputBar.cpp.o
 UI/libui.a: UI/CMakeFiles/ui.dir/Button.cpp.o
