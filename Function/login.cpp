@@ -39,9 +39,7 @@ string checkValidity (ifstream &fin, string userid) {
 
 // check if the account has been locked. The locked accounts are written in Data/account-locked.txt
 bool isLock(ifstream &fin, string userid) {
-    fin.open("..\\Data\\account-locked.txt");
-    // uncomment below for MacOS/Linux
-    // fin.open("../Data/account-locked.txt");
+    fin.open("../Data/Login/account-locked.txt");
     while (!fin.eof()) {
         string lockid;
         fin >> lockid;
@@ -67,9 +65,7 @@ bool passwordRetry(string pass, string userpass, string userid) {
     }
     if (attempt == MAXATTEMPT) {
         ofstream fout;
-        fout.open("..\\Data\\account-locked.txt", ios_base::app);
-        // uncomment below for MacOS/Linux
-        // fout.open("../Data/account-locked.txt", std::ios_base::app);
+        fout.open("../Data/Login/account-locked.txt", std::ios_base::app);
         fout << userid << endl;
         cout << "Your account has been locked due to excessive incorrect log in attempts. Contact your school's system administrator to unlock.";
         return false;
@@ -93,13 +89,9 @@ string login() {
     // check for account validity and get password
     ifstream fin;
     if (ans == 'y' || ans == 'Y')
-        fin.open("..\\Data\\account-staff.txt");
-        // uncomment below for MacOS/Linux
-        // fin.open("../Data/account-staff.txt");
+        fin.open("../Data/Login/account-staff.txt");
     else
-        fin.open("..\\Data\\account-student.txt");
-        // uncomment below for MacOS/Linux
-        // fin.open("../Data/account-student.txt");
+        fin.open("../Data/Login/account-student.txt");
 
     string pass = checkValidity(fin, userid);
     fin.close();
@@ -117,4 +109,8 @@ string login() {
         return userid;
     else
         return "";
+}
+
+int main() {
+    login();
 }

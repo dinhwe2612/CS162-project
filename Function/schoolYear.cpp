@@ -125,8 +125,10 @@ void add234(string schoolYear) {
     }
 }
 
+
+
 int main() {
-    string path = "/home/endeavour/Documents/22TT2.csv";
+    string path = "";
     string Class = "22TT2";
     createSchoolYear("2022", "2023");
     // createSchoolYear("2021", "2022");
