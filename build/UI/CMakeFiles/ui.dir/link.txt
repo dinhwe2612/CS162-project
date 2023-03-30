@@ -1,2 +1,0 @@
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc libui.a CMakeFiles/ui.dir/loginUI.cpp.obj CMakeFiles/ui.dir/StaffUI.cpp.obj CMakeFiles/ui.dir/InputBar.cpp.obj CMakeFiles/ui.dir/Button.cpp.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ranlib.exe" libui.a
