@@ -12,11 +12,14 @@ struct StaffUI
 
     Texture2D background;
     Font PT_serif_regular;
+    Font PT_serif_bold;
 
     Button dropDown;
     Button signOut;
     Button ChangePassWord;
     Button cornerStripes; 
+    Button addSchoolYear;
+
 
     int menuStaff;
     enum windowStaff {
@@ -32,8 +35,8 @@ struct StaffUI
         void DrawBackground();
         void DrawStaticElement();
         void DrawDropDownAccount();
-        void DrawDropDownSchoolYear(int numberOfCreatedSchoolYear);
-        void DrawSchoolYear(bool isDroppedDown);
+        void DrawDropDownSchoolYear();
+        void DrawSchoolYear();
 
 };
 

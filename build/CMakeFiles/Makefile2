@@ -935,9 +935,9 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 # Target rules for target CMakeFiles/ProjectUI.dir
 
 # All Build rule for target.
-CMakeFiles/ProjectUI.dir/all: external/raylib/raylib/CMakeFiles/raylib.dir/all
 CMakeFiles/ProjectUI.dir/all: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
 CMakeFiles/ProjectUI.dir/all: Function/CMakeFiles/func.dir/all
+CMakeFiles/ProjectUI.dir/all: external/raylib/raylib/CMakeFiles/raylib.dir/all
 CMakeFiles/ProjectUI.dir/all: UI/CMakeFiles/ui.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProjectUI.dir/build.make CMakeFiles/ProjectUI.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProjectUI.dir/build.make CMakeFiles/ProjectUI.dir/build

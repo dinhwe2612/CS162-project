@@ -311,3 +311,31 @@ int main(void)
 }
 
 
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX11 succeeded with the following output:
+Change Dir: /Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles/CMakeScratch/TryCompile-oIKgNG
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_dc133/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_dc133.dir/build.make CMakeFiles/cmTC_dc133.dir/build
+Building CXX object CMakeFiles/cmTC_dc133.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++ -DCOMPILER_SUPPORTS_CXX11  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk   -std=c++11 -MD -MT CMakeFiles/cmTC_dc133.dir/src.cxx.o -MF CMakeFiles/cmTC_dc133.dir/src.cxx.o.d -o CMakeFiles/cmTC_dc133.dir/src.cxx.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles/CMakeScratch/TryCompile-oIKgNG/src.cxx"
+Linking CXX executable cmTC_dc133
+/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc133.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_dc133.dir/src.cxx.o -o cmTC_dc133 
+
+
+Source file was:
+int main() { return 0; }
+
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX0X succeeded with the following output:
+Change Dir: /Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles/CMakeScratch/TryCompile-415eIW
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_67768/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_67768.dir/build.make CMakeFiles/cmTC_67768.dir/build
+Building CXX object CMakeFiles/cmTC_67768.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++ -DCOMPILER_SUPPORTS_CXX0X  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk   -std=c++0x -MD -MT CMakeFiles/cmTC_67768.dir/src.cxx.o -MF CMakeFiles/cmTC_67768.dir/src.cxx.o.d -o CMakeFiles/cmTC_67768.dir/src.cxx.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles/CMakeScratch/TryCompile-415eIW/src.cxx"
+Linking CXX executable cmTC_67768
+/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_67768.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_67768.dir/src.cxx.o -o cmTC_67768 
+
+
+Source file was:
+int main() { return 0; }
+
