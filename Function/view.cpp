@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -88,15 +89,14 @@ bool viewCourses(string schoolYear, string semester) {
     const filesystem::path path = getPath("Course", semester, schoolYear);
     if (!checkDirectory(path))
         return false;
-    cout 
     for (const auto & entry : filesystem::directory_iterator(path))
         if (!entry.is_regular_file())
             cout << entry.path().stem().string() << endl;
     return true;
 }
  
-bool viewStudentInCourse(string schoolYear, stirng semester, string course) {
-    string path = getPath("StudentInCourse", semester, schoolYear);
+bool viewStudentInCourse(string schoolYear, string semester, string course) {
+    string path = getPath("StudentInCourse", semester + "/" + course, schoolYear);
     ifstream fin;
     fin.open(path);
     cout << "Student IDs of " << course << "course in " << semester << " semester in " << schoolYear;
@@ -110,6 +110,8 @@ bool viewStudentInCourse(string schoolYear, stirng semester, string course) {
     return true;
 }
 
+
+
 int main() {
     string schoolYear = "2022-2023";
     // if (!viewClasses(schoolYear))
@@ -118,7 +120,7 @@ int main() {
     //     cout << "Class does not exist";
     if (!viewCourses(schoolYear, "Spring"))
         cout << "Course does not exist.";
-    if (!viewStudentInClass(schoolYear, "Spring", "12345"))
-        cout << "Course Student List does not exist."
+    if (!viewStudentInCourse(schoolYear, "Spring", "12345"))
+        cout << "Course Student List does not exist.";
     return 0;
 }
