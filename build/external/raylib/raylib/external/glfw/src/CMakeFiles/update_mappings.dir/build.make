@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 # Utility rule file for update_mappings.
 
@@ -67,8 +67,8 @@ include external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/
 include external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/progress.make
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/CMake/GenerateMappings.cmake" mappings.h.in mappings.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
+	cd E:/CS162-project/external/raylib/src/external/glfw/src && "C:/Program Files/CMake/bin/cmake.exe" -P E:/CS162-project/external/raylib/src/external/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 
 update_mappings: external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings
 update_mappings: external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make
@@ -79,10 +79,10 @@ external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build: u
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/clean:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/clean
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" E:/CS162-project E:/CS162-project/external/raylib/src/external/glfw/src E:/CS162-project/build E:/CS162-project/build/external/raylib/raylib/external/glfw/src E:/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/depend
 

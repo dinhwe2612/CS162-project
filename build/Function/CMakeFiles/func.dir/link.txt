@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 /usr/bin/ar qc libfunc.a CMakeFiles/func.dir/schoolYear.cpp.o
 /usr/bin/ranlib libfunc.a
+=======
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc libfunc.a CMakeFiles/func.dir/login.cpp.obj
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ranlib.exe" libfunc.a
+>>>>>>> 7dfa08909f4eb0248f904d654200c97b9ea6bb1f

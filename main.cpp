@@ -2,6 +2,7 @@
 #include "UI/InputBar.hpp"
 #include "UI/StaffUI.hpp"
 #include "UI/Button.hpp"
+#include "Header/StudentLogin.h"
 
 int main()
 {
@@ -49,7 +50,6 @@ int main()
                 }
                 break;
             }
-        
         EndDrawing();
         
     }

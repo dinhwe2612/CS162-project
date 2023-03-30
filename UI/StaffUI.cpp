@@ -33,6 +33,15 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     addSchoolYear.SetTexture("UI/images/add.png");
     addSchoolYear.SetRectangle(0.01*windowWidth, 0.12*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
+
+    oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2, 200 - 4, 32 - 4, windowWidth/2 - 50 + 3, 0.2*windowHeight + 93, 0.022*windowWidth, 0.5, 8, "");
+    oldPassword.colorBox1 = WHITE;
+
+    newPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 153 + 2, 200 - 4, 32 - 4, windowWidth/2 - 50 + 3, 0.2*windowHeight + 153, 0.022*windowWidth, 0.5, 8, "");
+    newPassword.colorBox1 = WHITE;
+
+    confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2, 200 - 4, 32 - 4, windowWidth/2 - 50 + 3, 0.2*windowHeight + 213, 0.022*windowWidth, 0.5, 8, "");
+    confirmPassword.colorBox1 = WHITE;
 }
 
 void StaffUI::Deconstruct()
@@ -144,10 +153,28 @@ void StaffUI::DrawSchoolYear()
         }
 }
 
+// void StaffUI::DrawSchoolYear(bool isDroppedDown, )
+// {
+//     if (isDroppedDown)
+//     {
+//         DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, windowWidth, RAYWHITE);
+//         DrawLine(0.2*windowWidth, 0.05*windowHeight, 0.2*windowWidth, windowHeight, LIGHTGRAY);
+//     }
+//     else
+//     {
+        
+//     }
+// }
+
 void StaffUI::Draw()
 {
     DrawBackground();
     DrawStaticElement();
-    DrawDropDownAccount();
-    DrawDropDownSchoolYear();
+    dropDown.DrawTexture();
+    signOut.DrawText();
+        DrawDropDownAccount();
+    cornerStripes.DrawTexture();
+    DrawDropDownSchoolYear(5);
+
+    ChangePassWord.DrawText();
 }

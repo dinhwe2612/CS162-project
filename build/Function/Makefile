@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/bui
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cpack --config ./CPackConfig.cmake
+	cd E:/CS162-project/build && "C:/Program Files/CMake/bin/cpack.exe" --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cpack --config ./CPackSourceConfig.cmake /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/build/CPackSourceConfig.cmake
+	cd E:/CS162-project/build && "C:/Program Files/CMake/bin/cpack.exe" --config ./CPackSourceConfig.cmake E:/CS162-project/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -88,7 +88,7 @@ package_source/fast: package_source
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ctest --force-new-ctest-process $(ARGS)
+	"C:/Program Files/CMake/bin/ctest.exe" --force-new-ctest-process $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -98,7 +98,7 @@ test/fast: test
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:/Program Files/CMake/bin/cmake-gui.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -108,7 +108,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:/Program Files/CMake/bin/cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -127,49 +127,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function//CMakeFiles/progress.marks"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" 0
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -E cmake_progress_start E:/CS162-project/build/CMakeFiles E:/CS162-project/build/Function//CMakeFiles/progress.marks
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:/CS162-project/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/clean
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/clean
 .PHONY : clean
 
 # The main clean target
@@ -178,22 +178,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/preinstall
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/preinstall
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 Function/CMakeFiles/func.dir/rule:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/CMakeFiles/func.dir/rule
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/CMakeFiles/func.dir/rule
 .PHONY : Function/CMakeFiles/func.dir/rule
 
 # Convenience name for target.
@@ -202,9 +202,10 @@ func: Function/CMakeFiles/func.dir/rule
 
 # fast build rule for target.
 func/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/build
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/build
 .PHONY : func/fast
 
+<<<<<<< HEAD
 schoolYear.o: schoolYear.cpp.o
 .PHONY : schoolYear.o
 
@@ -212,22 +213,43 @@ schoolYear.o: schoolYear.cpp.o
 schoolYear.cpp.o:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.o
 .PHONY : schoolYear.cpp.o
+=======
+login.obj: login.cpp.obj
+.PHONY : login.obj
+
+# target to build an object file
+login.cpp.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.obj
+.PHONY : login.cpp.obj
+>>>>>>> 7dfa08909f4eb0248f904d654200c97b9ea6bb1f
 
 schoolYear.i: schoolYear.cpp.i
 .PHONY : schoolYear.i
 
 # target to preprocess a source file
+<<<<<<< HEAD
 schoolYear.cpp.i:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.i
 .PHONY : schoolYear.cpp.i
+=======
+login.cpp.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.i
+.PHONY : login.cpp.i
+>>>>>>> 7dfa08909f4eb0248f904d654200c97b9ea6bb1f
 
 schoolYear.s: schoolYear.cpp.s
 .PHONY : schoolYear.s
 
 # target to generate assembly for a file
+<<<<<<< HEAD
 schoolYear.cpp.s:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.s
 .PHONY : schoolYear.cpp.s
+=======
+login.cpp.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.s
+.PHONY : login.cpp.s
+>>>>>>> 7dfa08909f4eb0248f904d654200c97b9ea6bb1f
 
 # Help Target
 help:
@@ -245,9 +267,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... func"
+<<<<<<< HEAD
 	@echo "... schoolYear.o"
 	@echo "... schoolYear.i"
 	@echo "... schoolYear.s"
+=======
+	@echo "... login.obj"
+	@echo "... login.i"
+	@echo "... login.s"
+>>>>>>> 7dfa08909f4eb0248f904d654200c97b9ea6bb1f
 .PHONY : help
 
 
@@ -259,6 +287,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

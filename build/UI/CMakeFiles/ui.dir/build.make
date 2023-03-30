@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 # Include any dependencies generated for this target.
 include UI/CMakeFiles/ui.dir/depend.make
@@ -69,91 +69,91 @@ include UI/CMakeFiles/ui.dir/progress.make
 # Include the compile flags for this target's objects.
 include UI/CMakeFiles/ui.dir/flags.make
 
-UI/CMakeFiles/ui.dir/LoginUI.cpp.o: UI/CMakeFiles/ui.dir/flags.make
-UI/CMakeFiles/ui.dir/LoginUI.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/LoginUI.cpp
-UI/CMakeFiles/ui.dir/LoginUI.cpp.o: UI/CMakeFiles/ui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object UI/CMakeFiles/ui.dir/LoginUI.cpp.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/LoginUI.cpp.o -MF CMakeFiles/ui.dir/LoginUI.cpp.o.d -o CMakeFiles/ui.dir/LoginUI.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp"
+UI/CMakeFiles/ui.dir/loginUI.cpp.obj: UI/CMakeFiles/ui.dir/flags.make
+UI/CMakeFiles/ui.dir/loginUI.cpp.obj: E:/CS162-project/UI/loginUI.cpp
+UI/CMakeFiles/ui.dir/loginUI.cpp.obj: UI/CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object UI/CMakeFiles/ui.dir/loginUI.cpp.obj"
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/loginUI.cpp.obj -MF CMakeFiles/ui.dir/loginUI.cpp.obj.d -o CMakeFiles/ui.dir/loginUI.cpp.obj -c E:/CS162-project/UI/loginUI.cpp
 
-UI/CMakeFiles/ui.dir/LoginUI.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/LoginUI.cpp.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp" > CMakeFiles/ui.dir/LoginUI.cpp.i
+UI/CMakeFiles/ui.dir/loginUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/loginUI.cpp.i"
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:/CS162-project/UI/loginUI.cpp > CMakeFiles/ui.dir/loginUI.cpp.i
 
-UI/CMakeFiles/ui.dir/LoginUI.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/LoginUI.cpp.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp" -o CMakeFiles/ui.dir/LoginUI.cpp.s
+UI/CMakeFiles/ui.dir/loginUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/loginUI.cpp.s"
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:/CS162-project/UI/loginUI.cpp -o CMakeFiles/ui.dir/loginUI.cpp.s
 
-UI/CMakeFiles/ui.dir/StaffUI.cpp.o: UI/CMakeFiles/ui.dir/flags.make
-UI/CMakeFiles/ui.dir/StaffUI.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.cpp
-UI/CMakeFiles/ui.dir/StaffUI.cpp.o: UI/CMakeFiles/ui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object UI/CMakeFiles/ui.dir/StaffUI.cpp.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/StaffUI.cpp.o -MF CMakeFiles/ui.dir/StaffUI.cpp.o.d -o CMakeFiles/ui.dir/StaffUI.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/StaffUI.cpp"
+UI/CMakeFiles/ui.dir/StaffUI.cpp.obj: UI/CMakeFiles/ui.dir/flags.make
+UI/CMakeFiles/ui.dir/StaffUI.cpp.obj: E:/CS162-project/UI/StaffUI.cpp
+UI/CMakeFiles/ui.dir/StaffUI.cpp.obj: UI/CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object UI/CMakeFiles/ui.dir/StaffUI.cpp.obj"
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/StaffUI.cpp.obj -MF CMakeFiles/ui.dir/StaffUI.cpp.obj.d -o CMakeFiles/ui.dir/StaffUI.cpp.obj -c E:/CS162-project/UI/StaffUI.cpp
 
 UI/CMakeFiles/ui.dir/StaffUI.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/StaffUI.cpp.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/StaffUI.cpp" > CMakeFiles/ui.dir/StaffUI.cpp.i
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:/CS162-project/UI/StaffUI.cpp > CMakeFiles/ui.dir/StaffUI.cpp.i
 
 UI/CMakeFiles/ui.dir/StaffUI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/StaffUI.cpp.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/StaffUI.cpp" -o CMakeFiles/ui.dir/StaffUI.cpp.s
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:/CS162-project/UI/StaffUI.cpp -o CMakeFiles/ui.dir/StaffUI.cpp.s
 
-UI/CMakeFiles/ui.dir/InputBar.cpp.o: UI/CMakeFiles/ui.dir/flags.make
-UI/CMakeFiles/ui.dir/InputBar.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/InputBar.cpp
-UI/CMakeFiles/ui.dir/InputBar.cpp.o: UI/CMakeFiles/ui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object UI/CMakeFiles/ui.dir/InputBar.cpp.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/InputBar.cpp.o -MF CMakeFiles/ui.dir/InputBar.cpp.o.d -o CMakeFiles/ui.dir/InputBar.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/InputBar.cpp"
+UI/CMakeFiles/ui.dir/InputBar.cpp.obj: UI/CMakeFiles/ui.dir/flags.make
+UI/CMakeFiles/ui.dir/InputBar.cpp.obj: E:/CS162-project/UI/InputBar.cpp
+UI/CMakeFiles/ui.dir/InputBar.cpp.obj: UI/CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object UI/CMakeFiles/ui.dir/InputBar.cpp.obj"
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/InputBar.cpp.obj -MF CMakeFiles/ui.dir/InputBar.cpp.obj.d -o CMakeFiles/ui.dir/InputBar.cpp.obj -c E:/CS162-project/UI/InputBar.cpp
 
 UI/CMakeFiles/ui.dir/InputBar.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/InputBar.cpp.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/InputBar.cpp" > CMakeFiles/ui.dir/InputBar.cpp.i
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:/CS162-project/UI/InputBar.cpp > CMakeFiles/ui.dir/InputBar.cpp.i
 
 UI/CMakeFiles/ui.dir/InputBar.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/InputBar.cpp.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/InputBar.cpp" -o CMakeFiles/ui.dir/InputBar.cpp.s
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:/CS162-project/UI/InputBar.cpp -o CMakeFiles/ui.dir/InputBar.cpp.s
 
-UI/CMakeFiles/ui.dir/Button.cpp.o: UI/CMakeFiles/ui.dir/flags.make
-UI/CMakeFiles/ui.dir/Button.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.cpp
-UI/CMakeFiles/ui.dir/Button.cpp.o: UI/CMakeFiles/ui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object UI/CMakeFiles/ui.dir/Button.cpp.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/Button.cpp.o -MF CMakeFiles/ui.dir/Button.cpp.o.d -o CMakeFiles/ui.dir/Button.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/Button.cpp"
+UI/CMakeFiles/ui.dir/Button.cpp.obj: UI/CMakeFiles/ui.dir/flags.make
+UI/CMakeFiles/ui.dir/Button.cpp.obj: E:/CS162-project/UI/Button.cpp
+UI/CMakeFiles/ui.dir/Button.cpp.obj: UI/CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object UI/CMakeFiles/ui.dir/Button.cpp.obj"
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT UI/CMakeFiles/ui.dir/Button.cpp.obj -MF CMakeFiles/ui.dir/Button.cpp.obj.d -o CMakeFiles/ui.dir/Button.cpp.obj -c E:/CS162-project/UI/Button.cpp
 
 UI/CMakeFiles/ui.dir/Button.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ui.dir/Button.cpp.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/Button.cpp" > CMakeFiles/ui.dir/Button.cpp.i
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:/CS162-project/UI/Button.cpp > CMakeFiles/ui.dir/Button.cpp.i
 
 UI/CMakeFiles/ui.dir/Button.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ui.dir/Button.cpp.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/Button.cpp" -o CMakeFiles/ui.dir/Button.cpp.s
+	cd E:/CS162-project/build/UI && "C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:/CS162-project/UI/Button.cpp -o CMakeFiles/ui.dir/Button.cpp.s
 
 # Object files for target ui
 ui_OBJECTS = \
-"CMakeFiles/ui.dir/LoginUI.cpp.o" \
-"CMakeFiles/ui.dir/StaffUI.cpp.o" \
-"CMakeFiles/ui.dir/InputBar.cpp.o" \
-"CMakeFiles/ui.dir/Button.cpp.o"
+"CMakeFiles/ui.dir/loginUI.cpp.obj" \
+"CMakeFiles/ui.dir/StaffUI.cpp.obj" \
+"CMakeFiles/ui.dir/InputBar.cpp.obj" \
+"CMakeFiles/ui.dir/Button.cpp.obj"
 
 # External object files for target ui
 ui_EXTERNAL_OBJECTS =
 
-UI/libui.a: UI/CMakeFiles/ui.dir/LoginUI.cpp.o
-UI/libui.a: UI/CMakeFiles/ui.dir/StaffUI.cpp.o
-UI/libui.a: UI/CMakeFiles/ui.dir/InputBar.cpp.o
-UI/libui.a: UI/CMakeFiles/ui.dir/Button.cpp.o
+UI/libui.a: UI/CMakeFiles/ui.dir/loginUI.cpp.obj
+UI/libui.a: UI/CMakeFiles/ui.dir/StaffUI.cpp.obj
+UI/libui.a: UI/CMakeFiles/ui.dir/InputBar.cpp.obj
+UI/libui.a: UI/CMakeFiles/ui.dir/Button.cpp.obj
 UI/libui.a: UI/CMakeFiles/ui.dir/build.make
 UI/libui.a: UI/CMakeFiles/ui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libui.a"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && $(CMAKE_COMMAND) -P CMakeFiles/ui.dir/cmake_clean_target.cmake
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ui.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libui.a"
+	cd E:/CS162-project/build/UI && $(CMAKE_COMMAND) -P CMakeFiles/ui.dir/cmake_clean_target.cmake
+	cd E:/CS162-project/build/UI && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ui.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 UI/CMakeFiles/ui.dir/build: UI/libui.a
 .PHONY : UI/CMakeFiles/ui.dir/build
 
 UI/CMakeFiles/ui.dir/clean:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" && $(CMAKE_COMMAND) -P CMakeFiles/ui.dir/cmake_clean.cmake
+	cd E:/CS162-project/build/UI && $(CMAKE_COMMAND) -P CMakeFiles/ui.dir/cmake_clean.cmake
 .PHONY : UI/CMakeFiles/ui.dir/clean
 
 UI/CMakeFiles/ui.dir/depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI/CMakeFiles/ui.dir/DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" E:/CS162-project E:/CS162-project/UI E:/CS162-project/build E:/CS162-project/build/UI E:/CS162-project/build/UI/CMakeFiles/ui.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : UI/CMakeFiles/ui.dir/depend
 
