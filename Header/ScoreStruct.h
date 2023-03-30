@@ -25,6 +25,6 @@ int getNumberOf(string dir);
 
 void loadCourseInfo(string* courseId, string schoolyear, string semester, string path);
 void printCourseID(string* id, int n);
-void inputShoolYear(string& schoolyear, string &path);
-void inputSemester(string& semester, string &path);
-void inputCourse(string& course_id, string* courseID, int numberof_id, string &path);
+void inputShoolYear(string& schoolyear, string &path, bool &type);
+void inputSemester(string& semester, string &path, bool &type);
+void inputCourse(string& course_id, string* courseID, int numberof_id, string &path, bool &type);
