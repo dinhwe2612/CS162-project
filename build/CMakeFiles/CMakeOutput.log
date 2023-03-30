@@ -28,63 +28,120 @@ The CXX compiler identification is GNU, found in "E:/CS162-project/build/CMakeFi
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ygpdut
 
-Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_d914c/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_d914c.dir/build.make CMakeFiles/cmTC_d914c.dir/build
-make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ygpdut'
-Building C object CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"   -v -o CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCCompilerABI.c"
-Using built-in specs.
-COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe
-Target: x86_64-w64-mingw32
-Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
-Thread model: posix
-Supported LTO compression algorithms: zlib zstd
-gcc version 11.2.0 (GCC) 
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d914c.dir/'
- c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/cc1.exe -quiet -v -iprefix c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_d914c.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\Users\MSI203~1\AppData\Local\Temp\ccZi2UsW.s
-GNU C17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
-	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
-
-GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include"
-ignoring nonexistent directory "C:/temp/gcc/destC:/temp/gcc/dest/lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"
-ignoring nonexistent directory "C:/temp/gcc/dest/mingw/include"
-#include "..." search starts here:
-#include <...> search starts here:
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include
-End of search list.
-GNU C17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
-	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
-
-GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-Compiler executable checksum: aa5e9286a0fcea872ab39015bc6bba0c
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d914c.dir/'
- c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj C:\Users\MSI203~1\AppData\Local\Temp\ccZi2UsW.s
-GNU assembler version 2.37 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.37
-COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
-LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.'
-Linking C executable cmTC_d914c.exe
-"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_d914c.dir/objects.a
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_d914c.dir/objects.a @CMakeFiles/cmTC_d914c.dir/objects1
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"  -v -Wl,--whole-archive CMakeFiles/cmTC_d914c.dir/objects.a -Wl,--no-whole-archive -o cmTC_d914c.exe -Wl,--out-implib,libcmTC_d914c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-Using built-in specs.
-COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe
-COLLECT_LTO_WRAPPER=c:/users/msi\ 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe
-Target: x86_64-w64-mingw32
-Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
-Thread model: posix
-Supported LTO compression algorithms: zlib zstd
-gcc version 11.2.0 (GCC) 
-COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
-LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d914c.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d914c.'
- c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/collect2.exe -plugin c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/liblto_plugin.dll -plugin-opt=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\MSI203~1\AppData\Local\Temp\ccFy1MUa.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/temp/gcc/dest -m i386pep -Bdynamic -o cmTC_d914c.exe c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtbegin.o -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0 -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../.. --whole-archive CMakeFiles/cmTC_d914c.dir/objects.a --no-whole-archive --out-implib libcmTC_d914c.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtend.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d914c.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d914c.'
-make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ygpdut'
+Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_d914c/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_d914c.dir/build.make CMakeFiles/cmTC_d914c.dir/build
+
+make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ygpdut'
+
+Building C object CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"   -v -o CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCCompilerABI.c"
+
+Using built-in specs.
+
+COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe
+
+Target: x86_64-w64-mingw32
+
+Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
+
+Thread model: posix
+
+Supported LTO compression algorithms: zlib zstd
+
+gcc version 11.2.0 (GCC) 
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d914c.dir/'
+
+ c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/cc1.exe -quiet -v -iprefix c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_d914c.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\Users\MSI203~1\AppData\Local\Temp\ccZi2UsW.s
+
+GNU C17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
+
+	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include"
+
+ignoring nonexistent directory "C:/temp/gcc/destC:/temp/gcc/dest/lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"
+
+ignoring nonexistent directory "C:/temp/gcc/dest/mingw/include"
+
+#include "..." search starts here:
+
+#include <...> search starts here:
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include
+
+End of search list.
+
+GNU C17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
+
+	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+
+Compiler executable checksum: aa5e9286a0fcea872ab39015bc6bba0c
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d914c.dir/'
+
+ c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj C:\Users\MSI203~1\AppData\Local\Temp\ccZi2UsW.s
+
+GNU assembler version 2.37 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.37
+
+COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
+
+LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d914c.dir/CMakeCCompilerABI.c.'
+
+Linking C executable cmTC_d914c.exe
+
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_d914c.dir/objects.a
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_d914c.dir/objects.a @CMakeFiles/cmTC_d914c.dir/objects1
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"  -v -Wl,--whole-archive CMakeFiles/cmTC_d914c.dir/objects.a -Wl,--no-whole-archive -o cmTC_d914c.exe -Wl,--out-implib,libcmTC_d914c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+
+Using built-in specs.
+
+COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe
+
+COLLECT_LTO_WRAPPER=c:/users/msi\ 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe
+
+Target: x86_64-w64-mingw32
+
+Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
+
+Thread model: posix
+
+Supported LTO compression algorithms: zlib zstd
+
+gcc version 11.2.0 (GCC) 
+
+COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
+
+LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d914c.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d914c.'
+
+ c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/collect2.exe -plugin c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/liblto_plugin.dll -plugin-opt=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\MSI203~1\AppData\Local\Temp\ccFy1MUa.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/temp/gcc/dest -m i386pep -Bdynamic -o cmTC_d914c.exe c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtbegin.o -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0 -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../.. --whole-archive CMakeFiles/cmTC_d914c.dir/objects.a --no-whole-archive --out-implib libcmTC_d914c.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtend.o
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d914c.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d914c.'
+
+make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ygpdut'
+
 
 
 
@@ -187,69 +244,132 @@ Parsed C implicit link information from above output:
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-harat8
 
-Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_ea414/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_ea414.dir/build.make CMakeFiles/cmTC_ea414.dir/build
-make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-harat8'
-Building CXX object CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe"   -v -o CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp"
-Using built-in specs.
-COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe
-Target: x86_64-w64-mingw32
-Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
-Thread model: posix
-Supported LTO compression algorithms: zlib zstd
-gcc version 11.2.0 (GCC) 
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ea414.dir/'
- c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/cc1plus.exe -quiet -v -iprefix c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ea414.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\Users\MSI203~1\AppData\Local\Temp\cc2LRpTj.s
-GNU C++17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
-	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
-
-GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/x86_64-w64-mingw32"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/backward"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include"
-ignoring nonexistent directory "C:/temp/gcc/destC:/temp/gcc/dest/lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"
-ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"
-ignoring nonexistent directory "C:/temp/gcc/dest/mingw/include"
-#include "..." search starts here:
-#include <...> search starts here:
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/x86_64-w64-mingw32
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/backward
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed
- c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include
-End of search list.
-GNU C++17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
-	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
-
-GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-Compiler executable checksum: 0020e270c5508fbf7dab225494ee95ff
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ea414.dir/'
- c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj C:\Users\MSI203~1\AppData\Local\Temp\cc2LRpTj.s
-GNU assembler version 2.37 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.37
-COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
-LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.'
-Linking CXX executable cmTC_ea414.exe
-"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_ea414.dir/objects.a
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_ea414.dir/objects.a @CMakeFiles/cmTC_ea414.dir/objects1
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe"  -v -Wl,--whole-archive CMakeFiles/cmTC_ea414.dir/objects.a -Wl,--no-whole-archive -o cmTC_ea414.exe -Wl,--out-implib,libcmTC_ea414.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-Using built-in specs.
-COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe
-COLLECT_LTO_WRAPPER=c:/users/msi\ 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe
-Target: x86_64-w64-mingw32
-Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
-Thread model: posix
-Supported LTO compression algorithms: zlib zstd
-gcc version 11.2.0 (GCC) 
-COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
-LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ea414.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ea414.'
- c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/collect2.exe -plugin c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/liblto_plugin.dll -plugin-opt=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\MSI203~1\AppData\Local\Temp\ccKaoZcE.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/temp/gcc/dest -m i386pep -Bdynamic -o cmTC_ea414.exe c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtbegin.o -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0 -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../.. --whole-archive CMakeFiles/cmTC_ea414.dir/objects.a --no-whole-archive --out-implib libcmTC_ea414.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtend.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ea414.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ea414.'
-make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-harat8'
+Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_ea414/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_ea414.dir/build.make CMakeFiles/cmTC_ea414.dir/build
+
+make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-harat8'
+
+Building CXX object CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe"   -v -o CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp"
+
+Using built-in specs.
+
+COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe
+
+Target: x86_64-w64-mingw32
+
+Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
+
+Thread model: posix
+
+Supported LTO compression algorithms: zlib zstd
+
+gcc version 11.2.0 (GCC) 
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ea414.dir/'
+
+ c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/cc1plus.exe -quiet -v -iprefix c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ea414.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\Users\MSI203~1\AppData\Local\Temp\cc2LRpTj.s
+
+GNU C++17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
+
+	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/x86_64-w64-mingw32"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/backward"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include"
+
+ignoring nonexistent directory "C:/temp/gcc/destC:/temp/gcc/dest/lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"
+
+ignoring duplicate directory "c:/users/msi 203vn/.vscode/mingw/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"
+
+ignoring nonexistent directory "C:/temp/gcc/dest/mingw/include"
+
+#include "..." search starts here:
+
+#include <...> search starts here:
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/x86_64-w64-mingw32
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include/c++/11.2.0/backward
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed
+
+ c:\users\msi 203vn\.vscode\mingw\bin\../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include
+
+End of search list.
+
+GNU C++17 (GCC) version 11.2.0 (x86_64-w64-mingw32)
+
+	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+
+Compiler executable checksum: 0020e270c5508fbf7dab225494ee95ff
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ea414.dir/'
+
+ c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj C:\Users\MSI203~1\AppData\Local\Temp\cc2LRpTj.s
+
+GNU assembler version 2.37 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.37
+
+COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
+
+LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ea414.dir/CMakeCXXCompilerABI.cpp.'
+
+Linking CXX executable cmTC_ea414.exe
+
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_ea414.dir/objects.a
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_ea414.dir/objects.a @CMakeFiles/cmTC_ea414.dir/objects1
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe"  -v -Wl,--whole-archive CMakeFiles/cmTC_ea414.dir/objects.a -Wl,--no-whole-archive -o cmTC_ea414.exe -Wl,--out-implib,libcmTC_ea414.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+
+Using built-in specs.
+
+COLLECT_GCC=C:/Users/MSI 203VN/.vscode/MinGW/bin/g++.exe
+
+COLLECT_LTO_WRAPPER=c:/users/msi\ 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe
+
+Target: x86_64-w64-mingw32
+
+Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --enable-threads=posix --enable-libgomp --with-zstd=/c/mingw --disable-bootstrap
+
+Thread model: posix
+
+Supported LTO compression algorithms: zlib zstd
+
+gcc version 11.2.0 (GCC) 
+
+COMPILER_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/
+
+LIBRARY_PATH=c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/;c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ea414.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ea414.'
+
+ c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/collect2.exe -plugin c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/liblto_plugin.dll -plugin-opt=c:/users/msi 203vn/.vscode/mingw/bin/../libexec/gcc/x86_64-w64-mingw32/11.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\MSI203~1\AppData\Local\Temp\ccKaoZcE.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/temp/gcc/dest -m i386pep -Bdynamic -o cmTC_ea414.exe c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtbegin.o -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0 -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib/../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/lib -Lc:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../.. --whole-archive CMakeFiles/cmTC_ea414.dir/objects.a --no-whole-archive --out-implib libcmTC_ea414.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/users/msi 203vn/.vscode/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/crtend.o
+
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ea414.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ea414.'
+
+make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-harat8'
+
 
 
 
@@ -364,15 +484,24 @@ Parsed CXX implicit link information from above output:
 Performing C SOURCE FILE Test COMPILER_HAS_THOSE_TOGGLES succeeded with the following output:
 Change Dir: E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm
 
-Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_73922/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_73922.dir/build.make CMakeFiles/cmTC_73922.dir/build
-make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm'
-Building C object CMakeFiles/cmTC_73922.dir/src.c.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -o CMakeFiles/cmTC_73922.dir/src.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm/src.c
-Linking C executable cmTC_73922.exe
-"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_73922.dir/objects.a
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_73922.dir/objects.a @CMakeFiles/cmTC_73922.dir/objects1
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -Wl,--whole-archive CMakeFiles/cmTC_73922.dir/objects.a -Wl,--no-whole-archive -o cmTC_73922.exe -Wl,--out-implib,libcmTC_73922.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_73922.dir/linkLibs.rsp
-make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm'
+Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_73922/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_73922.dir/build.make CMakeFiles/cmTC_73922.dir/build
+
+make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm'
+
+Building C object CMakeFiles/cmTC_73922.dir/src.c.obj
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -o CMakeFiles/cmTC_73922.dir/src.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm/src.c
+
+Linking C executable cmTC_73922.exe
+
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_73922.dir/objects.a
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_73922.dir/objects.a @CMakeFiles/cmTC_73922.dir/objects1
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -Wl,--whole-archive CMakeFiles/cmTC_73922.dir/objects.a -Wl,--no-whole-archive -o cmTC_73922.exe -Wl,--out-implib,libcmTC_73922.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_73922.dir/linkLibs.rsp
+
+make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-xrl1lm'
+
 
 
 Source file was:
@@ -381,15 +510,24 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
 Change Dir: E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct
 
-Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_a10c4/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_a10c4.dir/build.make CMakeFiles/cmTC_a10c4.dir/build
-make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct'
-Building C object CMakeFiles/cmTC_a10c4.dir/src.c.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -DCMAKE_HAVE_LIBC_PTHREAD  -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -o CMakeFiles/cmTC_a10c4.dir/src.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct/src.c
-Linking C executable cmTC_a10c4.exe
-"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_a10c4.dir/objects.a
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_a10c4.dir/objects.a @CMakeFiles/cmTC_a10c4.dir/objects1
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles/cmTC_a10c4.dir/objects.a -Wl,--no-whole-archive -o cmTC_a10c4.exe -Wl,--out-implib,libcmTC_a10c4.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_a10c4.dir/linkLibs.rsp
-make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct'
+Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_a10c4/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_a10c4.dir/build.make CMakeFiles/cmTC_a10c4.dir/build
+
+make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct'
+
+Building C object CMakeFiles/cmTC_a10c4.dir/src.c.obj
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -DCMAKE_HAVE_LIBC_PTHREAD  -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -o CMakeFiles/cmTC_a10c4.dir/src.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct/src.c
+
+Linking C executable cmTC_a10c4.exe
+
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_a10c4.dir/objects.a
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_a10c4.dir/objects.a @CMakeFiles/cmTC_a10c4.dir/objects1
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles/cmTC_a10c4.dir/objects.a -Wl,--no-whole-archive -o cmTC_a10c4.exe -Wl,--out-implib,libcmTC_a10c4.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_a10c4.dir/linkLibs.rsp
+
+make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-y80fct'
+
 
 
 Source file was:
@@ -417,30 +555,48 @@ int main(void)
 Determining if the include file dinput.h exists passed with the following output:
 Change Dir: E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1
 
-Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_384cf/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_384cf.dir/build.make CMakeFiles/cmTC_384cf.dir/build
-make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1'
-Building C object CMakeFiles/cmTC_384cf.dir/CheckIncludeFile.c.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"   -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -std=gnu99 -o CMakeFiles/cmTC_384cf.dir/CheckIncludeFile.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1/CheckIncludeFile.c
-Linking C executable cmTC_384cf.exe
-"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_384cf.dir/objects.a
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_384cf.dir/objects.a @CMakeFiles/cmTC_384cf.dir/objects1
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles/cmTC_384cf.dir/objects.a -Wl,--no-whole-archive -o cmTC_384cf.exe -Wl,--out-implib,libcmTC_384cf.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_384cf.dir/linkLibs.rsp
-make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1'
+Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_384cf/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_384cf.dir/build.make CMakeFiles/cmTC_384cf.dir/build
+
+make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1'
+
+Building C object CMakeFiles/cmTC_384cf.dir/CheckIncludeFile.c.obj
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"   -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -std=gnu99 -o CMakeFiles/cmTC_384cf.dir/CheckIncludeFile.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1/CheckIncludeFile.c
+
+Linking C executable cmTC_384cf.exe
+
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_384cf.dir/objects.a
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_384cf.dir/objects.a @CMakeFiles/cmTC_384cf.dir/objects1
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles/cmTC_384cf.dir/objects.a -Wl,--no-whole-archive -o cmTC_384cf.exe -Wl,--out-implib,libcmTC_384cf.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_384cf.dir/linkLibs.rsp
+
+make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-ir73k1'
+
 
 
 
 Determining if the include file xinput.h exists passed with the following output:
 Change Dir: E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur
 
-Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_ef261/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_ef261.dir/build.make CMakeFiles/cmTC_ef261.dir/build
-make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur'
-Building C object CMakeFiles/cmTC_ef261.dir/CheckIncludeFile.c.obj
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"   -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -std=gnu99 -o CMakeFiles/cmTC_ef261.dir/CheckIncludeFile.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur/CheckIncludeFile.c
-Linking C executable cmTC_ef261.exe
-"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_ef261.dir/objects.a
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_ef261.dir/objects.a @CMakeFiles/cmTC_ef261.dir/objects1
-"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles/cmTC_ef261.dir/objects.a -Wl,--no-whole-archive -o cmTC_ef261.exe -Wl,--out-implib,libcmTC_ef261.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_ef261.dir/linkLibs.rsp
-make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur'
+Run Build Command(s):C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe -f Makefile cmTC_ef261/fast && C:/Users/MSI203~1/VSCODE~1/MinGW/bin/make.exe  -f CMakeFiles/cmTC_ef261.dir/build.make CMakeFiles/cmTC_ef261.dir/build
+
+make[1]: Entering directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur'
+
+Building C object CMakeFiles/cmTC_ef261.dir/CheckIncludeFile.c.obj
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe"   -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -std=gnu99 -o CMakeFiles/cmTC_ef261.dir/CheckIncludeFile.c.obj -c E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur/CheckIncludeFile.c
+
+Linking C executable cmTC_ef261.exe
+
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_ef261.dir/objects.a
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc CMakeFiles/cmTC_ef261.dir/objects.a @CMakeFiles/cmTC_ef261.dir/objects1
+
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles/cmTC_ef261.dir/objects.a -Wl,--no-whole-archive -o cmTC_ef261.exe -Wl,--out-implib,libcmTC_ef261.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_ef261.dir/linkLibs.rsp
+
+make[1]: Leaving directory 'E:/CS162-project/build/CMakeFiles/CMakeScratch/TryCompile-24viur'
+
 
 
 
