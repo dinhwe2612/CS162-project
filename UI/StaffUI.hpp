@@ -16,6 +16,7 @@ struct StaffUI
     Button dropDown;
     Button signOut;
     Button ChangePassWord;
+    Button cornerStripes; 
 
     int menuStaff;
     enum windowStaff {
@@ -30,7 +31,9 @@ struct StaffUI
     void Draw();
         void DrawBackground();
         void DrawStaticElement();
-        void updateDropDownBox();
+        void DrawDropDownAccount();
+        void DrawDropDownSchoolYear(int numberOfCreatedSchoolYear);
+        void DrawSchoolYear(bool isDroppedDown);
 
 };
 

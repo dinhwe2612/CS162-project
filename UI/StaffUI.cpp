@@ -10,6 +10,9 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     dropDown.SetTexture("UI/images/down-arrow-3.png");
     dropDown.SetRectangle(0.97*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+
+    cornerStripes.SetTexture("UI/images/stripes.png");
+    cornerStripes.SetRectangle(0.01*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 }
 
 void StaffUI::Deconstruct()
@@ -39,14 +42,17 @@ void StaffUI::DrawStaticElement()
     DrawTextEx(PT_serif_regular, "Hello <username>", loginStatusPos, 0.015*windowWidth, 0.5, RAYWHITE);
 }
 
-void StaffUI::updateDropDownBox()
+void StaffUI::DrawDropDownAccount()
 {
+    // check if down arrow is clicked
     static bool IS_DROPDOWN_CLICKED = false;
+    
     if (dropDown.isPRESSED(MOUSE_BUTTON_LEFT))
         IS_DROPDOWN_CLICKED = true;
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !dropDown.isPRESSED(MOUSE_BUTTON_LEFT))
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.86*windowWidth, 0, 0.14*windowWidth, 0.15*windowHeight}))
         IS_DROPDOWN_CLICKED = false;
 
+    // draw features accordingly
     if (IS_DROPDOWN_CLICKED)
     {
         signOut.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
@@ -61,10 +67,43 @@ void StaffUI::updateDropDownBox()
         signOut.SetText(PT_serif_regular, ">    Sign out", 1*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
         ChangePassWord.SetText(PT_serif_regular, ">    Change password", 1*windowWidth, 0.11*windowHeight, 0.015*windowWidth, 0.5, BLACK);
     }
-
+    
 }
 
+void StaffUI::DrawDropDownSchoolYear(int numberOfCreatedSchoolYear)
+{
+    // check if stripes icon is clicked
+    static bool IS_DROPDOWN_CLICKED = false;
 
+    if (cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT))
+        IS_DROPDOWN_CLICKED = true;
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowWidth}) 
+                && !cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT) 
+                && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        IS_DROPDOWN_CLICKED = false;
+
+    if (IS_DROPDOWN_CLICKED)
+    {
+        DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, windowWidth, RAYWHITE);
+        DrawLine(0.2*windowWidth, 0.05*windowHeight, 0.2*windowWidth, windowHeight, LIGHTGRAY);
+    }
+
+
+   
+}
+
+// void StaffUI::DrawSchoolYear(bool isDroppedDown, )
+// {
+//     if (isDroppedDown)
+//     {
+//         DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, windowWidth, RAYWHITE);
+//         DrawLine(0.2*windowWidth, 0.05*windowHeight, 0.2*windowWidth, windowHeight, LIGHTGRAY);
+//     }
+//     else
+//     {
+        
+//     }
+// }
 
 void StaffUI::Draw()
 {
@@ -72,7 +111,9 @@ void StaffUI::Draw()
     DrawStaticElement();
     dropDown.DrawTexture();
     signOut.DrawText();
-        updateDropDownBox();
+        DrawDropDownAccount();
+    cornerStripes.DrawTexture();
+    DrawDropDownSchoolYear(5);
 
     ChangePassWord.DrawText();
 }
