@@ -278,6 +278,7 @@ void Update_CourseInformation(string address)
     cout << "Thank you, the information has been updated for you!" << '\n';
     inf[choice + 1] = newinf;
     Update_File(address, inf);
+    // if class name or course id is updated, update the file semester info, rename the folder
     return;
 }
 //
