@@ -43,7 +43,7 @@ struct StaffUI
         void DrawDropDownAccount();
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
-
+        void DrawChangePassword();
 };
 
 #endif
