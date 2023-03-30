@@ -93,7 +93,6 @@ ProjectUI_EXTERNAL_OBJECTS =
 ProjectUI: CMakeFiles/ProjectUI.dir/main.cpp.o
 ProjectUI: CMakeFiles/ProjectUI.dir/build.make
 ProjectUI: external/raylib/raylib/libraylib.a
-ProjectUI: Function/libfunc.a
 ProjectUI: UI/libui.a
 ProjectUI: external/raylib/raylib/external/glfw/src/libglfw3.a
 ProjectUI: CMakeFiles/ProjectUI.dir/link.txt

@@ -608,19 +608,6 @@ update_mappings/fast:
 .PHONY : update_mappings/fast
 
 #=============================================================================
-# Target rules for targets named func
-
-# Build rule for target.
-func: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 func
-.PHONY : func
-
-# fast build rule for target.
-func/fast:
-	$(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/build
-.PHONY : func/fast
-
-#=============================================================================
 # Target rules for targets named ui
 
 # Build rule for target.
@@ -702,7 +689,6 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... update_mappings"
 	@echo "... ProjectUI"
-	@echo "... func"
 	@echo "... glfw"
 	@echo "... raylib"
 	@echo "... ui"

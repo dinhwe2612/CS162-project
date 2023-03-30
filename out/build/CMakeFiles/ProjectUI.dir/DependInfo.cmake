@@ -14,7 +14,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/external/raylib/raylib/CMakeFiles/raylib.dir/DependInfo.cmake"
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function/CMakeFiles/func.dir/DependInfo.cmake"
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/UI/CMakeFiles/ui.dir/DependInfo.cmake"
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   )

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/login.cpp" "Function/CMakeFiles/func.dir/login.cpp.o" "gcc" "Function/CMakeFiles/func.dir/login.cpp.o.d"
+  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/schoolYear.cpp" "Function/CMakeFiles/func.dir/schoolYear.cpp.o" "gcc" "Function/CMakeFiles/func.dir/schoolYear.cpp.o.d"
   )
 
 # Targets to which this target links.

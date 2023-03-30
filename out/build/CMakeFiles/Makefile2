@@ -65,13 +65,11 @@ CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out
 # The main recursive "all" target.
 all: CMakeFiles/ProjectUI.dir/all
 all: external/raylib/all
-all: Function/all
 all: UI/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: external/raylib/preinstall
-preinstall: Function/preinstall
 preinstall: UI/preinstall
 .PHONY : preinstall
 
@@ -106,24 +104,8 @@ clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
 clean: CMakeFiles/ProjectUI.dir/clean
 clean: external/raylib/clean
-clean: Function/clean
 clean: UI/clean
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory Function
-
-# Recursive "all" directory target.
-Function/all: Function/CMakeFiles/func.dir/all
-.PHONY : Function/all
-
-# Recursive "preinstall" directory target.
-Function/preinstall:
-.PHONY : Function/preinstall
-
-# Recursive "clean" directory target.
-Function/clean: Function/CMakeFiles/func.dir/clean
-.PHONY : Function/clean
 
 #=============================================================================
 # Directory level rules for directory UI
@@ -937,7 +919,6 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 # All Build rule for target.
 CMakeFiles/ProjectUI.dir/all: external/raylib/raylib/CMakeFiles/raylib.dir/all
 CMakeFiles/ProjectUI.dir/all: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
-CMakeFiles/ProjectUI.dir/all: Function/CMakeFiles/func.dir/all
 CMakeFiles/ProjectUI.dir/all: UI/CMakeFiles/ui.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProjectUI.dir/build.make CMakeFiles/ProjectUI.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProjectUI.dir/build.make CMakeFiles/ProjectUI.dir/build
@@ -946,7 +927,7 @@ CMakeFiles/ProjectUI.dir/all: UI/CMakeFiles/ui.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ProjectUI.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" 39
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" 37
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ProjectUI.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" 0
 .PHONY : CMakeFiles/ProjectUI.dir/rule
@@ -967,7 +948,7 @@ CMakeFiles/ProjectUI.dir/clean:
 external/raylib/raylib/CMakeFiles/raylib.dir/all: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
 	$(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=27,28,29,30,31,32,33,34 "Built target raylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=25,26,27,28,29,30,31,32 "Built target raylib"
 .PHONY : external/raylib/raylib/CMakeFiles/raylib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -993,7 +974,7 @@ external/raylib/raylib/CMakeFiles/raylib.dir/clean:
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 "Built target glfw"
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1019,7 +1000,7 @@ external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/clean:
 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=40 "Built target update_mappings"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=38 "Built target update_mappings"
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1039,39 +1020,13 @@ external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/clean:
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/clean
 
 #=============================================================================
-# Target rules for target Function/CMakeFiles/func.dir
-
-# All Build rule for target.
-Function/CMakeFiles/func.dir/all:
-	$(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/depend
-	$(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=3,4 "Built target func"
-.PHONY : Function/CMakeFiles/func.dir/all
-
-# Build rule for subdir invocation for target.
-Function/CMakeFiles/func.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Function/CMakeFiles/func.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" 0
-.PHONY : Function/CMakeFiles/func.dir/rule
-
-# Convenience name for target.
-func: Function/CMakeFiles/func.dir/rule
-.PHONY : func
-
-# clean rule for target.
-Function/CMakeFiles/func.dir/clean:
-	$(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/clean
-.PHONY : Function/CMakeFiles/func.dir/clean
-
-#=============================================================================
 # Target rules for target UI/CMakeFiles/ui.dir
 
 # All Build rule for target.
 UI/CMakeFiles/ui.dir/all:
 	$(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/depend
 	$(MAKE) $(MAKESILENT) -f UI/CMakeFiles/ui.dir/build.make UI/CMakeFiles/ui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=35,36,37,38,39 "Built target ui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=33,34,35,36,37 "Built target ui"
 .PHONY : UI/CMakeFiles/ui.dir/all
 
 # Build rule for subdir invocation for target.

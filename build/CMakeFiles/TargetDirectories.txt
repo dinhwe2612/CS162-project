@@ -75,16 +75,6 @@
 /Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/install.dir
 /Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/install/local.dir
 /Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/install/strip.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/func.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/package.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/package_source.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/test.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/edit_cache.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/rebuild_cache.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/list_install_components.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/install.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/install/local.dir
-/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/Function/CMakeFiles/install/strip.dir
 /Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI/CMakeFiles/ui.dir
 /Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI/CMakeFiles/package.dir
 /Users/win/Documents/Stupid subjects/CS162/CS162-project/build/UI/CMakeFiles/package_source.dir

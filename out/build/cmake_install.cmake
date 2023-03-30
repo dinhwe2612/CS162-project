@@ -40,7 +40,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/external/raylib/cmake_install.cmake")
-  include("/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function/cmake_install.cmake")
   include("/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/UI/cmake_install.cmake")
 
 endif()

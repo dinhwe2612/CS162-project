@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/CMakeLists.txt"
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/CMakeLists.txt"
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/CMakeLists.txt"
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/CMakeLists.txt"
   "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/CMakeOptions.txt"
@@ -103,7 +102,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "external/raylib/raylib/external/glfw/CMakeFiles/CMakeDirectoryInformation.cmake"
   "external/raylib/raylib/external/glfw/src/glfw3.pc"
   "external/raylib/raylib/external/glfw/src/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "Function/CMakeFiles/CMakeDirectoryInformation.cmake"
   "UI/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -141,6 +139,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "external/raylib/raylib/CMakeFiles/raylib.dir/DependInfo.cmake"
   "external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   "external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
-  "Function/CMakeFiles/func.dir/DependInfo.cmake"
   "UI/CMakeFiles/ui.dir/DependInfo.cmake"
   )

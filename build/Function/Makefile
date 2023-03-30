@@ -205,29 +205,29 @@ func/fast:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/build
 .PHONY : func/fast
 
-login.o: login.cpp.o
-.PHONY : login.o
+schoolYear.o: schoolYear.cpp.o
+.PHONY : schoolYear.o
 
 # target to build an object file
-login.cpp.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.o
-.PHONY : login.cpp.o
+schoolYear.cpp.o:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.o
+.PHONY : schoolYear.cpp.o
 
-login.i: login.cpp.i
-.PHONY : login.i
+schoolYear.i: schoolYear.cpp.i
+.PHONY : schoolYear.i
 
 # target to preprocess a source file
-login.cpp.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.i
-.PHONY : login.cpp.i
+schoolYear.cpp.i:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.i
+.PHONY : schoolYear.cpp.i
 
-login.s: login.cpp.s
-.PHONY : login.s
+schoolYear.s: schoolYear.cpp.s
+.PHONY : schoolYear.s
 
 # target to generate assembly for a file
-login.cpp.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.s
-.PHONY : login.cpp.s
+schoolYear.cpp.s:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.s
+.PHONY : schoolYear.cpp.s
 
 # Help Target
 help:
@@ -245,9 +245,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... func"
-	@echo "... login.o"
-	@echo "... login.i"
-	@echo "... login.s"
+	@echo "... schoolYear.o"
+	@echo "... schoolYear.i"
+	@echo "... schoolYear.s"
 .PHONY : help
 
 
