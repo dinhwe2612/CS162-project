@@ -1,2 +1,2 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libfunc.a CMakeFiles/func.dir/login.cpp.o CMakeFiles/func.dir/StaffFunc.cpp.o CMakeFiles/func.dir/view.cpp.o CMakeFiles/func.dir/Score.cpp.o CMakeFiles/func.dir/schoolYear.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ar qc libfunc.a CMakeFiles/func.dir/login.cpp.o
 /Library/Developer/CommandLineTools/usr/bin/ranlib libfunc.a
