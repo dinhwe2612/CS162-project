@@ -7,12 +7,9 @@
 #define MAX_NO_STUDENTS 50
 
 //Import the result of a course from a csv file
-void importScoreboard(Scoreboard* s, string course_name, int& n) {
-	//locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
+void importScoreboard(Scoreboard* s, string course_name, int& n, string path) {
 	ifstream ifs;
-	ifs.open("../Data/" + course_name + ".csv");
-	//string no = "";
-	//int i = 0;
+	ifs.open(path);
 	string ignore_line = "";
 	getline(ifs, ignore_line, '\n');
 
@@ -48,6 +45,14 @@ void importScoreboard(Scoreboard* s, string course_name, int& n) {
 }
 
 void viewScoreboard(Scoreboard* s, string course_name, int N) {
+	cout << "No\t"
+		<< "Student ID\t"
+		<< left << setw(20) << "Last Name"
+		<< left << setw(10) << "First Name\t"
+		<< "Total\t"
+		<< "Final\t"
+		<< "Midterm\t"
+		<< "Other\n";
 	for (int i = 0; i < N; i++) {
 		cout << i + 1 << "\t";
 		cout << s[i].studentID << "\t";
@@ -60,20 +65,190 @@ void viewScoreboard(Scoreboard* s, string course_name, int N) {
 	}
 }
 
-void staff_Views_Score() {
-	string course;
-	cout << "Which course do you want to view score? Please, enter the course: ";
-	getline(cin, course, '\n');
+void staff_Views_Scoreboard(string& schoolyear, string& semester, string& course) {
+	string path = "..Data/SchoolYear";
+	string path_txt = "";
+	int option;
+	cout << "Press 1 to continue with viewing score\n";
+	cout << "Press 0 to exit\n";
+	cout << "Please, press one key: ";
+	cin >> option;
+	cin.ignore(32767, '\n');
+	do {
+		if (option == 1) {
+			//string path = "D:/FirstYear/CS162/Labs/Solutions/GroupProject_CS162/SchoolYear/";
+			inputShoolYear(schoolyear, path);
+			inputSemester(semester, path);
+			path_txt = path + "/Semester_Info.txt";
+			int numOf_id = getNumberOf(path_txt);
+			numOf_id = numOf_id - 4;
+			if (numOf_id == 0)
+				cout << "Courses have not been added yet! You can not view score of them." << endl;
+			else {
+				string* courseID = new string[numOf_id];
+				loadCourseInfo(courseID, schoolyear, semester, path_txt);
+				//check_CourseID_Csv(courseID, numOf_id, path);
+				printCourseID(courseID, numOf_id);
+				inputCourse(course, courseID, numOf_id, path);
+				delete[] courseID;
+			}
+			int n = 0;
+			Scoreboard* s = new Scoreboard[MAX_NO_STUDENTS];
+			importScoreboard(s, course, n, path);
+			viewScoreboards(s, course, n);
+			delete[] s;
+		}
+		else if (option == 0)
+			return;
+		cout << "-------------------\n";
+		cout << "Press 1 to continue with viewing score\n";
+		cout << "Press 0 exit\n";
+		cout << "-------------------\n";
+		cout << "Please, press one key: ";
+		cin >> option;
+		cin.ignore(32767, '\n');
+		schoolyear = "";
+		semester = "";
+		course = "";
+	} while (option);
+}
+
+//Input function
+void inputShoolYear(string& schoolyear, string& path) {
+	//cin.ignore(32767, '\n');
+	cout << "*********SCHOOLYEAR\n";
+	cout << "Please enter a school year according the format(yyyy-yyyy): ";
+	getline(cin, schoolyear);
+	string dir = path + schoolyear;
+	try {
+		if (isPathExist(dir)) {
+			path = dir;
+			cout << "Successfully done, please continue with the information below." << endl;
+			return;
+		}
+		else
+			throw (schoolyear);
+	}
+	catch (string _year) {
+		cout << "The school year " << _year << " does not exist." << endl;
+		_year = "";
+		inputShoolYear(_year, path);
+	}
+}
+
+
+
+void inputSemester(string& semester, string& path) {
+	//cin.ignore(32767, '\n');
+	cout << "\n*********SEMESTER\n";
+	cout << "1. SPRING\n" << "2. SUMMER\n" << "3. AUTUMN\n";
+	cout << "Please enter one of numbers above: ";
+	int n;
+	cin >> n;
+	cin.ignore(32767, '\n');
+	switch (n) {
+	case 1:
+		semester = "Spring";
+		break;
+	case 2:
+		semester = "Summer";
+		break;
+	case 3:
+		semester = "Autumn";
+		break;
+	default:
+		break;
+	}
+	string dir = path + '/' + semester;
+
+	try {
+		if (isPathExist(dir)) {
+			path = dir;
+			cout << "Successfully done, please continue with the information below." << endl;
+			return;
+		}
+		else
+			throw (semester);
+	}
+	catch (string _semester) {
+		cout << "The semester " << _semester << " does not exist." << endl;
+		_semester = "";
+		inputSemester(_semester, path);
+	}
+}
+
+void inputCourse(string& course_id, string* courseID, int numberof_id, string& path) {
+	//cin.ignore(32767, '\n');
+	cout << "Which course do you want to view its score? Please select one of courses above and type here: ";
+	getline(cin, course_id);
+	string dir = path + '/' + course_id + ".csv";
+	try {
+		if (isPathExist(dir))
+			return;
+		else
+			throw (course_id);
+	}
+	catch (string _course_id) {
+		cout << "The course " << _course_id << " has not been uploaded scores yet." << endl;
+		_course_id = "";
+		inputCourse(_course_id, courseID, numberof_id, path);
+	}
+}
+
+bool isPathExist(const string& path) {
+	struct stat buffer;
+	return (stat(path.c_str(), &buffer) == 0);
+}
+
+//Load courseID of courses in a semester
+void loadCourseInfo(string* courseId, string schoolyear, string semester, string path) {
+	ifstream in;
+	in.open(path);
+
+	string line1 = "", line2 = "", line3 = "", line4 = "";
+	getline(in, line1, '\n');
+	getline(in, line2, '\n');
+	getline(in, line3, '\n');
+	getline(in, line4, '\n');
+
+	string id = "";
+	int i = 0;
+	while (!in.eof()) {
+		getline(in, id);
+		in.ignore();
+		courseId[i] = id;
+		i++;
+	}
+	in.close();
+}
+
+void printCourseID(string* id, int n) {
+	cout << "\n*********COURSE\n";
+	cout << "Here are courses in this semester\n";
+	for (int i = 0; i < n; i++) {
+		cout << id[i] << endl;
+	}
+}
+
+int getNumberOf(string dir) {
+	ifstream in;
+	in.open(dir);
+	string w;
 	int n = 0;
-	Scoreboard* s = new Scoreboard[MAX_NO_STUDENTS];
-	importScoreboard(s, course, n);
-	viewScoreboard(s, course, n);
-	delete[] s;
+	while (!in.eof()) {
+		getline(in, w, '\n');
+		in.ignore();
+		n++;
+	}
+	in.close();
+	return n;
 }
 
 int main() {
-	create_StudentResult_File();
-	staff_Views_Score();
+	//create_StudentResult_File();
+	//staff_Views_Score();
+	string schoolyear = "", semester = "", course = "";
+	staff_Views_Scoreboard(schoolyear, semester, course);
 	return 0;
 }
 

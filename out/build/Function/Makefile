@@ -205,6 +205,54 @@ func/fast:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/build
 .PHONY : func/fast
 
+Score.o: Score.cpp.o
+.PHONY : Score.o
+
+# target to build an object file
+Score.cpp.o:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/Score.cpp.o
+.PHONY : Score.cpp.o
+
+Score.i: Score.cpp.i
+.PHONY : Score.i
+
+# target to preprocess a source file
+Score.cpp.i:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/Score.cpp.i
+.PHONY : Score.cpp.i
+
+Score.s: Score.cpp.s
+.PHONY : Score.s
+
+# target to generate assembly for a file
+Score.cpp.s:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/Score.cpp.s
+.PHONY : Score.cpp.s
+
+StaffFunc.o: StaffFunc.cpp.o
+.PHONY : StaffFunc.o
+
+# target to build an object file
+StaffFunc.cpp.o:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/StaffFunc.cpp.o
+.PHONY : StaffFunc.cpp.o
+
+StaffFunc.i: StaffFunc.cpp.i
+.PHONY : StaffFunc.i
+
+# target to preprocess a source file
+StaffFunc.cpp.i:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/StaffFunc.cpp.i
+.PHONY : StaffFunc.cpp.i
+
+StaffFunc.s: StaffFunc.cpp.s
+.PHONY : StaffFunc.s
+
+# target to generate assembly for a file
+StaffFunc.cpp.s:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/StaffFunc.cpp.s
+.PHONY : StaffFunc.cpp.s
+
 login.o: login.cpp.o
 .PHONY : login.o
 
@@ -229,6 +277,54 @@ login.cpp.s:
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/login.cpp.s
 .PHONY : login.cpp.s
 
+schoolYear.o: schoolYear.cpp.o
+.PHONY : schoolYear.o
+
+# target to build an object file
+schoolYear.cpp.o:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.o
+.PHONY : schoolYear.cpp.o
+
+schoolYear.i: schoolYear.cpp.i
+.PHONY : schoolYear.i
+
+# target to preprocess a source file
+schoolYear.cpp.i:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.i
+.PHONY : schoolYear.cpp.i
+
+schoolYear.s: schoolYear.cpp.s
+.PHONY : schoolYear.s
+
+# target to generate assembly for a file
+schoolYear.cpp.s:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/schoolYear.cpp.s
+.PHONY : schoolYear.cpp.s
+
+view.o: view.cpp.o
+.PHONY : view.o
+
+# target to build an object file
+view.cpp.o:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/view.cpp.o
+.PHONY : view.cpp.o
+
+view.i: view.cpp.i
+.PHONY : view.i
+
+# target to preprocess a source file
+view.cpp.i:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/view.cpp.i
+.PHONY : view.cpp.i
+
+view.s: view.cpp.s
+.PHONY : view.s
+
+# target to generate assembly for a file
+view.cpp.s:
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build" && $(MAKE) $(MAKESILENT) -f Function/CMakeFiles/func.dir/build.make Function/CMakeFiles/func.dir/view.cpp.s
+.PHONY : view.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -245,9 +341,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... func"
+	@echo "... Score.o"
+	@echo "... Score.i"
+	@echo "... Score.s"
+	@echo "... StaffFunc.o"
+	@echo "... StaffFunc.i"
+	@echo "... StaffFunc.s"
 	@echo "... login.o"
 	@echo "... login.i"
 	@echo "... login.s"
+	@echo "... schoolYear.o"
+	@echo "... schoolYear.i"
+	@echo "... schoolYear.s"
+	@echo "... view.o"
+	@echo "... view.i"
+	@echo "... view.s"
 .PHONY : help
 
 

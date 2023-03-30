@@ -1,1 +1,0 @@
-add_library(header StaffFunc.h StudentFunc.h StudentLogin.h StudentStruct.h)

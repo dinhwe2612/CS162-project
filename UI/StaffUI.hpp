@@ -5,29 +5,36 @@
 #include <iostream>
 #include "Button.hpp"
 
-struct StaffUI {
+struct StaffUI 
+{
     float windowWidth;
     float windowHeight;
 
     Texture2D background;
-    Texture2D backButtonImage;
     Font PT_serif_regular;
 
-    Button Back;
-    Button ViewProfile;
-    Button SignOut;
+    Button dropDown;
+    Button signOut;
+    Button ChangePassWord;
+    Button cornerStripes; 
 
-    int menuStaff = 0;
+    int menuStaff;
     enum windowStaff {
-        STAFF,
-        VIEWPROFILE
+        SCHOOL_YEAR,
+        SEMESTER,
+        CLASS,
+        COURSE
     };
 
     void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
     void Draw();
-    void DrawBackground();
-    void DrawButton();
+        void DrawBackground();
+        void DrawStaticElement();
+        void DrawDropDownAccount();
+        void DrawDropDownSchoolYear(int numberOfCreatedSchoolYear);
+        void DrawSchoolYear(bool isDroppedDown);
+
 };
 
 #endif

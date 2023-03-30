@@ -44,7 +44,7 @@ int main()
                 break;
             case STAFF:
                 Staff.Draw();
-                if (Staff.SignOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
+                if (Staff.signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
                     menuLogin = LOGIN;
                 }
                 break;

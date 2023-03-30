@@ -1,6 +1,8 @@
 #pragma once
 #include<iostream>
 #include<iomanip>
+#include<sstream>
+#include<sys/stat.h>
 #include"StudentStruct.h"
 using namespace std;
 
@@ -11,17 +13,18 @@ struct Scoreboard {
 	float total, finals, midterm, other;
 };
 
-//void exportStudentList(string path, Student* stu, int& numberOf_stu);
-//void importScoreboard(string path, Scoreboard* s, int& );
+//These functions was offered to 
+//import the scoreboard of a course
+//view the scoreboard of a course
 void importScoreboard(Scoreboard* s, string course_name, int& n);
+void viewScoreboard(Scoreboard* s, string course_name, int N);
+void staff_Views_Scoreboard(string &schoolyear, string &semester, string &course);
 
-//void save_Each_Student(Scoreboard* s, int semes_state, string this_year, int n);
-//int getNumberOf(string dir);
+bool isPathExist(const string& path);
+int getNumberOf(string dir);
 
-//void saveScoreOfStudent(Scoreboard s, int semes_state, string this_year);
-//void write_Score(Scoreboard s, SemeState se, string this_year);
-//void viewScoreboard(Scoreboard* &s, string course_name, int &N);
-bool checkDirectory(ofstream& fout, string path);
-void create_StudentResult_File();
-void create_StudentID_CSVFile(string studentID);
-void viewScoreboards(Scoreboard* s, string course_name, int N);
+void loadCourseInfo(string* courseId, string schoolyear, string semester, string path);
+void printCourseID(string* id, int n);
+void inputShoolYear(string& schoolyear, string &path);
+void inputSemester(string& semester, string &path);
+void inputCourse(string& course_id, string* courseID, int numberof_id, string &path);

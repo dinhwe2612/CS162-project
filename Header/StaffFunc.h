@@ -21,6 +21,7 @@ void AddClasstoCourse_CSV(string fileaddress, string courseaddress);
 
 void AddDatatoStudentFile (string id, string schoolyear, string semester, string courseid, string* data);
 
+void DeleteACourse(string courseid_coursename_address);
 
 //void Display();
 string* Read_File(string fileaddress);
