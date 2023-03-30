@@ -1,9 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include <filesystem>
-
-using namespace std;
+#include "../Header/login.h"
 
 // maximum amount of attempts allowed before the account is locked
 const int MAXATTEMPT = 5;
@@ -139,7 +134,7 @@ bool CreateDirectory(const string& dirName) {
 // starting from 0, increment it whenever this function return -1
 // and pass it again into this function as a parameter. 
 // by default attempt = 0.
-int loginUI (string id, string pass, bool isStaff, int attempt) {
+int validateAccount (string id, string pass, bool isStaff, int attempt) {
     ifstream fin;
     if (isStaff)
         fin.open(ACCOUNTSTAFF);
@@ -163,12 +158,59 @@ int loginUI (string id, string pass, bool isStaff, int attempt) {
     if (isLock(fin, id))
         return -3;
     
+    if (attempt == MAXATTEMPT) {
+        ofstream fout;
+        fout.open(ACCOUNTLOCKED, std::ios_base::app);
+        fout << id << endl;
+        fout.close();
+        return -3;
+    }
+
     if (pass.compare(password) == 0)
         return 1;
     else
         return -1;
 }
 
-int main() {
-    login();
+void changePassword (string id, string newpass, bool isStaff) {
+    ifstream fin;
+    if (isStaff)
+        fin.open(ACCOUNTSTAFF);
+    else
+        fin.open(ACCOUNTSTUDENT);
+    if (!fin.is_open())
+        if (!CreateDirectory(ACCOUNTDIR))
+            return;
+    ofstream fout;
+    fout.open("../Data/tmp.txt");
+    string inp;
+    while (!fin.eof()) {
+        fin >> inp;
+        fout << inp << ' ';
+        if (!inp.compare(id) == 0) {
+            fin >> inp;
+            fout << inp << endl;
+        }
+        else {
+            fin >> inp;
+            fout << newpass << endl;
+        }
+    }
+
+    fin.close();
+    fout.close();
+    fin.open("../Data/tmp.txt");
+    if (isStaff)
+        fout.open(ACCOUNTSTAFF);
+    else
+        fout.open(ACCOUNTSTUDENT);
+    
+    while (!fin.eof()) {
+        fin >> inp;
+        fout << inp << ' ';
+        fin >> inp;
+        fout << inp << endl;
+    }
+    fin.close();
+    fout.close();
 }
