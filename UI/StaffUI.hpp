@@ -41,8 +41,8 @@ struct StaffUI
         void DrawBackground();
         void DrawStaticElement();
         void DrawDropDownAccount();
-        void DrawDropDownSchoolYear(int numberOfCreatedSchoolYear);
-        void DrawSchoolYear(bool isDroppedDown);
+        void DrawDropDownSchoolYear();
+        void DrawSchoolYear();
 
 };
 

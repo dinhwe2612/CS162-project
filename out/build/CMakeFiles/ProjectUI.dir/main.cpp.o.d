@@ -418,4 +418,11 @@ CMakeFiles/ProjectUI.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/InputBar.hpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.hpp \
-  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp \
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Header/StudentLogin.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/fstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/stack \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/deque \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iomanip

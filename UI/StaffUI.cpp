@@ -153,28 +153,11 @@ void StaffUI::DrawSchoolYear()
         }
 }
 
-// void StaffUI::DrawSchoolYear(bool isDroppedDown, )
-// {
-//     if (isDroppedDown)
-//     {
-//         DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, windowWidth, RAYWHITE);
-//         DrawLine(0.2*windowWidth, 0.05*windowHeight, 0.2*windowWidth, windowHeight, LIGHTGRAY);
-//     }
-//     else
-//     {
-        
-//     }
-// }
-
 void StaffUI::Draw()
 {
     DrawBackground();
     DrawStaticElement();
-    dropDown.DrawTexture();
-    signOut.DrawText();
-        DrawDropDownAccount();
-    cornerStripes.DrawTexture();
-    DrawDropDownSchoolYear(5);
+    DrawDropDownAccount();
+    DrawDropDownSchoolYear();
 
-    ChangePassWord.DrawText();
 }
