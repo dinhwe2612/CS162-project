@@ -83,17 +83,81 @@ Function/CMakeFiles/func.dir/login.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/login.cpp.s"
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/login.cpp" -o CMakeFiles/func.dir/login.cpp.s
 
+Function/CMakeFiles/func.dir/StaffFunc.cpp.o: Function/CMakeFiles/func.dir/flags.make
+Function/CMakeFiles/func.dir/StaffFunc.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Function/StaffFunc.cpp
+Function/CMakeFiles/func.dir/StaffFunc.cpp.o: Function/CMakeFiles/func.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Function/CMakeFiles/func.dir/StaffFunc.cpp.o"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Function/CMakeFiles/func.dir/StaffFunc.cpp.o -MF CMakeFiles/func.dir/StaffFunc.cpp.o.d -o CMakeFiles/func.dir/StaffFunc.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/StaffFunc.cpp"
+
+Function/CMakeFiles/func.dir/StaffFunc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/func.dir/StaffFunc.cpp.i"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/StaffFunc.cpp" > CMakeFiles/func.dir/StaffFunc.cpp.i
+
+Function/CMakeFiles/func.dir/StaffFunc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/StaffFunc.cpp.s"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/StaffFunc.cpp" -o CMakeFiles/func.dir/StaffFunc.cpp.s
+
+Function/CMakeFiles/func.dir/view.cpp.o: Function/CMakeFiles/func.dir/flags.make
+Function/CMakeFiles/func.dir/view.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Function/view.cpp
+Function/CMakeFiles/func.dir/view.cpp.o: Function/CMakeFiles/func.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Function/CMakeFiles/func.dir/view.cpp.o"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Function/CMakeFiles/func.dir/view.cpp.o -MF CMakeFiles/func.dir/view.cpp.o.d -o CMakeFiles/func.dir/view.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/view.cpp"
+
+Function/CMakeFiles/func.dir/view.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/func.dir/view.cpp.i"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/view.cpp" > CMakeFiles/func.dir/view.cpp.i
+
+Function/CMakeFiles/func.dir/view.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/view.cpp.s"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/view.cpp" -o CMakeFiles/func.dir/view.cpp.s
+
+Function/CMakeFiles/func.dir/Score.cpp.o: Function/CMakeFiles/func.dir/flags.make
+Function/CMakeFiles/func.dir/Score.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Function/Score.cpp
+Function/CMakeFiles/func.dir/Score.cpp.o: Function/CMakeFiles/func.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Function/CMakeFiles/func.dir/Score.cpp.o"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Function/CMakeFiles/func.dir/Score.cpp.o -MF CMakeFiles/func.dir/Score.cpp.o.d -o CMakeFiles/func.dir/Score.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/Score.cpp"
+
+Function/CMakeFiles/func.dir/Score.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/func.dir/Score.cpp.i"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/Score.cpp" > CMakeFiles/func.dir/Score.cpp.i
+
+Function/CMakeFiles/func.dir/Score.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/Score.cpp.s"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/Score.cpp" -o CMakeFiles/func.dir/Score.cpp.s
+
+Function/CMakeFiles/func.dir/schoolYear.cpp.o: Function/CMakeFiles/func.dir/flags.make
+Function/CMakeFiles/func.dir/schoolYear.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Function/schoolYear.cpp
+Function/CMakeFiles/func.dir/schoolYear.cpp.o: Function/CMakeFiles/func.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Function/CMakeFiles/func.dir/schoolYear.cpp.o"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Function/CMakeFiles/func.dir/schoolYear.cpp.o -MF CMakeFiles/func.dir/schoolYear.cpp.o.d -o CMakeFiles/func.dir/schoolYear.cpp.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/schoolYear.cpp"
+
+Function/CMakeFiles/func.dir/schoolYear.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/func.dir/schoolYear.cpp.i"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/schoolYear.cpp" > CMakeFiles/func.dir/schoolYear.cpp.i
+
+Function/CMakeFiles/func.dir/schoolYear.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/schoolYear.cpp.s"
+	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/Function/schoolYear.cpp" -o CMakeFiles/func.dir/schoolYear.cpp.s
+
 # Object files for target func
 func_OBJECTS = \
-"CMakeFiles/func.dir/login.cpp.o"
+"CMakeFiles/func.dir/login.cpp.o" \
+"CMakeFiles/func.dir/StaffFunc.cpp.o" \
+"CMakeFiles/func.dir/view.cpp.o" \
+"CMakeFiles/func.dir/Score.cpp.o" \
+"CMakeFiles/func.dir/schoolYear.cpp.o"
 
 # External object files for target func
 func_EXTERNAL_OBJECTS =
 
 Function/libfunc.a: Function/CMakeFiles/func.dir/login.cpp.o
+Function/libfunc.a: Function/CMakeFiles/func.dir/StaffFunc.cpp.o
+Function/libfunc.a: Function/CMakeFiles/func.dir/view.cpp.o
+Function/libfunc.a: Function/CMakeFiles/func.dir/Score.cpp.o
+Function/libfunc.a: Function/CMakeFiles/func.dir/schoolYear.cpp.o
 Function/libfunc.a: Function/CMakeFiles/func.dir/build.make
 Function/libfunc.a: Function/CMakeFiles/func.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libfunc.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libfunc.a"
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && $(CMAKE_COMMAND) -P CMakeFiles/func.dir/cmake_clean_target.cmake
 	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/out/build/Function" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/func.dir/link.txt --verbose=$(VERBOSE)
 
