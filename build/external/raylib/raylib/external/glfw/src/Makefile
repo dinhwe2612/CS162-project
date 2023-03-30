@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/bui
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cpack --config ./CPackConfig.cmake
+	cd E:/CS162-project/build && "C:/Program Files/CMake/bin/cpack.exe" --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cpack --config ./CPackSourceConfig.cmake /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/build/CPackSourceConfig.cmake
+	cd E:/CS162-project/build && "C:/Program Files/CMake/bin/cpack.exe" --config ./CPackSourceConfig.cmake E:/CS162-project/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -88,7 +88,7 @@ package_source/fast: package_source
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ctest --force-new-ctest-process $(ARGS)
+	"C:/Program Files/CMake/bin/ctest.exe" --force-new-ctest-process $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -98,7 +98,7 @@ test/fast: test
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:/Program Files/CMake/bin/cmake-gui.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -108,7 +108,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:/Program Files/CMake/bin/cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -127,49 +127,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src//CMakeFiles/progress.marks"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" 0
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -E cmake_progress_start E:/CS162-project/build/CMakeFiles E:/CS162-project/build/external/raylib/raylib/external/glfw/src//CMakeFiles/progress.marks
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:/CS162-project/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/clean
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/clean
 .PHONY : clean
 
 # The main clean target
@@ -178,22 +178,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/preinstall
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/preinstall
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule
 
 # Convenience name for target.
@@ -202,12 +202,12 @@ glfw: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule
 
 # fast build rule for target.
 glfw/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
 # Convenience name for target.
 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/rule:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/rule
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/rule
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/rule
 
 # Convenience name for target.
@@ -216,143 +216,23 @@ update_mappings: external/raylib/raylib/external/glfw/src/CMakeFiles/update_mapp
 
 # fast build rule for target.
 update_mappings/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
-cocoa_init.o: cocoa_init.m.o
-.PHONY : cocoa_init.o
+context.obj: context.c.obj
+.PHONY : context.obj
 
 # target to build an object file
-cocoa_init.m.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o
-.PHONY : cocoa_init.m.o
-
-cocoa_init.i: cocoa_init.m.i
-.PHONY : cocoa_init.i
-
-# target to preprocess a source file
-cocoa_init.m.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.i
-.PHONY : cocoa_init.m.i
-
-cocoa_init.s: cocoa_init.m.s
-.PHONY : cocoa_init.s
-
-# target to generate assembly for a file
-cocoa_init.m.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.s
-.PHONY : cocoa_init.m.s
-
-cocoa_joystick.o: cocoa_joystick.m.o
-.PHONY : cocoa_joystick.o
-
-# target to build an object file
-cocoa_joystick.m.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o
-.PHONY : cocoa_joystick.m.o
-
-cocoa_joystick.i: cocoa_joystick.m.i
-.PHONY : cocoa_joystick.i
-
-# target to preprocess a source file
-cocoa_joystick.m.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.i
-.PHONY : cocoa_joystick.m.i
-
-cocoa_joystick.s: cocoa_joystick.m.s
-.PHONY : cocoa_joystick.s
-
-# target to generate assembly for a file
-cocoa_joystick.m.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.s
-.PHONY : cocoa_joystick.m.s
-
-cocoa_monitor.o: cocoa_monitor.m.o
-.PHONY : cocoa_monitor.o
-
-# target to build an object file
-cocoa_monitor.m.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o
-.PHONY : cocoa_monitor.m.o
-
-cocoa_monitor.i: cocoa_monitor.m.i
-.PHONY : cocoa_monitor.i
-
-# target to preprocess a source file
-cocoa_monitor.m.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.i
-.PHONY : cocoa_monitor.m.i
-
-cocoa_monitor.s: cocoa_monitor.m.s
-.PHONY : cocoa_monitor.s
-
-# target to generate assembly for a file
-cocoa_monitor.m.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.s
-.PHONY : cocoa_monitor.m.s
-
-cocoa_time.o: cocoa_time.c.o
-.PHONY : cocoa_time.o
-
-# target to build an object file
-cocoa_time.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o
-.PHONY : cocoa_time.c.o
-
-cocoa_time.i: cocoa_time.c.i
-.PHONY : cocoa_time.i
-
-# target to preprocess a source file
-cocoa_time.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.i
-.PHONY : cocoa_time.c.i
-
-cocoa_time.s: cocoa_time.c.s
-.PHONY : cocoa_time.s
-
-# target to generate assembly for a file
-cocoa_time.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.s
-.PHONY : cocoa_time.c.s
-
-cocoa_window.o: cocoa_window.m.o
-.PHONY : cocoa_window.o
-
-# target to build an object file
-cocoa_window.m.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o
-.PHONY : cocoa_window.m.o
-
-cocoa_window.i: cocoa_window.m.i
-.PHONY : cocoa_window.i
-
-# target to preprocess a source file
-cocoa_window.m.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.i
-.PHONY : cocoa_window.m.i
-
-cocoa_window.s: cocoa_window.m.s
-.PHONY : cocoa_window.s
-
-# target to generate assembly for a file
-cocoa_window.m.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.s
-.PHONY : cocoa_window.m.s
-
-context.o: context.c.o
-.PHONY : context.o
-
-# target to build an object file
-context.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o
-.PHONY : context.c.o
+context.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj
+.PHONY : context.c.obj
 
 context.i: context.c.i
 .PHONY : context.i
 
 # target to preprocess a source file
 context.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.i
 .PHONY : context.c.i
 
 context.s: context.c.s
@@ -360,23 +240,23 @@ context.s: context.c.s
 
 # target to generate assembly for a file
 context.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.s
 .PHONY : context.c.s
 
-egl_context.o: egl_context.c.o
-.PHONY : egl_context.o
+egl_context.obj: egl_context.c.obj
+.PHONY : egl_context.obj
 
 # target to build an object file
-egl_context.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o
-.PHONY : egl_context.c.o
+egl_context.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj
+.PHONY : egl_context.c.obj
 
 egl_context.i: egl_context.c.i
 .PHONY : egl_context.i
 
 # target to preprocess a source file
 egl_context.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.i
 .PHONY : egl_context.c.i
 
 egl_context.s: egl_context.c.s
@@ -384,23 +264,23 @@ egl_context.s: egl_context.c.s
 
 # target to generate assembly for a file
 egl_context.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.s
 .PHONY : egl_context.c.s
 
-init.o: init.c.o
-.PHONY : init.o
+init.obj: init.c.obj
+.PHONY : init.obj
 
 # target to build an object file
-init.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o
-.PHONY : init.c.o
+init.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj
+.PHONY : init.c.obj
 
 init.i: init.c.i
 .PHONY : init.i
 
 # target to preprocess a source file
 init.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.i
 .PHONY : init.c.i
 
 init.s: init.c.s
@@ -408,23 +288,23 @@ init.s: init.c.s
 
 # target to generate assembly for a file
 init.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.s
 .PHONY : init.c.s
 
-input.o: input.c.o
-.PHONY : input.o
+input.obj: input.c.obj
+.PHONY : input.obj
 
 # target to build an object file
-input.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o
-.PHONY : input.c.o
+input.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj
+.PHONY : input.c.obj
 
 input.i: input.c.i
 .PHONY : input.i
 
 # target to preprocess a source file
 input.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.i
 .PHONY : input.c.i
 
 input.s: input.c.s
@@ -432,23 +312,23 @@ input.s: input.c.s
 
 # target to generate assembly for a file
 input.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.s
 .PHONY : input.c.s
 
-monitor.o: monitor.c.o
-.PHONY : monitor.o
+monitor.obj: monitor.c.obj
+.PHONY : monitor.obj
 
 # target to build an object file
-monitor.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o
-.PHONY : monitor.c.o
+monitor.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj
+.PHONY : monitor.c.obj
 
 monitor.i: monitor.c.i
 .PHONY : monitor.i
 
 # target to preprocess a source file
 monitor.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.i
 .PHONY : monitor.c.i
 
 monitor.s: monitor.c.s
@@ -456,47 +336,23 @@ monitor.s: monitor.c.s
 
 # target to generate assembly for a file
 monitor.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.s
 .PHONY : monitor.c.s
 
-nsgl_context.o: nsgl_context.m.o
-.PHONY : nsgl_context.o
+null_init.obj: null_init.c.obj
+.PHONY : null_init.obj
 
 # target to build an object file
-nsgl_context.m.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o
-.PHONY : nsgl_context.m.o
-
-nsgl_context.i: nsgl_context.m.i
-.PHONY : nsgl_context.i
-
-# target to preprocess a source file
-nsgl_context.m.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.i
-.PHONY : nsgl_context.m.i
-
-nsgl_context.s: nsgl_context.m.s
-.PHONY : nsgl_context.s
-
-# target to generate assembly for a file
-nsgl_context.m.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.s
-.PHONY : nsgl_context.m.s
-
-null_init.o: null_init.c.o
-.PHONY : null_init.o
-
-# target to build an object file
-null_init.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o
-.PHONY : null_init.c.o
+null_init.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj
+.PHONY : null_init.c.obj
 
 null_init.i: null_init.c.i
 .PHONY : null_init.i
 
 # target to preprocess a source file
 null_init.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.i
 .PHONY : null_init.c.i
 
 null_init.s: null_init.c.s
@@ -504,23 +360,23 @@ null_init.s: null_init.c.s
 
 # target to generate assembly for a file
 null_init.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.s
 .PHONY : null_init.c.s
 
-null_joystick.o: null_joystick.c.o
-.PHONY : null_joystick.o
+null_joystick.obj: null_joystick.c.obj
+.PHONY : null_joystick.obj
 
 # target to build an object file
-null_joystick.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o
-.PHONY : null_joystick.c.o
+null_joystick.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj
+.PHONY : null_joystick.c.obj
 
 null_joystick.i: null_joystick.c.i
 .PHONY : null_joystick.i
 
 # target to preprocess a source file
 null_joystick.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.i
 .PHONY : null_joystick.c.i
 
 null_joystick.s: null_joystick.c.s
@@ -528,23 +384,23 @@ null_joystick.s: null_joystick.c.s
 
 # target to generate assembly for a file
 null_joystick.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.s
 .PHONY : null_joystick.c.s
 
-null_monitor.o: null_monitor.c.o
-.PHONY : null_monitor.o
+null_monitor.obj: null_monitor.c.obj
+.PHONY : null_monitor.obj
 
 # target to build an object file
-null_monitor.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o
-.PHONY : null_monitor.c.o
+null_monitor.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj
+.PHONY : null_monitor.c.obj
 
 null_monitor.i: null_monitor.c.i
 .PHONY : null_monitor.i
 
 # target to preprocess a source file
 null_monitor.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.i
 .PHONY : null_monitor.c.i
 
 null_monitor.s: null_monitor.c.s
@@ -552,23 +408,23 @@ null_monitor.s: null_monitor.c.s
 
 # target to generate assembly for a file
 null_monitor.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.s
 .PHONY : null_monitor.c.s
 
-null_window.o: null_window.c.o
-.PHONY : null_window.o
+null_window.obj: null_window.c.obj
+.PHONY : null_window.obj
 
 # target to build an object file
-null_window.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o
-.PHONY : null_window.c.o
+null_window.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj
+.PHONY : null_window.c.obj
 
 null_window.i: null_window.c.i
 .PHONY : null_window.i
 
 # target to preprocess a source file
 null_window.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.i
 .PHONY : null_window.c.i
 
 null_window.s: null_window.c.s
@@ -576,23 +432,23 @@ null_window.s: null_window.c.s
 
 # target to generate assembly for a file
 null_window.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.s
 .PHONY : null_window.c.s
 
-osmesa_context.o: osmesa_context.c.o
-.PHONY : osmesa_context.o
+osmesa_context.obj: osmesa_context.c.obj
+.PHONY : osmesa_context.obj
 
 # target to build an object file
-osmesa_context.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o
-.PHONY : osmesa_context.c.o
+osmesa_context.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj
+.PHONY : osmesa_context.c.obj
 
 osmesa_context.i: osmesa_context.c.i
 .PHONY : osmesa_context.i
 
 # target to preprocess a source file
 osmesa_context.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.i
 .PHONY : osmesa_context.c.i
 
 osmesa_context.s: osmesa_context.c.s
@@ -600,23 +456,23 @@ osmesa_context.s: osmesa_context.c.s
 
 # target to generate assembly for a file
 osmesa_context.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.s
 .PHONY : osmesa_context.c.s
 
-platform.o: platform.c.o
-.PHONY : platform.o
+platform.obj: platform.c.obj
+.PHONY : platform.obj
 
 # target to build an object file
-platform.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o
-.PHONY : platform.c.o
+platform.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj
+.PHONY : platform.c.obj
 
 platform.i: platform.c.i
 .PHONY : platform.i
 
 # target to preprocess a source file
 platform.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.i
 .PHONY : platform.c.i
 
 platform.s: platform.c.s
@@ -624,71 +480,23 @@ platform.s: platform.c.s
 
 # target to generate assembly for a file
 platform.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.s
 .PHONY : platform.c.s
 
-posix_module.o: posix_module.c.o
-.PHONY : posix_module.o
+vulkan.obj: vulkan.c.obj
+.PHONY : vulkan.obj
 
 # target to build an object file
-posix_module.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o
-.PHONY : posix_module.c.o
-
-posix_module.i: posix_module.c.i
-.PHONY : posix_module.i
-
-# target to preprocess a source file
-posix_module.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.i
-.PHONY : posix_module.c.i
-
-posix_module.s: posix_module.c.s
-.PHONY : posix_module.s
-
-# target to generate assembly for a file
-posix_module.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.s
-.PHONY : posix_module.c.s
-
-posix_thread.o: posix_thread.c.o
-.PHONY : posix_thread.o
-
-# target to build an object file
-posix_thread.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o
-.PHONY : posix_thread.c.o
-
-posix_thread.i: posix_thread.c.i
-.PHONY : posix_thread.i
-
-# target to preprocess a source file
-posix_thread.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.i
-.PHONY : posix_thread.c.i
-
-posix_thread.s: posix_thread.c.s
-.PHONY : posix_thread.s
-
-# target to generate assembly for a file
-posix_thread.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.s
-.PHONY : posix_thread.c.s
-
-vulkan.o: vulkan.c.o
-.PHONY : vulkan.o
-
-# target to build an object file
-vulkan.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o
-.PHONY : vulkan.c.o
+vulkan.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj
+.PHONY : vulkan.c.obj
 
 vulkan.i: vulkan.c.i
 .PHONY : vulkan.i
 
 # target to preprocess a source file
 vulkan.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.i
 .PHONY : vulkan.c.i
 
 vulkan.s: vulkan.c.s
@@ -696,23 +504,215 @@ vulkan.s: vulkan.c.s
 
 # target to generate assembly for a file
 vulkan.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.s
 .PHONY : vulkan.c.s
 
-window.o: window.c.o
-.PHONY : window.o
+wgl_context.obj: wgl_context.c.obj
+.PHONY : wgl_context.obj
 
 # target to build an object file
-window.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o
-.PHONY : window.c.o
+wgl_context.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
+.PHONY : wgl_context.c.obj
+
+wgl_context.i: wgl_context.c.i
+.PHONY : wgl_context.i
+
+# target to preprocess a source file
+wgl_context.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.i
+.PHONY : wgl_context.c.i
+
+wgl_context.s: wgl_context.c.s
+.PHONY : wgl_context.s
+
+# target to generate assembly for a file
+wgl_context.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.s
+.PHONY : wgl_context.c.s
+
+win32_init.obj: win32_init.c.obj
+.PHONY : win32_init.obj
+
+# target to build an object file
+win32_init.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj
+.PHONY : win32_init.c.obj
+
+win32_init.i: win32_init.c.i
+.PHONY : win32_init.i
+
+# target to preprocess a source file
+win32_init.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.i
+.PHONY : win32_init.c.i
+
+win32_init.s: win32_init.c.s
+.PHONY : win32_init.s
+
+# target to generate assembly for a file
+win32_init.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.s
+.PHONY : win32_init.c.s
+
+win32_joystick.obj: win32_joystick.c.obj
+.PHONY : win32_joystick.obj
+
+# target to build an object file
+win32_joystick.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj
+.PHONY : win32_joystick.c.obj
+
+win32_joystick.i: win32_joystick.c.i
+.PHONY : win32_joystick.i
+
+# target to preprocess a source file
+win32_joystick.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.i
+.PHONY : win32_joystick.c.i
+
+win32_joystick.s: win32_joystick.c.s
+.PHONY : win32_joystick.s
+
+# target to generate assembly for a file
+win32_joystick.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.s
+.PHONY : win32_joystick.c.s
+
+win32_module.obj: win32_module.c.obj
+.PHONY : win32_module.obj
+
+# target to build an object file
+win32_module.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj
+.PHONY : win32_module.c.obj
+
+win32_module.i: win32_module.c.i
+.PHONY : win32_module.i
+
+# target to preprocess a source file
+win32_module.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.i
+.PHONY : win32_module.c.i
+
+win32_module.s: win32_module.c.s
+.PHONY : win32_module.s
+
+# target to generate assembly for a file
+win32_module.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.s
+.PHONY : win32_module.c.s
+
+win32_monitor.obj: win32_monitor.c.obj
+.PHONY : win32_monitor.obj
+
+# target to build an object file
+win32_monitor.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj
+.PHONY : win32_monitor.c.obj
+
+win32_monitor.i: win32_monitor.c.i
+.PHONY : win32_monitor.i
+
+# target to preprocess a source file
+win32_monitor.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.i
+.PHONY : win32_monitor.c.i
+
+win32_monitor.s: win32_monitor.c.s
+.PHONY : win32_monitor.s
+
+# target to generate assembly for a file
+win32_monitor.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.s
+.PHONY : win32_monitor.c.s
+
+win32_thread.obj: win32_thread.c.obj
+.PHONY : win32_thread.obj
+
+# target to build an object file
+win32_thread.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj
+.PHONY : win32_thread.c.obj
+
+win32_thread.i: win32_thread.c.i
+.PHONY : win32_thread.i
+
+# target to preprocess a source file
+win32_thread.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.i
+.PHONY : win32_thread.c.i
+
+win32_thread.s: win32_thread.c.s
+.PHONY : win32_thread.s
+
+# target to generate assembly for a file
+win32_thread.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.s
+.PHONY : win32_thread.c.s
+
+win32_time.obj: win32_time.c.obj
+.PHONY : win32_time.obj
+
+# target to build an object file
+win32_time.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj
+.PHONY : win32_time.c.obj
+
+win32_time.i: win32_time.c.i
+.PHONY : win32_time.i
+
+# target to preprocess a source file
+win32_time.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.i
+.PHONY : win32_time.c.i
+
+win32_time.s: win32_time.c.s
+.PHONY : win32_time.s
+
+# target to generate assembly for a file
+win32_time.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.s
+.PHONY : win32_time.c.s
+
+win32_window.obj: win32_window.c.obj
+.PHONY : win32_window.obj
+
+# target to build an object file
+win32_window.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj
+.PHONY : win32_window.c.obj
+
+win32_window.i: win32_window.c.i
+.PHONY : win32_window.i
+
+# target to preprocess a source file
+win32_window.c.i:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.i
+.PHONY : win32_window.c.i
+
+win32_window.s: win32_window.c.s
+.PHONY : win32_window.s
+
+# target to generate assembly for a file
+win32_window.c.s:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.s
+.PHONY : win32_window.c.s
+
+window.obj: window.c.obj
+.PHONY : window.obj
+
+# target to build an object file
+window.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj
+.PHONY : window.c.obj
 
 window.i: window.c.i
 .PHONY : window.i
 
 # target to preprocess a source file
 window.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.i
 .PHONY : window.c.i
 
 window.s: window.c.s
@@ -720,7 +720,7 @@ window.s: window.c.s
 
 # target to generate assembly for a file
 window.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.s
 .PHONY : window.c.s
 
 # Help Target
@@ -740,67 +740,67 @@ help:
 	@echo "... test"
 	@echo "... update_mappings"
 	@echo "... glfw"
-	@echo "... cocoa_init.o"
-	@echo "... cocoa_init.i"
-	@echo "... cocoa_init.s"
-	@echo "... cocoa_joystick.o"
-	@echo "... cocoa_joystick.i"
-	@echo "... cocoa_joystick.s"
-	@echo "... cocoa_monitor.o"
-	@echo "... cocoa_monitor.i"
-	@echo "... cocoa_monitor.s"
-	@echo "... cocoa_time.o"
-	@echo "... cocoa_time.i"
-	@echo "... cocoa_time.s"
-	@echo "... cocoa_window.o"
-	@echo "... cocoa_window.i"
-	@echo "... cocoa_window.s"
-	@echo "... context.o"
+	@echo "... context.obj"
 	@echo "... context.i"
 	@echo "... context.s"
-	@echo "... egl_context.o"
+	@echo "... egl_context.obj"
 	@echo "... egl_context.i"
 	@echo "... egl_context.s"
-	@echo "... init.o"
+	@echo "... init.obj"
 	@echo "... init.i"
 	@echo "... init.s"
-	@echo "... input.o"
+	@echo "... input.obj"
 	@echo "... input.i"
 	@echo "... input.s"
-	@echo "... monitor.o"
+	@echo "... monitor.obj"
 	@echo "... monitor.i"
 	@echo "... monitor.s"
-	@echo "... nsgl_context.o"
-	@echo "... nsgl_context.i"
-	@echo "... nsgl_context.s"
-	@echo "... null_init.o"
+	@echo "... null_init.obj"
 	@echo "... null_init.i"
 	@echo "... null_init.s"
-	@echo "... null_joystick.o"
+	@echo "... null_joystick.obj"
 	@echo "... null_joystick.i"
 	@echo "... null_joystick.s"
-	@echo "... null_monitor.o"
+	@echo "... null_monitor.obj"
 	@echo "... null_monitor.i"
 	@echo "... null_monitor.s"
-	@echo "... null_window.o"
+	@echo "... null_window.obj"
 	@echo "... null_window.i"
 	@echo "... null_window.s"
-	@echo "... osmesa_context.o"
+	@echo "... osmesa_context.obj"
 	@echo "... osmesa_context.i"
 	@echo "... osmesa_context.s"
-	@echo "... platform.o"
+	@echo "... platform.obj"
 	@echo "... platform.i"
 	@echo "... platform.s"
-	@echo "... posix_module.o"
-	@echo "... posix_module.i"
-	@echo "... posix_module.s"
-	@echo "... posix_thread.o"
-	@echo "... posix_thread.i"
-	@echo "... posix_thread.s"
-	@echo "... vulkan.o"
+	@echo "... vulkan.obj"
 	@echo "... vulkan.i"
 	@echo "... vulkan.s"
-	@echo "... window.o"
+	@echo "... wgl_context.obj"
+	@echo "... wgl_context.i"
+	@echo "... wgl_context.s"
+	@echo "... win32_init.obj"
+	@echo "... win32_init.i"
+	@echo "... win32_init.s"
+	@echo "... win32_joystick.obj"
+	@echo "... win32_joystick.i"
+	@echo "... win32_joystick.s"
+	@echo "... win32_module.obj"
+	@echo "... win32_module.i"
+	@echo "... win32_module.s"
+	@echo "... win32_monitor.obj"
+	@echo "... win32_monitor.i"
+	@echo "... win32_monitor.s"
+	@echo "... win32_thread.obj"
+	@echo "... win32_thread.i"
+	@echo "... win32_thread.s"
+	@echo "... win32_time.obj"
+	@echo "... win32_time.i"
+	@echo "... win32_time.s"
+	@echo "... win32_window.obj"
+	@echo "... win32_window.i"
+	@echo "... win32_window.s"
+	@echo "... window.obj"
 	@echo "... window.i"
 	@echo "... window.s"
 .PHONY : help
@@ -814,6 +814,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

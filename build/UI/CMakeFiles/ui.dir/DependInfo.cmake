@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/Button.cpp" "UI/CMakeFiles/ui.dir/Button.cpp.o" "gcc" "UI/CMakeFiles/ui.dir/Button.cpp.o.d"
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/InputBar.cpp" "UI/CMakeFiles/ui.dir/InputBar.cpp.o" "gcc" "UI/CMakeFiles/ui.dir/InputBar.cpp.o.d"
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/LoginUI.cpp" "UI/CMakeFiles/ui.dir/LoginUI.cpp.o" "gcc" "UI/CMakeFiles/ui.dir/LoginUI.cpp.o.d"
-  "/Users/win/Documents/Stupid subjects/CS162/CS162-project/UI/StaffUI.cpp" "UI/CMakeFiles/ui.dir/StaffUI.cpp.o" "gcc" "UI/CMakeFiles/ui.dir/StaffUI.cpp.o.d"
+  "E:/CS162-project/UI/Button.cpp" "UI/CMakeFiles/ui.dir/Button.cpp.obj" "gcc" "UI/CMakeFiles/ui.dir/Button.cpp.obj.d"
+  "E:/CS162-project/UI/InputBar.cpp" "UI/CMakeFiles/ui.dir/InputBar.cpp.obj" "gcc" "UI/CMakeFiles/ui.dir/InputBar.cpp.obj.d"
+  "E:/CS162-project/UI/StaffUI.cpp" "UI/CMakeFiles/ui.dir/StaffUI.cpp.obj" "gcc" "UI/CMakeFiles/ui.dir/StaffUI.cpp.obj.d"
+  "E:/CS162-project/UI/loginUI.cpp" "UI/CMakeFiles/ui.dir/loginUI.cpp.obj" "gcc" "UI/CMakeFiles/ui.dir/loginUI.cpp.obj.d"
   )
 
 # Targets to which this target links.

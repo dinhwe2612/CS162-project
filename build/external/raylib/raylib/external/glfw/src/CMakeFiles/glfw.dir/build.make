@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 # Include any dependencies generated for this target.
 include external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/depend.make
@@ -69,363 +69,384 @@ include external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/progress.ma
 # Include the compile flags for this target's objects.
 include external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/context.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o -MF CMakeFiles/glfw.dir/context.c.o.d -o CMakeFiles/glfw.dir/context.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/context.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/context.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj -MF CMakeFiles/glfw.dir/context.c.obj.d -o CMakeFiles/glfw.dir/context.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/context.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/context.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/context.c" > CMakeFiles/glfw.dir/context.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/context.c > CMakeFiles/glfw.dir/context.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/context.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/context.c" -o CMakeFiles/glfw.dir/context.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/context.c -o CMakeFiles/glfw.dir/context.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/init.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o -MF CMakeFiles/glfw.dir/init.c.o.d -o CMakeFiles/glfw.dir/init.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/init.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/init.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj -MF CMakeFiles/glfw.dir/init.c.obj.d -o CMakeFiles/glfw.dir/init.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/init.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/init.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/init.c" > CMakeFiles/glfw.dir/init.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/init.c > CMakeFiles/glfw.dir/init.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/init.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/init.c" -o CMakeFiles/glfw.dir/init.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/init.c -o CMakeFiles/glfw.dir/init.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/input.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o -MF CMakeFiles/glfw.dir/input.c.o.d -o CMakeFiles/glfw.dir/input.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/input.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/input.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj -MF CMakeFiles/glfw.dir/input.c.obj.d -o CMakeFiles/glfw.dir/input.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/input.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/input.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/input.c" > CMakeFiles/glfw.dir/input.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/input.c > CMakeFiles/glfw.dir/input.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/input.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/input.c" -o CMakeFiles/glfw.dir/input.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/input.c -o CMakeFiles/glfw.dir/input.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/monitor.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o -MF CMakeFiles/glfw.dir/monitor.c.o.d -o CMakeFiles/glfw.dir/monitor.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/monitor.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/monitor.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj -MF CMakeFiles/glfw.dir/monitor.c.obj.d -o CMakeFiles/glfw.dir/monitor.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/monitor.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/monitor.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/monitor.c" > CMakeFiles/glfw.dir/monitor.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/monitor.c > CMakeFiles/glfw.dir/monitor.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/monitor.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/monitor.c" -o CMakeFiles/glfw.dir/monitor.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/monitor.c -o CMakeFiles/glfw.dir/monitor.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/platform.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o -MF CMakeFiles/glfw.dir/platform.c.o.d -o CMakeFiles/glfw.dir/platform.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/platform.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/platform.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj -MF CMakeFiles/glfw.dir/platform.c.obj.d -o CMakeFiles/glfw.dir/platform.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/platform.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/platform.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/platform.c" > CMakeFiles/glfw.dir/platform.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/platform.c > CMakeFiles/glfw.dir/platform.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/platform.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/platform.c" -o CMakeFiles/glfw.dir/platform.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/platform.c -o CMakeFiles/glfw.dir/platform.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/vulkan.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o -MF CMakeFiles/glfw.dir/vulkan.c.o.d -o CMakeFiles/glfw.dir/vulkan.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/vulkan.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/vulkan.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj -MF CMakeFiles/glfw.dir/vulkan.c.obj.d -o CMakeFiles/glfw.dir/vulkan.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/vulkan.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/vulkan.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/vulkan.c" > CMakeFiles/glfw.dir/vulkan.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/vulkan.c > CMakeFiles/glfw.dir/vulkan.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/vulkan.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/vulkan.c" -o CMakeFiles/glfw.dir/vulkan.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/vulkan.c -o CMakeFiles/glfw.dir/vulkan.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/window.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o -MF CMakeFiles/glfw.dir/window.c.o.d -o CMakeFiles/glfw.dir/window.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/window.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/window.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj -MF CMakeFiles/glfw.dir/window.c.obj.d -o CMakeFiles/glfw.dir/window.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/window.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/window.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/window.c" > CMakeFiles/glfw.dir/window.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/window.c > CMakeFiles/glfw.dir/window.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/window.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/window.c" -o CMakeFiles/glfw.dir/window.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/window.c -o CMakeFiles/glfw.dir/window.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/egl_context.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o -MF CMakeFiles/glfw.dir/egl_context.c.o.d -o CMakeFiles/glfw.dir/egl_context.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/egl_context.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/egl_context.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj -MF CMakeFiles/glfw.dir/egl_context.c.obj.d -o CMakeFiles/glfw.dir/egl_context.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/egl_context.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/egl_context.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/egl_context.c" > CMakeFiles/glfw.dir/egl_context.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/egl_context.c > CMakeFiles/glfw.dir/egl_context.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/egl_context.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/egl_context.c" -o CMakeFiles/glfw.dir/egl_context.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/egl_context.c -o CMakeFiles/glfw.dir/egl_context.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o -MF CMakeFiles/glfw.dir/osmesa_context.c.o.d -o CMakeFiles/glfw.dir/osmesa_context.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj -MF CMakeFiles/glfw.dir/osmesa_context.c.obj.d -o CMakeFiles/glfw.dir/osmesa_context.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/osmesa_context.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c" > CMakeFiles/glfw.dir/osmesa_context.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c > CMakeFiles/glfw.dir/osmesa_context.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/osmesa_context.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c" -o CMakeFiles/glfw.dir/osmesa_context.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/osmesa_context.c -o CMakeFiles/glfw.dir/osmesa_context.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_init.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o -MF CMakeFiles/glfw.dir/null_init.c.o.d -o CMakeFiles/glfw.dir/null_init.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_init.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/null_init.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj -MF CMakeFiles/glfw.dir/null_init.c.obj.d -o CMakeFiles/glfw.dir/null_init.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/null_init.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/null_init.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_init.c" > CMakeFiles/glfw.dir/null_init.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/null_init.c > CMakeFiles/glfw.dir/null_init.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_init.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_init.c" -o CMakeFiles/glfw.dir/null_init.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/null_init.c -o CMakeFiles/glfw.dir/null_init.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o -MF CMakeFiles/glfw.dir/null_monitor.c.o.d -o CMakeFiles/glfw.dir/null_monitor.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj -MF CMakeFiles/glfw.dir/null_monitor.c.obj.d -o CMakeFiles/glfw.dir/null_monitor.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/null_monitor.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c" > CMakeFiles/glfw.dir/null_monitor.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c > CMakeFiles/glfw.dir/null_monitor.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_monitor.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c" -o CMakeFiles/glfw.dir/null_monitor.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/null_monitor.c -o CMakeFiles/glfw.dir/null_monitor.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_window.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o -MF CMakeFiles/glfw.dir/null_window.c.o.d -o CMakeFiles/glfw.dir/null_window.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_window.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/null_window.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj -MF CMakeFiles/glfw.dir/null_window.c.obj.d -o CMakeFiles/glfw.dir/null_window.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/null_window.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/null_window.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_window.c" > CMakeFiles/glfw.dir/null_window.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/null_window.c > CMakeFiles/glfw.dir/null_window.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_window.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_window.c" -o CMakeFiles/glfw.dir/null_window.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/null_window.c -o CMakeFiles/glfw.dir/null_window.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o -MF CMakeFiles/glfw.dir/null_joystick.c.o.d -o CMakeFiles/glfw.dir/null_joystick.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj -MF CMakeFiles/glfw.dir/null_joystick.c.obj.d -o CMakeFiles/glfw.dir/null_joystick.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/null_joystick.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c" > CMakeFiles/glfw.dir/null_joystick.c.i
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c > CMakeFiles/glfw.dir/null_joystick.c.i
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_joystick.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c" -o CMakeFiles/glfw.dir/null_joystick.c.s
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/null_joystick.c -o CMakeFiles/glfw.dir/null_joystick.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_time.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o -MF CMakeFiles/glfw.dir/cocoa_time.c.o.d -o CMakeFiles/glfw.dir/cocoa_time.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_time.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_module.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj -MF CMakeFiles/glfw.dir/win32_module.c.obj.d -o CMakeFiles/glfw.dir/win32_module.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_module.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/cocoa_time.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_time.c" > CMakeFiles/glfw.dir/cocoa_time.c.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_module.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_module.c > CMakeFiles/glfw.dir/win32_module.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/cocoa_time.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_time.c" -o CMakeFiles/glfw.dir/cocoa_time.c.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_module.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_module.c -o CMakeFiles/glfw.dir/win32_module.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_module.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o -MF CMakeFiles/glfw.dir/posix_module.c.o.d -o CMakeFiles/glfw.dir/posix_module.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_module.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_time.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj -MF CMakeFiles/glfw.dir/win32_time.c.obj.d -o CMakeFiles/glfw.dir/win32_time.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_time.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/posix_module.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_module.c" > CMakeFiles/glfw.dir/posix_module.c.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_time.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_time.c > CMakeFiles/glfw.dir/win32_time.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/posix_module.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_module.c" -o CMakeFiles/glfw.dir/posix_module.c.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_time.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_time.c -o CMakeFiles/glfw.dir/win32_time.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_thread.c
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o -MF CMakeFiles/glfw.dir/posix_thread.c.o.d -o CMakeFiles/glfw.dir/posix_thread.c.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_thread.c"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_thread.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj -MF CMakeFiles/glfw.dir/win32_thread.c.obj.d -o CMakeFiles/glfw.dir/win32_thread.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_thread.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/posix_thread.c.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_thread.c" > CMakeFiles/glfw.dir/posix_thread.c.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_thread.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_thread.c > CMakeFiles/glfw.dir/win32_thread.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/posix_thread.c.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/posix_thread.c" -o CMakeFiles/glfw.dir/posix_thread.c.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_thread.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_thread.c -o CMakeFiles/glfw.dir/win32_thread.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_init.m
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o -MF CMakeFiles/glfw.dir/cocoa_init.m.o.d -o CMakeFiles/glfw.dir/cocoa_init.m.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_init.m"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_init.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj -MF CMakeFiles/glfw.dir/win32_init.c.obj.d -o CMakeFiles/glfw.dir/win32_init.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_init.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/cocoa_init.m.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_init.m" > CMakeFiles/glfw.dir/cocoa_init.m.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_init.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_init.c > CMakeFiles/glfw.dir/win32_init.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/cocoa_init.m.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_init.m" -o CMakeFiles/glfw.dir/cocoa_init.m.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_init.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_init.c -o CMakeFiles/glfw.dir/win32_init.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_joystick.m
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o -MF CMakeFiles/glfw.dir/cocoa_joystick.m.o.d -o CMakeFiles/glfw.dir/cocoa_joystick.m.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_joystick.m"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_joystick.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj -MF CMakeFiles/glfw.dir/win32_joystick.c.obj.d -o CMakeFiles/glfw.dir/win32_joystick.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_joystick.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/cocoa_joystick.m.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_joystick.m" > CMakeFiles/glfw.dir/cocoa_joystick.m.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_joystick.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_joystick.c > CMakeFiles/glfw.dir/win32_joystick.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/cocoa_joystick.m.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_joystick.m" -o CMakeFiles/glfw.dir/cocoa_joystick.m.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_joystick.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_joystick.c -o CMakeFiles/glfw.dir/win32_joystick.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_monitor.m
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o -MF CMakeFiles/glfw.dir/cocoa_monitor.m.o.d -o CMakeFiles/glfw.dir/cocoa_monitor.m.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_monitor.m"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_monitor.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj -MF CMakeFiles/glfw.dir/win32_monitor.c.obj.d -o CMakeFiles/glfw.dir/win32_monitor.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_monitor.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/cocoa_monitor.m.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_monitor.m" > CMakeFiles/glfw.dir/cocoa_monitor.m.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_monitor.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_monitor.c > CMakeFiles/glfw.dir/win32_monitor.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/cocoa_monitor.m.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_monitor.m" -o CMakeFiles/glfw.dir/cocoa_monitor.m.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_monitor.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_monitor.c -o CMakeFiles/glfw.dir/win32_monitor.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_window.m
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o -MF CMakeFiles/glfw.dir/cocoa_window.m.o.d -o CMakeFiles/glfw.dir/cocoa_window.m.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_window.m"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/win32_window.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj -MF CMakeFiles/glfw.dir/win32_window.c.obj.d -o CMakeFiles/glfw.dir/win32_window.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/win32_window.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/cocoa_window.m.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_window.m" > CMakeFiles/glfw.dir/cocoa_window.m.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/win32_window.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/win32_window.c > CMakeFiles/glfw.dir/win32_window.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/cocoa_window.m.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/cocoa_window.m" -o CMakeFiles/glfw.dir/cocoa_window.m.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/win32_window.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/win32_window.c -o CMakeFiles/glfw.dir/win32_window.c.s
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o: /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/nsgl_context.m
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o -MF CMakeFiles/glfw.dir/nsgl_context.m.o.d -o CMakeFiles/glfw.dir/nsgl_context.m.o -c "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/nsgl_context.m"
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/includes_C.rsp
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: E:/CS162-project/external/raylib/src/external/glfw/src/wgl_context.c
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -MD -MT external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj -MF CMakeFiles/glfw.dir/wgl_context.c.obj.d -o CMakeFiles/glfw.dir/wgl_context.c.obj -c E:/CS162-project/external/raylib/src/external/glfw/src/wgl_context.c
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/nsgl_context.m.i"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/nsgl_context.m" > CMakeFiles/glfw.dir/nsgl_context.m.i
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/glfw.dir/wgl_context.c.i"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -E E:/CS162-project/external/raylib/src/external/glfw/src/wgl_context.c > CMakeFiles/glfw.dir/wgl_context.c.i
 
-external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/nsgl_context.m.s"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src/nsgl_context.m" -o CMakeFiles/glfw.dir/nsgl_context.m.s
+external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/glfw.dir/wgl_context.c.s"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && "C:/Users/MSI 203VN/.vscode/MinGW/bin/gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -Wdeclaration-after-statement -S E:/CS162-project/external/raylib/src/external/glfw/src/wgl_context.c -o CMakeFiles/glfw.dir/wgl_context.c.s
 
 # Object files for target glfw
 glfw_OBJECTS = \
-"CMakeFiles/glfw.dir/context.c.o" \
-"CMakeFiles/glfw.dir/init.c.o" \
-"CMakeFiles/glfw.dir/input.c.o" \
-"CMakeFiles/glfw.dir/monitor.c.o" \
-"CMakeFiles/glfw.dir/platform.c.o" \
-"CMakeFiles/glfw.dir/vulkan.c.o" \
-"CMakeFiles/glfw.dir/window.c.o" \
-"CMakeFiles/glfw.dir/egl_context.c.o" \
-"CMakeFiles/glfw.dir/osmesa_context.c.o" \
-"CMakeFiles/glfw.dir/null_init.c.o" \
-"CMakeFiles/glfw.dir/null_monitor.c.o" \
-"CMakeFiles/glfw.dir/null_window.c.o" \
-"CMakeFiles/glfw.dir/null_joystick.c.o" \
-"CMakeFiles/glfw.dir/cocoa_time.c.o" \
-"CMakeFiles/glfw.dir/posix_module.c.o" \
-"CMakeFiles/glfw.dir/posix_thread.c.o" \
-"CMakeFiles/glfw.dir/cocoa_init.m.o" \
-"CMakeFiles/glfw.dir/cocoa_joystick.m.o" \
-"CMakeFiles/glfw.dir/cocoa_monitor.m.o" \
-"CMakeFiles/glfw.dir/cocoa_window.m.o" \
-"CMakeFiles/glfw.dir/nsgl_context.m.o"
+"CMakeFiles/glfw.dir/context.c.obj" \
+"CMakeFiles/glfw.dir/init.c.obj" \
+"CMakeFiles/glfw.dir/input.c.obj" \
+"CMakeFiles/glfw.dir/monitor.c.obj" \
+"CMakeFiles/glfw.dir/platform.c.obj" \
+"CMakeFiles/glfw.dir/vulkan.c.obj" \
+"CMakeFiles/glfw.dir/window.c.obj" \
+"CMakeFiles/glfw.dir/egl_context.c.obj" \
+"CMakeFiles/glfw.dir/osmesa_context.c.obj" \
+"CMakeFiles/glfw.dir/null_init.c.obj" \
+"CMakeFiles/glfw.dir/null_monitor.c.obj" \
+"CMakeFiles/glfw.dir/null_window.c.obj" \
+"CMakeFiles/glfw.dir/null_joystick.c.obj" \
+"CMakeFiles/glfw.dir/win32_module.c.obj" \
+"CMakeFiles/glfw.dir/win32_time.c.obj" \
+"CMakeFiles/glfw.dir/win32_thread.c.obj" \
+"CMakeFiles/glfw.dir/win32_init.c.obj" \
+"CMakeFiles/glfw.dir/win32_joystick.c.obj" \
+"CMakeFiles/glfw.dir/win32_monitor.c.obj" \
+"CMakeFiles/glfw.dir/win32_window.c.obj" \
+"CMakeFiles/glfw.dir/wgl_context.c.obj"
 
 # External object files for target glfw
 glfw_EXTERNAL_OBJECTS =
 
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o
-external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj
+external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
 external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make
 external/raylib/raylib/external/glfw/src/libglfw3.a: external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Linking C static library libglfw3.a"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && $(CMAKE_COMMAND) -P CMakeFiles/glfw.dir/cmake_clean_target.cmake
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/glfw.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:/CS162-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking C static library libglfw3.a"
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/glfw.dir/cmake_clean_target.cmake
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/glfw.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build: external/raylib/raylib/external/glfw/src/libglfw3.a
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/clean:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" && $(CMAKE_COMMAND) -P CMakeFiles/glfw.dir/cmake_clean.cmake
+	cd E:/CS162-project/build/external/raylib/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/glfw.dir/cmake_clean.cmake
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/clean
 
 external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/external/raylib/src/external/glfw/src" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" E:/CS162-project E:/CS162-project/external/raylib/src/external/glfw/src E:/CS162-project/build E:/CS162-project/build/external/raylib/raylib/external/glfw/src E:/CS162-project/build/external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : external/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/depend
 

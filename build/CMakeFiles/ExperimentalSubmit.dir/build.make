@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 # Utility rule file for ExperimentalSubmit.
 
@@ -67,7 +67,7 @@ include CMakeFiles/ExperimentalSubmit.dir/compiler_depend.make
 include CMakeFiles/ExperimentalSubmit.dir/progress.make
 
 CMakeFiles/ExperimentalSubmit:
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ctest -D ExperimentalSubmit
+	"C:/Program Files/CMake/bin/ctest.exe" -D ExperimentalSubmit
 
 ExperimentalSubmit: CMakeFiles/ExperimentalSubmit
 ExperimentalSubmit: CMakeFiles/ExperimentalSubmit.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/ExperimentalSubmit.dir/clean:
 .PHONY : CMakeFiles/ExperimentalSubmit.dir/clean
 
 CMakeFiles/ExperimentalSubmit.dir/depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles/ExperimentalSubmit.dir/DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" E:/CS162-project E:/CS162-project E:/CS162-project/build E:/CS162-project/build E:/CS162-project/build/CMakeFiles/ExperimentalSubmit.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalSubmit.dir/depend
 

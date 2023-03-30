@@ -4,6 +4,7 @@
 #include "../external/raylib/src/raylib.h"
 #include <iostream>
 #include "Button.hpp"
+#include "InputBar.hpp"
 
 struct StaffUI 
 {
@@ -18,12 +19,17 @@ struct StaffUI
     Button ChangePassWord;
     Button cornerStripes; 
 
+    InputBar oldPassword;
+    InputBar newPassword;
+    InputBar confirmPassword;
+
     int menuStaff;
     enum windowStaff {
         SCHOOL_YEAR,
         SEMESTER,
         CLASS,
-        COURSE
+        COURSE, 
+        CHANGE_PASSWORD
     };
 
     void Construct(float windowWidth, float windowHeight);
@@ -34,7 +40,7 @@ struct StaffUI
         void DrawDropDownAccount();
         void DrawDropDownSchoolYear(int numberOfCreatedSchoolYear);
         void DrawSchoolYear(bool isDroppedDown);
-
+        void DrawChangePassword();
 };
 
 #endif

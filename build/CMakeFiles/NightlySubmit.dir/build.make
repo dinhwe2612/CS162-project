@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 # Utility rule file for NightlySubmit.
 
@@ -67,7 +67,7 @@ include CMakeFiles/NightlySubmit.dir/compiler_depend.make
 include CMakeFiles/NightlySubmit.dir/progress.make
 
 CMakeFiles/NightlySubmit:
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ctest -D NightlySubmit
+	"C:/Program Files/CMake/bin/ctest.exe" -D NightlySubmit
 
 NightlySubmit: CMakeFiles/NightlySubmit
 NightlySubmit: CMakeFiles/NightlySubmit.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/NightlySubmit.dir/clean:
 .PHONY : CMakeFiles/NightlySubmit.dir/clean
 
 CMakeFiles/NightlySubmit.dir/depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles/NightlySubmit.dir/DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" E:/CS162-project E:/CS162-project E:/CS162-project/build E:/CS162-project/build E:/CS162-project/build/CMakeFiles/NightlySubmit.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/NightlySubmit.dir/depend
 

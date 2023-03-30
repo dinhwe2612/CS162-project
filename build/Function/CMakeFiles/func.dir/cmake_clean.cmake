@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/func.dir/login.cpp.o"
-  "CMakeFiles/func.dir/login.cpp.o.d"
+  "CMakeFiles/func.dir/login.cpp.obj"
+  "CMakeFiles/func.dir/login.cpp.obj.d"
   "libfunc.a"
   "libfunc.pdb"
 )

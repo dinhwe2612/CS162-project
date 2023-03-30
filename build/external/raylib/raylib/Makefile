@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake
+CMAKE_COMMAND = "C:/Program Files/CMake/bin/cmake.exe"
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -E rm -f
+RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project"
+CMAKE_SOURCE_DIR = E:/CS162-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build"
+CMAKE_BINARY_DIR = E:/CS162-project/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = "/Users/win/Documents/Stupid subjects/CS162/CS162-project/bui
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cpack --config ./CPackConfig.cmake
+	cd E:/CS162-project/build && "C:/Program Files/CMake/bin/cpack.exe" --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && /opt/homebrew/Cellar/cmake/3.25.3/bin/cpack --config ./CPackSourceConfig.cmake /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/build/CPackSourceConfig.cmake
+	cd E:/CS162-project/build && "C:/Program Files/CMake/bin/cpack.exe" --config ./CPackSourceConfig.cmake E:/CS162-project/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -88,7 +88,7 @@ package_source/fast: package_source
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ctest --force-new-ctest-process $(ARGS)
+	"C:/Program Files/CMake/bin/ctest.exe" --force-new-ctest-process $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -98,7 +98,7 @@ test/fast: test
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:/Program Files/CMake/bin/cmake-gui.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -108,7 +108,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:/Program Files/CMake/bin/cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -127,49 +127,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.25.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"C:/Program Files/CMake/bin/cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/external/raylib/raylib//CMakeFiles/progress.marks"
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build/CMakeFiles" 0
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -E cmake_progress_start E:/CS162-project/build/CMakeFiles E:/CS162-project/build/external/raylib/raylib//CMakeFiles/progress.marks
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:/CS162-project/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/clean
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/clean
 .PHONY : clean
 
 # The main clean target
@@ -178,22 +178,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/preinstall
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/preinstall
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 external/raylib/raylib/CMakeFiles/raylib.dir/rule:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/CMakeFiles/raylib.dir/rule
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/raylib/raylib/CMakeFiles/raylib.dir/rule
 .PHONY : external/raylib/raylib/CMakeFiles/raylib.dir/rule
 
 # Convenience name for target.
@@ -202,23 +202,23 @@ raylib: external/raylib/raylib/CMakeFiles/raylib.dir/rule
 
 # fast build rule for target.
 raylib/fast:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/build
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/build
 .PHONY : raylib/fast
 
-raudio.o: raudio.c.o
-.PHONY : raudio.o
+raudio.obj: raudio.c.obj
+.PHONY : raudio.obj
 
 # target to build an object file
-raudio.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/raudio.c.o
-.PHONY : raudio.c.o
+raudio.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/raudio.c.obj
+.PHONY : raudio.c.obj
 
 raudio.i: raudio.c.i
 .PHONY : raudio.i
 
 # target to preprocess a source file
 raudio.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/raudio.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/raudio.c.i
 .PHONY : raudio.c.i
 
 raudio.s: raudio.c.s
@@ -226,23 +226,23 @@ raudio.s: raudio.c.s
 
 # target to generate assembly for a file
 raudio.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/raudio.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/raudio.c.s
 .PHONY : raudio.c.s
 
-rcore.o: rcore.c.o
-.PHONY : rcore.o
+rcore.obj: rcore.c.obj
+.PHONY : rcore.obj
 
 # target to build an object file
-rcore.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rcore.c.o
-.PHONY : rcore.c.o
+rcore.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rcore.c.obj
+.PHONY : rcore.c.obj
 
 rcore.i: rcore.c.i
 .PHONY : rcore.i
 
 # target to preprocess a source file
 rcore.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rcore.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rcore.c.i
 .PHONY : rcore.c.i
 
 rcore.s: rcore.c.s
@@ -250,23 +250,23 @@ rcore.s: rcore.c.s
 
 # target to generate assembly for a file
 rcore.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rcore.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rcore.c.s
 .PHONY : rcore.c.s
 
-rmodels.o: rmodels.c.o
-.PHONY : rmodels.o
+rmodels.obj: rmodels.c.obj
+.PHONY : rmodels.obj
 
 # target to build an object file
-rmodels.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.o
-.PHONY : rmodels.c.o
+rmodels.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.obj
+.PHONY : rmodels.c.obj
 
 rmodels.i: rmodels.c.i
 .PHONY : rmodels.i
 
 # target to preprocess a source file
 rmodels.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.i
 .PHONY : rmodels.c.i
 
 rmodels.s: rmodels.c.s
@@ -274,23 +274,23 @@ rmodels.s: rmodels.c.s
 
 # target to generate assembly for a file
 rmodels.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.s
 .PHONY : rmodels.c.s
 
-rshapes.o: rshapes.c.o
-.PHONY : rshapes.o
+rshapes.obj: rshapes.c.obj
+.PHONY : rshapes.obj
 
 # target to build an object file
-rshapes.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.o
-.PHONY : rshapes.c.o
+rshapes.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.obj
+.PHONY : rshapes.c.obj
 
 rshapes.i: rshapes.c.i
 .PHONY : rshapes.i
 
 # target to preprocess a source file
 rshapes.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.i
 .PHONY : rshapes.c.i
 
 rshapes.s: rshapes.c.s
@@ -298,23 +298,23 @@ rshapes.s: rshapes.c.s
 
 # target to generate assembly for a file
 rshapes.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.s
 .PHONY : rshapes.c.s
 
-rtext.o: rtext.c.o
-.PHONY : rtext.o
+rtext.obj: rtext.c.obj
+.PHONY : rtext.obj
 
 # target to build an object file
-rtext.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.o
-.PHONY : rtext.c.o
+rtext.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.obj
+.PHONY : rtext.c.obj
 
 rtext.i: rtext.c.i
 .PHONY : rtext.i
 
 # target to preprocess a source file
 rtext.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.i
 .PHONY : rtext.c.i
 
 rtext.s: rtext.c.s
@@ -322,23 +322,23 @@ rtext.s: rtext.c.s
 
 # target to generate assembly for a file
 rtext.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.s
 .PHONY : rtext.c.s
 
-rtextures.o: rtextures.c.o
-.PHONY : rtextures.o
+rtextures.obj: rtextures.c.obj
+.PHONY : rtextures.obj
 
 # target to build an object file
-rtextures.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.o
-.PHONY : rtextures.c.o
+rtextures.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.obj
+.PHONY : rtextures.c.obj
 
 rtextures.i: rtextures.c.i
 .PHONY : rtextures.i
 
 # target to preprocess a source file
 rtextures.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.i
 .PHONY : rtextures.c.i
 
 rtextures.s: rtextures.c.s
@@ -346,23 +346,23 @@ rtextures.s: rtextures.c.s
 
 # target to generate assembly for a file
 rtextures.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.s
 .PHONY : rtextures.c.s
 
-utils.o: utils.c.o
-.PHONY : utils.o
+utils.obj: utils.c.obj
+.PHONY : utils.obj
 
 # target to build an object file
-utils.c.o:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o
-.PHONY : utils.c.o
+utils.c.obj:
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/utils.c.obj
+.PHONY : utils.c.obj
 
 utils.i: utils.c.i
 .PHONY : utils.i
 
 # target to preprocess a source file
 utils.c.i:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/utils.c.i
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/utils.c.i
 .PHONY : utils.c.i
 
 utils.s: utils.c.s
@@ -370,7 +370,7 @@ utils.s: utils.c.s
 
 # target to generate assembly for a file
 utils.c.s:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/utils.c.s
+	cd E:/CS162-project/build && $(MAKE) $(MAKESILENT) -f external/raylib/raylib/CMakeFiles/raylib.dir/build.make external/raylib/raylib/CMakeFiles/raylib.dir/utils.c.s
 .PHONY : utils.c.s
 
 # Help Target
@@ -389,25 +389,25 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... raylib"
-	@echo "... raudio.o"
+	@echo "... raudio.obj"
 	@echo "... raudio.i"
 	@echo "... raudio.s"
-	@echo "... rcore.o"
+	@echo "... rcore.obj"
 	@echo "... rcore.i"
 	@echo "... rcore.s"
-	@echo "... rmodels.o"
+	@echo "... rmodels.obj"
 	@echo "... rmodels.i"
 	@echo "... rmodels.s"
-	@echo "... rshapes.o"
+	@echo "... rshapes.obj"
 	@echo "... rshapes.i"
 	@echo "... rshapes.s"
-	@echo "... rtext.o"
+	@echo "... rtext.obj"
 	@echo "... rtext.i"
 	@echo "... rtext.s"
-	@echo "... rtextures.o"
+	@echo "... rtextures.obj"
 	@echo "... rtextures.i"
 	@echo "... rtextures.s"
-	@echo "... utils.o"
+	@echo "... utils.obj"
 	@echo "... utils.i"
 	@echo "... utils.s"
 .PHONY : help
@@ -421,6 +421,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/Users/win/Documents/Stupid subjects/CS162/CS162-project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd E:/CS162-project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

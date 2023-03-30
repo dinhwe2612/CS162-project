@@ -1,2 +1,2 @@
-/usr/bin/ar qc libfunc.a CMakeFiles/func.dir/login.cpp.o
-/usr/bin/ranlib libfunc.a
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ar.exe" qc libfunc.a CMakeFiles/func.dir/login.cpp.obj
+"C:/Users/MSI 203VN/.vscode/MinGW/bin/ranlib.exe" libfunc.a
