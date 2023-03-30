@@ -1676,6 +1676,7 @@ UI/CMakeFiles/ui.dir/StaffUI.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162/
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.hpp \
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/InputBar.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/array
 
 

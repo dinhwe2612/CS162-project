@@ -420,8 +420,25 @@ CMakeFiles/ProjectUI.dir/main.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/InputBar.hpp \
   /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/Button.hpp \
-  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp \
+  /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Header/StudentLogin.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/fstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/stack \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/deque \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iomanip
 
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iomanip:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/stack:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/filesystem:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/fstream:
+
+/Users/win/Documents/Stupid\ subjects/CS162/CS162-project/Header/StudentLogin.h:
 
 /Users/win/Documents/Stupid\ subjects/CS162/CS162-project/UI/StaffUI.hpp:
 
@@ -782,6 +799,8 @@ CMakeFiles/ProjectUI.dir/main.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/utility:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/pthread/pthread_impl.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/pthread/sched.h:
 
@@ -1226,6 +1245,8 @@ CMakeFiles/ProjectUI.dir/main.cpp.o: /Users/win/Documents/Stupid\ subjects/CS162
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/sys/_types/_ucontext.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__algorithm/for_each.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/deque:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include/stdarg.h:
 
