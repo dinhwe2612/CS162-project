@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <sstream>
 #include "../Header/StudentStruct.h"
 
 #include "../Header/StaffFunc.h"
@@ -292,29 +293,33 @@ void AddClasstoCourse_CSV(string fileaddress, string courseaddress)
     ifstream in; ofstream out;
     string newfileaddress = courseaddress + "/Student_ID.csv";
     out.open(newfileaddress.c_str());
-    in.open(fileaddress.c_str(), ios::in);
-    info = new string[1000];
+    in.open(fileaddress.c_str());
+    info = new string[100];
 
-        string* row = new string[1000];
+        
         string line, word; //temp while in temp. in>>'\n';
         int index = 1;
+        int i;
           while (getline(in, line)) 
           {
-  
-        delete row;
-        row = new string[1000];
+            // cout << line << '\n';
+        // delete row;
+        string* row = new string[100];
+        // row = new string[100];
   
         //getline(in, line);
 
         stringstream s(line);
 
-        int i = 1;
+         i = 1;
         while ( getline(s, word, ',') ) 
         {
+            // cout << word << '\n';
+            // cout << i << '\n';
             //ignore;
             row[i] = word;
             if (i == 1) info[index] = word;
-            out << word << ",";
+            out << word << ',';
             i++;
         }
         out << '\n';
@@ -343,6 +348,7 @@ void Add1StudenttoCourse(string studentid, string courseaddress)
         if (cnt == 2 && address[i] != '/') schoolyear += address[i];
         if (cnt == 3 && address[i] != '/') semester += address[i];
         if (cnt == 4 && address[i] != '/') course += address[i];
+        i++;
     }
     ofstream out;
     out.open(address.c_str(), ios::app);
@@ -380,6 +386,7 @@ void Remove1StudentfromCourse(string studentid, string courseaddress)
         if (cnt == 2 && address[index] != '/') schoolyear += address[index];
         if (cnt == 3 && address[index] != '/') semester += address[index];
         if (cnt == 4 && address[index] != '/') course += address[index];
+        i++;
     }
 
     address = courseaddress + "/Course_Info.txt";
@@ -463,6 +470,7 @@ void DeleteACourse(string courseid_coursename_address)
         if (cnt == 2 && courseid_coursename_address[index] != '/') schoolyear += courseid_coursename_address[index];
         if (cnt == 3 && courseid_coursename_address[index] != '/') semester += courseid_coursename_address[index];
         if (cnt == 4 && courseid_coursename_address[index] != '/') course += courseid_coursename_address[index];
+        index++;
     }
     //address = courseid_coursename_address - course + "Semester_Info.txt";
     address = "";
@@ -494,12 +502,14 @@ void DeleteACourse(string courseid_coursename_address)
     return;
 }
 
-// int main ()
-// {
-//     //Creat_A_Semester();
-//     //AddCourse("../Data/SchoolYear/2021-2022/Autumn");
-//     //Update_CourseInformation("../Data/SchoolYear/2021-2022/Autumn");
-//     DeleteACourse("../Data/SchoolYear/2021-2022/Autumn//CS161-22APCS2");
-//     return 0;
-// }
+int main ()
+{
+    //Creat_A_Semester();
+    //AddCourse("../Data/SchoolYear/2021-2022/Autumn");
+    //Update_CourseInformation("../Data/SchoolYear/2021-2022/Autumn");
+    //DeleteACourse(".. /Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+    //AddClasstoCourse_CSV("D:/New folder (2)/ly 2/Student.csv", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+    Add1StudenttoCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+    return 0;
+}
 
