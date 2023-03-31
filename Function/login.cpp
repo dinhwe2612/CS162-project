@@ -224,6 +224,6 @@ void changePassword (string id, string newpass, bool isStaff) {
 }
 
 int main() {
-    changePassword("22125103", "22222222", false);
+    changePassword("22125016", "22222222", false);
     return 0;
 }
