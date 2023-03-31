@@ -4,7 +4,7 @@ project(ProjectUI VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 
 add_executable(ProjectUI main.cpp)
 
