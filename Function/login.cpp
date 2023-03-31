@@ -2,11 +2,11 @@
 
 // maximum amount of attempts allowed before the account is locked
 const int MAXATTEMPT = 5;
-const string ACCOUNTSTAFF = "../Data/Login/account-staff.txt";
-const string ACCOUNTSTUDENT = "../Data/Login/account-student.txt";
-const string ACCOUNTLOCKED = "../Data/Login/account-locked.txt";
-const string ACCOUNTDIR = "../Data/Login/";
-const string TMPDIR = "../Data/Login/tmp.txt";
+const string ACCOUNTSTAFF = "Data/Login/account-staff.txt";
+const string ACCOUNTSTUDENT = "Data/Login/account-student.txt";
+const string ACCOUNTLOCKED = "Data/Login/account-locked.txt";
+const string ACCOUNTDIR = "Data/Login/";
+const string TMPDIR = "Data/Login/tmp.txt";
 
 void prompt(string &userid, string &userpass, char &ans) {
     cout << "Account ID: ";
@@ -189,6 +189,7 @@ void changePassword (string id, string newpass, bool isStaff) {
         if (!(inp.compare("") == 0))
             fout << endl;
         fin >> inp;
+        cout << inp << endl;
         fout << inp << ' ';
         if (!(inp.compare(id) == 0)) {
             fin >> inp;
@@ -200,30 +201,30 @@ void changePassword (string id, string newpass, bool isStaff) {
         }
     }
 
-    fin.close();
-    fout.close();
-    fin.open(TMPDIR);
-    if (isStaff)
-        fout.open(ACCOUNTSTAFF);
-    else
-        fout.open(ACCOUNTSTUDENT);
+    // fin.close();
+    // fout.close();
+    // fin.open(TMPDIR);
+    // if (isStaff)
+    //     fout.open(ACCOUNTSTAFF);
+    // else
+    //     fout.open(ACCOUNTSTUDENT);
     
-    inp = "";
-    while (!fin.eof()) {
-        if (!(inp.compare("") == 0))
-            fout << endl;
-        fin >> inp;
-        fout << inp << ' ';
-        fin >> inp;
-        fout << inp;
-        fin.ignore(1000, '\n');
-    }
-    fin.close();
-    fout.close();
-    remove("../Data/Login/tmp.txt");
+    // inp = "";
+    // while (!fin.eof()) {
+    //     if (!(inp.compare("") == 0))
+    //         fout << endl;
+    //     fin >> inp;
+    //     fout << inp << ' ';
+    //     fin >> inp;
+    //     fout << inp;
+    //     fin.ignore(1000, '\n');
+    // }
+    // fin.close();
+    // fout.close();
+    // remove("../Data/Login/tmp.txt");
 }
 
-int main() {
-    changePassword("22125016", "22222222", false);
-    return 0;
-}
+// int main() {
+//     changePassword("22125016", "22222222", false);
+//     return 0;
+// }
