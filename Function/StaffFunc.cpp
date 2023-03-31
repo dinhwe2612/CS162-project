@@ -279,6 +279,7 @@ void Update_CourseInformation(string address)
     inf[choice + 1] = newinf;
     Update_File(address, inf);
     // if class name or course id is updated, update the file semester info, rename the folder
+    // struct Course to store, to change, to update, to rename.
     return;
 }
 //
@@ -439,7 +440,8 @@ void AddDatatoStudentFile (string id, string schoolyear, string semester, string
 
 void DeleteACourse(string courseid_coursename_address)
 {
-    int rename(const char * oldname, const char * newname); + deleted/ invalid;
+    //int rename(const char * oldname, const char * newname); + deleted/ invalid;
+    // oldname, newname, old address, new address
     string id;
     ifstream in;
     string address = courseid_coursename_address + "/Student_ID_data.txt";
