@@ -6,6 +6,7 @@ enable_testing()
 
 add_executable(ProjectUI main.cpp)
 
+include_directories(Function)
 add_subdirectory(external/raylib)
 #add_subdirectory(Function)
 add_subdirectory(UI)

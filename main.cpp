@@ -2,13 +2,12 @@
 #include "UI/InputBar.hpp"
 #include "UI/StaffUI.hpp"
 #include "UI/Button.hpp"
-#include "Header/StudentLogin.h"
 #include "Header/login.h"
 
 int main()
 {
     // validateAccount("SSSS", "SSSS", true, 0);
-    // changePassword("SSSS", "SSSS", true);
+    changePassword("22125016", "SSSS", false);
     // init window
     const int WindowWidth = 1280;
     const int WindowHeight = 720;
