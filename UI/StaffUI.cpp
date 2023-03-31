@@ -134,7 +134,7 @@ void StaffUI::DrawSchoolYear()
     std::array<std::string, 12> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016", "2014 - 2015", "2013 - 2014", "2012 - 2013", "2011 - 2012", "2010 - 2011"};
     
     float static posY = 0;
-    posY += GetMouseWheelMove() * 8;
+    posY += GetMouseWheelMove() * 10;
     if (posY > 0) posY = 0;
     int szList = ListOfSchoolYear.size();
     if (0.18*windowHeight + (szList - 1) * 0.1*windowHeight + posY <= 650)
@@ -167,6 +167,8 @@ void StaffUI::DrawSchoolYear()
 }
 
 void StaffUI::DrawChangePassword() {
+    static int statusChangePassword = 0;
+
     DrawBackground();
     // draw top bar
     Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
@@ -214,6 +216,7 @@ void StaffUI::DrawChangePassword() {
     Back.DrawText();
     if (Back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuStaff = 0;
+        statusChangePassword = 0;
     }
 
     // draw "Change" button
@@ -221,6 +224,26 @@ void StaffUI::DrawChangePassword() {
     Change.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 46.72, BLUE, DARKBLUE);
     Change.SetText(PT_serif_bold, "Change", 0.475*windowWidth, 0.655*windowHeight, 0.02*windowWidth, 0.5, RAYWHITE);
     Change.DrawText();
+
+    // draw "Your password has been changed" text
+    enum STATUS_CHANGE_PASSWORD {
+        DEFAULT,
+        CHANGE_PASSWORD_SUCCESS,
+        CHANGE_PASSWORD_FAIL
+    };
+
+    if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+    }
+    if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
+        Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Your password has been changed", changedPos, 0.022*windowWidth, 0.5, BLUE);
+    } else if (statusChangePassword == CHANGE_PASSWORD_FAIL) {
+        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Your old password is not correct", failPos, 0.022*windowWidth, 0.5, RED);
+    } else {
+
+    }
 }
 
 void StaffUI::Draw()
