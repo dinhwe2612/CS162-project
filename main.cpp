@@ -8,6 +8,7 @@
 int main()
 {
     // validateAccount("SSSS", "SSSS", true, 0);
+    // changePassword("SSSS", "SSSS", true);
     // init window
     const int WindowWidth = 1280;
     const int WindowHeight = 720;

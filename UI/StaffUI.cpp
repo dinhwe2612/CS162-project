@@ -34,13 +34,13 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     addSchoolYear.SetRectangle(0.01*windowWidth, 0.12*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
 
-    oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93, 0.022*windowWidth, 0.5, 8, "");
+    oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
 
-    newPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 153 + 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 153, 0.022*windowWidth, 0.5, 8, "");
+    newPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 153 + 2 + 4 * 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 153 + 4 * 2, 0.022*windowWidth, 0.5, 8, "");
     newPassword.colorBox1 = WHITE;
 
-    confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 213, 0.022*windowWidth, 0.5, 8, "");
+    confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2 + 4 * 3, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 213 + 4 * 3, 0.022*windowWidth, 0.5, 8, "");
     confirmPassword.colorBox1 = WHITE;
 }
 
@@ -187,23 +187,23 @@ void StaffUI::DrawChangePassword() {
     DrawTextEx(PT_serif_regular, "Change password", changePasswordPos, 0.03*windowWidth, 0.5, BLACK);
 
     // draw "Old password" box
-    Vector2 oldPasswordPos = {windowWidth/2 - 188, 0.2*windowHeight + 93};
+    Vector2 oldPasswordPos = {windowWidth/2 - 176, 0.2*windowHeight + 93 + 4};
     DrawTextEx(PT_serif_regular, "Old password", oldPasswordPos, 0.022*windowWidth, 0.5, BLACK);
-    Rectangle newPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 93, 200, 32};
+    Rectangle newPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 93 + 4, 200, 32};
     DrawRectangleRec(newPasswordBox, BLACK);
     oldPassword.Draw();
 
     // draw "New password" box
-    Vector2 newPasswordPos = {windowWidth/2 - 188, 0.2*windowHeight + 153};
+    Vector2 newPasswordPos = {windowWidth/2 - 176, 0.2*windowHeight + 153 + 4 * 2};
     DrawTextEx(PT_serif_regular, "New password", newPasswordPos, 0.022*windowWidth, 0.5, BLACK);
-    Rectangle oldPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 153, 200, 32};
+    Rectangle oldPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 153 + 4 * 2, 200, 32};
     DrawRectangleRec(oldPasswordBox, BLACK);
     newPassword.Draw();
 
     // draw "Confirm password" box
-    Vector2 confirmPasswordPos = {windowWidth/2 - 188, 0.2*windowHeight + 213};
+    Vector2 confirmPasswordPos = {windowWidth/2 - 188, 0.2*windowHeight + 213 + 4 * 3};
     DrawTextEx(PT_serif_regular, "Confirm password", confirmPasswordPos, 0.022*windowWidth, 0.5, BLACK);
-    Rectangle confirmPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 213, 200, 32};
+    Rectangle confirmPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 213 + 4 * 3, 200, 32};
     DrawRectangleRec(confirmPasswordBox, BLACK);
     confirmPassword.Draw();
 
@@ -215,6 +215,12 @@ void StaffUI::DrawChangePassword() {
     if (Back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuStaff = 0;
     }
+
+    // draw "Change" button
+    Button Change;
+    Change.SetRectangle(0.379*windowWidth, 0.64*windowHeight, 0.24*windowWidth, 46.72, BLUE, DARKBLUE);
+    Change.SetText(PT_serif_bold, "Change", 0.475*windowWidth, 0.655*windowHeight, 0.02*windowWidth, 0.5, RAYWHITE);
+    Change.DrawText();
 }
 
 void StaffUI::Draw()

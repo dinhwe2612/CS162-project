@@ -192,6 +192,7 @@ void LoginUI::Draw()
     signInButton.DrawText();
     DrawStatusButtons();
     DrawRetry();
+    cout << logo.height << '\n';
 }
 
 void LoginUI::Update()
