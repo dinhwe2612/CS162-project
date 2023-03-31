@@ -6,8 +6,9 @@ enable_testing()
 
 add_executable(ProjectUI main.cpp)
 
+include_directories(Function)
 add_subdirectory(external/raylib)
-# add_subdirectory(Function)
+add_subdirectory(Function)
 add_subdirectory(UI)
 
 target_include_directories(${PROJECT_NAME} 
@@ -18,13 +19,13 @@ target_include_directories(${PROJECT_NAME}
 
 link_directories(${PROJECT_NAME} 
     PRIVATE external/raylib/src
-    # PRIVATE func
+    PRIVATE func
     PRIVATE UI
 )
 
 target_link_libraries(${PROJECT_NAME} 
     raylib
-    # func
+    func
     ui
 )
 

@@ -223,7 +223,7 @@ void changePassword (string id, string newpass, bool isStaff) {
     remove("../Data/Login/tmp.txt");
 }
 
-int main() {
-    changePassword("22125016", "22222222", false);
-    return 0;
-}
+// int main() {
+//     changePassword("22125016", "22222222", false);
+//     return 0;
+// }
