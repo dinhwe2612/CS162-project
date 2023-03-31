@@ -92,23 +92,6 @@ void StaffUI::DrawStaticElement()
     // draw down arrow in top right corner
 
     dropDown.DrawTexture();
-
-    // draw current directory
-
-    Vector2 dirPos = {0.15*windowWidth, 0.01*windowHeight};
-
-    static Button ref;
-
-    for (auto& toggle : ListOfSchoolYearButtons)
-    {
-        if (toggle.isPRESSED(MOUSE_BUTTON_LEFT))
-        {
-            ref = toggle;
-        }
-    }
-    DrawTextEx(PT_serif_bold, ref.Text.c_str(), dirPos, 0.015*windowWidth, 0.5, RAYWHITE);
-    
-
 }
 
 //---------------------------------------------------------------------------------------------//
@@ -193,23 +176,24 @@ void StaffUI::DrawSchoolYear()
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
             schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            
-            // Draw 3 buttons for semester in rectangle
-            Button Semester1;
-            Semester1.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester1.SetText(PT_serif_bold, "Semester 1", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester1.DrawText();
-            Button Semester2;
-            Semester2.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester2.SetText(PT_serif_bold, "Semester 2", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester2.DrawText();
-            Button Semester3;
-            Semester3.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester3.SetText(PT_serif_bold, "Semester 3", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester3.DrawText();
-
-            accumulativeHeight += 0.3*windowHeight;
+            DrawSchoolYearMenu();
         }
+        //     // Draw 3 buttons for semester in rectangle
+        //     Button Semester1;
+        //     Semester1.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+        //     Semester1.SetText(PT_serif_bold, "Semester 1", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+        //     Semester1.DrawText();
+        //     Button Semester2;
+        //     Semester2.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+        //     Semester2.SetText(PT_serif_bold, "Semester 2", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+        //     Semester2.DrawText();
+        //     Button Semester3;
+        //     Semester3.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+        //     Semester3.SetText(PT_serif_bold, "Semester 3", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+        //     Semester3.DrawText();
+
+        //     accumulativeHeight += 0.3*windowHeight;
+        // }
         else schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
         
         schoolYear.DrawText();
@@ -318,6 +302,13 @@ void StaffUI::DrawChangePassword()
     }
 }
 
+void StaffUI::DrawSchoolYearMenu()
+{
+    static Button SchoolYear;
+    
+    Vector2 accessDir = {0.25*windowWidth, 0.01*windowHeight};
+    
+}
 //---------------------------------------------------------------------------------------------//
 //                              All objects drawn managed here
 //---------------------------------------------------------------------------------------------//
@@ -330,6 +321,7 @@ void StaffUI::Draw()
         DrawStaticElement();
         DrawDropDownAccount();
         DrawDropDownSchoolYear();
+        DrawSchoolYearMenu();
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = CHANGE_PASSWORD;
         }
