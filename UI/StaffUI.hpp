@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Button.hpp"
 #include "InputBar.hpp"
+#include <array>
+#include <vector>
 
 struct StaffUI 
 {
@@ -21,10 +23,13 @@ struct StaffUI
     Button cornerStripes; 
     Button addSchoolYear;
 
+    std::vector<Button> ListOfSchoolYearButtons;
 
     InputBar oldPassword;
     InputBar newPassword;
     InputBar confirmPassword;
+
+    bool *BUTTON_SchoolYear_isCLICKED;
 
     int menuStaff;
     enum windowStaff {
@@ -44,6 +49,7 @@ struct StaffUI
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
         void DrawChangePassword();
+        void DrawSchoolYearMenu();
 };
 
 #endif

@@ -191,16 +191,11 @@ void LoginUI::Draw()
     DrawLoginIcon();
     signInButton.DrawText();
     DrawStatusButtons();
-    DrawRetry();
-}
-
-void LoginUI::Update()
-{
-    ClearBackground(RAYWHITE);
-}
-
-void LoginUI::Tick()
-{
-    Draw();
-    Update();
+    validateAccount("SSSS", "SSSS", true);
+    // if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        // if (!validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status));
+        // inputUsername.currentInput = "";
+        // inputPassword.currentInput = "";
+        // DrawRetry();
+    // }
 }

@@ -127,7 +127,7 @@ bool CreateDirectory(const string& dirName) {
 // return 1 if login successfully
 // return -1 if wrong password
 // return -2 if invalid account
-// return -3 if account locked
+// return -3 if account locked - indefinitely canceled
 // return 0 if login failed due to problems with directory
 // this function should be used with in loop in the caller function.
 // to lock an account if the number of attempt exceed MAXATTEMPT,
@@ -135,7 +135,7 @@ bool CreateDirectory(const string& dirName) {
 // starting from 0, increment it whenever this function return -1
 // and pass it again into this function as a parameter. 
 // by default attempt = 0.
-int validateAccount (string id, string pass, bool isStaff, int attempt) {
+int validateAccount (string id, string pass, bool isStaff /*, int attempt*/) {
     ifstream fin;
     if (isStaff)
         fin.open(ACCOUNTSTAFF);
@@ -156,16 +156,16 @@ int validateAccount (string id, string pass, bool isStaff, int attempt) {
     if (password.compare("") == 0)
         return -2;
     
-    if (isLock(fin, id))
-        return -3;
+    // if (isLock(fin, id))
+    //     return -3;
     
-    if (attempt == MAXATTEMPT) {
-        ofstream fout;
-        fout.open(ACCOUNTLOCKED, std::ios_base::app);
-        fout << id << endl;
-        fout.close();
-        return -3;
-    }
+    // if (attempt == MAXATTEMPT) {
+    //     ofstream fout;
+    //     fout.open(ACCOUNTLOCKED, std::ios_base::app);
+    //     fout << id << endl;
+    //     fout.close();
+    //     return -3;
+    // }
 
     if (pass.compare(password) == 0)
         return 1;
@@ -189,6 +189,7 @@ void changePassword (string id, string newpass, bool isStaff) {
         if (!(inp.compare("") == 0))
             fout << endl;
         fin >> inp;
+        cout << inp << endl;
         fout << inp << ' ';
         if (!(inp.compare(id) == 0)) {
             fin >> inp;
@@ -200,30 +201,30 @@ void changePassword (string id, string newpass, bool isStaff) {
         }
     }
 
-    fin.close();
-    fout.close();
-    fin.open(TMPDIR);
-    if (isStaff)
-        fout.open(ACCOUNTSTAFF);
-    else
-        fout.open(ACCOUNTSTUDENT);
+    // fin.close();
+    // fout.close();
+    // fin.open(TMPDIR);
+    // if (isStaff)
+    //     fout.open(ACCOUNTSTAFF);
+    // else
+    //     fout.open(ACCOUNTSTUDENT);
     
-    inp = "";
-    while (!fin.eof()) {
-        if (!(inp.compare("") == 0))
-            fout << endl;
-        fin >> inp;
-        fout << inp << ' ';
-        fin >> inp;
-        fout << inp;
-        fin.ignore(1000, '\n');
-    }
-    fin.close();
-    fout.close();
-    remove("../Data/Login/tmp.txt");
+    // inp = "";
+    // while (!fin.eof()) {
+    //     if (!(inp.compare("") == 0))
+    //         fout << endl;
+    //     fin >> inp;
+    //     fout << inp << ' ';
+    //     fin >> inp;
+    //     fout << inp;
+    //     fin.ignore(1000, '\n');
+    // }
+    // fin.close();
+    // fout.close();
+    // remove("../Data/Login/tmp.txt");
 }
 
-int main() {
-    changePassword("22125016", "22222222", false);
-    return 0;
-}
+// int main() {
+//     changePassword("22125016", "22222222", false);
+//     return 0;
+// }
