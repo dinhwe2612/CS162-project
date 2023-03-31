@@ -201,8 +201,8 @@ void changePassword (string id, string newpass, bool isStaff) {
         }
     }
 
-    // fin.close();
-    // fout.close();
+    fin.close();
+    fout.close();
     // fin.open(TMPDIR);
     // if (isStaff)
     //     fout.open(ACCOUNTSTAFF);
@@ -225,6 +225,8 @@ void changePassword (string id, string newpass, bool isStaff) {
 }
 
 // int main() {
-//     changePassword("22125016", "22222222", false);
+//     string id, pass;
+//     cin >> id >> pass;
+//     cout << validateAccount(id, pass, false);
 //     return 0;
 // }

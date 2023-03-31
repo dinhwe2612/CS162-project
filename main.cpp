@@ -6,13 +6,13 @@
 
 int main()
 {
-    // validateAccount("SSSS", "SSSS", true, 0);
+    validateAccount("SSSS", "SSSS", true);
     // changePassword("22125016", "SSSS", false);
     // init window
     const int WindowWidth = 1280;
     const int WindowHeight = 720;
 
-    InitWindow(WindowWidth, WindowHeight, "You lazy ass, RUN!");
+    InitWindow(WindowWidth, WindowHeight, "annyeonghaseyo");
 
     SetTargetFPS(60);
 
