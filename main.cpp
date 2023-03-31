@@ -3,9 +3,11 @@
 #include "UI/StaffUI.hpp"
 #include "UI/Button.hpp"
 #include "Header/StudentLogin.h"
+#include "Header/login.h"
 
 int main()
 {
+    // validateAccount("SSSS", "SSSS", true, 0);
     // init window
     const int WindowWidth = 1280;
     const int WindowHeight = 720;

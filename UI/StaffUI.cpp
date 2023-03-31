@@ -124,33 +124,46 @@ void StaffUI::DrawDropDownSchoolYear()
 
 void StaffUI::DrawSchoolYear()
 {
-        // draw pop-up box
+    // draw pop-up box
 
-        DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, windowHeight, RAYWHITE);
-        DrawLine(0.2*windowWidth, 0.05*windowHeight, 0.2*windowWidth, windowHeight, LIGHTGRAY);
+    DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, windowHeight, RAYWHITE);
+    DrawLine(0.2*windowWidth, 0.05*windowHeight, 0.2*windowWidth, windowHeight, LIGHTGRAY);
 
-        // draw School year text
+    // array of school year will be inserted here
+    
+    std::array<std::string, 12> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016", "2014 - 2015", "2013 - 2014", "2012 - 2013", "2011 - 2012", "2010 - 2011"};
+    
+    float static posY = 0;
+    posY += GetMouseWheelMove() * 8;
+    if (posY > 0) posY = 0;
+    int szList = ListOfSchoolYear.size();
+    if (0.18*windowHeight + (szList - 1) * 0.1*windowHeight + posY <= 650)
+            posY = 650 - (0.18*windowHeight + (szList - 1) * 0.1*windowHeight);
+    
+    for (int i = 0; i < szList; ++i)
+    {
+        if (0.18*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight)
+            continue;
+        Button schoolYear;
+        schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
+        schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, DARKBLUE);
+        schoolYear.DrawText();
+    }
 
-        Vector2 syTextOrigin = {0.01*windowWidth, 0.06*windowHeight};
-        DrawTextEx(PT_serif_bold, "School Year", syTextOrigin, 0.025*windowWidth, 0.5, DARKBLUE);
+    // draw a rectangle to hide 
+    DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, 0.13*windowHeight, RAYWHITE);
+    DrawLine(0, 0.18*windowHeight, 0.2*windowWidth, 0.18*windowHeight, BLUE);
 
-        // draw add school year button
+    // draw School year text
 
-        addSchoolYear.DrawTexture();
-        Vector2 addTextOrigin = {0.035*windowWidth, 0.12*windowHeight};
-        DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
-        
-        // array of school year will be inserted here
-        
-        std::array<std::string, 7> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016"};
-        
-        for (int i = 0; i < ListOfSchoolYear.size(); ++i)
-        {
-            Button schoolYear;
-            schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
-            schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            schoolYear.DrawText();
-        }
+    Vector2 syTextOrigin = {0.01*windowWidth, 0.06*windowHeight};
+    DrawTextEx(PT_serif_bold, "School Year", syTextOrigin, 0.025*windowWidth, 0.5, DARKBLUE);
+
+    // draw add school year button
+
+    addSchoolYear.DrawTexture();
+    Vector2 addTextOrigin = {0.035*windowWidth, 0.12*windowHeight};
+    DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
 }
 
 void StaffUI::DrawChangePassword() {
@@ -207,7 +220,7 @@ void StaffUI::DrawChangePassword() {
 void StaffUI::Draw()
 {
     
-        switch (menuStaff) {
+    switch (menuStaff) {
     default:
         DrawBackground();
         DrawStaticElement();
