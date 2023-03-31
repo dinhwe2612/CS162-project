@@ -16,12 +16,12 @@ add_subdirectory(UI)
 target_include_directories(${PROJECT_NAME} 
     PUBLIC external/raylib/src
     PUBLIC UI
-    # PUBLIC Function
+    PUBLIC Function
 )
 
 link_directories(${PROJECT_NAME} 
     PRIVATE external/raylib/src
-    PRIVATE func
+    PRIVATE Function
     PRIVATE UI
 )
 
@@ -30,7 +30,6 @@ target_link_libraries(${PROJECT_NAME}
     func
     ui
 )
-
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

@@ -189,6 +189,7 @@ void changePassword (string id, string newpass, bool isStaff) {
         if (!(inp.compare("") == 0))
             fout << endl;
         fin >> inp;
+        cout << inp << endl;
         fout << inp << ' ';
         if (!(inp.compare(id) == 0)) {
             fin >> inp;
@@ -200,27 +201,27 @@ void changePassword (string id, string newpass, bool isStaff) {
         }
     }
 
-    fin.close();
-    fout.close();
-    fin.open(TMPDIR);
-    if (isStaff)
-        fout.open(ACCOUNTSTAFF);
-    else
-        fout.open(ACCOUNTSTUDENT);
+    // fin.close();
+    // fout.close();
+    // fin.open(TMPDIR);
+    // if (isStaff)
+    //     fout.open(ACCOUNTSTAFF);
+    // else
+    //     fout.open(ACCOUNTSTUDENT);
     
-    inp = "";
-    while (!fin.eof()) {
-        if (!(inp.compare("") == 0))
-            fout << endl;
-        fin >> inp;
-        fout << inp << ' ';
-        fin >> inp;
-        fout << inp;
-        fin.ignore(1000, '\n');
-    }
-    fin.close();
-    fout.close();
-    remove("../Data/Login/tmp.txt");
+    // inp = "";
+    // while (!fin.eof()) {
+    //     if (!(inp.compare("") == 0))
+    //         fout << endl;
+    //     fin >> inp;
+    //     fout << inp << ' ';
+    //     fin >> inp;
+    //     fout << inp;
+    //     fin.ignore(1000, '\n');
+    // }
+    // fin.close();
+    // fout.close();
+    // remove("../Data/Login/tmp.txt");
 }
 
 // int main() {

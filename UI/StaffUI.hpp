@@ -26,6 +26,8 @@ struct StaffUI
     InputBar newPassword;
     InputBar confirmPassword;
 
+    bool *BUTTON_SchoolYear_isCLICKED;
+
     int menuStaff;
     enum windowStaff {
         SCHOOL_YEAR,

@@ -261,24 +261,26 @@ void Update_CourseInformation(string address)
     string* inf;
     inf = Read_File(address);
     cout << "Which piece of information do you want to modify?" << '\n';
-    cout << "1. Course Name" << '\n';
-    cout << "2. Class Name" << '\n';
-    cout << "3. Teacher Name" << '\n';
-    cout << "4. Credits" << '\n';
-    cout << "5. The max number of students" << '\n';
-    cout << "6. The day of week" << '\n';
-    cout << "7. The session for the day" << '\n';
+    //cout << "1. Course Name" << '\n';
+    cout << "1. Class Name" << '\n';
+    cout << "2. Teacher Name" << '\n';
+    cout << "3. Credits" << '\n';
+    cout << "4. The max number of students" << '\n';
+    cout << "5. The day of week" << '\n';
+    cout << "6. The session for the day" << '\n';
     int choice;
-    cout << "Please choose one by typing in the number from 1 to 7: ";
+    cout << "Please choose one by typing in the number from 1 to 6: ";
     cin >> choice;
     cout << '\n';
     string newinf;
     cout << "Now typing in the new information: ";
     cin >> newinf;
-    cout << "Thank you, the information has been updated for you!" << '\n';
-    inf[choice + 1] = newinf;
+    inf[choice + 2] = newinf;
     Update_File(address, inf);
     // if class name or course id is updated, update the file semester info, rename the folder
+    // struct Course to store, to change, to update, to rename.
+    //if (choice == )
+    cout << "Thank you, the information has been updated for you!" << '\n';
     return;
 }
 //
@@ -421,9 +423,9 @@ void AddDatatoStudentFile (string id, string schoolyear, string semester, string
         if (info[i] == courseid) break;
         i++;
     }
-    while (i <= atoi(info[0].c_str()) - 7)
+    while (i <= atoi(info[0].c_str()) - 8)
     {
-        info[i] = info[i + 7];
+        info[i] = info[i + 8];
         i++;
     }
     int j = 1;
@@ -439,7 +441,8 @@ void AddDatatoStudentFile (string id, string schoolyear, string semester, string
 
 void DeleteACourse(string courseid_coursename_address)
 {
-    int rename(const char * oldname, const char * newname); + deleted/ invalid;
+    //int rename(const char * oldname, const char * newname); + deleted/ invalid;
+    // oldname, newname, old address, new address
     string id;
     ifstream in;
     string address = courseid_coursename_address + "/Student_ID_data.txt";
