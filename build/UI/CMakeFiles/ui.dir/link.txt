@@ -1,2 +1,0 @@
-/usr/bin/ar qc libui.a CMakeFiles/ui.dir/LoginUI.cpp.o CMakeFiles/ui.dir/StaffUI.cpp.o CMakeFiles/ui.dir/InputBar.cpp.o CMakeFiles/ui.dir/Button.cpp.o
-/usr/bin/ranlib libui.a

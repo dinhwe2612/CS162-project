@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libfunc.a CMakeFiles/func.dir/login.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libfunc.a

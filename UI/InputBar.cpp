@@ -26,7 +26,7 @@ void InputBar::SetInputText() {
         }
     }
     if (OnText) {
-        colorBox = RAYWHITE;
+        colorBox = colorBox2;
         int key = GetCharPressed();
         while(key > 0) {
             if (currentInput.size() <= MAX_SIZE) {
@@ -39,7 +39,7 @@ void InputBar::SetInputText() {
         }
 
     } else {
-        colorBox = RAYWHITE;
+        colorBox = colorBox1;
     }
 } 
 

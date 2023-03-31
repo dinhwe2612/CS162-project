@@ -49,5 +49,6 @@ _deps
 CMakeLists.txt
 build/
 external/
+out/build/
 out
 [Bb][Uu][Ii][Ll][Dd]/
