@@ -42,6 +42,9 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2 + 4 * 3, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 213 + 4 * 3, 0.022*windowWidth, 0.5, 8, "");
     confirmPassword.colorBox1 = WHITE;
+
+    BUTTON_SchoolYear_isCLICKED = new bool[101];
+    memset(BUTTON_SchoolYear_isCLICKED, 0, sizeof BUTTON_SchoolYear_isCLICKED);
 }
 
 void StaffUI::Deconstruct()
@@ -52,6 +55,8 @@ void StaffUI::Deconstruct()
 
     UnloadFont(PT_serif_regular);
     UnloadFont(PT_serif_bold);
+
+    delete []BUTTON_SchoolYear_isCLICKED;
 }
 
 void StaffUI::DrawBackground()
@@ -109,8 +114,12 @@ void StaffUI::DrawDropDownSchoolYear()
 
     static bool IS_DROPDOWN_CLICKED = false;
 
-    if (cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT))
+    if (cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT)) {
         IS_DROPDOWN_CLICKED = true;
+        for(int i = 0; i < 50; ++i) {
+            BUTTON_SchoolYear_isCLICKED[i] = false;
+        }
+    }
     else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowWidth}) 
                 && !cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT) 
                 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -134,21 +143,49 @@ void StaffUI::DrawSchoolYear()
     std::array<std::string, 12> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016", "2014 - 2015", "2013 - 2014", "2012 - 2013", "2011 - 2012", "2010 - 2011"};
     
     float static posY = 0;
-    posY += GetMouseWheelMove() * 10;
+    float static totalAccumulativeHeight = 0;
+    float accumulativeHeight = 0;
+
+    posY += GetMouseWheelMove() * 30;
     if (posY > 0) posY = 0;
     int szList = ListOfSchoolYear.size();
-    if (0.18*windowHeight + (szList - 1) * 0.1*windowHeight + posY <= 650)
-            posY = 650 - (0.18*windowHeight + (szList - 1) * 0.1*windowHeight);
+    if (0.18*windowHeight + szList * 0.1*windowHeight + posY + totalAccumulativeHeight <= 720)
+            posY = 720 - (0.18*windowHeight + szList * 0.1*windowHeight + totalAccumulativeHeight);
+    
     
     for (int i = 0; i < szList; ++i)
     {
-        if (0.18*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight)
-            continue;
+        // if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
+
         Button schoolYear;
-        schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
-        schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, DARKBLUE);
+        schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
+        if (GetMouseY() >= 0.18*windowHeight && schoolYear.isPRESSED(MOUSE_BUTTON_LEFT))
+            BUTTON_SchoolYear_isCLICKED[i] ^= 1;
+
+        if (BUTTON_SchoolYear_isCLICKED[i]) {
+            schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            
+            // Draw 3 buttons for semester in rectangle
+            Button Semester1;
+            Semester1.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Semester1.SetText(PT_serif_bold, "Semester 1", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Semester1.DrawText();
+            Button Semester2;
+            Semester2.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Semester2.SetText(PT_serif_bold, "Semester 2", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Semester2.DrawText();
+            Button Semester3;
+            Semester3.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Semester3.SetText(PT_serif_bold, "Semester 3", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Semester3.DrawText();
+
+            accumulativeHeight += 0.3*windowHeight;
+        }
+        else schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+        
         schoolYear.DrawText();
     }
+    totalAccumulativeHeight = accumulativeHeight;
 
     // draw a rectangle to hide 
     DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, 0.13*windowHeight, RAYWHITE);
@@ -164,6 +201,8 @@ void StaffUI::DrawSchoolYear()
     addSchoolYear.DrawTexture();
     Vector2 addTextOrigin = {0.035*windowWidth, 0.12*windowHeight};
     DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
+
+    DrawStaticElement();
 }
 
 void StaffUI::DrawChangePassword() {
