@@ -193,14 +193,3 @@ void LoginUI::Draw()
     DrawStatusButtons();
     DrawRetry();
 }
-
-void LoginUI::Update()
-{
-    ClearBackground(RAYWHITE);
-}
-
-void LoginUI::Tick()
-{
-    Draw();
-    Update();
-}

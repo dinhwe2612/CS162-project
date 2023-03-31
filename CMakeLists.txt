@@ -4,6 +4,8 @@ project(ProjectUI VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
+
 add_executable(ProjectUI main.cpp)
 
 add_subdirectory(external/raylib)
@@ -28,7 +30,6 @@ target_link_libraries(${PROJECT_NAME}
     ui
 )
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

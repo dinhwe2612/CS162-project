@@ -1,6 +1,8 @@
 #include "StaffUI.hpp"
-#include <array>
-#include <iostream>
+
+//---------------------------------------------------------------------------------------------//
+//                                  Construct / Deconstruct
+//---------------------------------------------------------------------------------------------//
 
 void StaffUI::Construct(float windowWidth, float windowHeight)
 {
@@ -54,6 +56,10 @@ void StaffUI::Deconstruct()
     UnloadFont(PT_serif_bold);
 }
 
+//---------------------------------------------------------------------------------------------//
+//                              All static elements drawn here
+//---------------------------------------------------------------------------------------------//
+
 void StaffUI::DrawBackground()
 {
     Vector2 origin = {0, 0};
@@ -81,7 +87,28 @@ void StaffUI::DrawStaticElement()
     // draw down arrow in top right corner
 
     dropDown.DrawTexture();
+
+    // draw current directory
+
+    Vector2 dirPos = {0.15*windowWidth, 0.01*windowHeight};
+
+    static Button ref;
+
+    for (auto& toggle : ListOfSchoolYearButtons)
+    {
+        if (toggle.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            ref = toggle;
+        }
+    }
+    DrawTextEx(PT_serif_bold, ref.Text.c_str(), dirPos, 0.015*windowWidth, 0.5, RAYWHITE);
+    
+
 }
+
+//---------------------------------------------------------------------------------------------//
+//                              All non-static elements drawn here
+//---------------------------------------------------------------------------------------------//
 
 void StaffUI::DrawDropDownAccount()
 {
@@ -140,6 +167,8 @@ void StaffUI::DrawSchoolYear()
     if (0.18*windowHeight + (szList - 1) * 0.1*windowHeight + posY <= 650)
             posY = 650 - (0.18*windowHeight + (szList - 1) * 0.1*windowHeight);
     
+    // draw and store school year buttons
+
     for (int i = 0; i < szList; ++i)
     {
         if (0.18*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight)
@@ -148,9 +177,12 @@ void StaffUI::DrawSchoolYear()
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
         schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, DARKBLUE);
         schoolYear.DrawText();
+
+        ListOfSchoolYearButtons.push_back(schoolYear);
     }
 
-    // draw a rectangle to hide 
+    // draw a rectangle to hide scroll up contents
+
     DrawRectangle(0, 0.05*windowHeight, 0.2*windowWidth, 0.13*windowHeight, RAYWHITE);
     DrawLine(0, 0.18*windowHeight, 0.2*windowWidth, 0.18*windowHeight, BLUE);
 
@@ -166,7 +198,8 @@ void StaffUI::DrawSchoolYear()
     DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
 }
 
-void StaffUI::DrawChangePassword() {
+void StaffUI::DrawChangePassword() 
+{
     static int statusChangePassword = 0;
 
     DrawBackground();
@@ -246,9 +279,12 @@ void StaffUI::DrawChangePassword() {
     }
 }
 
+//---------------------------------------------------------------------------------------------//
+//                              All objects drawn managed here
+//---------------------------------------------------------------------------------------------//
+
 void StaffUI::Draw()
 {
-    
     switch (menuStaff) {
     default:
         DrawBackground();

@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Button.hpp"
 #include "InputBar.hpp"
+#include <array>
+#include <vector>
 
 struct StaffUI 
 {
@@ -21,6 +23,7 @@ struct StaffUI
     Button cornerStripes; 
     Button addSchoolYear;
 
+    std::vector<Button> ListOfSchoolYearButtons;
 
     InputBar oldPassword;
     InputBar newPassword;
