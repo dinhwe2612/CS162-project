@@ -167,7 +167,7 @@ void StaffUI::DrawSchoolYear()
 
     for (int i = 0; i < szList; ++i)
     {
-        // if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
+        // if (0.18*windowHeight + i * 0.1*windowHeight + posY   + accumulativeHeight <= 0.05*windowHeight) continue;
 
         Button schoolYear;
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
@@ -176,7 +176,22 @@ void StaffUI::DrawSchoolYear()
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
             schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+<<<<<<< Updated upstream
             DrawSchoolYearMenu();
+=======
+            
+            // Draw 3 buttons for semester in rectangle
+            Button Semester;
+            Semester.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Semester.SetText(PT_serif_bold, "Semester", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Semester.DrawText();
+            Button Classes;
+            Classes.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Classes.SetText(PT_serif_bold, "Classes", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Classes.DrawText();
+
+            accumulativeHeight += 0.2*windowHeight;
+>>>>>>> Stashed changes
         }
         //     // Draw 3 buttons for semester in rectangle
         //     Button Semester1;
