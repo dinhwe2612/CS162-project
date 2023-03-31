@@ -176,9 +176,7 @@ void StaffUI::DrawSchoolYear()
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
             schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-<<<<<<< Updated upstream
             DrawSchoolYearMenu();
-=======
             
             // Draw 3 buttons for semester in rectangle
             Button Semester;
@@ -191,7 +189,6 @@ void StaffUI::DrawSchoolYear()
             Classes.DrawText();
 
             accumulativeHeight += 0.2*windowHeight;
->>>>>>> Stashed changes
         }
         //     // Draw 3 buttons for semester in rectangle
         //     Button Semester1;
