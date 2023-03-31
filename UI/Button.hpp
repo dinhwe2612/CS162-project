@@ -7,9 +7,11 @@
 
 using namespace std;
 
-struct Button {
+struct Button 
+{
     Rectangle buttonShape;
     Color inColor, outColor;
+    
     //Text
     Font font;
     string Text;
@@ -17,6 +19,7 @@ struct Button {
     float fontSize;
     float spacing;
     Color textColor;
+    
     //Texture
     Texture2D image;
     Rectangle bsrc;

@@ -1,7 +1,11 @@
 #pragma once
 #include <iostream> 
 #include <string.h>
+#ifdef _WIN32
 #include <direct.h>
+#elif defined __linux__
+#include <sys/stat.h>
+  #endif
 #include <filesystem>
 // IF YOU WANT TO UPDATE ONE SPECIFIC FILE, 2 FUNCTIONS IN StaffFunc.h  MAY HELP.
 // FOR SPECIFIC, THEY TAKE IN THE INFORMATION AS A BLOCK OF STRING THAT
