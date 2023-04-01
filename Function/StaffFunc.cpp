@@ -244,9 +244,11 @@ void Update_File(string fileaddress, string* information)
     out.open(fileaddress.c_str());
     while (i <= atoi(information[0].c_str()))
     {
+        //cout << i << '\n';
         out << information[i] << '\n';
         i++;
     }
+    //cout << i << '\n';
     out.close();
     return;
 }
@@ -354,6 +356,24 @@ void Add1StudenttoCourse(string studentid, string courseaddress)
     out.open(address.c_str(), ios::app);
     out << studentid << '\n';
     out.close();
+    int number = 1;
+    int* sorting = new int[100];
+    string *id = Read_File(address);
+    while (number <= atoi(id[0].c_str()))
+    {
+        sorting[number] = atoi(id[number].c_str());
+        number++;
+    }
+    sorting[0] = number - 1;
+    sort(sorting + 1, sorting + number);
+    out.open(address.c_str());
+    number = 1;
+    while (number <= sorting[0])
+    {
+        out << sorting[number] << '\n';
+        number++;
+    }
+    out.close();
     address = courseaddress + "/Course_Info.txt";
     string* information; 
     information = Read_File(address);
@@ -435,14 +455,17 @@ void AddDatatoStudentFile (string id, string schoolyear, string semester, string
         info[i] = info[i + 8];
         i++;
     }
+    //cout << i << '\n';
     int j = 1;
     // characeter endline '\n' redundant;
     //out.close();
     while (j <= atoi(data[0].c_str()))
     {
         info[i] = data[j];
+        //cout << data[j] << '\n';
         j++; i++;
     }
+    info[0] = to_string(i - 1);
     Update_File(fileaddress, info);
 }
 
@@ -502,14 +525,15 @@ void DeleteACourse(string courseid_coursename_address)
     return;
 }
 
-int main ()
-{
-    //Creat_A_Semester();
-    //AddCourse("../Data/SchoolYear/2021-2022/Autumn");
-    //Update_CourseInformation("../Data/SchoolYear/2021-2022/Autumn");
-    //DeleteACourse(".. /Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
-    //AddClasstoCourse_CSV("D:/New folder (2)/ly 2/Student.csv", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
-    Add1StudenttoCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
-    return 0;
-}
+// int main ()
+// {
+//     //Creat_A_Semester();
+//     //AddCourse("../Data/SchoolYear/2021-2022/Autumn");
+//     //Update_CourseInformation("../Data/SchoolYear/2021-2022/Autumn");
+//     //DeleteACourse(".. /Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     //AddClasstoCourse_CSV("D:/New folder (2)/ly 2/Student.csv", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     //Add1StudenttoCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     //DeleteACourse("../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     return 0;
+// }
 
