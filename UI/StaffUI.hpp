@@ -22,6 +22,8 @@ struct StaffUI
     Button ChangePassWord;
     Button cornerStripes; 
     Button addSchoolYear;
+    Button schoolYearMenu_Semester;
+    Button schoolYearMenu_Class;
 
     std::vector<Button> ListOfSchoolYearButtons;
 
