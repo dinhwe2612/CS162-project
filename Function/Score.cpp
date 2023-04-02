@@ -1,6 +1,6 @@
-#include"StudentStruct.h"
-#include"StaffFunc.h"
-#include"ScoreStruct.h"
+#include"../Header/StudentStruct.h"
+#include"../Header/StaffFunc.h"
+#include"../Header/ScoreStruct.h"
 #include<fstream>
 
 //The maximum number of students in the course
@@ -70,7 +70,7 @@ void staff_Views_Scoreboard(string& schoolyear, string& semester, string& course
 	string path_txt = "";
 	bool type = false; // if information is typed and exists, type=true, otherwise false (used for input functions: sy,semester,course)
 	int option;
-	cout << "Press 1 to continue with viewing score\n";
+	cout << "Press 1 to continue with viewing scores\n";
 	cout << "Press 0 to exit\n";
 	cout << "Please, press one key: ";
 	cin >> option;
@@ -85,7 +85,7 @@ void staff_Views_Scoreboard(string& schoolyear, string& semester, string& course
 			int numOf_id = getNumberOf(path_txt);
 			numOf_id = numOf_id - 4;
 			if (numOf_id == 0)
-				cout << "Courses have not been added yet! You can not view score of them." << endl;
+				cout << "Courses have not been added yet! You can not view scores of them." << endl;
 			else {
 				string* courseID = new string[numOf_id];
 				loadCourseID(courseID, schoolyear, semester, path_txt);
@@ -104,8 +104,8 @@ void staff_Views_Scoreboard(string& schoolyear, string& semester, string& course
 		else if (option == 0)
 			return;
 		cout << "-------------------\n";
-		cout << "Press 1 to continue with viewing score\n";
-		cout << "Press 0 exit\n";
+		cout << "Press 1 to continue with viewing scores\n";
+		cout << "Press 0 to exit\n";
 		cout << "-------------------\n";
 		cout << "Please, press one key: ";
 		cin >> option;
@@ -205,33 +205,42 @@ void inputSemester(string& semester, string& path, bool& type) {
 
 void inputCourse(string& course_id, string* courseID, int numberof_id, string& path, bool& type) {
 	//cin.ignore(32767, '\n');
-	cout << "Which course do you want to view its score? Please select one of courses above and type here: ";
-	getline(cin, course_id);
-	string dir = path + '/' + course_id + '/' + course_id + ".csv";
-	try {
-		if (isPathExist(dir)) {
-			type = true;
-			path = dir;
+	cout << "Which course do you want to choose? Please select one of numbers above and type here: ";
+	int i;
+	//getline(cin, course_id);
+	cin >> i;
+	cin.ignore(32767, '\n');
+
+	if (i > 0 && i <= numberof_id) {
+		string dir = path + '/' + courseID[i - 1] + '/' + courseID[i - 1] + ".csv";
+		try {
+			if (isPathExist(dir)) {
+				type = true;
+				path = dir;
+				course_id = courseID[i - 1];
+			}
+			else
+				throw (courseID[i - 1]);
 		}
-		else
-			throw (course_id);
-	}
-	catch (string _course_id) {
-		cout << "The course " << _course_id << " has not been uploaded scores yet." << endl;
-		cout << "Do you want to type again\n";
-		cout << "1. Yes\n" << "Other. No\n";
-		cout << "Choose one number: ";
-		int opt;
-		cin >> opt;
-		cin.ignore();
-		if (opt == 1) {
-			//type = true;
-			_course_id = "";
-			inputCourse(_course_id, courseID, numberof_id, path, type);
+		catch (string _course_id) {
+			cout << "The course " << _course_id << " has not been uploaded scores yet." << endl;
+			cout << "Do you want to type again\n";
+			cout << "1. Yes\n" << "Others. No\n";
+			cout << "Choose one number: ";
+			int opt;
+			cin >> opt;
+			cin.ignore();
+			if (opt == 1) {
+				//type = true;
+				_course_id = "";
+				inputCourse(_course_id, courseID, numberof_id, path, type);
+			}
+			else
+				type = false;
 		}
-		else
-			type = false;
 	}
+	else
+		inputCourse(course_id, courseID, numberof_id, path, type);
 }
 
 bool isPathExist(const string& path) {
