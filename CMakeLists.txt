@@ -4,30 +4,30 @@ project(ProjectUI VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 
 add_executable(ProjectUI main.cpp)
 
 include_directories(Function)
 add_subdirectory(external/raylib)
-#add_subdirectory(Function)
+add_subdirectory(Function)
 add_subdirectory(UI)
 
 target_include_directories(${PROJECT_NAME} 
     PUBLIC external/raylib/src
     PUBLIC UI
-    #PUBLIC Function
+    PUBLIC Function
 )
 
 link_directories(${PROJECT_NAME} 
     PRIVATE external/raylib/src
-    #PRIVATE Function
+    PRIVATE Function
     PRIVATE UI
 )
 
 target_link_libraries(${PROJECT_NAME} 
     raylib
-    #func
+    func
     ui
 )
 
