@@ -8,6 +8,7 @@
 #include <array>
 #include <vector>
 #include <algorithm>
+#include "../Header/login.h"
 
 
 struct StaffUI 
@@ -37,6 +38,8 @@ struct StaffUI
     InputBar enterSchoolYear;
 
     bool *BUTTON_SchoolYear_isCLICKED;
+
+    string username;
 
     // for testing only, need backend to pull info from
     // add school year section in AddschoolYear() function is also a test. Need backend to modify input system

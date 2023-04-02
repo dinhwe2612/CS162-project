@@ -36,6 +36,9 @@ struct LoginUI
     bool STAFF_IS_CLICKED = true;
     bool STUDENT_IS_CLICKED = false;
     bool status = true;
+    // check whether login is success or fail
+    bool isLoginSuccess = false;
+    bool isLoginFail = false;
 
     // struct constructor / deconstructor
     void Construct(float windowWidth, float windowHeight);
@@ -49,6 +52,7 @@ struct LoginUI
         void DrawStatusButtons();
         void DrawLoginIcon();
         void DrawRetry();
+        void DrawAccountLocked();
     void Tick();
 };
 

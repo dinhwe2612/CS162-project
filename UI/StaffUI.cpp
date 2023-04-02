@@ -197,7 +197,8 @@ void StaffUI::DrawSchoolYear()
 
     for (int i = 0; i < ListSize; ++i)
     {
-        // if (0.18*windowHeight + i * 0.1*windowHeight + posY   + accumulativeHeight <= 0.05*windowHeight) continue;
+        //skip drawing if button is out of screen
+        // if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
 
         Button schoolYear;
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
@@ -205,7 +206,7 @@ void StaffUI::DrawSchoolYear()
             BUTTON_SchoolYear_isCLICKED[i] ^= 1;
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
-            schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             DrawSchoolYearMenu();
             // Draw 3 buttons for semester in rectangle
@@ -223,6 +224,7 @@ void StaffUI::DrawSchoolYear()
 
         else 
             schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+        
         schoolYear.DrawText();
 
         ListOfSchoolYearButtons.push_back(schoolYear);
@@ -313,20 +315,46 @@ void StaffUI::DrawChangePassword()
     enum STATUS_CHANGE_PASSWORD {
         DEFAULT,
         CHANGE_PASSWORD_SUCCESS,
-        CHANGE_PASSWORD_FAIL
+        OLD_PASSWORD_IS_NOT_CORRECT,
+        NEW_PASSWORD_IS_OLD_PASSWORD,
+        NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD
     };
 
     if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+        int validate = validateAccount(username, oldPassword.GetInput(), true);
+        if (validate == 1) {
+            if (newPassword.GetInput() == oldPassword.GetInput()) {
+                statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
+            } else {
+                if (newPassword.GetInput() != confirmPassword.GetInput()) {
+                    statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
+                } else {
+                    statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+                }
+            }
+        }
+        else statusChangePassword = OLD_PASSWORD_IS_NOT_CORRECT;
     }
-    if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
-        Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
-        DrawTextEx(PT_serif_regular, "Your password has been changed", changedPos, 0.022*windowWidth, 0.5, BLUE);
-    } else if (statusChangePassword == CHANGE_PASSWORD_FAIL) {
-        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
-        DrawTextEx(PT_serif_regular, "Your old password is not correct", failPos, 0.022*windowWidth, 0.5, RED);
-    } else {
 
+    if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
+        // changePassword(username, newPassword.GetInput(), true);
+        oldPassword.currentInput = "";
+        newPassword.currentInput = "";
+        confirmPassword.currentInput = "";
+        Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Your password has been changed!", changedPos, 0.022*windowWidth, 0.5, BLUE);
+    } 
+    else if (statusChangePassword == OLD_PASSWORD_IS_NOT_CORRECT) {
+        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "PLease correct your old password", failPos, 0.022*windowWidth, 0.5, RED);
+    } 
+    else if (statusChangePassword == NEW_PASSWORD_IS_OLD_PASSWORD){
+        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Please use another new password", failPos, 0.022*windowWidth, 0.5, RED);
+    } 
+    else if (statusChangePassword == NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD){
+        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Please correct confirm password", failPos, 0.022*windowWidth, 0.5, RED);
     }
 }
 
