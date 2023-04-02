@@ -209,20 +209,16 @@ void StaffUI::DrawSchoolYear()
             // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             DrawSchoolYearMenu();
             // Draw 3 buttons for semester in rectangle
-            Button Semester1;
-            Semester1.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester1.SetText(PT_serif_bold, "Semester 1", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester1.DrawText();
-            Button Semester2;
-            Semester2.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester2.SetText(PT_serif_bold, "Semester 2", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester2.DrawText();
-            Button Semester3;
-            Semester3.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester3.SetText(PT_serif_bold, "Semester 3", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester3.DrawText();
+            Button Semester;
+            Semester.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Semester.SetText(PT_serif_bold, "Semester", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Semester.DrawText();
+            Button Classes;
+            Classes.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Classes.SetText(PT_serif_bold, "Classes", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Classes.DrawText();
 
-            accumulativeHeight += 0.3*windowHeight;
+            accumulativeHeight += 0.2*windowHeight;
         }
 
         else 
