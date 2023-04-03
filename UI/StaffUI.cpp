@@ -26,12 +26,15 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     cornerStripes.SetTexture("UI/images/stripes.png");
     cornerStripes.SetRectangle(0.01*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
-    signOut.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    signOut.SetRectangle(0.86*windowWidth, 0.15*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
+    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.16*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     ChangePassWord.SetRectangle(0.86*windowWidth, 0.1*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
     ChangePassWord.SetText(PT_serif_regular, ">    Change password", 0.88*windowWidth, 0.11*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
+    ViewProfile.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
+    ViewProfile.SetText(PT_serif_regular, ">    View profile", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    
     addSchoolYear.SetTexture("UI/images/add.png");
     addSchoolYear.SetRectangle(0.01*windowWidth, 0.12*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
@@ -44,12 +47,15 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
+    oldPassword.isPassword = true;
 
     newPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 153 + 2 + 4 * 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 153 + 4 * 2, 0.022*windowWidth, 0.5, 8, "");
     newPassword.colorBox1 = WHITE;
+    newPassword.isPassword = true;
 
     confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2 + 4 * 3, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 213 + 4 * 3, 0.022*windowWidth, 0.5, 8, "");
     confirmPassword.colorBox1 = WHITE;
+    confirmPassword.isPassword = true;
 
     enterSchoolYear.Construct(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.49*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     enterSchoolYear.SetColorBox(WHITE, WHITE);
@@ -118,7 +124,7 @@ void StaffUI::DrawDropDownAccount()
     
     if (dropDown.isPRESSED(MOUSE_BUTTON_LEFT))
         IS_DROPDOWN_CLICKED = true;
-    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.86*windowWidth, 0, 0.14*windowWidth, 0.15*windowHeight}))
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.86*windowWidth, 0, 0.14*windowWidth, 0.2*windowHeight}))
         IS_DROPDOWN_CLICKED = false;
 
     // draw sign out and drop down
@@ -127,6 +133,14 @@ void StaffUI::DrawDropDownAccount()
     {
         signOut.DrawText();
         ChangePassWord.DrawText();
+        ViewProfile.DrawText();
+
+        if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuStaff = CHANGE_PASSWORD;
+        }
+        if (ViewProfile.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuStaff = VIEW_PROFILE;
+        }
     }
 }
 
@@ -330,6 +344,13 @@ void StaffUI::DrawChangePassword()
                     statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
                 } else {
                     statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+                    changePassword(username, newPassword.GetInput(), true);
+                    oldPassword.currentInput = "";
+                    oldPassword.password = "";
+                    newPassword.currentInput = "";
+                    newPassword.password = "";
+                    confirmPassword.currentInput = "";
+                    confirmPassword.password = "";
                 }
             }
         }
@@ -337,10 +358,6 @@ void StaffUI::DrawChangePassword()
     }
 
     if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
-        // changePassword(username, newPassword.GetInput(), true);
-        oldPassword.currentInput = "";
-        newPassword.currentInput = "";
-        confirmPassword.currentInput = "";
         Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
         DrawTextEx(PT_serif_regular, "Your password has been changed!", changedPos, 0.022*windowWidth, 0.5, BLUE);
     } 
@@ -356,6 +373,10 @@ void StaffUI::DrawChangePassword()
         Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
         DrawTextEx(PT_serif_regular, "Please correct confirm password", failPos, 0.022*windowWidth, 0.5, RED);
     }
+}
+
+void StaffUI::DrawViewProfile() {
+    
 }
 
 // menu when a school year in drop down bar is clicked
@@ -481,9 +502,6 @@ void StaffUI::Draw()
         DrawStaticElement();
         DrawDropDownAccount();
         DrawDropDownSchoolYear();
-        if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuStaff = CHANGE_PASSWORD;
-        }
         break;
     case CHANGE_PASSWORD:
         DrawChangePassword();

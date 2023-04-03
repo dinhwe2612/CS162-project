@@ -24,6 +24,7 @@ struct StaffUI
     Button dropDown;
     Button signOut;
     Button ChangePassWord;
+    Button ViewProfile;
     Button cornerStripes; 
     Button addSchoolYear;
     Button schoolYearMenu_Semester;
@@ -54,6 +55,7 @@ struct StaffUI
         CLASS,
         COURSE, 
         CHANGE_PASSWORD,
+        VIEW_PROFILE
     };
 
     void Construct(float windowWidth, float windowHeight);
@@ -66,6 +68,7 @@ struct StaffUI
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
         void DrawChangePassword();
+        void DrawViewProfile();
         void DrawSchoolYearMenu();
 };
 
