@@ -26,12 +26,15 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     cornerStripes.SetTexture("UI/images/stripes.png");
     cornerStripes.SetRectangle(0.01*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
-    signOut.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    signOut.SetRectangle(0.86*windowWidth, 0.15*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
+    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.16*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     ChangePassWord.SetRectangle(0.86*windowWidth, 0.1*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
     ChangePassWord.SetText(PT_serif_regular, ">    Change password", 0.88*windowWidth, 0.11*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
+    ViewProfile.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
+    ViewProfile.SetText(PT_serif_regular, ">    View profile", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    
     addSchoolYear.SetTexture("UI/images/add.png");
     addSchoolYear.SetRectangle(0.01*windowWidth, 0.12*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
@@ -39,15 +42,23 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     schoolYearMenu_Class.SetTexture("UI/images/menu-button.png");
 
+    Close.SetTexture("UI/images/close.png");
+    Close.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
     oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
+    oldPassword.isPassword = true;
 
     newPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 153 + 2 + 4 * 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 153 + 4 * 2, 0.022*windowWidth, 0.5, 8, "");
     newPassword.colorBox1 = WHITE;
+    newPassword.isPassword = true;
 
     confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2 + 4 * 3, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 213 + 4 * 3, 0.022*windowWidth, 0.5, 8, "");
     confirmPassword.colorBox1 = WHITE;
+    confirmPassword.isPassword = true;
+
+    enterSchoolYear.Construct(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.49*windowHeight, 0.018*windowWidth, 0.5, 10, "");
+    enterSchoolYear.SetColorBox(WHITE, WHITE);
 
     BUTTON_SchoolYear_isCLICKED = new bool[101];
     memset(BUTTON_SchoolYear_isCLICKED, 0, sizeof BUTTON_SchoolYear_isCLICKED);
@@ -60,6 +71,7 @@ void StaffUI::Deconstruct()
     UnloadTexture(addSchoolYear.image);
     UnloadTexture(schoolYearMenu_Class.image);
     UnloadTexture(schoolYearMenu_Semester.image);
+    UnloadTexture(Close.image);
 
     UnloadFont(PT_serif_regular);
     UnloadFont(PT_serif_bold);
@@ -112,7 +124,7 @@ void StaffUI::DrawDropDownAccount()
     
     if (dropDown.isPRESSED(MOUSE_BUTTON_LEFT))
         IS_DROPDOWN_CLICKED = true;
-    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.86*windowWidth, 0, 0.14*windowWidth, 0.15*windowHeight}))
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.86*windowWidth, 0, 0.14*windowWidth, 0.2*windowHeight}))
         IS_DROPDOWN_CLICKED = false;
 
     // draw sign out and drop down
@@ -121,6 +133,14 @@ void StaffUI::DrawDropDownAccount()
     {
         signOut.DrawText();
         ChangePassWord.DrawText();
+        ViewProfile.DrawText();
+
+        if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuStaff = CHANGE_PASSWORD;
+        }
+        if (ViewProfile.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuStaff = VIEW_PROFILE;
+        }
     }
 }
 
@@ -130,7 +150,8 @@ void StaffUI::DrawDropDownSchoolYear()
 
     static bool IS_DROPDOWN_CLICKED = false;
 
-    if (cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    if (cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT))
+    {
         IS_DROPDOWN_CLICKED = true;
         for(int i = 0; i < 50; ++i) {
             BUTTON_SchoolYear_isCLICKED[i] = false;
@@ -140,7 +161,8 @@ void StaffUI::DrawDropDownSchoolYear()
                 && !cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT) 
                 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)
                 && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Semester.buttonShape)
-                && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Class.buttonShape))
+                && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Class.buttonShape) 
+                && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.41*windowWidth, 0.38*windowHeight, 0.19*windowWidth, 0.14*windowWidth}))
         IS_DROPDOWN_CLICKED = false;
 
     // draw school year, number of school year needed here
@@ -157,6 +179,9 @@ void StaffUI::DrawDropDownSchoolYear()
             schoolYearButton.SetRectangle(windowWidth, 0.18*windowHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
         }
     }
+
+    // other objects that belong to drop down obj
+    
     DrawSchoolYearMenu();
 }
 
@@ -170,24 +195,24 @@ void StaffUI::DrawSchoolYear()
 
     // array of school year will be inserted here
     
-    std::array<std::string, 12> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016", "2014 - 2015", "2013 - 2014", "2012 - 2013", "2011 - 2012", "2010 - 2011"};
-    
     float static posY = 0;
     float static totalAccumulativeHeight = 0;
     float accumulativeHeight = 0;
 
     posY += GetMouseWheelMove() * 30;
     if (posY > 0) posY = 0;
-    int szList = ListOfSchoolYear.size();
-    if (0.18*windowHeight + szList * 0.1*windowHeight + posY + totalAccumulativeHeight <= 720)
-            posY = 720 - (0.18*windowHeight + szList * 0.1*windowHeight + totalAccumulativeHeight);
+    //int szList = ListOfSchoolYear.size();
+    // replace szList with Listsize from here
+    if (0.18*windowHeight + ListSize * 0.1*windowHeight + posY + totalAccumulativeHeight <= 720)
+            posY = 720 - (0.18*windowHeight + ListSize * 0.1*windowHeight + totalAccumulativeHeight);
     
     
     // draw and store school year buttons
 
-    for (int i = 0; i < szList; ++i)
+    for (int i = 0; i < ListSize; ++i)
     {
-        // if (0.18*windowHeight + i * 0.1*windowHeight + posY   + accumulativeHeight <= 0.05*windowHeight) continue;
+        //skip drawing if button is out of screen
+        // if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
 
         Button schoolYear;
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
@@ -195,24 +220,20 @@ void StaffUI::DrawSchoolYear()
             BUTTON_SchoolYear_isCLICKED[i] ^= 1;
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
-            schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             DrawSchoolYearMenu();
             // Draw 3 buttons for semester in rectangle
-            Button Semester1;
-            Semester1.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester1.SetText(PT_serif_bold, "Semester 1", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester1.DrawText();
-            Button Semester2;
-            Semester2.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester2.SetText(PT_serif_bold, "Semester 2", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester2.DrawText();
-            Button Semester3;
-            Semester3.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
-            Semester3.SetText(PT_serif_bold, "Semester 3", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.28*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            Semester3.DrawText();
+            Button Semester;
+            Semester.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Semester.SetText(PT_serif_bold, "Semester", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.08*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Semester.DrawText();
+            Button Classes;
+            Classes.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.2*windowWidth, 0.1*windowHeight, LIGHTGRAY, RAYWHITE);
+            Classes.SetText(PT_serif_bold, "Classes", 0.04*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + 0.18*windowHeight + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            Classes.DrawText();
 
-            accumulativeHeight += 0.3*windowHeight;
+            accumulativeHeight += 0.2*windowHeight;
         }
 
         else 
@@ -243,6 +264,7 @@ void StaffUI::DrawSchoolYear()
     DrawStaticElement();
 }
 
+// change password UI
 void StaffUI::DrawChangePassword() 
 {
     static int statusChangePassword = 0;
@@ -293,7 +315,7 @@ void StaffUI::DrawChangePassword()
     Back.SetText(PT_serif_bold, "Back", 0.01*windowWidth, 0.01*windowHeight, 0.02*windowWidth, 0.5, WHITE);
     Back.DrawText();
     if (Back.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        menuStaff = 0;
+        menuStaff = SCHOOL_YEAR;
         statusChangePassword = 0;
     }
 
@@ -307,26 +329,60 @@ void StaffUI::DrawChangePassword()
     enum STATUS_CHANGE_PASSWORD {
         DEFAULT,
         CHANGE_PASSWORD_SUCCESS,
-        CHANGE_PASSWORD_FAIL
+        OLD_PASSWORD_IS_NOT_CORRECT,
+        NEW_PASSWORD_IS_OLD_PASSWORD,
+        NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD
     };
 
     if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+        int validate = validateAccount(username, oldPassword.GetInput(), true);
+        if (validate == 1) {
+            if (newPassword.GetInput() == oldPassword.GetInput()) {
+                statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
+            } else {
+                if (newPassword.GetInput() != confirmPassword.GetInput()) {
+                    statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
+                } else {
+                    statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+                    changePassword(username, newPassword.GetInput(), true);
+                    oldPassword.currentInput = "";
+                    oldPassword.password = "";
+                    newPassword.currentInput = "";
+                    newPassword.password = "";
+                    confirmPassword.currentInput = "";
+                    confirmPassword.password = "";
+                }
+            }
+        }
+        else statusChangePassword = OLD_PASSWORD_IS_NOT_CORRECT;
     }
+
     if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
         Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
-        DrawTextEx(PT_serif_regular, "Your password has been changed", changedPos, 0.022*windowWidth, 0.5, BLUE);
-    } else if (statusChangePassword == CHANGE_PASSWORD_FAIL) {
+        DrawTextEx(PT_serif_regular, "Your password has been changed!", changedPos, 0.022*windowWidth, 0.5, BLUE);
+    } 
+    else if (statusChangePassword == OLD_PASSWORD_IS_NOT_CORRECT) {
         Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
-        DrawTextEx(PT_serif_regular, "Your old password is not correct", failPos, 0.022*windowWidth, 0.5, RED);
-    } else {
-
+        DrawTextEx(PT_serif_regular, "PLease correct your old password", failPos, 0.022*windowWidth, 0.5, RED);
+    } 
+    else if (statusChangePassword == NEW_PASSWORD_IS_OLD_PASSWORD){
+        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Please use another new password", failPos, 0.022*windowWidth, 0.5, RED);
+    } 
+    else if (statusChangePassword == NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD){
+        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        DrawTextEx(PT_serif_regular, "Please correct confirm password", failPos, 0.022*windowWidth, 0.5, RED);
     }
 }
 
+void StaffUI::DrawViewProfile() {
+    
+}
+
+// menu when a school year in drop down bar is clicked
 void StaffUI::DrawSchoolYearMenu()
 {
-    // draw top bar directory
+    // draw top bar directory & check if any school year is chosen
 
     static Button SchoolYear;
 
@@ -342,21 +398,17 @@ void StaffUI::DrawSchoolYearMenu()
             buttonChosen = true;
         }
     }
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
+    if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
             && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
             && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Semester.buttonShape)
             && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Class.buttonShape))
+            || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT))
         buttonChosen = false;
 
-    if (buttonChosen)
-        DrawTextEx(PT_serif_bold, SchoolYear.Text.c_str(), accessDir, 0.015*windowWidth, 0.5, WHITE);
-    else 
-        DrawTextEx(PT_serif_bold, "Choose a school year or create new one.", accessDir, 0.015*windowWidth, 0.5, WHITE);
-
-    // draw semester button
-
+    // respond when a school year is chosen or not chosen
     if (buttonChosen)
     {
+        DrawTextEx(PT_serif_bold, SchoolYear.Text.c_str(), accessDir, 0.015*windowWidth, 0.5, WHITE);
         schoolYearMenu_Semester.SetRectangle(0.3*windowWidth, 0.25*windowHeight, 0.6*windowWidth, 0.2*windowHeight, LIGHTGRAY, WHITE);
         schoolYearMenu_Semester.DrawTexture();
 
@@ -370,16 +422,73 @@ void StaffUI::DrawSchoolYearMenu()
         DrawTextEx(PT_serif_bold, "Class", classPos, 0.02*windowWidth, 0.5, DARKBLUE);
 
     }
-    else
+    else 
     {
+        DrawTextEx(PT_serif_bold, "Choose a school year or create new one.", accessDir, 0.015*windowWidth, 0.5, WHITE);
         schoolYearMenu_Semester.SetRectangle(1*windowWidth, 0.3*windowHeight, 0.6*windowWidth, 0.2*windowHeight, LIGHTGRAY, WHITE);
         schoolYearMenu_Semester.DrawTexture();
 
         schoolYearMenu_Class.SetRectangle(1*windowWidth, 0.6*windowHeight, 0.6*windowWidth, 0.2*windowHeight, LIGHTGRAY, WHITE);
         schoolYearMenu_Class.DrawTexture();
+        AddSchoolYear();
+    }
+}
+
+bool greater_string (std::string& a, std::string& b)
+{
+    return (a > b);
+}
+
+void StaffUI::AddSchoolYear()
+{
+    static bool isAddSchoolYearButtonPressed;
+
+    if (addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT))
+        isAddSchoolYearButtonPressed = true;
+
+    if (isAddSchoolYearButtonPressed)
+    {
+        // draw outer box border
+        Rectangle borders = {windowWidth/2, windowHeight/2, 0.19*windowWidth, 0.14*windowWidth};
+        Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+        DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+
+        // draw outer box
+        Rectangle rec = {windowWidth/2, windowHeight/2, 0.18*windowWidth, 0.13*windowWidth};
+        Vector2 recOrigin = {rec.width/2, rec.height/2};
+        DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+
+        // draw create school year button
+        Button Create;
+        Create.SetText(PT_serif_bold, "Create", 0.48*windowWidth, 0.56*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+        Create.SetRectangle(0.425*windowWidth, 0.55*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+        Create.DrawText();
+
+        // draw enter school year box
+        enterSchoolYear.Draw();
+        DrawRectangleLines(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
+
+        // draw enter school year text
+        Vector2 enterText = {0.425*windowWidth, 0.44*windowHeight};
+        DrawTextEx(PT_serif_bold, "Enter school year", enterText, 0.015*windowWidth, 0.5, BLACK);
+
+        // draw close button
+        Close.DrawTexture();
+
+        if (Close.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            isAddSchoolYearButtonPressed = false;
+        }
+
+        if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            ListOfSchoolYear[ListOfSchoolYear.size()-1] = enterSchoolYear.GetInput();
+            std::sort(ListOfSchoolYear.begin(), ListOfSchoolYear.end(), greater_string);
+            ++ListSize;
+            isAddSchoolYearButtonPressed = false;
+        }
     }
 
-    
 }
 //---------------------------------------------------------------------------------------------//
 //                              All objects drawn managed here
@@ -393,10 +502,6 @@ void StaffUI::Draw()
         DrawStaticElement();
         DrawDropDownAccount();
         DrawDropDownSchoolYear();
-        DrawSchoolYearMenu();
-        if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuStaff = CHANGE_PASSWORD;
-        }
         break;
     case CHANGE_PASSWORD:
         DrawChangePassword();

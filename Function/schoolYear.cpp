@@ -1,17 +1,17 @@
 #include <iostream>
 #include <fstream>
-#include <experimental/filesystem>
+#include <filesystem>
 #include "../Header/StudentStruct.h"
 
 using namespace std;
 
 void createSchoolYear(string beginYear, string endYear) {
     string dir = "../Data/" + beginYear + '-' + endYear + '/';
-    experimental::filesystem::create_directory(dir);
-    experimental::filesystem::create_directory(dir + "Classes");
-    experimental::filesystem::create_directory(dir + "Semester1");
-    experimental::filesystem::create_directory(dir + "Semester2");
-    experimental::filesystem::create_directory(dir + "Semester3");
+    filesystem::create_directory(dir);
+    filesystem::create_directory(dir + "Classes");
+    filesystem::create_directory(dir + "Semester1");
+    filesystem::create_directory(dir + "Semester2");
+    filesystem::create_directory(dir + "Semester3");
 }
 
 // input student info from console
@@ -43,7 +43,7 @@ void getStudent(Student& student) {
 
 // find the current biggest student no. in a class to append the next student at the end.
 int getStudentNo(string dir) {
-    if (!experimental::filesystem::exists(dir))
+    if (!filesystem::exists(dir))
         return 0;
     ifstream fin;
     fin.open(dir);
@@ -115,12 +115,12 @@ void add234(string schoolYear) {
     string path = "../Data/" + lastSchoolYear + "/Classes/"; //path of last year classes
     string dir = "../Data/" + schoolYear + "/Classes/"; // path of this year classes
     string classExclude = to_string((stoi(schoolYear.substr(2, 2)) - 4));
-    for (auto& file : experimental::filesystem::directory_iterator(path)) {
+    for (auto& file : filesystem::directory_iterator(path)) {
         if (file.path().filename().string().substr(0, 2) != classExclude) {
             string filename = file.path().filename().string();
             string sourcePath = file.path()./*filename()*/string();
             string targetPath = dir + filename;
-            experimental::filesystem::copy(sourcePath, targetPath, std::experimental::filesystem::copy_options::overwrite_existing);
+            filesystem::copy(sourcePath, targetPath, std::filesystem::copy_options::overwrite_existing);
         }
     }
 }

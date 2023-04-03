@@ -7,6 +7,9 @@
 #include "InputBar.hpp"
 #include <array>
 #include <vector>
+#include <algorithm>
+#include "../Header/login.h"
+
 
 struct StaffUI 
 {
@@ -14,24 +17,36 @@ struct StaffUI
     float windowHeight;
 
     Texture2D background;
+    
     Font PT_serif_regular;
     Font PT_serif_bold;
 
     Button dropDown;
     Button signOut;
     Button ChangePassWord;
+    Button ViewProfile;
     Button cornerStripes; 
     Button addSchoolYear;
     Button schoolYearMenu_Semester;
     Button schoolYearMenu_Class;
+    Button Close;
 
     std::vector<Button> ListOfSchoolYearButtons;
 
     InputBar oldPassword;
     InputBar newPassword;
     InputBar confirmPassword;
+    InputBar enterSchoolYear;
 
     bool *BUTTON_SchoolYear_isCLICKED;
+
+    string username;
+
+    // for testing only, need backend to pull info from
+    // add school year section in AddschoolYear() function is also a test. Need backend to modify input system
+    // also DrawSchoolYear() is adjusted to work with ListSize
+    std::array<std::string, 100> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016", "2014 - 2015", "2013 - 2014", "2012 - 2013", "2011 - 2012", "2010 - 2011"};
+    int ListSize = 12;
 
     int menuStaff;
     enum windowStaff {
@@ -39,11 +54,13 @@ struct StaffUI
         SEMESTER,
         CLASS,
         COURSE, 
-        CHANGE_PASSWORD
+        CHANGE_PASSWORD,
+        VIEW_PROFILE
     };
 
     void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
+    void AddSchoolYear(); // return whether add school year window is on
     void Draw();
         void DrawBackground();
         void DrawStaticElement();
@@ -51,6 +68,7 @@ struct StaffUI
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
         void DrawChangePassword();
+        void DrawViewProfile();
         void DrawSchoolYearMenu();
 };
 
