@@ -35,20 +35,19 @@ int main()
             switch (menuLogin) {
             default:
                 Login.Draw();
-                if (Login.signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
-                    if (Login.status == Login.STAFF_IS_CLICKED) {
-                        menuLogin = STAFF;
-                        Staff.menuStaff = 0;
-                    }
-                    if (Login.status == Login.STUDENT_IS_CLICKED) {
-                        menuLogin = STUDENT;
-                    }
+                if (Login.isLoginSuccess) {
+                    menuLogin = STAFF;
+                    Staff.menuStaff = 0;
+                    Staff.username = Login.inputUsername.GetInput();
+                    Login.inputUsername.currentInput = "";
+                    Login.inputPassword.currentInput = "";
                 }
                 break;
             case STAFF:
                 Staff.Draw();
                 if (Staff.signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
                     menuLogin = LOGIN;
+                    Login.isLoginSuccess = false;
                 }
                 break;
             }
