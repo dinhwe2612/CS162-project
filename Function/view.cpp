@@ -23,6 +23,8 @@ string getPath (string s, string name = "", string schoolYear = "") {
         return "../Data/SchoolYear/" + schoolYear + "/" + name + "/";
     else if (s.compare("StudentInCourse") == 0) 
         return "../Data/SchoolYear/" + schoolYear + "/" + name + "/" + "Student_ID_data.txt";
+    else if (s.compare("SchoolYear") == 0)
+        return "../Data/SchoolYear/";
     else
         return "";
 }
@@ -35,12 +37,10 @@ bool viewClasses(string schoolYear) {
     if (!checkDirectory(path))
         return false;
     
-    for (const auto & entry : filesystem::directory_iterator(path)) {
-        if (entry.is_regular_file()) {
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_regular_file())
             cout << entry.path().stem().string() << endl;
-        }
-    }
-    
+
     return true;
 }
 
@@ -157,6 +157,24 @@ bool viewCoursesOfStudent(string id, string schoolYear, string semester) {
         cout << studentCourses[i] << ' ';
     delete[]courses;
     delete[]studentCourses;
+    return true;
+}
+
+bool viewSchoolYear (string*& schoolYears, int& n) {
+    n = 0;
+    const filesystem::path path = getPath("SchoolYear");
+    int i = 0;
+    if (!checkDirectory(path))
+        return false;
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_directory())
+            ++n;
+    schoolYears = new string[n];
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_directory()) {
+            schoolYears[i] = entry.path().stem().string();
+            ++i;
+        }
     return true;
 }
 
