@@ -35,13 +35,11 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     addSchoolYear.SetTexture("UI/images/add.png");
     addSchoolYear.SetRectangle(0.01*windowWidth, 0.12*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
-    schoolYearMenu_Semester.SetTexture("UI/images/menu-button.png");
-
-    schoolYearMenu_Class.SetTexture("UI/images/menu-button.png");
-
     Close.SetTexture("UI/images/close.png");
     Close.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
+    // input bar
+    
     oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
 
@@ -66,8 +64,6 @@ void StaffUI::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(dropDown.image);
     UnloadTexture(addSchoolYear.image);
-    UnloadTexture(schoolYearMenu_Class.image);
-    UnloadTexture(schoolYearMenu_Semester.image);
     UnloadTexture(Close.image);
 
     UnloadFont(PT_serif_regular);
@@ -91,6 +87,7 @@ void StaffUI::Draw()
         DrawStaticElement();
         DrawDropDownAccount();
         DrawDropDownSchoolYear();
+        _Class.Draw();
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = CHANGE_PASSWORD;
         }
@@ -100,6 +97,10 @@ void StaffUI::Draw()
         break;
     case CLASS:
         _Class.Draw();
+        if (_Class.close.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            menuStaff = SCHOOL_YEAR;
+        }
         break;
     }
 }
@@ -177,8 +178,6 @@ void StaffUI::DrawDropDownSchoolYear()
     else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowWidth}) 
                 && !cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT) 
                 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)
-                && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Semester.buttonShape)
-                && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Class.buttonShape) 
                 && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.41*windowWidth, 0.38*windowHeight, 0.19*windowWidth, 0.14*windowWidth}))
         IS_DROPDOWN_CLICKED = false;
 
@@ -382,9 +381,7 @@ void StaffUI::DrawSchoolYearMenu()
     }
     if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
             && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
-            && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Semester.buttonShape)
-            && !CheckCollisionPointRec(GetMousePosition(), schoolYearMenu_Class.buttonShape))
-            || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT))
+            || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT)))
         buttonChosen = false;
 
     // respond when a school year is chosen or not chosen
@@ -455,7 +452,4 @@ void StaffUI::AddSchoolYear()
 
 }
 
-//---------------------------------------------------------------------------------------------//
-//                                  CLASS SECTION
-//---------------------------------------------------------------------------------------------//
 
