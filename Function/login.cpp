@@ -2,11 +2,11 @@
 
 // maximum amount of attempts allowed before the account is locked
 const int MAXATTEMPT = 5;
-const string ACCOUNTSTAFF = "../Data/Login/account-staff.txt";
-const string ACCOUNTSTUDENT = "../Data/Login/account-student.txt";
-const string ACCOUNTLOCKED = "../Data/Login/account-locked.txt";
-const string ACCOUNTDIR = "../Data/Login/";
-const string TMPDIR = "../Data/Login/tmp.txt";
+const string ACCOUNTSTAFF = "Data/Login/account-staff.txt";
+const string ACCOUNTSTUDENT = "Data/Login/account-student.txt";
+const string ACCOUNTLOCKED = "Data/Login/account-locked.txt";
+const string ACCOUNTDIR = "Data/Login/";
+const string TMPDIR = "Data/Login/tmp.txt";
 
 void prompt(string &userid, string &userpass, char &ans) {
     cout << "Account ID: ";
@@ -220,12 +220,12 @@ void changePassword (string id, string newpass, bool isStaff) {
     }
     fin.close();
     fout.close();
-    remove("../Data/Login/tmp.txt");
+    remove("Data/Login/tmp.txt");
 }
 
 // int main() {
 //     string id, pass;
 //     cin >> id >> pass;
-//     changePassword(id , pass, false);
+//     changePassword(id , pass, true);
 //     return 0;
 // }
