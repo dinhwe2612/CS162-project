@@ -248,6 +248,7 @@ void Update_File(string fileaddress, string* information)
         out << information[i] << '\n';
         i++;
     }
+    //out << 'a';
     //cout << i << '\n';
     out.close();
     return;
@@ -347,11 +348,12 @@ void Add1StudenttoCourse(string studentid, string courseaddress)
     while (address[i] != '\0')
     {
         if (address[i] == '/') cnt++;
-        if (cnt == 2 && address[i] != '/') schoolyear += address[i];
-        if (cnt == 3 && address[i] != '/') semester += address[i];
-        if (cnt == 4 && address[i] != '/') course += address[i];
+        if (cnt == 3 && address[i] != '/') schoolyear += address[i];
+        if (cnt == 4 && address[i] != '/') semester += address[i];
+        if (cnt == 5 && address[i] != '/') course += address[i];
         i++;
     }
+    //cout << schoolyear << semester << course << '\n';
     ofstream out;
     out.open(address.c_str(), ios::app);
     out << studentid << '\n';
@@ -391,28 +393,31 @@ void Remove1StudentfromCourse(string studentid, string courseaddress)
     out.open(address.c_str());
     while (i <= atoi(info[0].c_str()))
     {
-        if (studentid != info[i])  out << info[i] << '\n';
+        if (info[i] != studentid)  out << info[i] << '\n';
         i++;
     }
+    i = 1;
+    //cout << "ye" << '\n';
     out.close();
     int index = 0;
     int cnt = 0;
     string schoolyear = "";
     string semester = "";
     string course = "";
-    while (address[index] != '\0')
+    while (address[i] != '\0')
     {
-        if (address[index] == '/') cnt++;
-        if (cnt == 2 && address[index] != '/') schoolyear += address[index];
-        if (cnt == 3 && address[index] != '/') semester += address[index];
-        if (cnt == 4 && address[index] != '/') course += address[index];
+        if (address[i] == '/') cnt++;
+        if (cnt == 3 && address[i] != '/') schoolyear += address[i];
+        if (cnt == 4 && address[i] != '/') semester += address[i];
+        if (cnt == 5 && address[i] != '/') course += address[i];
         i++;
     }
-
-    address = courseaddress + "/Course_Info.txt";
-    string* information;
-    information = Read_File(address);
-    AddDatatoStudentFile(studentid, schoolyear, semester, course, information);
+    // cout << address << '\n';
+    // cout << schoolyear << semester << course << '\n';
+    //address = courseaddress + "/Course_Info.txt";
+    //string* information;
+    //information = Read_File(address);
+    RemoveDatafromStudentFile(studentid, schoolyear, semester, course);
     // e moi có 4 cái hà, cái hàm m 5 cái lận
     // à hay nhỉ
     cout << "This student with the ID has been removed from the current course!" <<'\n';
@@ -425,6 +430,40 @@ void Remove1StudentfromCourse(string studentid, string courseaddress)
 //    Update_CourseInformation("../Data/SchoolYear/2122/Spring");
 //    return 0;
 //}
+void RemoveDatafromStudentFile (string id, string schoolyear, string semester, string courseid)
+{
+    string fileaddress = "../Data/Student/" + id + ".txt";
+    string* info;
+    info = Read_File(fileaddress);
+    int i = 1;
+    //ofstream out;
+    //out.open(fileaddress.c_str());
+    while (i <= atoi(info[0].c_str()))
+    {
+        if (info[i] == schoolyear) break;
+        i++;
+    }
+    while (i <= atoi(info[0].c_str()))
+    {
+        if (info[i] == semester) break;
+        i++;
+    }
+    //cout << courseid << '\n';
+    while (i <= atoi(info[0].c_str()))
+    {
+        if (info[i] == courseid) break;
+        i++;
+    }
+    while (i <= atoi(info[0].c_str()) - 1)
+    {
+        info[i] = info[i + 1];
+        i++;
+    }
+    //cout << i << '\n';
+    info[0] = to_string(i - 1);
+    Update_File(fileaddress, info);
+    return;
+}
 void AddDatatoStudentFile (string id, string schoolyear, string semester, string courseid, string* data)
 {
     //add, remove student from course, linked list string for the data updating
@@ -445,14 +484,15 @@ void AddDatatoStudentFile (string id, string schoolyear, string semester, string
         if (info[i] == semester) break;
         i++;
     }
+    
     while (i <= atoi(info[0].c_str()))
     {
         if (info[i] == courseid) break;
         i++;
     }
-    while (i <= atoi(info[0].c_str()) - 8)
+    while (i <= atoi(info[0].c_str()) - 1)
     {
-        info[i] = info[i + 8];
+        info[i] = info[i + 1];
         i++;
     }
     //cout << i << '\n';
@@ -477,7 +517,7 @@ void DeleteACourse(string courseid_coursename_address)
     ifstream in;
     string address = courseid_coursename_address + "/Student_ID_data.txt";
     in.open(address.c_str());
-    while (in >> id)
+    while (getline(in, id, '\n'))
     {
         Remove1StudentfromCourse(id, courseid_coursename_address);
     }
@@ -490,11 +530,12 @@ void DeleteACourse(string courseid_coursename_address)
     while (courseid_coursename_address[index] != '\0')
     {
         if (courseid_coursename_address[index] == '/') cnt++;
-        if (cnt == 2 && courseid_coursename_address[index] != '/') schoolyear += courseid_coursename_address[index];
-        if (cnt == 3 && courseid_coursename_address[index] != '/') semester += courseid_coursename_address[index];
-        if (cnt == 4 && courseid_coursename_address[index] != '/') course += courseid_coursename_address[index];
+        if (cnt == 3 && courseid_coursename_address[index] != '/') schoolyear += courseid_coursename_address[index];
+        if (cnt == 4 && courseid_coursename_address[index] != '/') semester += courseid_coursename_address[index];
+        if (cnt == 5 && courseid_coursename_address[index] != '/') course += courseid_coursename_address[index];
         index++;
     }
+    //cout << 'a' << '\n';
     //address = courseid_coursename_address - course + "Semester_Info.txt";
     address = "";
     index = 0; cnt = 0;
@@ -502,16 +543,18 @@ void DeleteACourse(string courseid_coursename_address)
     {
         if (courseid_coursename_address[index] == '/') cnt++;
         address += courseid_coursename_address[index];
-        if (cnt == 4) break;
+        if (cnt == 5) break;
+        index++;
     }
     address += "Semester_Info.txt";
+    //cout << address << '\n';
     string* info = Read_File(address);
-    in.open(address.c_str());
+    //in.open(address.c_str());
     string str;
     int i = 1;
-    while (in >> str)
+    while (i <= atoi(info[0].c_str()))
     {
-        if (str == course) break;
+        if (info[i] == course) break;
         i++;
     }
     while (i <= atoi(info[0].c_str()) - 1)
@@ -533,7 +576,10 @@ void DeleteACourse(string courseid_coursename_address)
 //     //DeleteACourse(".. /Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
 //     //AddClasstoCourse_CSV("D:/New folder (2)/ly 2/Student.csv", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
 //     //Add1StudenttoCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
-//     //DeleteACourse("../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     DeleteACourse("../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     //Remove1StudentfromCourse("22125003", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     //Remove1StudentfromCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
+//     //Add1StudenttoCourse("22125003", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
 //     return 0;
 // }
 
