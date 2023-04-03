@@ -15,6 +15,8 @@ struct InputBar {
     Color colorBox = RAYWHITE, colorBox1 = RAYWHITE, colorBox2 = RAYWHITE, colorText = BLACK;
     int MAX_SIZE = 0;
     bool OnText = false;
+    bool isPassword = false;
+    string password = "";
 
     void Construct(float x, float y, float width, float height, float cX, float cY, int _szText, float _spacing, int _MAX_SIZE, string Starting);
     void SetInputText();

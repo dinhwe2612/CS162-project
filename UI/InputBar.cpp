@@ -14,7 +14,7 @@ void InputBar::Construct(float x, float y, float width, float height, float cX, 
 void InputBar::Draw() {
     SetInputText();
     DrawRectanglePro(inputShape, origin, 0, colorBox);
-    DrawTextEx(font, (startingInput + currentInput + (OnText ? "_" : "")).c_str(), coordText, szText, spacing, colorText);
+    DrawTextEx(font, (startingInput + (isPassword ? password : currentInput) + (OnText ? "_" : "")).c_str(), coordText, szText, spacing, colorText);
 }
 
 void InputBar::SetInputText() {
@@ -31,11 +31,13 @@ void InputBar::SetInputText() {
         while(key > 0) {
             if (currentInput.size() <= MAX_SIZE) {
                 currentInput.push_back(key);
+                password.push_back('*');
             }
             key = GetCharPressed();
         }
         if (IsKeyPressed(KEY_BACKSPACE) && !currentInput.empty()) {
             currentInput.pop_back();
+            password.pop_back();
         }
 
     } else {

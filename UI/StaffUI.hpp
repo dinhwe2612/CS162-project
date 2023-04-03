@@ -9,6 +9,7 @@
 #include <array>
 #include <vector>
 #include <algorithm>
+#include "../Header/login.h"
 
 
 struct StaffUI 
@@ -28,6 +29,7 @@ struct StaffUI
     Button dropDown;
     Button signOut;
     Button ChangePassWord;
+    Button ViewProfile;
     Button cornerStripes; 
     Button addSchoolYear;
     Button Close;
@@ -41,6 +43,8 @@ struct StaffUI
     InputBar enterSchoolYear;
 
     bool *BUTTON_SchoolYear_isCLICKED;
+
+    string username;
 
     // for testing only, need backend to pull info from
     // add school year section in AddschoolYear() function is also a test. Need backend to modify input system
@@ -72,6 +76,7 @@ struct StaffUI
         CLASS,
         COURSE, 
         CHANGE_PASSWORD,
+        VIEW_PROFILE
     };
 
     void Construct(float windowWidth, float windowHeight);
@@ -84,6 +89,7 @@ struct StaffUI
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
         void DrawChangePassword();
+        void DrawViewProfile();
         void DrawSchoolYearMenu();
 };
 
