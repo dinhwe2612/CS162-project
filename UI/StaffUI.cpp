@@ -47,12 +47,15 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
+    oldPassword.isPassword = true;
 
     newPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 153 + 2 + 4 * 2, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 153 + 4 * 2, 0.022*windowWidth, 0.5, 8, "");
     newPassword.colorBox1 = WHITE;
+    newPassword.isPassword = true;
 
     confirmPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 213 + 2 + 4 * 3, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 213 + 4 * 3, 0.022*windowWidth, 0.5, 8, "");
     confirmPassword.colorBox1 = WHITE;
+    confirmPassword.isPassword = true;
 
     enterSchoolYear.Construct(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.49*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     enterSchoolYear.SetColorBox(WHITE, WHITE);
@@ -341,6 +344,13 @@ void StaffUI::DrawChangePassword()
                     statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
                 } else {
                     statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+                    changePassword(username, newPassword.GetInput(), true);
+                    oldPassword.currentInput = "";
+                    oldPassword.password = "";
+                    newPassword.currentInput = "";
+                    newPassword.password = "";
+                    confirmPassword.currentInput = "";
+                    confirmPassword.password = "";
                 }
             }
         }
@@ -348,10 +358,6 @@ void StaffUI::DrawChangePassword()
     }
 
     if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
-        changePassword(username, newPassword.GetInput(), true);
-        oldPassword.currentInput = "";
-        newPassword.currentInput = "";
-        confirmPassword.currentInput = "";
         Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
         DrawTextEx(PT_serif_regular, "Your password has been changed!", changedPos, 0.022*windowWidth, 0.5, BLUE);
     } 

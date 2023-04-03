@@ -31,6 +31,7 @@ void LoginUI::Construct(float windowWidth, float windowHeight)
     // float x, float y, float width, float height, float cX, float cY, int _szText, int _spacing, int _MAX_SIZE, string Starting
     inputUsername.Construct(486, 295.5, 305, 45, 490, 300, 30, 0.5, 11, "       ");
     inputPassword.Construct(486, 369, 305, 45, 490, 373, 30, 0.5, 11, "       ");
+    inputPassword.isPassword = true;
 
     //Button 
 
