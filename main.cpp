@@ -2,7 +2,6 @@
 #include "UI/InputBar.hpp"
 #include "UI/StaffUI.hpp"
 #include "UI/Button.hpp"
-#include "Header/login.h"
 
 int main()
 {
@@ -37,8 +36,9 @@ int main()
                 Login.Draw();
                 if (Login.isLoginSuccess) {
                     menuLogin = STAFF;
-                    Staff.menuStaff = 0;
+
                     Staff.username = Login.inputUsername.GetInput();
+                    Login.isLoginSuccess = false;
                     Login.inputUsername.currentInput = "";
                     Login.inputPassword.currentInput = "";
                 }
@@ -47,7 +47,8 @@ int main()
                 Staff.Draw();
                 if (Staff.signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
                     menuLogin = LOGIN;
-                    Login.isLoginSuccess = false;
+
+                    Staff.menuStaff = 0;
                 }
                 break;
             }
