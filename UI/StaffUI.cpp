@@ -193,7 +193,8 @@ void StaffUI::DrawDropDownSchoolYear()
     {
         IS_DROPDOWN_CLICKED ^= 1;
         if (IS_DROPDOWN_CLICKED) {
-            for(int i = 0; i < 50; ++i) {
+            viewSchoolYear(ListOfSchoolYear, ListSize);
+            for(int i = 0; i < ListSize; ++i) {
                 BUTTON_SchoolYear_isCLICKED[i] = false;
             }
         }
@@ -239,12 +240,11 @@ void StaffUI::DrawSchoolYear()
     float accumulativeHeight = 0;
 
     posY += GetMouseWheelMove() * 30;
-    if (posY > 0) posY = 0;
-    //int szList = ListOfSchoolYear.size();
-    // replace szList with Listsize from here
+    
+    // limit the range of SchoolYearButtons
     if (0.18*windowHeight + ListSize * 0.1*windowHeight + posY + totalAccumulativeHeight <= 720)
             posY = 720 - (0.18*windowHeight + ListSize * 0.1*windowHeight + totalAccumulativeHeight);
-    
+    if (posY > 0) posY = 0;
     
     // draw and store school year buttons
 
@@ -493,10 +493,10 @@ void StaffUI::AddSchoolYear()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            ListOfSchoolYear[ListOfSchoolYear.size()-1] = enterSchoolYear.GetInput();
-            std::sort(ListOfSchoolYear.begin(), ListOfSchoolYear.end(), greater_string);
-            ++ListSize;
+            cout << "ye";
+            createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
             isAddSchoolYearButtonPressed = false;
+            enterSchoolYear.currentInput = "";
         }
 
         // draw enter school year box
@@ -510,8 +510,10 @@ void StaffUI::AddSchoolYear()
         // draw close button and its function
         Close.DrawTexture();
 
-        if (Close.isPRESSED(MOUSE_BUTTON_LEFT))
+        if (Close.isPRESSED(MOUSE_BUTTON_LEFT)) {
             isAddSchoolYearButtonPressed = false;
+            enterSchoolYear.currentInput = "";
+        }
     }
 
 }

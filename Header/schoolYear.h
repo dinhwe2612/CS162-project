@@ -6,4 +6,4 @@
 
 using namespace std;
 
-void createSchoolYear(string schoolYear);
+bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear);

@@ -1,19 +1,30 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <algorithm>
 #include "../Header/StudentStruct.h"
 
 using namespace std;
 
-bool createSchoolYear(string schoolYear) {
-    string dir = "Data/" + schoolYear + '/';
-    if (!filesystem::is_directory(dir))
+bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
+    string dir = "Data/SchoolYear/" + schoolYear + '/';
+    if (filesystem::is_directory(dir))
         return false;
     filesystem::create_directory(dir);
     filesystem::create_directory(dir + "Classes");
     filesystem::create_directory(dir + "Spring");
     filesystem::create_directory(dir + "Summer");
     filesystem::create_directory(dir + "Autumn");
+
+    string *tmp = new string[n + 1];
+    for (int i = 0; i < n; ++i)
+        tmp[i] = ListOfSchoolYear[i];
+    tmp[n] = schoolYear;
+    delete[] ListOfSchoolYear;
+    ListOfSchoolYear = tmp;
+    ++n;
+    sort(ListOfSchoolYear, ListOfSchoolYear + n);
+
     return true;
 }
 
