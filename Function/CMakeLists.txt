@@ -1,1 +1,1 @@
-add_library(func login.cpp) #StaffFunc.cpp view.cpp Score.cpp schoolYear.cpp)
+add_library(func login.cpp view.cpp) #StaffFunc.cpp Score.cpp schoolYear.cpp)

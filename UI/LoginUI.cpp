@@ -184,7 +184,7 @@ void LoginUI::DrawRetry()
 //                              All objects drawn managed here
 //---------------------------------------------------------------------------------------------//
 
-void LoginUI::Draw()
+void LoginUI::Draw(int &menuLogin)
 {
     DrawBackground();
     DrawLoginBox();
@@ -198,6 +198,7 @@ void LoginUI::Draw()
         if (loginState == 1) {
             isLoginSuccess = true;
             isLoginFail = false;
+            inputPassword.password = "";
         } else if (loginState == -1 || loginState == -2) {
             isLoginFail = true;
         }

@@ -3,5 +3,7 @@ add_library(ui
     StaffUI.cpp
     InputBar.cpp
     Button.cpp
+    StaffUI_Class.cpp
     ../Function/login.cpp
+    ../Function/view.cpp
 )
