@@ -12,16 +12,11 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
     string dir = "Data/SchoolYear/" + schoolYear + '/';
     if (filesystem::is_directory(dir))
         return false;
-    if (filesystem::create_directories(dir))
-        return false;
-    if (filesystem::create_directories(dir + "Classes"))
-        return false;
-    if(!filesystem::create_directories(dir + "Spring"))
-        return false;
-    if(filesystem::create_directories(dir + "Summer"))
-        return false;
-    if(!filesystem::create_directories(dir + "Autumn"))
-        return false;
+    filesystem::create_directories(dir);
+    filesystem::create_directories(dir + "Classes");
+    filesystem::create_directories(dir + "Spring");
+    filesystem::create_directories(dir + "Summer");
+    filesystem::create_directories(dir + "Autumn");
 
     string *tmp = new string[n + 1];
     for (int i = 0; i < n; ++i)
@@ -36,7 +31,7 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
 }
 
 // return true if execute successfully
-// return false if directories cannot be created or class already exists
+// return false if directories cannot be created or school year already exists
 bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) {
     string dir = "Data/SchoolYear/" + schoolYear + "/Classes/" + Class + ".txt";
     if (filesystem::is_regular_file(dir))
