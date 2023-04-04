@@ -97,19 +97,16 @@ void StaffUI::DrawCurrentWindow() {
     }
 }
 
-void StaffUI::Draw()
+void StaffUI::Draw(int &menuLogin)
 {
     switch (menuStaff)
     {
     default:
         DrawBackground();
         DrawStaticElement();
-        DrawDropDownAccount();
-        DrawDropDownSchoolYear();
+        DrawDropDownAccount(menuLogin);//for signout button
         DrawCurrentWindow();
-        if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuStaff = CHANGE_PASSWORD;
-        }
+        DrawDropDownSchoolYear();
         break;
     case CHANGE_PASSWORD:
         DrawChangePassword();
@@ -154,7 +151,7 @@ void StaffUI::DrawStaticElement()
 //                        All non-static SCHOOL YEAR elements drawn here
 //---------------------------------------------------------------------------------------------//
 
-void StaffUI::DrawDropDownAccount()
+void StaffUI::DrawDropDownAccount(int &menuLogin)
 {
     // check if down arrow is clicked
 
@@ -173,6 +170,10 @@ void StaffUI::DrawDropDownAccount()
         ChangePassWord.DrawText();
         ViewProfile.DrawText();
 
+        if (signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuStaff = DEFAULT;
+            menuLogin = DEFAULT;
+        }
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = CHANGE_PASSWORD;
         }

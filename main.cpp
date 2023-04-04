@@ -22,9 +22,8 @@ int main()
     
     const int DEFAULT = -1;
 
-    int menuLogin = 0;
+    int menuLogin = DEFAULT;
     enum WindowLogin{
-        LOGIN,
         STAFF,
         STUDENT
     };
@@ -34,7 +33,7 @@ int main()
         BeginDrawing();
             switch (menuLogin) {
             default:
-                Login.Draw();
+                Login.Draw(menuLogin);
                 if (Login.isLoginSuccess) {
                     menuLogin = STAFF;
 
@@ -45,12 +44,7 @@ int main()
                 }
                 break;
             case STAFF:
-                Staff.Draw();
-                if (Staff.signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
-                    menuLogin = LOGIN;
-
-                    Staff.menuStaff = DEFAULT;
-                }
+                Staff.Draw(menuLogin);
                 break;
             }
         EndDrawing();

@@ -184,7 +184,7 @@ void LoginUI::DrawRetry()
 //                              All objects drawn managed here
 //---------------------------------------------------------------------------------------------//
 
-void LoginUI::Draw()
+void LoginUI::Draw(int &menuLogin)
 {
     DrawBackground();
     DrawLoginBox();

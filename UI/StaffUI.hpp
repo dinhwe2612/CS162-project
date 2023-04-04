@@ -88,10 +88,10 @@ struct StaffUI
     void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
     void AddSchoolYear(); // return whether add school year window is on
-    void Draw();
+    void Draw(int &menuLogin);
         void DrawBackground();
         void DrawStaticElement();
-        void DrawDropDownAccount();
+        void DrawDropDownAccount(int &menuLogin);
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
         void DrawChangePassword();
