@@ -5,13 +5,16 @@
 
 using namespace std;
 
-void createSchoolYear(string beginYear, string endYear) {
-    string dir = "../Data/" + beginYear + '-' + endYear + '/';
+bool createSchoolYear(string schoolYear) {
+    string dir = "Data/" + schoolYear + '/';
+    if (!filesystem::is_directory(dir))
+        return false;
     filesystem::create_directory(dir);
     filesystem::create_directory(dir + "Classes");
-    filesystem::create_directory(dir + "Semester1");
-    filesystem::create_directory(dir + "Semester2");
-    filesystem::create_directory(dir + "Semester3");
+    filesystem::create_directory(dir + "Spring");
+    filesystem::create_directory(dir + "Summer");
+    filesystem::create_directory(dir + "Autumn");
+    return true;
 }
 
 // input student info from console
@@ -127,14 +130,14 @@ void add234(string schoolYear) {
 
 
 
-int main() {
-    string path = "";
-    string Class = "22TT2";
-    createSchoolYear("2022", "2023");
-    // createSchoolYear("2021", "2022");
-    importStudent(path, "2022-2023", Class);
-    // Student student;
-    // getStudent(student);
-    // saveStudent(student, "2022-2023", Class);
-    // add234("2022-2023");
-}
+// int main() {
+//     string path = "";
+//     string Class = "22TT2";
+//     createSchoolYear("2022", "2023");
+//     // createSchoolYear("2021", "2022");
+//     importStudent(path, "2022-2023", Class);
+//     // Student student;
+//     // getStudent(student);
+//     // saveStudent(student, "2022-2023", Class);
+//     // add234("2022-2023");
+// }
