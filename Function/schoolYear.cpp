@@ -1,10 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <filesystem>
-#include <algorithm>
-#include "../Header/StudentStruct.h"
-
-using namespace std;
+#include "../Header/schoolYear.h"
 
 // return true if execute successfully
 // return false if directories cannot be created or school year already exists
@@ -95,9 +89,10 @@ int getStudentNo(string dir) {
     return n;
 }
 
+// add student to the student database and the class list of the student
 // return true if execute successfully
 // return false when student already exists, or cannot add student due to errors
-bool saveStudent(Student student, string schoolYear, string Class) {
+bool addStudent(Student student, string schoolYear, string Class) {
     string studentDir = "Data/Students/";
     if (filesystem::exists(studentDir + student.studentID + ".txt"))
         return false;
@@ -145,7 +140,7 @@ void importStudent(string dir, string schoorYear, string Class) {
         fin >> student.socialID;
         fin.ignore(1000, '\n');
         fin.ignore();
-        saveStudent(student, schoorYear, Class);
+        addStudent(student, schoorYear, Class);
     }
 }
 

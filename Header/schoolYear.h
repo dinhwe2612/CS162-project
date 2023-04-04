@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <algorithm>
 #include "../Header/StudentStruct.h"
 
 using namespace std;

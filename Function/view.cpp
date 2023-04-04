@@ -29,18 +29,24 @@ string getPath (string s, string name = "", string schoolYear = "") {
         return "";
 }
 
-// template to use:
-// if (!viewStudentInClass("22TT2", schoolYear))
-//     cout << "Class does not exist";
-bool viewClasses(string schoolYear) {
+// return true if execute successfully
+// return false if directory-related errors occur
+bool viewClasses(string*& classes, int & n, string schoolYear) {
     const filesystem::path path = getPath("Class", "", schoolYear);
     if (!checkDirectory(path))
         return false;
     
+    n = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_regular_file())
-            cout << entry.path().stem().string() << endl;
-
+            ++n;
+    
+    int i = 0;
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_regular_file()) {
+            classes[i] = entry.path().stem().string();
+            ++i;
+        }
     return true;
 }
 
