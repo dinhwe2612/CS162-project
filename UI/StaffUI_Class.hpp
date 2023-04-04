@@ -6,6 +6,7 @@
 #include "InputBar.hpp"
 #include <iostream>
 #include <array>
+#include <algorithm>
 
 struct Class
 {

@@ -20,6 +20,8 @@ int main()
     StaffUI Staff;
     Staff.Construct(WindowWidth, WindowHeight);
     
+    const int DEFAULT = -1;
+
     int menuLogin = 0;
     enum WindowLogin{
         LOGIN,
@@ -30,7 +32,6 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
-
             switch (menuLogin) {
             default:
                 Login.Draw();
@@ -38,9 +39,9 @@ int main()
                     menuLogin = STAFF;
 
                     Staff.username = Login.inputUsername.GetInput();
-                    Login.isLoginSuccess = false;
                     Login.inputUsername.currentInput = "";
                     Login.inputPassword.currentInput = "";
+                    Login.isLoginSuccess = false;
                 }
                 break;
             case STAFF:
@@ -48,7 +49,7 @@ int main()
                 if (Staff.signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
                     menuLogin = LOGIN;
 
-                    Staff.menuStaff = 0;
+                    Staff.menuStaff = DEFAULT;
                 }
                 break;
             }

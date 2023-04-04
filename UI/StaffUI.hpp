@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include "../Header/login.h"
+#include "../Header/view.h"
 
 
 struct StaffUI 
@@ -68,15 +69,20 @@ struct StaffUI
 //---------------------------------------------------------------------------------------------//
 //                               FUNCTIONS AND MENU CONTROL 
 //---------------------------------------------------------------------------------------------//
+    const int DEFAULT = -1;
 
-    int menuStaff;
+    int menuStaff = DEFAULT;
     enum windowStaff {
-        SCHOOL_YEAR,
-        SEMESTER,
-        CLASS,
-        COURSE, 
         CHANGE_PASSWORD,
         VIEW_PROFILE
+    };
+
+    int menuWindow = DEFAULT;
+    enum window {
+        // SCHOOL_YEAR,
+        // SEMESTER,
+        CLASS
+        // COURSE
     };
 
     void Construct(float windowWidth, float windowHeight);
@@ -91,6 +97,7 @@ struct StaffUI
         void DrawChangePassword();
         void DrawViewProfile();
         void DrawSchoolYearMenu();
+        void DrawCurrentWindow();
 };
 
 #endif
