@@ -92,6 +92,7 @@ void Class::DrawCreateClass()
             std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
             ++listSize;
             isAddClass = false;
+            inputClass.currentInput = "";
         }
 
         // draw enter school year box
@@ -108,8 +109,10 @@ void Class::DrawCreateClass()
         addClassClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
         addClassClose.DrawTexture();
 
-        if (addClassClose.isPRESSED(MOUSE_BUTTON_LEFT))
+        if (addClassClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
             isAddClass = false;
+            inputClass.currentInput = "";
+        }
     }
 }
 

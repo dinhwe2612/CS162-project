@@ -10,6 +10,8 @@
 #include <vector>
 #include <algorithm>
 #include "../Header/login.h"
+#include "../Header/view.h"
+#include "../Header/schoolYear.h"
 
 
 struct StaffUI 
@@ -49,7 +51,7 @@ struct StaffUI
     // for testing only, need backend to pull info from
     // add school year section in AddschoolYear() function is also a test. Need backend to modify input system
     // also DrawSchoolYear() is adjusted to work with ListSize
-    std::array<std::string, 100> ListOfSchoolYear = {"2021 - 2022", "2020 - 2021", "2019 - 2020", "2018 - 2019", "2017 - 2018", "2016 - 2017", "2015 - 2016", "2014 - 2015", "2013 - 2014", "2012 - 2013", "2011 - 2012", "2010 - 2011"};
+    string *ListOfSchoolYear;
     int ListSize = 12;
 
 
@@ -68,29 +70,35 @@ struct StaffUI
 //---------------------------------------------------------------------------------------------//
 //                               FUNCTIONS AND MENU CONTROL 
 //---------------------------------------------------------------------------------------------//
+    const int DEFAULT = -1;
 
-    int menuStaff;
+    int menuStaff = DEFAULT;
     enum windowStaff {
-        SCHOOL_YEAR,
-        SEMESTER,
-        CLASS,
-        COURSE, 
         CHANGE_PASSWORD,
         VIEW_PROFILE
+    };
+
+    int menuWindow = DEFAULT;
+    enum window {
+        // SCHOOL_YEAR,
+        // SEMESTER,
+        CLASS
+        // COURSE
     };
 
     void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
     void AddSchoolYear(); // return whether add school year window is on
-    void Draw();
+    void Draw(int &menuLogin);
         void DrawBackground();
         void DrawStaticElement();
-        void DrawDropDownAccount();
+        void DrawDropDownAccount(int &menuLogin);
         void DrawDropDownSchoolYear();
         void DrawSchoolYear();
         void DrawChangePassword();
         void DrawViewProfile();
         void DrawSchoolYearMenu();
+        void DrawCurrentWindow();
 };
 
 #endif

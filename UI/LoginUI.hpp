@@ -46,7 +46,7 @@ struct LoginUI
 
     // draw functions
     void Update();
-    void Draw();
+    void Draw(int &menuLogin);
         void DrawBackground();
         void DrawLoginBox();
         void DrawStatusButtons();

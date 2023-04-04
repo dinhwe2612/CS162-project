@@ -1,17 +1,56 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <algorithm>
 #include "../Header/StudentStruct.h"
 
 using namespace std;
 
-void createSchoolYear(string beginYear, string endYear) {
-    string dir = "../Data/" + beginYear + '-' + endYear + '/';
-    filesystem::create_directory(dir);
-    filesystem::create_directory(dir + "Classes");
-    filesystem::create_directory(dir + "Semester1");
-    filesystem::create_directory(dir + "Semester2");
-    filesystem::create_directory(dir + "Semester3");
+// return true if execute successfully
+// return false if directories cannot be created or school year already exists
+bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
+    string dir = "Data/SchoolYear/" + schoolYear + '/';
+    if (filesystem::is_directory(dir))
+        return false;
+    filesystem::create_directories(dir);
+    filesystem::create_directories(dir + "Classes");
+    filesystem::create_directories(dir + "Spring");
+    filesystem::create_directories(dir + "Summer");
+    filesystem::create_directories(dir + "Autumn");
+
+    string *tmp = new string[n + 1];
+    for (int i = 0; i < n; ++i)
+        tmp[i] = ListOfSchoolYear[i];
+    tmp[n] = schoolYear;
+    delete[] ListOfSchoolYear;
+    ListOfSchoolYear = tmp;
+    ++n;
+    sort(ListOfSchoolYear, ListOfSchoolYear + n);
+
+    return true;
+}
+
+// return true if execute successfully
+// return false if directories cannot be created or school year already exists
+bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) {
+    string dir = "Data/SchoolYear/" + schoolYear + "/Classes/" + Class + ".txt";
+    if (filesystem::is_regular_file(dir))
+        return false;
+    ifstream fout;
+    fout.open(dir);
+    if (!fout.is_open())
+        return false;
+    fout.close();
+
+    string *tmp = new string[n + 1];
+    for (int i = 0; i < n; ++i)
+        tmp[i] = ListOfClass[i];
+    tmp[n] = Class;
+    delete[] ListOfClass;
+    ListOfClass = tmp;
+    ++n;
+    sort(ListOfClass, ListOfClass + n);
+    return true;
 }
 
 // input student info from console
@@ -56,9 +95,19 @@ int getStudentNo(string dir) {
     return n;
 }
 
-void saveStudent(Student student, string schoolYear, string Class) {
+// return true if execute successfully
+// return false when student already exists, or cannot add student due to errors
+bool saveStudent(Student student, string schoolYear, string Class) {
+    string studentDir = "Data/Students/";
+    if (filesystem::exists(studentDir + student.studentID + ".txt"))
+        return false;
+    if (!filesystem::exists(studentDir)) 
+        if (!filesystem::create_directories(studentDir))
+            return false; 
     ofstream fout;
-    fout.open("../Data/Students/" + student.studentID + ".txt");
+    fout.open(studentDir + student.studentID + ".txt");
+    if (!fout.is_open())
+        return false;
     fout << student.studentID << endl;
     fout << student.firstName << endl;
     fout << student.lastName << endl;
@@ -66,11 +115,12 @@ void saveStudent(Student student, string schoolYear, string Class) {
     fout << student.DOB << endl;
     fout << student.socialID << endl;
     fout.close();
-    string dir = "../Data/" + schoolYear + "/Classes/" + Class + ".txt";
+    string dir = "Data/" + schoolYear + "/Classes/" + Class + ".txt";
     int n = getStudentNo(dir);
     fout.open(dir, ios_base::app);
     fout << n + 1 << ' ' << student.studentID << endl;
     fout.close();
+    return true;
 }
 
 // function to import students info from csv file
@@ -127,14 +177,14 @@ void add234(string schoolYear) {
 
 
 
-int main() {
-    string path = "";
-    string Class = "22TT2";
-    createSchoolYear("2022", "2023");
-    // createSchoolYear("2021", "2022");
-    importStudent(path, "2022-2023", Class);
-    // Student student;
-    // getStudent(student);
-    // saveStudent(student, "2022-2023", Class);
-    // add234("2022-2023");
-}
+// int main() {
+//     string path = "";
+//     string Class = "22TT2";
+//     createSchoolYear("2022", "2023");
+//     // createSchoolYear("2021", "2022");
+//     importStudent(path, "2022-2023", Class);
+//     // Student student;
+//     // getStudent(student);
+//     // saveStudent(student, "2022-2023", Class);
+//     // add234("2022-2023");
+// }
