@@ -102,8 +102,7 @@ bool saveStudent(Student student, string schoolYear, string Class) {
     if (filesystem::exists(studentDir + student.studentID + ".txt"))
         return false;
     if (!filesystem::exists(studentDir)) 
-        if (!filesystem::create_directories(studentDir))
-            return false; 
+        filesystem::create_directories(studentDir);
     ofstream fout;
     fout.open(studentDir + student.studentID + ".txt");
     if (!fout.is_open())
