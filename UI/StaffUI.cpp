@@ -242,7 +242,7 @@ void StaffUI::DrawSchoolYear()
     for (int i = 0; i < ListSize; ++i)
     {
         //skip drawing if button is out of screen
-        // if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
+        if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
 
         Button schoolYear;
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
@@ -250,7 +250,7 @@ void StaffUI::DrawSchoolYear()
             BUTTON_SchoolYear_isCLICKED[i] ^= 1;
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
-            schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             DrawSchoolYearMenu();
             // Draw 3 buttons for semester in rectangle
@@ -364,28 +364,28 @@ void StaffUI::DrawChangePassword()
         NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD
     };
 
-    if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        int validate = validateAccount(username, oldPassword.GetInput(), true);
-        if (validate == 1) {
-            if (newPassword.GetInput() == oldPassword.GetInput()) {
-                statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
-            } else {
-                if (newPassword.GetInput() != confirmPassword.GetInput()) {
-                    statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
-                } else {
-                    statusChangePassword = CHANGE_PASSWORD_SUCCESS;
-                    changePassword(username, newPassword.GetInput(), true);
-                    oldPassword.currentInput = "";
-                    oldPassword.password = "";
-                    newPassword.currentInput = "";
-                    newPassword.password = "";
-                    confirmPassword.currentInput = "";
-                    confirmPassword.password = "";
-                }
-            }
-        }
-        else statusChangePassword = OLD_PASSWORD_IS_NOT_CORRECT;
-    }
+    // if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    //     int validate = validateAccount(username, oldPassword.GetInput(), true);
+    //     if (validate == 1) {
+    //         if (newPassword.GetInput() == oldPassword.GetInput()) {
+    //             statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
+    //         } else {
+    //             if (newPassword.GetInput() != confirmPassword.GetInput()) {
+    //                 statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
+    //             } else {
+    //                 statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+    //                 changePassword(username, newPassword.GetInput(), true);
+    //                 oldPassword.currentInput = "";
+    //                 oldPassword.password = "";
+    //                 newPassword.currentInput = "";
+    //                 newPassword.password = "";
+    //                 confirmPassword.currentInput = "";
+    //                 confirmPassword.password = "";
+    //             }
+    //         }
+    //     }
+    //     else statusChangePassword = OLD_PASSWORD_IS_NOT_CORRECT;
+    // }
 
     if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
         Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};

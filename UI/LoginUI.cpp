@@ -193,15 +193,15 @@ void LoginUI::Draw()
     DrawLoginIcon();
     signInButton.DrawText();
     DrawStatusButtons();
-    if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        int loginState = validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status);
-        if (loginState == 1) {
+    // if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    //     int loginState = validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status);
+    //     if (loginState == 1) {
             isLoginSuccess = true;
             isLoginFail = false;
-        } else if (loginState == -1 || loginState == -2) {
-            isLoginFail = true;
-        }
-    }
+    //     } else if (loginState == -1 || loginState == -2) {
+    //         isLoginFail = true;
+    //     }
+    // }
     if (isLoginFail) {
         DrawRetry();
     }

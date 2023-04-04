@@ -14,7 +14,7 @@ void Class::Construct(int windowWidth, int windowHeight)
     close.SetRectangle(0.85*windowWidth, 0.17*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
     addClass.SetTexture("UI/images/add.png");
-    addClass.SetRectangle(0.24*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
+    addClass.SetRectangle(0.28*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
 
     inputClass.Construct(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.49*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     inputClass.SetColorBox(WHITE, WHITE);
@@ -34,8 +34,11 @@ void Class::Draw()
     DrawBackground();
     close.DrawTexture();
     addClass.DrawTexture();
+    DrawClassList();
     DrawCreateClass();
+
 }
+
 void Class::DrawBackground()
 {
     // background
@@ -49,7 +52,7 @@ void Class::DrawBackground()
     DrawRectangleRec(tdest, (Color){222, 215, 251, 255});
 
     // draw "Add new class" text
-    Vector2 textPos = {0.27*windowWidth, 0.24*windowHeight};
+    Vector2 textPos = {0.31*windowWidth, 0.24*windowHeight};
     DrawTextEx(PT_serif_bold, "Add new class", textPos, 0.02*windowWidth, 0.5, BLACK);
 }
 
@@ -110,7 +113,27 @@ void Class::DrawCreateClass()
     }
 }
 
+void Class::DrawClassList()
+{
+    float static posY = 0;
 
+    posY += GetMouseWheelMove() * 30;
+    if (posY > 0) posY = 0;
+    //int szList = ListOfSchoolYear.size();
+    // replace szList with Listsize from here
+    if (0.3*windowHeight + listSize * 0.1*windowHeight + posY <= 720)
+        posY = 720 - (0.26*windowHeight + listSize * 0.1*windowHeight);
+    
+    for (int i = 0; i < listSize; ++i)
+    {
+        if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
+
+        Button _class;
+        _class.SetRectangle(0.28*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
+        _class.SetText(PT_serif_bold, ListOfClasses[i], 0.3*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
+        _class.DrawText();
+    }
+}
 
 
 
