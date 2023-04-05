@@ -19,7 +19,7 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
     delete[] ListOfSchoolYear;
     ListOfSchoolYear = tmp;
     ++n;
-    sort(ListOfSchoolYear, ListOfSchoolYear + n);
+    sort(ListOfSchoolYear, ListOfSchoolYear + n, greater<string>());
 
     return true;
 }
