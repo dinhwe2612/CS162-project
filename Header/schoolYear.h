@@ -9,4 +9,4 @@ using namespace std;
 
 bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear);
 bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear);
-bool saveStudent(Student student, string schoolYear, string Class);
+bool addStudent(Student student, string schoolYear, string Class);

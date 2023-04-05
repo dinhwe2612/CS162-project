@@ -201,5 +201,6 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
 
 //     if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
 //         cout << "Student ID, school year or semester does not exist.";
+
 //     return 0;
 // }
