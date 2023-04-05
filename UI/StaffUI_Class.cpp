@@ -88,9 +88,11 @@ void Class::DrawCreateClass()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            ListOfClasses[ListOfClasses.size()-1] = inputClass.GetInput();
-            std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
-            ++listSize;
+            // ListOfClasses[ListOfClasses.size()-1] = inputClass.GetInput();
+            // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
+            // ++listSize;
+            cout << "YESSSS" << '\n';
+            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
             isAddClass = false;
             inputClass.currentInput = "";
         }
@@ -121,11 +123,11 @@ void Class::DrawClassList()
     float static posY = 0;
 
     posY += GetMouseWheelMove() * 30;
-    if (posY > 0) posY = 0;
     //int szList = ListOfSchoolYear.size();
     // replace szList with Listsize from here
     if (0.3*windowHeight + listSize * 0.1*windowHeight + posY <= 720)
         posY = 720 - (0.26*windowHeight + listSize * 0.1*windowHeight);
+    if (posY > 0) posY = 0;
     
     for (int i = 0; i < listSize; ++i)
     {
