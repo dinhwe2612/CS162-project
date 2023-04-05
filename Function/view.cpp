@@ -1,4 +1,5 @@
 #include "../Header/view.h"
+#include <algorithm>
 
 bool checkDirectory(const filesystem::path& path) {
     if (!filesystem::exists(path)) {
@@ -175,6 +176,7 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
             schoolYears[i] = entry.path().stem().string();
             ++i;
         }
+    sort(schoolYears, schoolYears + n, greater<string>());
     return true;
 }
 
