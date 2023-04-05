@@ -16,7 +16,7 @@ bool checkDirectory(const filesystem::path& path) {
 
 string getPath (string s, string name = "", string schoolYear = "") {
     if (s.compare("Class") == 0)
-        return "Data/" + schoolYear + "/Classes/" + name;
+        return "Data/SchoolYear" + schoolYear + "/Classes/" + name;
     else if (s.compare("Student") == 0)
         return "Data/Students/" + name + ".txt";
     else if (s.compare("Course") == 0) 
@@ -184,7 +184,7 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
     return true;
 }
 
-// int main() {
+int main() {
 //     string schoolYear = "2022-2023";
 //     // if (!viewClasses(schoolYear))
 //     //     cout << "The school year has not been created yet, or the database has been corrupted.";
@@ -198,5 +198,6 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
 
 //     if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
 //         cout << "Student ID, school year or semester does not exist.";
-//     return 0;
-// }
+
+    return 0;
+}
