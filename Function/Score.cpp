@@ -6,10 +6,13 @@
 //The maximum number of students in the course
 #define MAX_NO_STUDENTS 50
 
+const string pathToSchoolYear = "../Data/SchoolYear/";
+const string toSemesterInfo_txt = "/Semester_Info.txt";
 //Import the result of a course from a csv file
 void importScoreboard(Scoreboard* s, string course_name, int& n, string path) {
-	ifstream ifs;
-	ifs.open(path);
+	fstream ifs, ofs;
+	ifs.open(path + '/' + course_name + '/' + course_name + ".csv", ios::in);
+	ofs.open(path + '/' + course_name + '/' + course_name + "-SCORE.txt", ios::out);
 	string ignore_line = "";
 	getline(ifs, ignore_line, '\n');
 
@@ -30,21 +33,31 @@ void importScoreboard(Scoreboard* s, string course_name, int& n, string path) {
 		getline(ifs, other, '\n');
 		ifs.ignore();
 
-		s[i].studentID = student_id;
+		/*s[i].studentID = student_id;
 		s[i].lastname = student_ln;
 		s[i].firstname = student_fn;
 		s[i].total = stof(total);
 		s[i].finals = stof(finals);
 		s[i].midterm = stof(midterm);
-		s[i].other = stof(other);
-		//saveScoreOfStudent(s[i], semes_state, this_year);
+		s[i].other = stof(other);*/
+		ofs << i + 1 << ',';
+		ofs << student_id << ',';
+		ofs << student_ln << ',';
+		ofs << student_fn << ',';
+		ofs << total << ',';
+		ofs << finals << ',';
+		ofs << midterm << ',';
+		ofs << other << '\n';
+
 		i++;
 	}
 	n = i;
 	ifs.close();
+	ofs.close();
+	cout << "Import successfully!\n";
 }
 
-void viewScoreboard(Scoreboard* s, string course_name, int N) {
+/*void viewScoreboard(Scoreboard* s, string course_name, int N) {
 	cout << "No\t"
 		<< "Student ID\t"
 		<< left << setw(20) << "Last Name"
@@ -63,14 +76,58 @@ void viewScoreboard(Scoreboard* s, string course_name, int N) {
 		cout << s[i].midterm << "\t";
 		cout << s[i].other << endl;
 	}
+}*/
+
+void viewScoreboard(string path, string course_id) {
+	cout << "No\t"
+		<< "Student ID\t"
+		<< left << setw(20) << "Last Name"
+		<< left << setw(10) << "First Name\t"
+		<< "Total\t"
+		<< "Final\t"
+		<< "Midterm\t"
+		<< "Other\n";
+	ifstream ifs;
+	ifs.open(path + '/' + course_id + '/' + course_id + "-SCORE.txt");
+
+	string no = "";
+	string student_id = "";
+	string student_fn = "";
+	string student_ln = "";
+	string total = "", finals = "", midterm = "", other = "";
+	while (!ifs.eof()) {
+		getline(ifs, no, ',');
+		if (no == "")
+			break;
+		getline(ifs, student_id, ',');
+		getline(ifs, student_ln, ',');
+		getline(ifs, student_fn, ',');
+		getline(ifs, total, ',');
+		getline(ifs, finals, ',');
+		getline(ifs, midterm, ',');
+		getline(ifs, other, '\n');
+		//ifs.ignore();
+
+		cout << no << "\t";
+		cout << student_id << "\t";
+		cout << left << setw(20) << student_ln;
+		cout << left << setw(10) << student_fn << "\t";
+		cout << total << "\t";
+		cout << finals << "\t";
+		cout << midterm << "\t";
+		cout << other << '\n';
+	}
+	ifs.close();
 }
 
 void staff_Views_Scoreboard(string& schoolyear, string& semester, string& course) {
-	string path = "..Data/SchoolYear";
+	//string path = "..Data/SchoolYear";
+	string path = pathToSchoolYear;
 	string path_txt = "";
+	string path_To_Txt = "";
 	bool type = false; // if information is typed and exists, type=true, otherwise false (used for input functions: sy,semester,course)
 	int option;
-	cout << "Press 1 to continue with viewing scores\n";
+	cout << "Press 1 to continue with viewing score\n";
 	cout << "Press 0 to exit\n";
 	cout << "Please, press one key: ";
 	cin >> option;
@@ -81,30 +138,27 @@ void staff_Views_Scoreboard(string& schoolyear, string& semester, string& course
 			if (!type) return;
 			inputSemester(semester, path, type);
 			if (!type) return;
-			path_txt = path + "/Semester_Info.txt";
+			path_txt = path + toSemesterInfo_txt;
 			int numOf_id = getNumberOf(path_txt);
 			numOf_id = numOf_id - 4;
 			if (numOf_id == 0)
-				cout << "Courses have not been added yet! You can not view scores of them." << endl;
+				cout << "Courses have not been added yet! You can not view score of them." << endl;
 			else {
 				string* courseID = new string[numOf_id];
 				loadCourseID(courseID, schoolyear, semester, path_txt);
 				//check_CourseID_Csv(courseID, numOf_id, path);
 				printCourseID(courseID, numOf_id);
+				path_To_Txt = path;
 				inputCourse(course, courseID, numOf_id, path, type);
 				if (!type) return;
 				delete[] courseID;
 			}
-			int n = 0;
-			Scoreboard* s = new Scoreboard[MAX_NO_STUDENTS];
-			importScoreboard(s, course, n, path);
-			viewScoreboards(s, course, n);
-			delete[] s;
+			viewScoreboard(path_To_Txt, course);
 		}
 		else if (option == 0)
 			return;
 		cout << "-------------------\n";
-		cout << "Press 1 to continue with viewing scores\n";
+		cout << "Press 1 to continue with viewing score\n";
 		cout << "Press 0 to exit\n";
 		cout << "-------------------\n";
 		cout << "Please, press one key: ";
