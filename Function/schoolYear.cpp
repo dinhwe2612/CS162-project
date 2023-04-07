@@ -42,7 +42,6 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
     ListOfClass = tmp;
     ++n;
     sort(ListOfClass, ListOfClass + n);
-    cout << 2 << '\n';
     return true;
 }
 
@@ -171,13 +170,13 @@ void add234(string schoolYear) {
 
 
 // int main() {
-//     string path = "";
+//     string path = "C:\\Users\\User\\university\\repos\\import\\22TT2.csv";
 //     string Class = "22TT2";
 //     createSchoolYear("2022", "2023");
-//     // createSchoolYear("2021", "2022");
+//     createSchoolYear("2021", "2022");
 //     importStudent(path, "2022-2023", Class);
-//     // Student student;
-//     // getStudent(student);
-//     // saveStudent(student, "2022-2023", Class);
-//     // add234("2022-2023");
+//     Student student;
+//     getStudent(student);
+//     saveStudent(student, "2022-2023", Class);
+//     add234("2022-2023");
 // }
