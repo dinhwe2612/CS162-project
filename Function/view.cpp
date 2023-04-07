@@ -36,7 +36,6 @@ bool viewClasses(string*& classes, int & n, string schoolYear) {
     const filesystem::path path = getPath("Class", "", schoolYear);
     if (!checkDirectory(path))
         return false;
-    cout << path << endl;
     n = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_regular_file())

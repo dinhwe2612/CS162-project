@@ -42,7 +42,6 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
     ListOfClass = tmp;
     ++n;
     sort(ListOfClass, ListOfClass + n);
-    cout << 2 << '\n';
     return true;
 }
 
