@@ -100,13 +100,13 @@ void Class::DrawCreateClass()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            ListOfClasses[ListOfClasses.size()-1] = inputClass.GetInput();
-            std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
-            ++listSize;
-            // cout << "YESSSS" << '\n';
-            // createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
-            // isAddClass = false;
-            // inputClass.currentInput = "";
+            // ListOfClasses[ListOfClasses.size()-1] = inputClass.GetInput();
+            // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
+            // ++listSize;
+            
+            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
+            isAddClass = false;
+            inputClass.currentInput = "";
         }
 
         // draw enter school year box
