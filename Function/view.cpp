@@ -1,4 +1,5 @@
 #include "../Header/view.h"
+#include <algorithm>
 
 bool checkDirectory(const filesystem::path& path) {
     if (!filesystem::exists(path)) {
@@ -16,7 +17,7 @@ bool checkDirectory(const filesystem::path& path) {
 
 string getPath (string s, string name = "", string schoolYear = "") {
     if (s.compare("Class") == 0)
-        return "Data/" + schoolYear + "/Classes/" + name;
+        return "Data/SchoolYear/" + schoolYear + "/Classes/" + name;
     else if (s.compare("Student") == 0)
         return "Data/Students/" + name + ".txt";
     else if (s.compare("Course") == 0) 
@@ -35,18 +36,19 @@ bool viewClasses(string*& classes, int & n, string schoolYear) {
     const filesystem::path path = getPath("Class", "", schoolYear);
     if (!checkDirectory(path))
         return false;
-    
+    cout << path << endl;
     n = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_regular_file())
             ++n;
-    
+    classes = new string[n];
     int i = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_regular_file()) {
             classes[i] = entry.path().stem().string();
             ++i;
         }
+
     return true;
 }
 
@@ -181,6 +183,7 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
             schoolYears[i] = entry.path().stem().string();
             ++i;
         }
+    sort(schoolYears, schoolYears + n, greater<string>());
     return true;
 }
 
@@ -198,5 +201,6 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
 
 //     if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
 //         cout << "Student ID, school year or semester does not exist.";
+
 //     return 0;
 // }

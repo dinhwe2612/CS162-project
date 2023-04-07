@@ -19,7 +19,7 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
     delete[] ListOfSchoolYear;
     ListOfSchoolYear = tmp;
     ++n;
-    sort(ListOfSchoolYear, ListOfSchoolYear + n);
+    sort(ListOfSchoolYear, ListOfSchoolYear + n, greater<string>());
 
     return true;
 }
@@ -30,10 +30,8 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
     string dir = "Data/SchoolYear/" + schoolYear + "/Classes/" + Class + ".txt";
     if (filesystem::is_regular_file(dir))
         return false;
-    ifstream fout;
+    ofstream fout;
     fout.open(dir);
-    if (!fout.is_open())
-        return false;
     fout.close();
 
     string *tmp = new string[n + 1];
@@ -44,6 +42,7 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
     ListOfClass = tmp;
     ++n;
     sort(ListOfClass, ListOfClass + n);
+    cout << 2 << '\n';
     return true;
 }
 

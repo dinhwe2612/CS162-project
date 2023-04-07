@@ -259,7 +259,7 @@ void StaffUI::DrawSchoolYear()
             BUTTON_SchoolYear_isCLICKED[i] ^= 1;
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
-            schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
+            schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             DrawSchoolYearMenu();
 
@@ -276,6 +276,8 @@ void StaffUI::DrawSchoolYear()
             Classes.DrawText();
             if (Classes.isPRESSED(MOUSE_BUTTON_LEFT)) {
                 menuWindow = CLASS;
+                _Class.SchoolYear = ListOfSchoolYear[i];
+                viewClasses(_Class.ListOfClasses, _Class.listSize, _Class.SchoolYear);
             }
 
             accumulativeHeight += 0.2*windowHeight;

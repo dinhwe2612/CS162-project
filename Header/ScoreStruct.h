@@ -18,7 +18,8 @@ struct Scoreboard {
 //20.import the scoreboard of a course
 //21.view the scoreboard of a course
 void importScoreboard(Scoreboard* s, string course_name, int& n);
-void viewScoreboard(Scoreboard* s, string course_name, int N);
+//void viewScoreboard(Scoreboard* s, string course_name, int N);
+void viewScoreboard(string path, string course_id);
 
 bool isPathExist(const string& path);
 int getNumberOf(string dir);
