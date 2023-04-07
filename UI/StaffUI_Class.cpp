@@ -14,10 +14,21 @@ void Class::Construct(int windowWidth, int windowHeight)
     close.SetRectangle(0.85*windowWidth, 0.17*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
     addClass.SetTexture("UI/images/add.png");
-    addClass.SetRectangle(0.28*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
+    addClass.SetRectangle(0.31*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
+
+    drop.SetRectangle(0.8*windowWidth, 0.17*windowHeight, 0.08*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    drop.SetText(PT_serif_bold, "Drop file", 0.815*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    back.SetRectangle(0.12*windowWidth, 0.17*windowHeight, 0.06*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    back.SetText(PT_serif_bold, "Back", 0.135*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    add.SetRectangle(0.71*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    add.SetText(PT_serif_bold, "Add Student", 0.72*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     inputClass.Construct(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.49*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     inputClass.SetColorBox(WHITE, WHITE);
+
+    
 }
 
 void Class::Deconstruct()
@@ -36,6 +47,7 @@ void Class::Draw()
     addClass.DrawTexture();
     DrawClassList();
     DrawCreateClass();
+    
 
 }
 
@@ -52,7 +64,7 @@ void Class::DrawBackground()
     DrawRectangleRec(tdest, (Color){222, 215, 251, 255});
 
     // draw "Add new class" text
-    Vector2 textPos = {0.31*windowWidth, 0.24*windowHeight};
+    Vector2 textPos = {0.34*windowWidth, 0.24*windowHeight};
     DrawTextEx(PT_serif_bold, "Add new class", textPos, 0.02*windowWidth, 0.5, BLACK);
 }
 
@@ -120,22 +132,78 @@ void Class::DrawClassList()
 {
     float static posY = 0;
 
+    static bool classClicked;
+
     posY += GetMouseWheelMove() * 30;
     if (posY > 0) posY = 0;
     //int szList = ListOfSchoolYear.size();
     // replace szList with Listsize from here
-    if (0.3*windowHeight + listSize * 0.1*windowHeight + posY <= 720)
-        posY = 720 - (0.26*windowHeight + listSize * 0.1*windowHeight);
+    if (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight + posY <= 720)
+        posY = 720 - (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight);
     
     for (int i = 0; i < listSize; ++i)
     {
-        if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
-
         Button _class;
-        _class.SetRectangle(0.28*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
-        _class.SetText(PT_serif_bold, ListOfClasses[i], 0.3*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
-        _class.DrawText();
+        _class.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
+        _class.SetText(PT_serif_bold, ListOfClasses[i], 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
+        
+        if (_class.buttonShape.y >= 0.26*windowHeight && _class.buttonShape.y + _class.buttonShape.height <= 0.88*windowHeight)
+            _class.DrawText();
+
+        if (_class.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            classDir = ListOfClasses[i];
+            classClicked = true;
+        }
+
+        if (classClicked)
+            DrawViewClass();
+        
+        if (back.isPRESSED(MOUSE_BUTTON_LEFT))
+            classClicked = false;
+
+        DrawTextEx(PT_serif_bold, classDir.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     }
+}
+
+void Class::DrawViewClass()
+{
+    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    DrawRectangleRec(box, RAYWHITE);
+    
+    drop.DrawText();
+    back.DrawText();
+    add.DrawText();
+
+    static bool isDropClicked;
+    
+    if (drop.isPRESSED(MOUSE_BUTTON_LEFT))
+        isDropClicked = true;
+
+    if (isDropClicked)
+    {
+        std::string dir = LoadDroppedFile();
+
+        DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){0.43*windowWidth, 0.5*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+    }
+}
+
+std::string Class::LoadDroppedFile()
+{
+    Rectangle dropInBox = {windowWidth/2, windowHeight/2, 0.3*windowWidth, 0.3*windowHeight};
+    Vector2 dropInOrigin = {dropInBox.width/2, dropInBox.height/2};
+    DrawRectanglePro(dropInBox, dropInOrigin, 0, (Color){234, 227, 210, 255});
+    
+    if (IsFileDropped())
+    {
+        FilePathList droppedFiles = LoadDroppedFiles();
+        
+        if (IsFileExtension(droppedFiles.paths[0], ".csv"))
+        {
+            return droppedFiles.paths[0];
+        }
+    }
+    return "Drop file into this window";
 }
 
 

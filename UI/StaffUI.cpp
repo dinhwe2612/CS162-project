@@ -193,7 +193,7 @@ void StaffUI::DrawDropDownSchoolYear()
     {
         IS_DROPDOWN_CLICKED ^= 1;
         if (IS_DROPDOWN_CLICKED) {
-            viewSchoolYear(ListOfSchoolYear, ListSize);
+            // viewSchoolYear(ListOfSchoolYear, ListSize);
             for(int i = 0; i < ListSize; ++i) {
                 BUTTON_SchoolYear_isCLICKED[i] = false;
             }
@@ -443,10 +443,10 @@ void StaffUI::DrawSchoolYearMenu()
             buttonChosen = true;
         }
     }
-    if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
-            && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
-            || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT)))
-        buttonChosen = false;
+    // if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
+    //         && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
+    //         || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT)))
+    //     buttonChosen = false;
 
     // respond when a school year is chosen or not chosen
     if (buttonChosen)
@@ -494,7 +494,7 @@ void StaffUI::AddSchoolYear()
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
             cout << "ye";
-            createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
+            // createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
             isAddSchoolYearButtonPressed = false;
             enterSchoolYear.currentInput = "";
         }
