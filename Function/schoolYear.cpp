@@ -154,8 +154,8 @@ string getLastSchoolYear (string schoolYear) {
 
 void add234(string schoolYear) {
     string lastSchoolYear = getLastSchoolYear(schoolYear);
-    string path = "../Data/" + lastSchoolYear + "/Classes/"; //path of last year classes
-    string dir = "../Data/" + schoolYear + "/Classes/"; // path of this year classes
+    string path = "Data/" + lastSchoolYear + "/Classes/"; //path of last year classes
+    string dir = "Data/" + schoolYear + "/Classes/"; // path of this year classes
     string classExclude = to_string((stoi(schoolYear.substr(2, 2)) - 4));
     for (auto& file : filesystem::directory_iterator(path)) {
         if (file.path().filename().string().substr(0, 2) != classExclude) {

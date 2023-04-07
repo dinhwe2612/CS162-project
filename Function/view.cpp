@@ -16,15 +16,15 @@ bool checkDirectory(const filesystem::path& path) {
 
 string getPath (string s, string name = "", string schoolYear = "") {
     if (s.compare("Class") == 0)
-        return "../Data/SchoolYear/" + schoolYear + "/Classes/" + name;
+        return "Data/SchoolYear/" + schoolYear + "/Classes/" + name;
     else if (s.compare("Student") == 0)
-        return "../Data/Students/" + name + ".txt";
+        return "Data/Students/" + name + ".txt";
     else if (s.compare("Course") == 0) 
-        return "../Data/SchoolYear/" + schoolYear + "/" + name + "/";
+        return "Data/SchoolYear/" + schoolYear + "/" + name + "/";
     else if (s.compare("StudentInCourse") == 0) 
-        return "../Data/SchoolYear/" + schoolYear + "/" + name + "/" + "Student_ID_data.txt";
+        return "Data/SchoolYear/" + schoolYear + "/" + name + "/" + "Student_ID_data.txt";
     else if (s.compare("SchoolYear") == 0)
-        return "../Data/SchoolYear/";
+        return "Data/SchoolYear/";
     else
         return "";
 }
