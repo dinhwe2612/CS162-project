@@ -100,13 +100,13 @@ void Class::DrawCreateClass()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            // ListOfClasses[ListOfClasses.size()-1] = inputClass.GetInput();
-            // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
-            // ++listSize;
-            cout << "YESSSS" << '\n';
-            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
-            isAddClass = false;
-            inputClass.currentInput = "";
+            ListOfClasses[ListOfClasses.size()-1] = inputClass.GetInput();
+            std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
+            ++listSize;
+            // cout << "YESSSS" << '\n';
+            // createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
+            // isAddClass = false;
+            // inputClass.currentInput = "";
         }
 
         // draw enter school year box
@@ -145,6 +145,9 @@ void Class::DrawClassList()
     for (int i = 0; i < listSize; ++i)
     {
         Button _class;
+
+        static std::string classDir;
+        
         _class.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
         _class.SetText(PT_serif_bold, ListOfClasses[i], 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
         
