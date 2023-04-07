@@ -137,14 +137,19 @@ void Class::DrawClassList()
     static bool classClicked;
 
     posY += GetMouseWheelMove() * 30;
+    if (posY > 0) posY = 0;
+
     //int szList = ListOfSchoolYear.size();
     // replace szList with Listsize from here
     if (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight + posY <= 720)
         posY = 720 - (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight);
+
     
     for (int i = 0; i < listSize; ++i)
     {
         Button _class;
+
+        if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
 
         static std::string classDir;
         

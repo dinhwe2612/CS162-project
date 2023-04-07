@@ -63,6 +63,9 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     // Class initialisation
     _Class.Construct(windowWidth, windowHeight);
+
+    // Semester initialisation
+    _Semester.Construct(windowWidth, windowHeight);
 }
 
 void StaffUI::Deconstruct()
@@ -91,6 +94,12 @@ void StaffUI::DrawCurrentWindow() {
     case CLASS: 
         _Class.Draw();
         if (_Class.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuWindow = DEFAULT;
+        }
+        break;
+    case SEMESTER:
+        _Semester.Draw();
+        if (_Semester.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuWindow = DEFAULT;
         }
         break;
@@ -277,7 +286,11 @@ void StaffUI::DrawSchoolYear()
             if (Classes.isPRESSED(MOUSE_BUTTON_LEFT)) {
                 menuWindow = CLASS;
                 _Class.SchoolYear = ListOfSchoolYear[i];
-                viewClasses(_Class.ListOfClasses, _Class.listSize, _Class.SchoolYear);
+                // viewClasses(_Class.ListOfClasses, _Class.listSize, _Class.SchoolYear);
+            }
+            if (Semester.isPRESSED(MOUSE_BUTTON_LEFT)) {
+                menuWindow = SEMESTER;
+                _Semester.SchoolYear = ListOfSchoolYear[i]; 
             }
 
             accumulativeHeight += 0.2*windowHeight;

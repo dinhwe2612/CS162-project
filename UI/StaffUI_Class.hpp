@@ -7,8 +7,8 @@
 #include <iostream>
 #include <array>
 #include <algorithm>
-#include "../Header/view.h"
-#include "../Header/schoolYear.h"
+// #include "../Header/view.h"
+// #include "../Header/schoolYear.h"
 
 using namespace std;
 
