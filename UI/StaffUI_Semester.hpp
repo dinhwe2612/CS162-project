@@ -21,13 +21,18 @@ struct Semester
 
     Button addSemester;
     Button close;
+    Button back;
 
     InputBar inputSemester;
+    InputBar SemesterStartDate;
+    InputBar SemesterEndDate;
 
     // string *ListOfClasses; 
     // int listSize = 0;
 
-    std::array<std::string, 4> ListOfSemesters = {"Semester 1", "Semester 2"}; 
+    std::array<std::string, 3> ListOfSemesters = {"Semester 1", "Semester 2"}; 
+    std::array<std::array<int, 3>, 3> ListOfStartDates = {{{20, 1, 2022}, {20, 5, 2022}}};
+    std::array<std::array<int, 3>, 3> ListOfEndDates = {{{1, 5, 2022}, {1, 10, 2022}}};
     int listSize = 2;
     
     void Construct(int windowWidth, int windowHeight);
