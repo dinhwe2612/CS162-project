@@ -202,7 +202,7 @@ void StaffUI::DrawDropDownSchoolYear()
     {
         IS_DROPDOWN_CLICKED ^= 1;
         if (IS_DROPDOWN_CLICKED) {
-            viewSchoolYear(ListOfSchoolYear, ListSize);
+            // viewSchoolYear(ListOfSchoolYear, ListSize);
             for(int i = 0; i < ListSize; ++i) {
                 BUTTON_SchoolYear_isCLICKED[i] = false;
             }
@@ -394,28 +394,28 @@ void StaffUI::DrawChangePassword()
         NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD
     };
 
-    if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        int validate = validateAccount(username, oldPassword.GetInput(), true);
-        if (validate == 1) {
-            if (newPassword.GetInput() == oldPassword.GetInput()) {
-                statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
-            } else {
-                if (newPassword.GetInput() != confirmPassword.GetInput()) {
-                    statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
-                } else {
-                    statusChangePassword = CHANGE_PASSWORD_SUCCESS;
-                    changePassword(username, newPassword.GetInput(), true);
-                    oldPassword.currentInput = "";
-                    oldPassword.password = "";
-                    newPassword.currentInput = "";
-                    newPassword.password = "";
-                    confirmPassword.currentInput = "";
-                    confirmPassword.password = "";
-                }
-            }
-        }
-        else statusChangePassword = OLD_PASSWORD_IS_NOT_CORRECT;
-    }
+    // if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    //     int validate = validateAccount(username, oldPassword.GetInput(), true);
+    //     if (validate == 1) {
+    //         if (newPassword.GetInput() == oldPassword.GetInput()) {
+    //             statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
+    //         } else {
+    //             if (newPassword.GetInput() != confirmPassword.GetInput()) {
+    //                 statusChangePassword = NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD;
+    //             } else {
+    //                 statusChangePassword = CHANGE_PASSWORD_SUCCESS;
+    //                 changePassword(username, newPassword.GetInput(), true);
+    //                 oldPassword.currentInput = "";
+    //                 oldPassword.password = "";
+    //                 newPassword.currentInput = "";
+    //                 newPassword.password = "";
+    //                 confirmPassword.currentInput = "";
+    //                 confirmPassword.password = "";
+    //             }
+    //         }
+    //     }
+    //     else statusChangePassword = OLD_PASSWORD_IS_NOT_CORRECT;
+    // }
 
     if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
         Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
@@ -508,7 +508,7 @@ void StaffUI::AddSchoolYear()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
+            // createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
             isAddSchoolYearButtonPressed = false;
             enterSchoolYear.currentInput = "";
         }
