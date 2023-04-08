@@ -2,17 +2,49 @@
 #define StaffUI_Semester_hpp
 
 #include "../external/raylib/src/raylib.h"
-struct Staff_Semester
+#include "Button.hpp"
+#include "InputBar.hpp"
+#include <array>
+#include <iostream>
+
+struct Semester
 {
+    int windowWidth;
+    int windowHeight;
+
+    string SchoolYear;
+
     Texture2D background;
 
-    void Construct();
+    Font PT_serif_bold;
+    Font PT_serif_regular;
+
+    Button addSemester;
+    Button close;
+    Button back;
+
+    InputBar inputSemester;
+    InputBar SemesterStartDate;
+    InputBar SemesterEndDate;
+
+    // string *ListOfClasses; 
+    // int listSize = 0;
+
+    std::array<std::string, 3> ListOfSemesters = {"Semester 1", "Semester 2"}; 
+    std::array<std::array<int, 3>, 3> ListOfStartDates = {{{20, 1, 2022}, {20, 5, 2022}}};
+    std::array<std::array<int, 3>, 3> ListOfEndDates = {{{1, 5, 2022}, {1, 10, 2022}}};
+    int listSize = 2;
+    
+    void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
+
+    std::string LoadDroppedFile();
 
     void Draw();
         void DrawBackground();
-
+        void DrawCreateSemester();
+        void DrawSemesterList();
+        
 };
-
 
 #endif

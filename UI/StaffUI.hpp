@@ -6,12 +6,13 @@
 #include "Button.hpp"
 #include "InputBar.hpp"
 #include "StaffUI_Class.hpp"
+#include "StaffUI_Semester.hpp"
 #include <array>
 #include <vector>
 #include <algorithm>
-#include "../Header/login.h"
-#include "../Header/view.h"
-#include "../Header/schoolYear.h"
+// #include "../Header/login.h"
+// #include "../Header/view.h"
+// #include "../Header/schoolYear.h"
 
 
 struct StaffUI 
@@ -56,16 +57,12 @@ struct StaffUI
 
 
 //---------------------------------------------------------------------------------------------//
-//                                  SEMESTER SECTION
+//                               SEMESTER & CLASS DECLARATION
 //---------------------------------------------------------------------------------------------//
-
-
-//---------------------------------------------------------------------------------------------//
-//                                  SEMESTER SECTION
-//---------------------------------------------------------------------------------------------//
-
 
     Class _Class;
+
+    Semester _Semester;
 
 //---------------------------------------------------------------------------------------------//
 //                               FUNCTIONS AND MENU CONTROL 
@@ -81,7 +78,7 @@ struct StaffUI
     int menuWindow = DEFAULT;
     enum window {
         // SCHOOL_YEAR,
-        // SEMESTER,
+        SEMESTER,
         CLASS
         // COURSE
     };

@@ -74,9 +74,7 @@ bool greater_string1 (std::string& a, std::string& b)
 }
 
 void Class::DrawCreateClass()
-{
-    static bool isAddClass;
-    
+{    
     if (addClass.isPRESSED(MOUSE_BUTTON_LEFT))
         isAddClass = true;
 
@@ -104,7 +102,7 @@ void Class::DrawCreateClass()
             // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
             // ++listSize;
             
-            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
+            // createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
             isAddClass = false;
             inputClass.currentInput = "";
         }
@@ -137,14 +135,19 @@ void Class::DrawClassList()
     static bool classClicked;
 
     posY += GetMouseWheelMove() * 30;
+    if (posY > 0) posY = 0;
+
     //int szList = ListOfSchoolYear.size();
     // replace szList with Listsize from here
     if (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight + posY <= 720)
         posY = 720 - (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight);
+
     
     for (int i = 0; i < listSize; ++i)
     {
         Button _class;
+
+        if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
 
         static std::string classDir;
         
@@ -160,7 +163,7 @@ void Class::DrawClassList()
             classClicked = true;
         }
 
-        if (classClicked)
+        if (classClicked && isAddClass)
             DrawViewClass();
         
         if (back.isPRESSED(MOUSE_BUTTON_LEFT))
