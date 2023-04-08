@@ -495,8 +495,7 @@ void StaffUI::AddSchoolYear()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            cout << "ye";
-            // createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
+            createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
             isAddSchoolYearButtonPressed = false;
             enterSchoolYear.currentInput = "";
         }

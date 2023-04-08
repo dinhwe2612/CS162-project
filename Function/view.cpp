@@ -1,5 +1,4 @@
 #include "../Header/view.h"
-#include <algorithm>
 
 bool checkDirectory(const filesystem::path& path) {
     if (!filesystem::exists(path)) {
@@ -51,7 +50,22 @@ bool viewClasses(string*& classes, int & n, string schoolYear) {
     return true;
 }
 
-bool viewStudentInClass (string Class, string schoolYear) {
+int getStudentNo(string Class, string schoolYear) {
+    const filesystem::path dir = getPath("Class", Class + ".txt", schoolYear);
+    if (!filesystem::exists(dir))
+        return 0;
+    ifstream fin;
+    fin.open(dir);
+    int n = 0;
+    while(!fin.eof()){
+        fin.ignore(1000, '\n');
+        fin.ignore();
+        ++n;
+    }
+    return n;
+}
+
+bool viewStudentInClass (string Class, string schoolYear, Student*& students, int& n) {
     const filesystem::path path = getPath("Class", Class + ".txt", schoolYear);
     if (!filesystem::exists(path)) {
         // file does not exist
@@ -59,28 +73,33 @@ bool viewStudentInClass (string Class, string schoolYear) {
     }
     ifstream fin;
     fin.open(path);
+    n = getStudentNo(Class, schoolYear);
+    students = new Student[n];
+    int i = 0;
     while (!fin.eof()) {
         string studentID;
         fin.ignore();
         fin >> studentID;
         fin.ignore(1000, '\n');
         fin.ignore();
+        // get info about student from Data/Student
         ifstream fi;
+        string gender;
         fi.open(getPath("Student", studentID));
-        while (!fi.eof()) {
-            string s;
-
-            getline(fi, s, '\n');
-            if (s.compare("0") == 0)
-                cout << "Male" << endl;
-            else if (s.compare("1") == 0)
-                cout << "Female" << endl;
-            else if (s.compare("2") == 0)
-                cout << "Other" << endl;
-            else
-                cout << s << endl;
-        }
+        getline(fi, students[i].studentID, '\n');
+        getline(fi, students[i].firstName, '\n');
+        getline(fi, students[i].lastName, '\n');
+        getline(fi, gender, '\n');
+        if (gender == "0")
+            students[i].gender = 0;
+        else if (gender == "1")
+            students[i].gender = 1;
+        else
+            students[i].gender = 2;
+        getline(fi, students[i].DOB, '\n');
+        getline(fi, students[i].socialID, '\n');
         fi.close();
+        ++i;
     }
     fin.close();
     return true;
@@ -188,18 +207,21 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
 
 // int main() {
 //     string schoolYear = "2022-2023";
-//     // if (!viewClasses(schoolYear))
-//     //     cout << "The school year has not been created yet, or the database has been corrupted.";
-//     // if (!viewStudentInClass("22TT2", schoolYear))
-//     //     cout << "Class does not exist.";
+//     string Class = "22TT2";
+    // if (!viewClasses(schoolYear))
+    //     cout << "The school year has not been created yet, or the database has been corrupted.";
 
-//     // if (!viewCourses(schoolYear, "Spring"))
-//     //     cout << "Course does not exist.";
-//     // if (!viewStudentInCourse(schoolYear, "Spring", "12345"))
-//     //     cout << "Course Student List does not exist.";
+    // if (!viewCourses(schoolYear, "Spring"))
+    //     cout << "Course does not exist.";
+    // if (!viewStudentInCourse(schoolYear, "Spring", "12345"))
+    //     cout << "Course Student List does not exist.";
 
-//     if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
-//         cout << "Student ID, school year or semester does not exist.";
-
+    // if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
+    //     cout << "Student ID, school year or semester does not exist.";
+//     Student* students;
+//     int n = 0;
+//     if (!viewStudentInClass(Class, schoolYear, students, n))
+//         cout << "Class not found.";
+//     delete[]students;
 //     return 0;
 // }
