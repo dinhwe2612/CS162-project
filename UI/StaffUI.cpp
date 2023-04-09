@@ -458,10 +458,10 @@ void StaffUI::DrawSchoolYearMenu()
             buttonChosen = true;
         }
     }
-    if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
-            && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
-            || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT)))
-        buttonChosen = false;
+    // if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
+    //         && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
+    //         || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT)))
+    //     buttonChosen = false;
 
     // respond when a school year is chosen or not chosen
     if (buttonChosen)

@@ -102,7 +102,7 @@ void Class::DrawCreateClass()
             // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
             // ++listSize;
             
-            // createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
+            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
             isAddClass = false;
             inputClass.currentInput = "";
         }

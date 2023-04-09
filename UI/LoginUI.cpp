@@ -1,6 +1,5 @@
 #include "LoginUI.hpp"
 #include "StaffUI.hpp"
-#include "../Header/login.h"
 
 //---------------------------------------------------------------------------------------------//
 //                                  Construct / Deconstruct
@@ -199,12 +198,12 @@ void LoginUI::Draw(int &menuLogin)
         if (loginState == 1) {
             isLoginSuccess = true;
             isLoginFail = false;
-            inputPassword.password = "";
-        } else if (loginState == -1 || loginState == -2) {
-            isLoginFail = true;
-        }
-    }
-    if (isLoginFail) {
-        DrawRetry();
-    }
+    //         inputPassword.password = "";
+    //     } else if (loginState == -1 || loginState == -2) {
+    //         isLoginFail = true;
+    //     }
+    // }
+    // if (isLoginFail) {
+    //     DrawRetry();
+    // }
 }
