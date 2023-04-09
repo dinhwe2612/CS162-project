@@ -19,7 +19,7 @@ struct Scoreboard {
 //21.view the scoreboard of a course
 void importScoreboard(Scoreboard* s, string course_name, int& n);
 //void viewScoreboard(Scoreboard* s, string course_name, int N);
-void viewScoreboard(string path, string course_id);
+void viewScoreboard(Scoreboard* s, string course_name, int N);
 
 bool isPathExist(const string& path);
 int getNumberOf(string dir);
@@ -33,8 +33,11 @@ void inputShoolYear(string& schoolyear, string &path, bool &type);
 void inputSemester(string& semester, string &path, bool &type);
 void inputCourse(string& course_id, string* courseID, int numberof_id, string &path, bool &type);
 
-//void loadStudentListOf1Course(string& path, Scoreboard* s, int& n);
-//void exportStuScoreList(string pathToScore, string course, Scoreboard* s, int& numberOf_stu);
+//Student Result files, importing functions
+void create_StudentID_TXTFile(string studentID);
+void write_Score(Scoreboard s, string semester, string schoolyear);
+void saveScoreOf1Stu(Scoreboard* s, string schoolyear, string semester, int n);
+void importOption(string schoolyear, string semester, string course);
 
 //Staff export a list of students in a course to a csv file using this function
 void exportStuScoreListToCsv(string& schoolyear, string& semester, string& course); 
