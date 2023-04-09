@@ -34,6 +34,14 @@ struct Class
     int listSize = 0;
 
     bool isAddClass = false;
+    bool isDropClicked = false;
+    bool classClicked = false;
+
+    int DEFAULT = -1;
+    int menuClass = DEFAULT;
+    enum windowCLass {
+        VIEW_CLASS
+    };
 
     // std::array<std::string, 100> ListOfClasses = {"22TT1", "22TT2", "21TT1", "21TT2", "20TT1", "20TT2", "19TT1", "19TT2", "18TT1", "18TT2"}; 
     // int listSize = 10;
@@ -43,7 +51,7 @@ struct Class
 
     std::string LoadDroppedFile();
 
-    void Draw();
+    void Draw(int &menuWindow);
         void DrawBackground();
         void DrawCreateClass();
         void DrawClassList();

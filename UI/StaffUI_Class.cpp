@@ -40,15 +40,21 @@ void Class::Deconstruct()
     UnloadFont(PT_serif_bold);
 }
 
-void Class::Draw()
+void Class::Draw(int &menuWindow)
 {
     DrawBackground();
-    close.DrawTexture();
-    addClass.DrawTexture();
-    DrawClassList();
-    DrawCreateClass();
-    
 
+    if (menuClass == VIEW_CLASS) {
+        DrawViewClass();
+    } else {
+        close.DrawTexture();
+        addClass.DrawTexture();
+        DrawClassList();
+        DrawCreateClass();
+        if (close.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuWindow = DEFAULT;
+        }
+    }
 }
 
 void Class::DrawBackground()
@@ -132,15 +138,13 @@ void Class::DrawClassList()
 {
     float static posY = 0;
 
-    static bool classClicked = false;
-
     posY += GetMouseWheelMove() * 30;
-    if (posY > 0) posY = 0;
-
+    
     //int szList = ListOfSchoolYear.size();
     // replace szList with Listsize from here
     if (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight + posY <= 720)
         posY = 720 - (0.3*windowHeight + (1 + listSize) * 0.1*windowHeight);
+    if (posY > 0) posY = 0;
 
     
     for (int i = 0; i < listSize; ++i)
@@ -157,17 +161,15 @@ void Class::DrawClassList()
         if (_class.buttonShape.y >= 0.26*windowHeight && _class.buttonShape.y + _class.buttonShape.height <= 0.88*windowHeight)
             _class.DrawText();
 
-        if (_class.isPRESSED(MOUSE_BUTTON_LEFT))
+        if (_class.isPRESSED(MOUSE_BUTTON_LEFT) && !isAddClass)
         {
             classDir = ListOfClasses[i];
             classClicked = true;
         }
 
-        if (classClicked && isAddClass)
-            DrawViewClass();
-        
-        if (back.isPRESSED(MOUSE_BUTTON_LEFT))
-            classClicked = false;
+        if (classClicked)
+            menuClass = VIEW_CLASS;
+            // DrawViewClass();
 
         DrawTextEx(PT_serif_bold, classDir.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     }
@@ -181,12 +183,13 @@ void Class::DrawViewClass()
     drop.DrawText();
     back.DrawText();
     add.DrawText();
-
-    static bool isDropClicked;
     
     if (drop.isPRESSED(MOUSE_BUTTON_LEFT))
         isDropClicked = true;
-
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT))
+            classClicked = false,
+            menuClass = DEFAULT,    
+            isDropClicked = false;
     if (isDropClicked)
     {
         std::string dir = LoadDroppedFile();

@@ -92,10 +92,7 @@ void StaffUI::DrawCurrentWindow() {
     default:
         break;
     case CLASS: 
-        _Class.Draw();
-        if (_Class.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuWindow = DEFAULT;
-        }
+        _Class.Draw(menuWindow);
         break;
     case SEMESTER:
         _Semester.Draw();
