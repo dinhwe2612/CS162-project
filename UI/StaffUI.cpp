@@ -66,6 +66,7 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
 
     // Semester initialisation
     _Semester.Construct(windowWidth, windowHeight);
+
 }
 
 void StaffUI::Deconstruct()
@@ -100,6 +101,11 @@ void StaffUI::DrawCurrentWindow() {
     case SEMESTER:
         _Semester.Draw();
         if (_Semester.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuWindow = DEFAULT;
+        }
+    case COURSE:
+        course.Draw();
+        if (course.back.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuWindow = DEFAULT;
         }
         break;
@@ -458,9 +464,7 @@ void StaffUI::DrawSchoolYearMenu()
             buttonChosen = true;
         }
     }
-    if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) 
-            && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowHeight})
-            || addSchoolYear.isPRESSED(MOUSE_BUTTON_LEFT)))
+    if (_Semester.close.isPRESSED(MOUSE_BUTTON_LEFT))
         buttonChosen = false;
 
     // respond when a school year is chosen or not chosen
