@@ -132,7 +132,7 @@ void Class::DrawClassList()
 {
     float static posY = 0;
 
-    static bool classClicked;
+    static bool classClicked = false;
 
     posY += GetMouseWheelMove() * 30;
     if (posY > 0) posY = 0;

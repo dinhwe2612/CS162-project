@@ -7,8 +7,8 @@
 #include <iostream>
 #include <array>
 #include <algorithm>
-// #include "../Header/view.h"
-// #include "../Header/schoolYear.h"
+#include "../Header/view.h"
+#include "../Header/schoolYear.h"
 
 using namespace std;
 
@@ -32,6 +32,8 @@ struct Class
 
     string *ListOfClasses; 
     int listSize = 0;
+
+    bool isAddClass = false;
 
     // std::array<std::string, 100> ListOfClasses = {"22TT1", "22TT2", "21TT1", "21TT2", "20TT1", "20TT2", "19TT1", "19TT2", "18TT1", "18TT2"}; 
     // int listSize = 10;

@@ -10,9 +10,9 @@
 #include <array>
 #include <vector>
 #include <algorithm>
-// #include "../Header/login.h"
-// #include "../Header/view.h"
-// #include "../Header/schoolYear.h"
+#include "../Header/login.h"
+#include "../Header/view.h"
+#include "../Header/schoolYear.h"
 
 
 struct StaffUI 
@@ -62,7 +62,7 @@ struct StaffUI
 
     Class _Class;
 
-    Semester _Semester;
+    SemesterUI _Semester;
 
 //---------------------------------------------------------------------------------------------//
 //                               FUNCTIONS AND MENU CONTROL 

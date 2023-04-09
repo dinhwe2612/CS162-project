@@ -1,6 +1,6 @@
 #include "StaffUI_Semester.hpp"
 
-void Semester::Construct(int windowWidth, int windowHeight)
+void SemesterUI::Construct(int windowWidth, int windowHeight)
 {
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
@@ -26,7 +26,7 @@ void Semester::Construct(int windowWidth, int windowHeight)
     SemesterEndDate.SetColorBox(WHITE, WHITE);
 }
 
-void Semester::Deconstruct()
+void SemesterUI::Deconstruct()
 {
     UnloadTexture(background);
     UnloadTexture(close.image);
@@ -35,7 +35,7 @@ void Semester::Deconstruct()
     UnloadFont(PT_serif_bold);
 }
 
-void Semester::Draw()
+void SemesterUI::Draw()
 {
     DrawBackground();
     close.DrawTexture();
@@ -45,7 +45,7 @@ void Semester::Draw()
 
 }
 
-void Semester::DrawBackground()
+void SemesterUI::DrawBackground()
 {
     // background
     Rectangle bsrc = {0, 0, background.width, background.height};
@@ -62,7 +62,7 @@ void Semester::DrawBackground()
     DrawTextEx(PT_serif_bold, "Add new Semester", textPos, 0.02*windowWidth, 0.5, BLACK);
 }
 
-void Semester::DrawCreateSemester()
+void SemesterUI::DrawCreateSemester()
 {
     static bool isAddSemester;
     
@@ -125,7 +125,7 @@ void Semester::DrawCreateSemester()
     }
 }
 
-void Semester::DrawSemesterList()
+void SemesterUI::DrawSemesterList()
 {
     static bool SemesterClicked;
     
