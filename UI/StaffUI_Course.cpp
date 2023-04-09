@@ -27,8 +27,9 @@ Course::~Course()
     UnloadFont(PT_serif_regular);
 }
 
-void Course::Draw()
+void Course::Draw(int& menuWindow)
 {
+    
     DrawBackground();
 }
 

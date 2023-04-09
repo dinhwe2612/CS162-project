@@ -4,6 +4,7 @@
 #include "../external/raylib/src/raylib.h"
 #include "Button.hpp"
 #include "InputBar.hpp"
+#include <array>
 
 struct Course 
 {
@@ -17,12 +18,13 @@ struct Course
     Font PT_serif_bold;
     Font PT_serif_regular;
 
-    std::array <std::string, 10> ListOfCourses
+    std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252"};
+    int listCourseSize = 6;
 
     Course(int windowWidth, int windowHeight);
     ~Course();
 
-    void Draw();
+    void Draw(int& menuWindow);
         void DrawBackground();
 
 };
