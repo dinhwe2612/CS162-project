@@ -7,7 +7,7 @@
 #include <array>
 #include <iostream>
 
-struct Semester
+struct SemesterUI
 {
     int windowWidth;
     int windowHeight;
