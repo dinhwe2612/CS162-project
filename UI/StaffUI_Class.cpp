@@ -346,11 +346,22 @@ void Class::DrawAddStudent() {
         newStudent.gender = Gender;
         newStudent.DOB = DOB.GetInput();
         newStudent.socialID = socialID.GetInput();
+        Gender = -1;
+        StudentID.currentInput = "";
+        firstName.currentInput = "";
+        lastName.currentInput = "";
+        DOB.currentInput = "";
+        socialID.currentInput = "";
         addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
     }
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;
         Gender = -1;
+        StudentID.currentInput = "";
+        firstName.currentInput = "";
+        lastName.currentInput = "";
+        DOB.currentInput = "";
+        socialID.currentInput = "";
     }
 }
 
