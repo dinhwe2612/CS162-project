@@ -1,9 +1,35 @@
 #include "../Header/schoolYear.h"
 
+string getLastSchoolYear (string schoolYear) {
+    string tmp = schoolYear.substr(0, 4);
+    int year = stoi(tmp) - 1;
+    string year1 = to_string(year);
+    tmp = schoolYear.substr(5, 4);
+    year = stoi(tmp) - 1;
+    string year2 = to_string(year);
+    return year1 + '-' + year2;
+}
+
+void add234(string schoolYear) {
+    string lastSchoolYear = getLastSchoolYear(schoolYear);
+    string lastYearPath = "Data/SchoolYear/" + lastSchoolYear + "/Classes/"; //path of last year classes
+    string thisYearPath = "Data/SchoolYear/" + schoolYear + "/Classes/"; // path of this year classes
+    string classExclude = to_string((stoi(schoolYear.substr(2, 2)) - 4));
+    for (auto& file : filesystem::directory_iterator(lastYearPath)) {
+        if (file.path().filename().string().substr(0, 2) >= classExclude) {
+            string filename = file.path().filename().string();
+            string sourcePath = file.path().string();
+            string targetPath = thisYearPath + filename;
+            filesystem::copy(sourcePath, targetPath, std::filesystem::copy_options::overwrite_existing);
+        }
+    }
+}
+
 // return true if execute successfully
 // return false if directories cannot be created or school year already exists
 bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
     string dir = "Data/SchoolYear/" + schoolYear + '/';
+    // if the schoolYear already exists return false
     if (filesystem::is_directory(dir))
         return false;
     filesystem::create_directories(dir);
@@ -13,14 +39,16 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
     filesystem::create_directories(dir + "Autumn");
 
     string *tmp = new string[n + 1];
-    for (int i = 0; i < n; ++i)
-        tmp[i] = ListOfSchoolYear[i];
+    if (n > 0) {
+        for (int i = 0; i < n; ++i)
+            tmp[i] = ListOfSchoolYear[i];
+        delete[] ListOfSchoolYear;
+    }
     tmp[n] = schoolYear;
-    delete[] ListOfSchoolYear;
     ListOfSchoolYear = tmp;
     ++n;
     sort(ListOfSchoolYear, ListOfSchoolYear + n, greater<string>());
-
+    add234(schoolYear);
     return true;
 }
 
@@ -35,10 +63,12 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
     fout.close();
 
     string *tmp = new string[n + 1];
-    for (int i = 0; i < n; ++i)
-        tmp[i] = ListOfClass[i];
+    if (n > 0) {
+        for (int i = 0; i < n; ++i)
+            tmp[i] = ListOfClass[i];
+        delete[] ListOfClass;
+    }
     tmp[n] = Class;
-    delete[] ListOfClass;
     ListOfClass = tmp;
     ++n;
     sort(ListOfClass, ListOfClass + n);
@@ -127,7 +157,7 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
 
 // function to import students info from csv file
 // dir parameter is the directory of the csv file
-void importStudent(string dir, string schoorYear, string Class) {
+void importStudent(string dir, string schoolYear, string Class) {
     ifstream fin;
     fin.open(dir);
     Student student;
@@ -148,38 +178,11 @@ void importStudent(string dir, string schoorYear, string Class) {
         fin >> student.socialID;
         fin.ignore(1000, '\n');
         fin.ignore();
-        addStudent(student, schoorYear, Class);
+        addStudent(student, schoolYear, Class);
     }
 }
 
-string getLastSchoolYear (string schoolYear) {
-    string tmp = schoolYear.substr(0, 4);
-    int year = stoi(tmp) - 1;
-    string year1 = to_string(year);
-    tmp = schoolYear.substr(5, 4);
-    year = stoi(tmp) - 1;
-    string year2 = to_string(year);
-    return year1 + '-' + year2;
-}
-
-void add234(string schoolYear) {
-    string lastSchoolYear = getLastSchoolYear(schoolYear);
-    string path = "Data/" + lastSchoolYear + "/Classes/"; //path of last year classes
-    string dir = "Data/" + schoolYear + "/Classes/"; // path of this year classes
-    string classExclude = to_string((stoi(schoolYear.substr(2, 2)) - 4));
-    for (auto& file : filesystem::directory_iterator(path)) {
-        if (file.path().filename().string().substr(0, 2) != classExclude) {
-            string filename = file.path().filename().string();
-            string sourcePath = file.path()./*filename()*/string();
-            string targetPath = dir + filename;
-            filesystem::copy(sourcePath, targetPath, std::filesystem::copy_options::overwrite_existing);
-        }
-    }
-}
-
-
-
-// int main() {
+int main() {
 //     string path = "../../import/21TT1.csv";
 //     string Class = "21TT1";
 //     createSchoolYear("2022", "2023");
@@ -188,6 +191,8 @@ void add234(string schoolYear) {
 //     Student student;
 //     getStudent(student);
 //     saveStudent(student, "2022-2023", Class);
-//     add234("2022-2023");
-//     return 0;
-// }
+    string* listOfSchoolYear;
+    int n = 0;
+    createSchoolYear(listOfSchoolYear, n, "2023-2024");
+    return 0;
+}
