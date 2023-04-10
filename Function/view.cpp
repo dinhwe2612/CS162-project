@@ -16,7 +16,7 @@ bool checkDirectory(const filesystem::path& path) {
 
 string getPath (string s, string name = "", string schoolYear = "") {
     if (s.compare("Class") == 0)
-        return "Data/SchoolYear/" + schoolYear + "/Classes/" + name;
+        return "../Data/SchoolYear/" + schoolYear + "/Classes/" + name;
     else if (s.compare("Student") == 0)
         return "Data/Student/" + name + ".txt";
     else if (s.compare("Course") == 0) 
@@ -56,12 +56,19 @@ int getStudentNo(string Class, string schoolYear) {
         return 0;
     ifstream fin;
     fin.open(dir);
+    string tmp;
+    fin >> tmp;
+    if (tmp == "")
+        return 0;
+    fin.close();
+    fin.open(dir);
     int n = 0;
     while(!fin.eof()){
         fin.ignore(1000, '\n');
         fin.ignore();
         ++n;
     }
+    fin.close();
     return n;
 }
 
@@ -210,7 +217,7 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
     return true;
 }
 
-// int main() {
+int main() {
 //     string schoolYear = "2022-2023";
 //     string Class = "22TT2";
 //     if (!viewClasses(schoolYear))
@@ -232,5 +239,6 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
 //             cout << students[i].studentID << ' ';
 
 //     delete[]students;
-//     return 0;
-// }
+    cout << getStudentNo("22TT1", "2022-2023");
+    return 0;
+}
