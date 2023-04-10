@@ -16,7 +16,7 @@ bool checkDirectory(const filesystem::path& path) {
 
 string getPath (string s, string name = "", string schoolYear = "") {
     if (s.compare("Class") == 0)
-        return "../Data/SchoolYear/" + schoolYear + "/Classes/" + name;
+        return "Data/SchoolYear/" + schoolYear + "/Classes/" + name;
     else if (s.compare("Student") == 0)
         return "Data/Student/" + name + ".txt";
     else if (s.compare("Course") == 0) 
