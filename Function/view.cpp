@@ -102,8 +102,11 @@ bool viewStudentInClass (string Class, string schoolYear, Student*& students, in
         ++i;
     }
     fin.close();
+    cerr << n << '\n';
+    //LOI NE CAU FIX DUM DI
+    if (students[0].studentID == "") n = 0;//dòng này để tạm cho nó đỡ ngu
     for(int i = 0; i < n; ++i)
-        cerr << students[i].studentID << '\n';
+        cerr << (students[i].studentID == "") << '\n';
     return true;
 }
 

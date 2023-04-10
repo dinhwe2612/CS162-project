@@ -182,17 +182,17 @@ void importStudent(string dir, string schoolYear, string Class) {
     }
 }
 
-int main() {
-//     string path = "../../import/21TT1.csv";
-//     string Class = "21TT1";
-//     createSchoolYear("2022", "2023");
-//     createSchoolYear("2021", "2022");
-//     importStudent(path, "2022-2023", Class);
-//     Student student;
-//     getStudent(student);
-//     saveStudent(student, "2022-2023", Class);
-    string* listOfSchoolYear;
-    int n = 0;
-    createSchoolYear(listOfSchoolYear, n, "2023-2024");
-    return 0;
-}
+// int main() {
+// //     string path = "../../import/21TT1.csv";
+// //     string Class = "21TT1";
+// //     createSchoolYear("2022", "2023");
+// //     createSchoolYear("2021", "2022");
+// //     importStudent(path, "2022-2023", Class);
+// //     Student student;
+// //     getStudent(student);
+// //     saveStudent(student, "2022-2023", Class);
+//     string* listOfSchoolYear;
+//     int n = 0;
+//     createSchoolYear(listOfSchoolYear, n, "2023-2024");
+//     return 0;
+// }

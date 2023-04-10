@@ -206,7 +206,7 @@ void Class::DrawViewClass()
 {
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
-    DrawTextEx(PT_serif_bold, ("> " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     
     drop.DrawText();
     back.DrawText();
