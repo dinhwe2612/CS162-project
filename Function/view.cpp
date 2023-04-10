@@ -102,6 +102,8 @@ bool viewStudentInClass (string Class, string schoolYear, Student*& students, in
         ++i;
     }
     fin.close();
+    for(int i = 0; i < n; ++i)
+        cerr << students[i].studentID << '\n';
     return true;
 }
 

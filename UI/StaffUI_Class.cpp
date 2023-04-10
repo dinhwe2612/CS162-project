@@ -46,6 +46,8 @@ void Class::Draw(int &menuWindow)
 
     if (menuClass == VIEW_CLASS) {
         DrawViewClass();
+    } else if (menuClass == VIEW_STUDENT) {
+        DrawViewStudent();
     } else {
         close.DrawTexture();
         addClass.DrawTexture();
@@ -165,11 +167,16 @@ void Class::DrawClassList()
         {
             classDir = ListOfClasses[i];
             classClicked = true;
+            viewStudentInClass(ListOfClasses[i], SchoolYear, ListOfStudent, listStuSize);
+            cout << listStuSize << '\n';
+            // ListOfStudent = new Student[2];
+            // listStuSize = 2;
+            // ListOfStudent[0].studentID = "1";
+            // ListOfStudent[1].studentID = "2";
         }
 
         if (classClicked)
             menuClass = VIEW_CLASS;
-            // DrawViewClass();
 
         DrawTextEx(PT_serif_bold, classDir.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     }
@@ -196,6 +203,7 @@ void Class::DrawViewClass()
 
         DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){0.43*windowWidth, 0.5*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
     }
+    DrawStudentList();
 }
 
 std::string Class::LoadDroppedFile()
@@ -216,6 +224,43 @@ std::string Class::LoadDroppedFile()
     return "Drop file into this window";
 }
 
+void Class::DrawStudentList() {
+    float static posY = 0;
 
+    posY += GetMouseWheelMove() * 30;
+    
+    if (0.3*windowHeight + (1 + listStuSize) * 0.1*windowHeight + posY <= 720)
+        posY = 720 - (0.3*windowHeight + (1 + listStuSize) * 0.1*windowHeight);
+    if (posY > 0) posY = 0;
+
+    
+    for (int i = 0; i < listStuSize; ++i)
+    {
+        Button StudentButton;
+
+        if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
+        
+        StudentButton.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, (Color){210, 195, 195, 255}, LIGHTGRAY);
+        StudentButton.SetText(PT_serif_bold, ListOfStudent[i].studentID.c_str(), 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
+        
+        if (StudentButton.buttonShape.y >= 0.26*windowHeight && StudentButton.buttonShape.y + StudentButton.buttonShape.height <= 0.88*windowHeight)
+            StudentButton.DrawText();
+
+        if (StudentButton.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            
+        }
+
+        DrawTextEx(PT_serif_bold, ListOfStudent->studentID.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+    }
+}
+
+void Class::DrawViewStudent() {
+    back.DrawText();
+    DrawStudentList();
+
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT))
+            menuClass = VIEW_CLASS;
+}
 
 

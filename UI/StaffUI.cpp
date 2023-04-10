@@ -101,7 +101,7 @@ void StaffUI::DrawCurrentWindow() {
             menuWindow = DEFAULT;
         }
     case COURSE:
-        course.Draw();
+        course.Draw(menuWindow);
         if (course.back.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuWindow = DEFAULT;
         }

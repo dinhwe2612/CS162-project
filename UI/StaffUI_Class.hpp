@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "../Header/view.h"
 #include "../Header/schoolYear.h"
+#include "../Header/StudentStruct.h"
 
 using namespace std;
 
@@ -33,6 +34,9 @@ struct Class
     string *ListOfClasses; 
     int listSize = 0;
 
+    Student *ListOfStudent;
+    int listStuSize = 0;
+
     bool isAddClass = false;
     bool isDropClicked = false;
     bool classClicked = false;
@@ -40,7 +44,8 @@ struct Class
     int DEFAULT = -1;
     int menuClass = DEFAULT;
     enum windowCLass {
-        VIEW_CLASS
+        VIEW_CLASS,
+        VIEW_STUDENT
     };
 
     // std::array<std::string, 100> ListOfClasses = {"22TT1", "22TT2", "21TT1", "21TT2", "20TT1", "20TT2", "19TT1", "19TT2", "18TT1", "18TT2"}; 
@@ -56,6 +61,8 @@ struct Class
         void DrawCreateClass();
         void DrawClassList();
         void DrawViewClass();
+        void DrawStudentList();
+        void DrawViewStudent();
 };
 
 #endif
