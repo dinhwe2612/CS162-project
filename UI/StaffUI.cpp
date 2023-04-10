@@ -272,7 +272,6 @@ void StaffUI::DrawSchoolYear()
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
             schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             DrawSchoolYearMenu();
 
             // Draw semester buttons
@@ -458,6 +457,7 @@ void StaffUI::DrawSchoolYearMenu()
         if (schoolYearButton.isPRESSED(MOUSE_BUTTON_LEFT))
         {
             SchoolYear = schoolYearButton;
+            SchoolYear.Text[0] = '>';
             buttonChosen = true;
         }
     }

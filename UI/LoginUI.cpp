@@ -193,7 +193,7 @@ void LoginUI::Draw(int &menuLogin)
     DrawLoginIcon();
     signInButton.DrawText();
     DrawStatusButtons();
-    if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER)) {
         int loginState = validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status);
         if (loginState == 1) {
             isLoginSuccess = true;
