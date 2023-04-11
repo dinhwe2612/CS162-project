@@ -108,12 +108,21 @@ int getStudentNo(string dir) {
         return 0;
     ifstream fin;
     fin.open(dir);
+    string tmp = 0;
+    fin >> tmp;
+    if (tmp == "") {
+        fin.close();
+        return 1;
+    }
+    fin.close();
+    fin.open(dir);
     int n = 0;
     while(!fin.eof()){
         fin.ignore(1000, '\n');
         fin.ignore();
         ++n;
     }
+    fin.close();
     return n;
 }
 
@@ -148,8 +157,11 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
 
     // update list of student
     Student* tmp = new Student[n + 1];
-    for (int i = 0; i < n; ++i)
-        tmp[i] = listOfStudent[i];
+    if (n > 0) {
+        for (int i = 0; i < n; ++i)
+            tmp[i] = listOfStudent[i];
+        delete[] listOfStudent;
+    }
     listOfStudent = tmp;
     ++n;
     return true;
@@ -157,7 +169,7 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
 
 // function to import students info from csv file
 // dir parameter is the directory of the csv file
-void importStudent(string dir, string schoolYear, string Class) {
+void importStudent(Student*& listOfStudent, int& n, string dir, string schoolYear, string Class) {
     ifstream fin;
     fin.open(dir);
     Student student;
@@ -178,7 +190,7 @@ void importStudent(string dir, string schoolYear, string Class) {
         fin >> student.socialID;
         fin.ignore(1000, '\n');
         fin.ignore();
-        addStudent(student, schoolYear, Class);
+        addStudentToClass(listOfStudent, n, student, schoolYear, Class);
     }
 }
 

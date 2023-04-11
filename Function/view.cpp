@@ -217,7 +217,7 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
     return true;
 }
 
-int main() {
+// int main() {
 //     string schoolYear = "2022-2023";
 //     string Class = "22TT2";
 //     if (!viewClasses(schoolYear))
@@ -239,6 +239,6 @@ int main() {
 //             cout << students[i].studentID << ' ';
 
 //     delete[]students;
-    cout << getStudentNo("22TT1", "2022-2023");
-    return 0;
-}
+//     cout << getStudentNo("22TT1", "2022-2023");
+//     return 0;
+// }
