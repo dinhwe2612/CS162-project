@@ -127,8 +127,8 @@ void StaffUI::Draw(int &menuLogin)
         DrawBackground();
         DrawStaticElement();
         DrawDropDownAccount(menuLogin);//for signout button
-        // DrawCurrentWindow();
-        course.Draw();
+        DrawCurrentWindow();
+        // course.Draw();
         DrawDropDownSchoolYear();
         break;
     case CHANGE_PASSWORD:
@@ -283,7 +283,7 @@ void StaffUI::DrawSchoolYear()
         if (BUTTON_SchoolYear_isCLICKED[i]) {
             schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
             // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            DrawSchoolYearMenu();
+            // DrawSchoolYearMenu();
 
             // Draw semester buttons
             Button Semester;
@@ -513,7 +513,7 @@ void StaffUI::AddSchoolYear()
 
     if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
     {
-        createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
+        // createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
         menuStaff = previousmenuStaff;
         enterSchoolYear.currentInput = "";
     }

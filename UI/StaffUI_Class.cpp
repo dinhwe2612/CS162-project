@@ -41,7 +41,7 @@ void Class::Construct(int windowWidth, int windowHeight)
     Female.SetRectangle(0.5*windowWidth + 85 - 10, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Other.SetRectangle(0.6*windowWidth + 70, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Tick = LoadTexture("UI/images/down.png");
-    TickRec = {0, 0, Tick.width, Tick.height};
+    TickRec = (Rectangle){0, 0, Tick.width, Tick.height};
 
     DOB.Construct(0.4*windowWidth, 0.58*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
     DOB.SetColorBox(WHITE, WHITE);
@@ -192,7 +192,7 @@ void Class::DrawClassList()
 
             classDir = "  >  " + ListOfClasses[i];
             classClicked = true;
-            viewStudentInClass(ListOfClasses[i], SchoolYear, ListOfStudent, listStuSize);
+            // viewStudentInClass(ListOfClasses[i], SchoolYear, ListOfStudent, listStuSize);
             classIndex = i;
         }
 
@@ -205,7 +205,7 @@ void Class::DrawViewClass()
 {
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
 
     drop.DrawText();
@@ -224,7 +224,7 @@ void Class::DrawViewClass()
     if (add.isPRESSED(MOUSE_BUTTON_LEFT))
         menuClass = ADD_STUDENT;
     DrawStudentList();
-    DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), {0.353*windowWidth, 0.2*windowHeight}, 0.035*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), (Vector2){0.353*windowWidth, 0.2*windowHeight}, 0.035*windowWidth, 0.5, BLACK);
 }
 
 void Class::LoadDroppedFile()
@@ -233,7 +233,7 @@ void Class::LoadDroppedFile()
     static string dir = "";
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     back.DrawText();
     if (back.isPRESSED(MOUSE_BUTTON_LEFT))
         menuClass = VIEW_CLASS, 
@@ -258,7 +258,7 @@ void Class::LoadDroppedFile()
     UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
     UploadFile.DrawText();
     if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
-        importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
+        // importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
         UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
@@ -292,9 +292,9 @@ void Class::DrawStudentList() {
         }
     }
     Rectangle box1 = {0.3*windowWidth, 0.17*windowHeight, 0.4*windowWidth + 27, 0.1*windowHeight};
-    DrawRectanglePro(box1, {0, 0}, 0, RAYWHITE);
+    DrawRectanglePro(box1, (Vector2){0, 0}, 0, RAYWHITE);
     Rectangle box2 = {0.3*windowWidth, 0.8*windowHeight, 0.4*windowWidth + 27, 0.08*windowHeight};
-    DrawRectanglePro(box2, {0, 0}, 0, RAYWHITE);
+    DrawRectanglePro(box2, (Vector2){0, 0}, 0, RAYWHITE);
 
     DrawRectangleRoundedLines(BoxStuList, 0.05, 0.1, 2, BLACK);
 }
@@ -302,7 +302,7 @@ void Class::DrawStudentList() {
 void Class::DrawViewStudent() {
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     back.DrawText();
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;
@@ -310,29 +310,29 @@ void Class::DrawViewStudent() {
     Vector2 Coodinate = {0.4*windowWidth, 0.3*windowHeight};
     float dx = 0, dy = 0.05*windowHeight;
     //draw first name
-    DrawTextPro(PT_serif_bold, ("First name:   " + ListOfStudent[stuIndex].firstName).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("First name:   " + ListOfStudent[stuIndex].firstName).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw last name
     Coodinate.y += dy;
-    DrawTextPro(PT_serif_bold, ("Last name:   " + ListOfStudent[stuIndex].lastName).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("Last name:   " + ListOfStudent[stuIndex].lastName).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw studentid
     Coodinate.y += dy;
-    DrawTextPro(PT_serif_bold, ("Student ID:   " + ListOfStudent[stuIndex].studentID).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("Student ID:   " + ListOfStudent[stuIndex].studentID).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw socialID
     Coodinate.y += dy;
-    DrawTextPro(PT_serif_bold, ("Social ID:   " + ListOfStudent[stuIndex].socialID).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("Social ID:   " + ListOfStudent[stuIndex].socialID).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw DOB
     Coodinate.y += dy;
-    DrawTextPro(PT_serif_bold, ("Date of birth:   " + ListOfStudent[stuIndex].DOB).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("Date of birth:   " + ListOfStudent[stuIndex].DOB).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw gender
     Coodinate.y += dy;
     string GenderString;
     if (ListOfStudent[stuIndex].gender == 0) GenderString = "MALE";
     else if (ListOfStudent[stuIndex].gender == 1) GenderString = "FEMALE";
     else GenderString = "Other";
-    DrawTextPro(PT_serif_bold, ("Gender:   " + GenderString).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("Gender:   " + GenderString).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw class
     Coodinate.y += dy;
-    DrawTextPro(PT_serif_bold, ("Class:   " + ListOfClasses[classIndex]).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("Class:   " + ListOfClasses[classIndex]).c_str(), Coodinate, (Vector2){0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
 }
 
 void Class::DrawAddStudent() {
@@ -340,14 +340,14 @@ void Class::DrawAddStudent() {
     
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     DrawTextEx(PT_serif_bold, "Add student", (Vector2){0.4*windowWidth, 0.17*windowHeight}, 0.045*windowWidth, 0.5, BLACK);
 
     back.DrawText();
 
     //Draw student ID
-    DrawTextEx(PT_serif_bold, "Student ID", {0.25*windowWidth, 0.3*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Student ID", (Vector2){0.25*windowWidth, 0.3*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.3*windowHeight - 2, 0.25*windowWidth + 3, 0.05*windowHeight + 3, BLACK);
     StudentID.Draw();
     //Draw first name
@@ -404,7 +404,7 @@ void Class::DrawAddStudent() {
         lastName.currentInput = "";
         DOB.currentInput = "";
         socialID.currentInput = "";
-        addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
+        // addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
     }
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;
@@ -418,5 +418,5 @@ void Class::DrawAddStudent() {
 }
 
 void Class::DrawSchoolYearMenu() {
-    DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), {0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
 }
