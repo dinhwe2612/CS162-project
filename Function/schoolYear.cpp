@@ -68,7 +68,7 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
             tmp[i] = ListOfClass[i];
         delete[] ListOfClass;
     }
-    tmp[n + 1] = Class;
+    tmp[n] = Class;
     ListOfClass = tmp;
     ++n;
     sort(ListOfClass, ListOfClass + n);
@@ -108,12 +108,11 @@ int getStudentNo(string dir) {
         return 0;
     ifstream fin;
     fin.open(dir);
-    string tmp = 0;
-    cout << '*' << tmp << endl;
+    string tmp = "";
     fin >> tmp;
     if (tmp == "") {
         fin.close();
-        return 1;
+        return 0;
     }
     fin.close();
     fin.open(dir);
@@ -141,6 +140,7 @@ bool addStudent(Student student, string schoolYear, string Class) {
     fout << student.studentID << endl;
     fout << student.firstName << endl;
     fout << student.lastName << endl;
+    fout << student.Class << endl;
     fout << student.gender << endl;
     fout << student.DOB << endl;
     fout << student.socialID << endl;
@@ -192,22 +192,22 @@ void importStudent(Student*& listOfStudent, int& n, string dir, string schoolYea
         fin >> student.socialID;
         fin.ignore(1000, '\n');
         fin.ignore();
-        addStudent(student, schoolYear, Class);
+        addStudentToClass(listOfStudent, n, student, schoolYear, Class);
     }
 }
 
 // int main() {
-// //     string path = "../../import/21TT1.csv";
-// //     string Class = "21TT1";
-// //     createSchoolYear("2022", "2023");
-// //     createSchoolYear("2021", "2022");
-// //     importStudent(path, "2022-2023", Class);
+//     string path = "../../import/21TT1.csv";
+//     string Class = "21TT1";
+//     createSchoolYear("2022", "2023");
+//     createSchoolYear("2021", "2022");
+//     importStudent(path, "2022-2023", Class);
 //     Student student;
 //     getStudent(student);
-// //     saveStudent(student, "2022-2023", Class);
-// //     string* listOfSchoolYear;
-// //     int n = 0;
-// //     createSchoolYear(listOfSchoolYear, n, "2023-2024");
+//     saveStudent(student, "2022-2023", Class);
+//     string* listOfSchoolYear;
+//     int n = 0;
+//     createSchoolYear(listOfSchoolYear, n, "2023-2024");
 //     addStudent(student, "2022-2023", "22TT2");
 //     return 0;
 // }
