@@ -18,7 +18,7 @@ string getPath (string s, string name = "", string schoolYear = "") {
     if (s.compare("Class") == 0)
         return "Data/SchoolYear/" + schoolYear + "/Classes/" + name;
     else if (s.compare("Student") == 0)
-        return "Data/Students/" + name + ".txt";
+        return "Data/Student/" + name + ".txt";
     else if (s.compare("Course") == 0) 
         return "Data/SchoolYear/" + schoolYear + "/" + name + "/";
     else if (s.compare("StudentInCourse") == 0) 
@@ -56,12 +56,19 @@ int getStudentNo(string Class, string schoolYear) {
         return 0;
     ifstream fin;
     fin.open(dir);
+    string tmp;
+    fin >> tmp;
+    if (tmp == "")
+        return 0;
+    fin.close();
+    fin.open(dir);
     int n = 0;
     while(!fin.eof()){
         fin.ignore(1000, '\n');
         fin.ignore();
         ++n;
     }
+    fin.close();
     return n;
 }
 
@@ -102,6 +109,11 @@ bool viewStudentInClass (string Class, string schoolYear, Student*& students, in
         ++i;
     }
     fin.close();
+    cerr << n << '\n';
+    //LOI NE CAU FIX DUM DI
+    if (students[0].studentID == "") n = 0;//dòng này để tạm cho nó đỡ ngu
+    for(int i = 0; i < n; ++i)
+        cerr << (students[i].studentID == "") << '\n';
     return true;
 }
 
@@ -206,22 +218,27 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
 }
 
 // int main() {
-//     string schoolYear = "2022-2023";
-//     string Class = "22TT2";
-    // if (!viewClasses(schoolYear))
-    //     cout << "The school year has not been created yet, or the database has been corrupted.";
+// //     string schoolYear = "2022-2023";
+// //     string Class = "22TT2";
+// //     if (!viewClasses(schoolYear))
+// //         cout << "The school year has not been created yet, or the database has been corrupted.";
 
-    // if (!viewCourses(schoolYear, "Spring"))
-    //     cout << "Course does not exist.";
-    // if (!viewStudentInCourse(schoolYear, "Spring", "12345"))
-    //     cout << "Course Student List does not exist.";
+// //     if (!viewCourses(schoolYear, "Spring"))
+// //         cout << "Course does not exist.";
+// //     if (!viewStudentInCourse(schoolYear, "Spring", "12345"))
+// //         cout << "Course Student List does not exist.";
 
-    // if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
-    //     cout << "Student ID, school year or semester does not exist.";
-//     Student* students;
-//     int n = 0;
-//     if (!viewStudentInClass(Class, schoolYear, students, n))
-//         cout << "Class not found.";
-//     delete[]students;
+// //     if (!viewCoursesOfStudent("22125002", "2021-2022", "Autumn"))
+// //         cout << "Student ID, school year or semester does not exist.";
+// //     Student* students;
+// //     int n = 0;
+// //     if (!viewStudentInClass(Class, schoolYear, students, n))
+// //         cout << "Class not found.";
+// //     else
+// //         for (int i = 0; i < n; ++i)
+// //             cout << students[i].studentID << ' ';
+
+// //     delete[]students;
+//     cout << getStudentNo("22TT1", "2022-2023");
 //     return 0;
 // }

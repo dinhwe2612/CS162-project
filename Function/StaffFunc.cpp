@@ -379,7 +379,10 @@ void Add1StudenttoCourse(string studentid, string courseaddress)
     address = courseaddress + "/Course_Info.txt";
     string* information; 
     information = Read_File(address);
-    AddDatatoStudentFile(studentid, schoolyear, semester, course, information);
+    string fileaddress = "../Data/Student/" + id + ".txt";
+    out.open(fileaddress.c_str(), ios::app);
+    out << course << '\n';
+    //AddDatatoStudentFile(studentid, schoolyear, semester, course, information);
     cout << "This student with the ID has been added to the current course!" <<'\n';
     return;
 }
