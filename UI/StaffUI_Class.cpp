@@ -69,15 +69,7 @@ void Class::Draw(int &menuWindow)
     } else if (menuClass == VIEW_STUDENT) {
         DrawViewStudent();
     } else if (menuClass == DROP_FILE) {
-        std::string dir = LoadDroppedFile();
-        DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){0.43*windowWidth, 0.5*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
-        Button UploadFile;
-        UploadFile.SetRectangle(0.7*windowWidth, 0.7*windowHeight, 95, 50, LIGHTGRAY, BLUE);
-        UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
-        UploadFile.DrawText();
-        if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "Drop file into this window") {
-            importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
-        }
+        LoadDroppedFile();
     } else if (menuClass == ADD_STUDENT) {
         DrawAddStudent();
     } else {
@@ -232,30 +224,43 @@ void Class::DrawViewClass()
     DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), {0.353*windowWidth, 0.2*windowHeight}, 0.035*windowWidth, 0.5, BLACK);
 }
 
-std::string Class::LoadDroppedFile()
+void Class::LoadDroppedFile()
 {
+    static FilePathList droppedFiles;
+    static string dir = "";
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
     DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     back.DrawText();
     if (back.isPRESSED(MOUSE_BUTTON_LEFT))
         menuClass = VIEW_CLASS, 
-        isDropClicked = false;
+        isDropClicked = false,
+        UnloadDroppedFiles(droppedFiles),
+        dir = "";
 
     Rectangle dropInBox = {windowWidth/2, windowHeight/2, 0.3*windowWidth, 0.3*windowHeight};
     Vector2 dropInOrigin = {dropInBox.width/2, dropInBox.height/2};
     DrawRectanglePro(dropInBox, dropInOrigin, 0, (Color){234, 227, 210, 255});
-    
+
     if (IsFileDropped())
     {
-        FilePathList droppedFiles = LoadDroppedFiles();
-        
+        droppedFiles = LoadDroppedFiles();
         if (IsFileExtension(droppedFiles.paths[0], ".csv"))
         {
-            return droppedFiles.paths[0];
+            dir = droppedFiles.paths[0];
         }
     }
-    return "Drop file into this window";
+    Button UploadFile;
+    UploadFile.SetRectangle(0.7*windowWidth, 0.7*windowHeight, 95, 50, LIGHTGRAY, BLUE);
+    UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
+    UploadFile.DrawText();
+    if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
+        importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
+        UnloadDroppedFiles(droppedFiles);
+        dir = "";
+    }
+    if (dir == "") DrawTextEx(PT_serif_bold, "Drop file into this window", (Vector2){0.43*windowWidth, 0.5*windowHeight}, 0.016*windowWidth, 0.5, BLACK);
+    else DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){0.37*windowWidth, 0.5*windowHeight}, 0.016*windowWidth, 0.5, BLACK);
 }
 
 void Class::DrawStudentList() {
@@ -355,9 +360,9 @@ void Class::DrawAddStudent() {
     DrawTextEx(PT_serif_bold, "Male", (Vector2){0.4*windowWidth, 0.51*windowHeight}, 0.025*windowWidth, 0.5, BLACK);
     DrawTextEx(PT_serif_bold, "Female", (Vector2){0.5*windowWidth - 10, 0.51*windowHeight}, 0.025*windowWidth, 0.5, BLACK);
     DrawTextEx(PT_serif_bold, "Other",(Vector2){0.6*windowWidth, 0.51*windowHeight}, 0.025*windowWidth, 0.5, BLACK);
-    if (Male.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = -1;
-    if (Female.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 0;
-    if (Other.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 1;
+    if (Male.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 0;
+    if (Female.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 1;
+    if (Other.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 2;
     if (Gender == 0) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Male.DrawText();
     if (Gender == 1) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);

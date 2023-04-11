@@ -65,8 +65,6 @@ struct Class
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
 
-    std::string LoadDroppedFile();
-
     void Draw(int &menuWindow);
         void DrawBackground();
         void DrawCreateClass();
@@ -76,6 +74,7 @@ struct Class
         void DrawViewStudent();
         void DrawAddStudent();
         void DrawSchoolYearMenu();
+        void LoadDroppedFile();
 };
 
 #endif
