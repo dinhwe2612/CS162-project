@@ -293,7 +293,7 @@ void Class::DrawViewStudent() {
 }
 
 void Class::DrawAddStudent() {
-    static int Gender = -1;
+    static int Gender = 0;
     
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
@@ -322,11 +322,11 @@ void Class::DrawAddStudent() {
     if (Male.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = -1;
     if (Female.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 0;
     if (Other.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 1;
-    if (Gender == -1) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    if (Gender == 0) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Male.DrawText();
-    if (Gender == 0) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    if (Gender == 1) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Female.DrawText();
-    if (Gender == 1) DrawTexturePro(Tick, TickRec, Other.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    if (Gender == 2) DrawTexturePro(Tick, TickRec, Other.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Other.DrawText();
     DrawRectangleLines(0.4*windowWidth + 60 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     DrawRectangleLines(0.5*windowWidth + 85 - 10 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
