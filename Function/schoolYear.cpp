@@ -44,7 +44,7 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
             tmp[i] = ListOfSchoolYear[i];
         delete[] ListOfSchoolYear;
     }
-    tmp[n] = schoolYear;
+    tmp[n + 1] = schoolYear;
     ListOfSchoolYear = tmp;
     ++n;
     sort(ListOfSchoolYear, ListOfSchoolYear + n, greater<string>());
@@ -68,7 +68,7 @@ bool createClass(string*& ListOfClass, int& n, string Class, string schoolYear) 
             tmp[i] = ListOfClass[i];
         delete[] ListOfClass;
     }
-    tmp[n] = Class;
+    tmp[n + 1] = Class;
     ListOfClass = tmp;
     ++n;
     sort(ListOfClass, ListOfClass + n);
@@ -109,6 +109,7 @@ int getStudentNo(string dir) {
     ifstream fin;
     fin.open(dir);
     string tmp = 0;
+    cout << '*' << tmp << endl;
     fin >> tmp;
     if (tmp == "") {
         fin.close();
@@ -162,8 +163,8 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
             tmp[i] = listOfStudent[i];
         delete[] listOfStudent;
     }
+    tmp[n + 1] = student;
     listOfStudent = tmp;
-    listOfStudent[n] = student;
     ++n;
     return true;
 }
