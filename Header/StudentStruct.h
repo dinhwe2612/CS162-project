@@ -31,5 +31,4 @@ struct Student {
     string DOB;// date of birth
     int gender;// 0 1 2 : Male Female Other
     string Class;
-    SchoolYear *listOfSchoolYears;
 };

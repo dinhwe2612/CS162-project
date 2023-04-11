@@ -44,7 +44,7 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
             tmp[i] = ListOfSchoolYear[i];
         delete[] ListOfSchoolYear;
     }
-    tmp[n + 1] = schoolYear;
+    tmp[n] = schoolYear;
     ListOfSchoolYear = tmp;
     ++n;
     sort(ListOfSchoolYear, ListOfSchoolYear + n, greater<string>());
@@ -163,7 +163,7 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
             tmp[i] = listOfStudent[i];
         delete[] listOfStudent;
     }
-    tmp[n + 1] = student;
+    tmp[n] = student;
     listOfStudent = tmp;
     ++n;
     return true;
@@ -192,21 +192,22 @@ void importStudent(Student*& listOfStudent, int& n, string dir, string schoolYea
         fin >> student.socialID;
         fin.ignore(1000, '\n');
         fin.ignore();
-        addStudentToClass(listOfStudent, n, student, schoolYear, Class);
+        addStudent(student, schoolYear, Class);
     }
 }
 
 // int main() {
-//     string path = "../../import/21TT1.csv";
-//     string Class = "21TT1";
-//     createSchoolYear("2022", "2023");
-//     createSchoolYear("2021", "2022");
-//     importStudent(path, "2022-2023", Class);
+// //     string path = "../../import/21TT1.csv";
+// //     string Class = "21TT1";
+// //     createSchoolYear("2022", "2023");
+// //     createSchoolYear("2021", "2022");
+// //     importStudent(path, "2022-2023", Class);
 //     Student student;
 //     getStudent(student);
-//     saveStudent(student, "2022-2023", Class);
-//     string* listOfSchoolYear;
-//     int n = 0;
-//     createSchoolYear(listOfSchoolYear, n, "2023-2024");
+// //     saveStudent(student, "2022-2023", Class);
+// //     string* listOfSchoolYear;
+// //     int n = 0;
+// //     createSchoolYear(listOfSchoolYear, n, "2023-2024");
+//     addStudent(student, "2022-2023", "22TT2");
 //     return 0;
 // }
