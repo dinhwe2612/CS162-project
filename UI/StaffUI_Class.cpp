@@ -23,7 +23,7 @@ void Class::Construct(int windowWidth, int windowHeight)
     back.SetText(PT_serif_bold, "Back", 0.135*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     add.SetRectangle(0.71*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
-    add.SetText(PT_serif_bold, "Add Student", 0.72*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    add.SetText(PT_serif_bold, "Add Student", 0.72*windowWidth + 6, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     inputClass.Construct(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.49*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     inputClass.SetColorBox(WHITE, WHITE);
@@ -62,6 +62,7 @@ void Class::Deconstruct()
 void Class::Draw(int &menuWindow)
 {
     DrawBackground();
+    DrawSchoolYearMenu();
 
     if (menuClass == VIEW_CLASS) {
         DrawViewClass();
@@ -198,11 +199,6 @@ void Class::DrawClassList()
             classClicked = true;
             viewStudentInClass(ListOfClasses[i], SchoolYear, ListOfStudent, listStuSize);
             classIndex = i;
-            // cout << listStuSize << '\n';
-            // ListOfStudent = new Student[2];
-            // listStuSize = 2;
-            // ListOfStudent[0].studentID = "1";
-            // ListOfStudent[1].studentID = "2";
         }
 
         if (classClicked)
@@ -214,8 +210,9 @@ void Class::DrawViewClass()
 {
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
-    
+
     drop.DrawText();
     back.DrawText();
     add.DrawText();
@@ -232,12 +229,14 @@ void Class::DrawViewClass()
     if (add.isPRESSED(MOUSE_BUTTON_LEFT))
         menuClass = ADD_STUDENT;
     DrawStudentList();
+    DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), {0.353*windowWidth, 0.2*windowHeight}, 0.035*windowWidth, 0.5, BLACK);
 }
 
 std::string Class::LoadDroppedFile()
 {
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
     back.DrawText();
     if (back.isPRESSED(MOUSE_BUTTON_LEFT))
         menuClass = VIEW_CLASS, 
@@ -264,40 +263,57 @@ void Class::DrawStudentList() {
 
     posY += GetMouseWheelMove() * 30;
     
-    if (0.3*windowHeight + (1 + listStuSize) * 0.1*windowHeight + posY <= 720)
-        posY = 720 - (0.3*windowHeight + (1 + listStuSize) * 0.1*windowHeight);
+    if (0.3*windowHeight + (listStuSize - 1) * 0.1*windowHeight + posY <= 0.7*windowHeight)
+        posY = 0.7*windowHeight - (0.3*windowHeight + (listStuSize - 1) * 0.1*windowHeight);
     if (posY > 0) posY = 0;
 
-    
+    Rectangle BoxStuList = {0.3*windowWidth, 0.27*windowHeight, 0.4*windowWidth + 27, 0.53*windowHeight};
     for (int i = 0; i < listStuSize; ++i)
     {
         Button StudentButton;
-
-        if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
         
         StudentButton.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, (Color){210, 195, 195, 255}, LIGHTGRAY);
-        StudentButton.SetText(PT_serif_bold, ListOfStudent[i].studentID.c_str(), 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
+        StudentButton.SetText(PT_serif_bold, (ListOfStudent[i].studentID + " - " + ListOfStudent[i].lastName + " " + ListOfStudent[i].firstName).c_str(), 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
         
-        if (StudentButton.buttonShape.y >= 0.26*windowHeight && StudentButton.buttonShape.y + StudentButton.buttonShape.height <= 0.88*windowHeight)
-            StudentButton.DrawText();
+        StudentButton.DrawText();
 
-        if (StudentButton.isPRESSED(MOUSE_BUTTON_LEFT))
+        if (StudentButton.isPRESSED(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), BoxStuList))
         {
-            
+            menuClass = VIEW_STUDENT;
+            stuIndex = i;
         }
     }
+    Rectangle box1 = {0.3*windowWidth, 0.17*windowHeight, 0.4*windowWidth + 27, 0.1*windowHeight};
+    DrawRectanglePro(box1, {0, 0}, 0, RAYWHITE);
+    Rectangle box2 = {0.3*windowWidth, 0.8*windowHeight, 0.4*windowWidth + 27, 0.08*windowHeight};
+    DrawRectanglePro(box2, {0, 0}, 0, RAYWHITE);
+
+    DrawRectangleRoundedLines(BoxStuList, 0.05, 0.1, 2, BLACK);
 }
 
 void Class::DrawViewStudent() {
-    
+    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    back.DrawText();
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuClass = VIEW_CLASS;
+    }
+    //draw first name
+    DrawTextPro(PT_serif_bold, "First name:", {0.2*windowWidth, 0.2*windowHeight}, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    //draw last name
+    DrawTextPro(PT_serif_bold, "Last name:", {0.2*windowWidth, 0.25*windowHeight}, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    //draw studentid
+    // DrawTextPro(PT_serif_bold, "")
 }
 
 void Class::DrawAddStudent() {
-    static int Gender = -1;
+    static int Gender = 0;
     
     Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
     DrawRectangleRec(box, RAYWHITE);
-    DrawTextEx(PT_serif_bold, ("> " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+    DrawRectangleLinesEx({box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     DrawTextEx(PT_serif_bold, "Add student", (Vector2){0.4*windowWidth, 0.17*windowHeight}, 0.045*windowWidth, 0.5, BLACK);
 
     back.DrawText();
@@ -322,11 +338,11 @@ void Class::DrawAddStudent() {
     if (Male.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = -1;
     if (Female.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 0;
     if (Other.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 1;
-    if (Gender == -1) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    if (Gender == 0) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Male.DrawText();
-    if (Gender == 0) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    if (Gender == 1) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Female.DrawText();
-    if (Gender == 1) DrawTexturePro(Tick, TickRec, Other.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    if (Gender == 2) DrawTexturePro(Tick, TickRec, Other.buttonShape, (Vector2){0, 0}, 0, WHITE);
     else Other.DrawText();
     DrawRectangleLines(0.4*windowWidth + 60 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     DrawRectangleLines(0.5*windowWidth + 85 - 10 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
@@ -354,7 +370,7 @@ void Class::DrawAddStudent() {
         newStudent.gender = Gender;
         newStudent.DOB = DOB.GetInput();
         newStudent.socialID = socialID.GetInput();
-        Gender = -1;
+        Gender = 0;
         StudentID.currentInput = "";
         firstName.currentInput = "";
         lastName.currentInput = "";
@@ -364,7 +380,7 @@ void Class::DrawAddStudent() {
     }
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;
-        Gender = -1;
+        Gender = 0;
         StudentID.currentInput = "";
         firstName.currentInput = "";
         lastName.currentInput = "";
@@ -373,4 +389,6 @@ void Class::DrawAddStudent() {
     }
 }
 
-
+void Class::DrawSchoolYearMenu() {
+    DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), {0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+}

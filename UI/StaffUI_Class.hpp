@@ -44,6 +44,8 @@ struct Class
     Student *ListOfStudent;
     int listStuSize = 0;
 
+    int stuIndex = 0;
+
     bool isAddClass = false;
     bool isDropClicked = false;
     bool classClicked = false;
@@ -73,6 +75,7 @@ struct Class
         void DrawStudentList();
         void DrawViewStudent();
         void DrawAddStudent();
+        void DrawSchoolYearMenu();
 };
 
 #endif

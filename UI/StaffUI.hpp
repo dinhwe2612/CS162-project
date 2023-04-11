@@ -76,9 +76,11 @@ struct StaffUI
     const int DEFAULT = -1;
 
     int menuStaff = DEFAULT;
+    int previousmenuStaff = DEFAULT;
     enum windowStaff {
         CHANGE_PASSWORD,
-        VIEW_PROFILE
+        VIEW_PROFILE,
+        CREATE_SCHOOLYEAR
     };
 
     int menuWindow = DEFAULT;
@@ -99,7 +101,7 @@ struct StaffUI
         void DrawSchoolYear();
         void DrawChangePassword();
         void DrawViewProfile();
-        void DrawSchoolYearMenu();
+        // void DrawSchoolYearMenu();
         void DrawCurrentWindow();
 };
 
