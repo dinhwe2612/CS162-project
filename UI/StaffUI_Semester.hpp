@@ -22,6 +22,8 @@ struct SemesterUI
     Button addSemester;
     Button close;
     Button back;
+    Button addSemesterClose;
+        
 
     InputBar inputSemester;
     InputBar SemesterStartDate;

@@ -13,6 +13,9 @@ void SemesterUI::Construct(int windowWidth, int windowHeight)
     close.SetTexture("UI/images/close.png");
     close.SetRectangle(0.85*windowWidth, 0.17*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
+    addSemesterClose = close;
+    addSemesterClose.SetRectangle(0.565*windowWidth, 0.30*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+
     addSemester.SetTexture("UI/images/add.png");
     addSemester.SetRectangle(0.31*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
 
@@ -113,9 +116,6 @@ void SemesterUI::DrawCreateSemester()
         DrawTextEx(PT_serif_bold, "Enter end date", (Vector2){0.425*windowWidth, 0.53*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw close button and its function
-        Button addSemesterClose;
-        addSemesterClose = close;
-        addSemesterClose.SetRectangle(0.565*windowWidth, 0.30*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
         addSemesterClose.DrawTexture();
 
         if (addSemesterClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
@@ -142,7 +142,7 @@ void SemesterUI::DrawSemesterList()
 
         if (_Semester.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            SemesterDir = ListOfSemesters[i];
+            SemesterDir = "  >  " + ListOfSemesters[i];
             SemesterClicked = true;
         }
         

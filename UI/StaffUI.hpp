@@ -53,8 +53,10 @@ struct StaffUI
     // for testing only, need backend to pull info from
     // add school year section in AddschoolYear() function is also a test. Need backend to modify input system
     // also DrawSchoolYear() is adjusted to work with ListSize
-    string *ListOfSchoolYear;
-    int ListSize = 12;
+    // string *ListOfSchoolYear;
+
+    std::array<std::string, 100> ListOfSchoolYear = {"2022 - 2023", "2021 - 2022", "2020 - 2021"};
+    int ListSize = 3;
 
 
 //---------------------------------------------------------------------------------------------//
@@ -65,7 +67,7 @@ struct StaffUI
 
     SemesterUI _Semester;
 
-    Course course = Course(windowWidth, windowHeight);
+    Course course;
 
 
 

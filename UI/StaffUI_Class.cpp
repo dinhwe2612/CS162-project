@@ -102,7 +102,7 @@ void Class::DrawCreateClass()
             // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
             // ++listSize;
             
-            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
+            // createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
             isAddClass = false;
             inputClass.currentInput = "";
         }
@@ -159,7 +159,7 @@ void Class::DrawClassList()
 
         if (_class.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            classDir = ListOfClasses[i];
+            classDir = "  >  " + ListOfClasses[i];
             classClicked = true;
         }
 
