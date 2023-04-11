@@ -299,12 +299,32 @@ void Class::DrawViewStudent() {
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;
     }
+    Vector2 Coodinate = {0.4*windowWidth, 0.3*windowHeight};
+    float dx = 0, dy = 0.05*windowHeight;
     //draw first name
-    DrawTextPro(PT_serif_bold, "First name:", {0.2*windowWidth, 0.2*windowHeight}, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextPro(PT_serif_bold, ("First name:   " + ListOfStudent[stuIndex].firstName).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw last name
-    DrawTextPro(PT_serif_bold, "Last name:", {0.2*windowWidth, 0.25*windowHeight}, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    Coodinate.y += dy;
+    DrawTextPro(PT_serif_bold, ("Last name:   " + ListOfStudent[stuIndex].lastName).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
     //draw studentid
-    // DrawTextPro(PT_serif_bold, "")
+    Coodinate.y += dy;
+    DrawTextPro(PT_serif_bold, ("Student ID:   " + ListOfStudent[stuIndex].studentID).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    //draw socialID
+    Coodinate.y += dy;
+    DrawTextPro(PT_serif_bold, ("Social ID:   " + ListOfStudent[stuIndex].socialID).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    //draw DOB
+    Coodinate.y += dy;
+    DrawTextPro(PT_serif_bold, ("Date of birth:   " + ListOfStudent[stuIndex].DOB).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    //draw gender
+    Coodinate.y += dy;
+    string GenderString;
+    if (ListOfStudent[stuIndex].gender == 0) GenderString = "MALE";
+    else if (ListOfStudent[stuIndex].gender == 1) GenderString = "FEMALE";
+    else GenderString = "Other";
+    DrawTextPro(PT_serif_bold, ("Gender:   " + GenderString).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
+    //draw class
+    Coodinate.y += dy;
+    DrawTextPro(PT_serif_bold, ("Class:   " + ListOfClasses[classIndex]).c_str(), Coodinate, {0, 0}, 0, 0.02*windowWidth, 0.5, BLACK);
 }
 
 void Class::DrawAddStudent() {
