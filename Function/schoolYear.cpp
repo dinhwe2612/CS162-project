@@ -163,6 +163,7 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
         delete[] listOfStudent;
     }
     listOfStudent = tmp;
+    listOfStudent[n] = student;
     ++n;
     return true;
 }

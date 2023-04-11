@@ -70,6 +70,13 @@ void Class::Draw(int &menuWindow)
     } else if (menuClass == DROP_FILE) {
         std::string dir = LoadDroppedFile();
         DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){0.43*windowWidth, 0.5*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        Button UploadFile;
+        UploadFile.SetRectangle(0.7*windowWidth, 0.7*windowHeight, 95, 50, LIGHTGRAY, BLUE);
+        UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
+        UploadFile.DrawText();
+        if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "Drop file into this window") {
+            importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
+        }
     } else if (menuClass == ADD_STUDENT) {
         DrawAddStudent();
     } else {
@@ -79,6 +86,7 @@ void Class::Draw(int &menuWindow)
         DrawCreateClass();
         if (close.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuWindow = DEFAULT;
+            isAddClass = false;
         }
     }
 }
