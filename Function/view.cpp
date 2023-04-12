@@ -109,22 +109,40 @@ bool viewStudentInClass (string Class, string schoolYear, Student*& students, in
         ++i;
     }
     fin.close();
-    cerr << n << '\n';
-    //LOI NE CAU FIX DUM DI
-    if (students[0].studentID == "") n = 0;//dòng này để tạm cho nó đỡ ngu
-    for(int i = 0; i < n; ++i)
-        cerr << (students[i].studentID == "") << '\n';
     return true;
 }
 
 // view course IDs of a particular semester in a school year
-bool viewCourses(string schoolYear, string semester) {
-    const filesystem::path path = getPath("Course", semester, schoolYear);
+bool viewCourses(ASemester semester, ACourse*& ListOfCourses, int& n) {
+    const filesystem::path path = getPath("Course", semester.semester, semester.schoolYear);
     if (!checkDirectory(path))
         return false;
+    int i = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
-        if (entry.is_directory())
-            cout << entry.path().stem().string() << endl;
+        if (entry.is_directory()) {
+            ++i;
+            // cout << entry.path().stem().string() << endl;
+        }
+    n = i;
+    i = 0;
+    ListOfCourses = new ACourse[n];
+    ifstream fin;
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_directory()) {
+            ListOfCourses[i].id = entry.path().stem().string();
+            fin.open(entry.path().stem().string() + "Course_Info.txt");
+            getline(fin, ListOfCourses[i].name, '\n');
+            getline(fin, ListOfCourses[i].Class, '\n');
+            getline(fin, ListOfCourses[i].teacher, '\n');
+            string credit, maxStudent;
+            getline(fin, credit, '\n');
+            getline(fin, maxStudent, '\n');
+            ListOfCourses[i].credit = stoi(credit);
+            ListOfCourses[i].maxStudent = stoi(maxStudent);
+            getline(fin, ListOfCourses[i].dayOfWeek, '\n');
+            getline(fin, ListOfCourses[i].session, '\n');
+            fin.close();
+        }
     return true;
 }
 
