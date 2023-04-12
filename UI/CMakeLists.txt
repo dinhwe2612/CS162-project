@@ -6,7 +6,7 @@ add_library(ui
     StaffUI_Class.cpp
     StaffUI_Semester.cpp
     StaffUI_Course.cpp
-    # ../Function/login.cpp
-    # ../Function/view.cpp
-    # ../Function/schoolYear.cpp
+    ../Function/login.cpp
+    ../Function/view.cpp
+    ../Function/schoolYear.cpp
 )

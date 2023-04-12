@@ -135,7 +135,7 @@ void Class::DrawCreateClass()
             // std::sort(ListOfClasses.begin(), ListOfClasses.end(), greater_string1);
             // ++listSize;
             
-            // createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
+            createClass(ListOfClasses, listSize, inputClass.GetInput(), SchoolYear);
             isAddClass = false;
             inputClass.currentInput = "";
         }
@@ -192,7 +192,7 @@ void Class::DrawClassList()
 
             classDir = "  >  " + ListOfClasses[i];
             classClicked = true;
-            // viewStudentInClass(ListOfClasses[i], SchoolYear, ListOfStudent, listStuSize);
+            viewStudentInClass(ListOfClasses[i], SchoolYear, ListOfStudent, listStuSize);
             classIndex = i;
         }
 
@@ -258,7 +258,7 @@ void Class::LoadDroppedFile()
     UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
     UploadFile.DrawText();
     if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
-        // importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
+        importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
         UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
@@ -404,7 +404,7 @@ void Class::DrawAddStudent() {
         lastName.currentInput = "";
         DOB.currentInput = "";
         socialID.currentInput = "";
-        // addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
+        addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
     }
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;

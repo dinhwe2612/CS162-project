@@ -193,16 +193,16 @@ void LoginUI::Draw(int &menuLogin)
     DrawLoginIcon();
     signInButton.DrawText();
     DrawStatusButtons();
-    // if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
-    //     int loginState = validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status);
-    //     if (loginState == 1) {
+    if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER)) {
+        int loginState = validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status);
+        if (loginState == 1) {
             isLoginSuccess = true;
             isLoginFail = false;
-        //     inputPassword.password = "";
-        // } else if (loginState == -1 || loginState == -2) {
-        //     isLoginFail = true;
-        // }
-    // }
+            inputPassword.password = "";
+        } else if (loginState == -1 || loginState == -2) {
+            isLoginFail = true;
+        }
+    }
     if (isLoginFail) {
         DrawRetry();
     }
