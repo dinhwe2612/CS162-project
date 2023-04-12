@@ -12,20 +12,33 @@ struct Course
 
     Texture2D background;
     
-    Button back;
+    Button close;
     Button addCourse;
+    Button addCourseClose;
+    Button Create;
 
     Font PT_serif_bold;
     Font PT_serif_regular;
 
-    std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252"};
-    int listCourseSize = 6;
+    InputBar courseName;
+    InputBar courseID;
+    InputBar className;
+    InputBar teacherName;
+    InputBar numberOfCredits;
+    InputBar maxStudents;
 
-    Course(int windowWidth, int windowHeight);
-    ~Course();
+    std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252", "CM101"};
+    int listCourseSize = 7;
 
-    void Draw(int& menuWindow);
+    void Construct(int windowwidth, int windowHeight);
+    void Deconstruct();
+
+    std::string buttonChosen(float x, float y, float width, float height, std::string* labels, bool* isButtonPressed, int size);
+
+    void Draw();
         void DrawBackground();
+        void DrawCourseList();
+        void DrawCreateCourse();
 
 };
 

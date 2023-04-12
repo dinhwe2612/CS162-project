@@ -44,6 +44,8 @@ struct Class
     Student *ListOfStudent;
     int listStuSize = 0;
 
+    int stuIndex = 0;
+
     bool isAddClass = false;
     bool isDropClicked = false;
     bool classClicked = false;
@@ -63,8 +65,6 @@ struct Class
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
 
-    std::string LoadDroppedFile();
-
     void Draw(int &menuWindow);
         void DrawBackground();
         void DrawCreateClass();
@@ -73,6 +73,8 @@ struct Class
         void DrawStudentList();
         void DrawViewStudent();
         void DrawAddStudent();
+        void DrawSchoolYearMenu();
+        void LoadDroppedFile();
 };
 
 #endif
