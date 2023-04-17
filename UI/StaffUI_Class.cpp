@@ -398,6 +398,7 @@ void Class::DrawAddStudent() {
         newStudent.gender = Gender;
         newStudent.DOB = DOB.GetInput();
         newStudent.socialID = socialID.GetInput();
+        newStudent.Class = ListOfClasses[classIndex];
         Gender = 0;
         StudentID.currentInput = "";
         firstName.currentInput = "";

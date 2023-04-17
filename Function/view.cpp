@@ -25,6 +25,8 @@ string getPath (string s, string name = "", string schoolYear = "") {
         return "Data/SchoolYear/" + schoolYear + "/" + name + "/" + "Student_ID_data.txt";
     else if (s.compare("SchoolYear") == 0)
         return "Data/SchoolYear/";
+    else if (s.compare("Semester") == 0)
+        return "Data/SchoolYear/" + schoolYear + '/';
     else
         return "";
 }
@@ -232,6 +234,28 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
             ++i;
         }
     sort(schoolYears, schoolYears + n, greater<string>());
+    return true;
+}
+
+bool viewSemester (string schoolYear, string*& semesters, int& n) {
+    n = 0;
+    const filesystem::path path = getPath("Semester", "", schoolYear);
+    int i = 0;
+    if (!checkDirectory(path))
+        return false;
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_directory())
+            ++n;
+    semesters = new string[n];
+    for (const auto & entry : filesystem::directory_iterator(path))
+        if (entry.is_directory()) {
+            string semester = entry.path().stem().string();
+            if (semester.compare("Classes") != 0) {
+                semesters[i] = entry.path().stem().string();
+                ++i;
+            }
+        }
+    sort(semesters, semesters + n, greater<string>());
     return true;
 }
 
