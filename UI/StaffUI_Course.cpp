@@ -55,6 +55,7 @@ void Course::Deconstruct()
 
 void Course::Draw()
 {
+    DrawTextEx(PT_serif_bold, (">  " + schoolYear + "  >  " + semester).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     DrawBackground();
     DrawCourseList();
     DrawCreateCourse();
@@ -101,8 +102,6 @@ void Course::DrawCourseList()
         Button course;
 
         if (0.3*windowHeight + i * 0.1*windowHeight + posY <= 0.05*windowHeight) continue;
-
-        static std::string courseDir;
         
         course.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
         course.SetText(PT_serif_bold, ListOfCourses[i].id + " - " + ListOfCourses[i].name, 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
@@ -110,9 +109,8 @@ void Course::DrawCourseList()
         if (course.buttonShape.y >= 0.26*windowHeight && course.buttonShape.y + course.buttonShape.height <= 0.88*windowHeight)
             course.DrawText();
 
-        if (course.isPRESSED(MOUSE_BUTTON_LEFT))
+        if (!isAddCourse && course.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            courseDir = "  >  " + ListOfCourses[i].name;
             courseClicked = true;
         }
 
@@ -122,13 +120,11 @@ void Course::DrawCourseList()
         if (close.isPRESSED(MOUSE_BUTTON_LEFT))
             courseClicked = false;
 
-        DrawTextEx(PT_serif_bold, courseDir.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     }
 }
 
 void Course::DrawCreateCourse()
 {
-    static bool isAddCourse;
     
     if (addCourse.isPRESSED(MOUSE_BUTTON_LEFT))
         isAddCourse = true;
@@ -183,13 +179,13 @@ void Course::DrawCreateCourse()
 
         // draw days of week buttons
         std::string dayLabel[10] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        static bool isDayChosen[10] = {false, false, false, false, false, false, false};
+        static bool isDayChosen[10] = {true, false, false, false, false, false, false};
         std::string chosenDay = buttonChosen(0.35*windowWidth, 0.58*windowHeight, 0.37*windowHeight, 0.05*windowHeight, dayLabel, isDayChosen, 7);
         DrawTextEx(PT_serif_bold, "Select date of course", (Vector2){0.35*windowWidth, 0.55*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
         
         // draw session
         std::string sessionLabel[10] = {"S1", "S2", "S3", "S4"};
-        static bool isSessionChosen[10] = {false, false, false, false};
+        static bool isSessionChosen[10] = {true, false, false, false};
         std::string chosenSession = buttonChosen(0.35*windowWidth, 0.67*windowHeight, 0.22*windowHeight, 0.05*windowHeight, sessionLabel, isSessionChosen, 4);
         DrawTextEx(PT_serif_bold, "Select session", (Vector2){0.35*windowWidth, 0.64*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
 
@@ -209,11 +205,20 @@ void Course::DrawCreateCourse()
             newCourse.credit = stoi(numberOfCredits.GetInput());
             newCourse.maxStudent = stoi(maxStudents.GetInput());
             int tmp = 0;
-            for(int i = 0; i < 7; ++i) if (isDayChosen[i]) tmp = i;
+            for(int i = 0; i < 7; ++i) if (isDayChosen[i]) tmp = i, isDayChosen[i] = false;
+            isDayChosen[0] = true;
             newCourse.dayOfWeek = dayLabel[tmp];
-            for(int i = 0; i < 4; ++i) if (isSessionChosen[i]) tmp = i;
+            for(int i = 0; i < 4; ++i) if (isSessionChosen[i]) tmp = i, isSessionChosen[i] = false;
+            isSessionChosen[0] = true;
             newCourse.session = sessionLabel[tmp];
             AddCourse(schoolYear, semester, newCourse, ListOfCourses, listCourseSize);
+            courseName.currentInput = "";
+            courseID.currentInput = "";
+            className.currentInput = "";
+            teacherName.currentInput = "";
+            numberOfCredits.currentInput = "";
+            maxStudents.currentInput = "";
+            isAddCourse = false;
         }
     }
 }

@@ -56,7 +56,6 @@ bool AddCourse(string schoolYear, string semester, ACourse course, ACourse*& Lis
     out << course.Class << '\n';
     out.close();
     Course_Information(txtaddress, course);
-    cout << '\n';
     ACourse* tmp = new ACourse[n + 1];
     if (n > 0) 
     {

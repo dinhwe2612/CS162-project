@@ -29,9 +29,13 @@ struct Course
     InputBar numberOfCredits;
     InputBar maxStudents;
 
+    bool isAddCourse = false;
+
     // std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252", "CM101"};
     ACourse *ListOfCourses;
     int listCourseSize = 7;
+
+    int menuCourse = 0;
 
     string schoolYear;
     string semester;

@@ -100,14 +100,7 @@ void StaffUI::DrawCurrentWindow() {
         break;
     case SEMESTER:
         _Semester.Draw(menuWindow);
-        
         break;
-    // case COURSE:
-    //     course.Draw();
-    //     if (course.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
-    //         menuWindow = SEMESTER;
-    //     }
-    //     break;
     }
 }
 
@@ -221,7 +214,6 @@ void StaffUI::DrawDropDownSchoolYear()
         }
     }
     else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowWidth}) 
-                && !cornerStripes.isPRESSED(MOUSE_BUTTON_LEFT) 
                 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)
                 && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.41*windowWidth, 0.38*windowHeight, 0.19*windowWidth, 0.14*windowWidth}))
         IS_DROPDOWN_CLICKED = false;
@@ -299,6 +291,7 @@ void StaffUI::DrawSchoolYear()
             }
             if (Semester.isPRESSED(MOUSE_BUTTON_LEFT)) {
                 menuWindow = SEMESTER;
+                _Semester.menuSemester = 0;
                 _Semester.SchoolYear = ListOfSchoolYear[i]; 
                 viewSemester(_Semester.SchoolYear, _Semester.ListOfSemesters, _Semester.listSize);
             }

@@ -46,9 +46,10 @@ void SemesterUI::Draw(int &menuWindow)
 {
     DrawBackground();
     if (menuSemester == 0) {//default
+        DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
         close.DrawTexture();
         addSemester.DrawTexture();
-        DrawSemesterList(menuWindow);
+        DrawSemesterList();
         DrawCreateSemester();
         if (close.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuWindow = -1;//default
@@ -80,7 +81,6 @@ void SemesterUI::DrawBackground()
 
 void SemesterUI::DrawCreateSemester()
 {
-    static bool isAddSemester;
     
     if (addSemester.isPRESSED(MOUSE_BUTTON_LEFT))
         isAddSemester = true;
@@ -143,32 +143,27 @@ void SemesterUI::DrawCreateSemester()
     }
 }
 
-void SemesterUI::DrawSemesterList(int &menuWindow)
+void SemesterUI::DrawSemesterList()
 {
     static bool SemesterClicked = false;
     
     for (int i = 0; i < listSize; ++i)
     {
         Button _Semester;
-
-        static std::string SemesterDir;
         
         _Semester.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.18*windowHeight, 0.4*windowWidth, 0.16*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
         _Semester.SetText(PT_serif_bold, ListOfSemesters[i], 0.33*windowWidth, 0.32*windowHeight + i * 0.18*windowHeight, 0.02*windowWidth, 0.5, BLACK);
         
         _Semester.DrawText();
 
-        if (_Semester.isPRESSED(MOUSE_BUTTON_LEFT))
+        if (!isAddSemester && _Semester.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            SemesterDir = "  >  " + ListOfSemesters[i];
             SemesterClicked = true;
             menuSemester = 1;// menuSemester = SEMESTER
             course.schoolYear = SchoolYear;
             course.semester = ListOfSemesters[i];
             viewCourses(SchoolYear, ListOfSemesters[i], course.ListOfCourses, course.listCourseSize);
         }
-        
-        DrawTextEx(PT_serif_bold, SemesterDir.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     }
 }
 

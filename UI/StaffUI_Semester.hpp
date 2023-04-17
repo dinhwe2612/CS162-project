@@ -34,6 +34,8 @@ struct SemesterUI
 
     Course course;
 
+    bool isAddSemester = false;
+
     string *ListOfSemesters;
 
     int indexSemester;
@@ -53,7 +55,7 @@ struct SemesterUI
     void Draw(int &menuWindow);
         void DrawBackground();
         void DrawCreateSemester();
-        void DrawSemesterList(int &menuWindow);
+        void DrawSemesterList();
         
 };
 
