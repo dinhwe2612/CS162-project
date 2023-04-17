@@ -6,6 +6,9 @@
 #include "InputBar.hpp"
 #include <array>
 #include <iostream>
+#include "../Header/view.h"
+#include "../Header/SemesterCourse.h"
+#include "StaffUI_Course.hpp"
 
 struct SemesterUI
 {
@@ -29,12 +32,17 @@ struct SemesterUI
     InputBar SemesterStartDate;
     InputBar SemesterEndDate;
 
-    // string *ListOfClasses; 
-    // int listSize = 0;
+    Course course;
 
-    std::array<std::string, 3> ListOfSemesters = {"Semester 1", "Semester 2"}; 
-    std::array<std::array<int, 3>, 3> ListOfStartDates = {{{20, 1, 2022}, {20, 5, 2022}}};
-    std::array<std::array<int, 3>, 3> ListOfEndDates = {{{1, 5, 2022}, {1, 10, 2022}}};
+    string *ListOfSemesters;
+
+    int indexSemester;
+
+    int menuSemester = 0;
+
+    // std::array<std::string, 3> ListOfSemesters = {"Semester 1", "Semester 2"}; 
+    // std::array<std::array<int, 3>, 3> ListOfStartDates = {{{20, 1, 2022}, {20, 5, 2022}}};
+    // std::array<std::array<int, 3>, 3> ListOfEndDates = {{{1, 5, 2022}, {1, 10, 2022}}};
     int listSize = 2;
     
     void Construct(int windowWidth, int windowHeight);
@@ -42,10 +50,10 @@ struct SemesterUI
 
     std::string LoadDroppedFile();
 
-    void Draw();
+    void Draw(int &menuWindow);
         void DrawBackground();
         void DrawCreateSemester();
-        void DrawSemesterList();
+        void DrawSemesterList(int &menuWindow);
         
 };
 

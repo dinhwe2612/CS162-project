@@ -2,7 +2,7 @@
 
 using namespace std;
 
-bool CreateSemester(ASemester semester, ASemester* ListOfSemester, int& n) {
+bool CreateSemester(ASemester semester, string*& ListOfSemester, int& n) {
     ifstream in; ofstream out;
     string address = "Data/SchoolYear/" + semester.schoolYear + "/" + semester.semester;
     if(mkdir(address.c_str()) == -1)
@@ -14,22 +14,34 @@ bool CreateSemester(ASemester semester, ASemester* ListOfSemester, int& n) {
     out << semester.startDate << '\n';
     out << semester.endDate << '\n';
     out.close();
-    ASemester* tmp = new ASemester[n + 1];
+    string* tmp = new string[n + 1];
     if (n > 0) {
         for (int i = 0; i < n; ++i)
             tmp[i] = ListOfSemester[i];
         delete[] ListOfSemester;
     }
-    tmp[n] = semester;
+    tmp[n] = semester.semester;
     ListOfSemester = tmp;
     ++n;
     return true;
 }
 
-bool AddCourse(ASemester semester, ACourse course, ACourse* ListOfCourse, int& n) {
+void Course_Information(string txtaddress, ACourse course) {
+    ofstream out;
+    string str;
+    out.open(txtaddress.c_str(), ios::app);
+    out << course.teacher << '\n';
+    out << course.credit << '\n';
+    out << course.maxStudent << '\n';
+    out << course.dayOfWeek << '\n';
+    out << course.session << '\n';
+    out.close();
+}
+
+bool AddCourse(string schoolYear, string semester, ACourse course, ACourse* ListOfCourse, int& n) {
     ifstream in;
     ofstream out;
-    string address = "../Data/SchoolYear/" + semester.schoolYear + "/" + semester.semester;
+    string address = "../Data/SchoolYear/" + schoolYear + "/" + semester;
     string txtaddress = address + "/Semester_Info.txt";
     out.open(txtaddress.c_str(), ios::app);
     string courseaddress = address + "/" + course.id + "-" + course.Class;
@@ -54,16 +66,4 @@ bool AddCourse(ASemester semester, ACourse course, ACourse* ListOfCourse, int& n
     ListOfCourse = tmp;
     ++n;
     return true;
-}
-
-void Course_Information(string txtaddress, ACourse course) {
-    ofstream out;
-    string str;
-    out.open(txtaddress.c_str(), ios::app);
-    out << course.teacher << '\n';
-    out << course.credit << '\n';
-    out << course.maxStudent << '\n';
-    out << course.dayOfWeek << '\n';
-    out << course.session << '\n';
-    out.close();
 }
