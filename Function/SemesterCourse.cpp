@@ -14,7 +14,7 @@ bool CreateSemester(ASemester semester, ASemester* ListOfSemester, int& n) {
     out << semester.startDate << '\n';
     out << semester.endDate << '\n';
     out.close();
-    ASemester* tmp = new Semester[n + 1];
+    ASemester* tmp = new ASemester[n + 1];
     if (n > 0) {
         for (int i = 0; i < n; ++i)
             tmp[i] = ListOfSemester[i];
