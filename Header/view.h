@@ -11,7 +11,8 @@ using namespace std;
 
 bool viewClasses(string*& classes, int & n, string schoolYear);
 bool viewStudentInClass (string Class, string schoolYear, Student*& Students, int& n);
-bool viewCourses(string schoolYear, string semester);
+bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, int& n);
 bool viewStudentInCourse(string schoolYear, string semester, string course);
 bool viewCoursesOfStudent(string id, string schoolYear, string semester);
 bool viewSchoolYear(string*& schoolYears, int& n);
+bool viewSemester (string schoolYear, string*& semesters, int& n);
