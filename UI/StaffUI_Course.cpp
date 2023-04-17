@@ -88,13 +88,13 @@ void Course::DrawCourseList()
     static bool courseClicked = false;
 
     posY += GetMouseWheelMove() * 30;
-    if (posY > 0) posY = 0;
+    
 
     //int szList = ListOfSchoolYear.size();
     // replace szList with listCourseSize from here
     if (0.3*windowHeight + (1 + listCourseSize) * 0.1*windowHeight + posY <= 720)
         posY = 720 - (0.3*windowHeight + (1 + listCourseSize) * 0.1*windowHeight);
-
+    if (posY > 0) posY = 0;
     
     for (int i = 0; i < listCourseSize; ++i)
     {
@@ -105,14 +105,14 @@ void Course::DrawCourseList()
         static std::string courseDir;
         
         course.SetRectangle(0.31*windowWidth, 0.3*windowHeight + i * 0.1*windowHeight + posY, 0.4*windowWidth, 0.08*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
-        course.SetText(PT_serif_bold, ListOfCourses[i], 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
+        course.SetText(PT_serif_bold, ListOfCourses[i].id + " - " + ListOfCourses[i].name, 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
         
         if (course.buttonShape.y >= 0.26*windowHeight && course.buttonShape.y + course.buttonShape.height <= 0.88*windowHeight)
             course.DrawText();
 
         if (course.isPRESSED(MOUSE_BUTTON_LEFT))
         {
-            courseDir = "  >  " + ListOfCourses[i];
+            courseDir = "  >  " + ListOfCourses[i].name;
             courseClicked = true;
         }
 
@@ -149,15 +149,6 @@ void Course::DrawCreateCourse()
 
         // draw create school year button and its function
         Create.DrawText();
-
-        // if (Create.isPRESSED(MOUSE_BUTTON_LEFT) && listSize <= 2)
-        // {
-        //     ListOfSemesters[listSize++] = inputSemester.GetInput();
-        // }
-        // else if (listSize >= 3)
-        // {
-        //     DrawTextEx(PT_serif_regular, "Max number of semester is 3", (Vector2){0.425*windowWidth, 0.608*windowHeight}, 0.015*windowWidth, 0.5, RED);
-        // }
         
 
         // draw course name
@@ -208,6 +199,21 @@ void Course::DrawCreateCourse()
         if (addCourseClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
             isAddCourse = false;
             // inputSemester.currentInput = "";
+        }
+        if (Create.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            ACourse newCourse;
+            newCourse.name = courseName.GetInput();
+            newCourse.id = courseID.GetInput();
+            newCourse.Class = className.GetInput();
+            newCourse.teacher = teacherName.GetInput();
+            newCourse.credit = stoi(numberOfCredits.GetInput());
+            newCourse.maxStudent = stoi(maxStudents.GetInput());
+            int tmp = 0;
+            for(int i = 0; i < 7; ++i) if (isDayChosen[i]) tmp = i;
+            newCourse.dayOfWeek = dayLabel[tmp];
+            for(int i = 0; i < 4; ++i) if (isSessionChosen[i]) tmp = i;
+            newCourse.session = sessionLabel[tmp];
+            AddCourse(schoolYear, semester, newCourse, ListOfCourses, listCourseSize);
         }
     }
 }
