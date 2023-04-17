@@ -38,10 +38,10 @@ void Course_Information(string txtaddress, ACourse course) {
     out.close();
 }
 
-bool AddCourse(string schoolYear, string semester, ACourse course, ACourse* ListOfCourse, int& n) {
+bool AddCourse(string schoolYear, string semester, ACourse course, ACourse*& ListOfCourse, int& n) {
     ifstream in;
     ofstream out;
-    string address = "../Data/SchoolYear/" + schoolYear + "/" + semester;
+    string address = "Data/SchoolYear/" + schoolYear + "/" + semester;
     string txtaddress = address + "/Semester_Info.txt";
     out.open(txtaddress.c_str(), ios::app);
     string courseaddress = address + "/" + course.id + "-" + course.Class;
@@ -56,6 +56,7 @@ bool AddCourse(string schoolYear, string semester, ACourse course, ACourse* List
     out << course.Class << '\n';
     out.close();
     Course_Information(txtaddress, course);
+    cout << '\n';
     ACourse* tmp = new ACourse[n + 1];
     if (n > 0) 
     {
