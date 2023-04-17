@@ -22,14 +22,11 @@ void SemesterUI::Construct(int windowWidth, int windowHeight)
     inputSemester.Construct(0.425*windowWidth, 0.36*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.365*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     inputSemester.SetColorBox(WHITE, WHITE);
 
-    SemesterStartDate.Construct(0.425*windowWidth, 0.46*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.465*windowHeight, 0.018*windowWidth, 0.5, 10, "");
+    SemesterStartDate.Construct(0.425*windowWidth, 0.46*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.465*windowHeight, 0.018*windowWidth, 0.5, 8, "");
     SemesterStartDate.SetColorBox(WHITE, WHITE);
 
-    SemesterEndDate.Construct(0.425*windowWidth, 0.56*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.565*windowHeight, 0.018*windowWidth, 0.5, 10, "");
+    SemesterEndDate.Construct(0.425*windowWidth, 0.56*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.565*windowHeight, 0.018*windowWidth, 0.5, 8, "");
     SemesterEndDate.SetColorBox(WHITE, WHITE);
-
-    // Course initialisation
-    course.Construct(windowWidth, windowHeight);
 }
 
 void SemesterUI::Deconstruct()
@@ -39,26 +36,16 @@ void SemesterUI::Deconstruct()
     UnloadTexture(addSemester.image);
 
     UnloadFont(PT_serif_bold);
-    course.Deconstruct();
 }
 
-void SemesterUI::Draw(int &menuWindow)
+void SemesterUI::Draw()
 {
     DrawBackground();
-    if (menuSemester == 0) {//default
-        close.DrawTexture();
-        addSemester.DrawTexture();
-        DrawSemesterList(menuWindow);
-        DrawCreateSemester();
-        if (close.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuWindow = -1;//default
-        }
-    } else if (menuSemester == 1) {//course
-        course.Draw();
-        if (course.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuSemester = 0;
-        }
-    }
+    close.DrawTexture();
+    addSemester.DrawTexture();
+    DrawSemesterList();
+    DrawCreateSemester();
+
 }
 
 void SemesterUI::DrawBackground()
@@ -105,12 +92,7 @@ void SemesterUI::DrawCreateSemester()
 
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT) && listSize <= 2)
         {
-            ASemester newSemester;
-            newSemester.semester = inputSemester.GetInput();
-            newSemester.startDate = SemesterStartDate.GetInput();
-            newSemester.endDate = SemesterEndDate.GetInput();
-            newSemester.schoolYear = SchoolYear;
-            CreateSemester(newSemester, ListOfSemesters, listSize);
+            ListOfSemesters[listSize++] = inputSemester.GetInput();
         }
         else if (listSize >= 3)
         {
@@ -143,9 +125,9 @@ void SemesterUI::DrawCreateSemester()
     }
 }
 
-void SemesterUI::DrawSemesterList(int &menuWindow)
+void SemesterUI::DrawSemesterList()
 {
-    static bool SemesterClicked = false;
+    static bool SemesterClicked;
     
     for (int i = 0; i < listSize; ++i)
     {
@@ -162,10 +144,6 @@ void SemesterUI::DrawSemesterList(int &menuWindow)
         {
             SemesterDir = "  >  " + ListOfSemesters[i];
             SemesterClicked = true;
-            menuSemester = 1;// menuSemester = SEMESTER
-            course.schoolYear = SchoolYear;
-            course.semester = ListOfSemesters[i];
-            viewCourses(SchoolYear, ListOfSemesters[i], course.ListOfCourses, course.listCourseSize);
         }
         
         DrawTextEx(PT_serif_bold, SemesterDir.c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);

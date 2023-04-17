@@ -67,7 +67,8 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     // Semester initialisation
     _Semester.Construct(windowWidth, windowHeight);
 
-    
+    // Course initialisation
+    course.Construct(windowWidth, windowHeight);
 
 }
 
@@ -83,6 +84,7 @@ void StaffUI::Deconstruct()
 
     _Class.Deconstruct();
     _Semester.Deconstruct();
+    course.Deconstruct();
 
     delete []BUTTON_SchoolYear_isCLICKED;
 }
@@ -99,15 +101,16 @@ void StaffUI::DrawCurrentWindow() {
         _Class.Draw(menuWindow);
         break;
     case SEMESTER:
-        _Semester.Draw(menuWindow);
-        
+        _Semester.Draw();
+        if (_Semester.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuWindow = DEFAULT;
+        }
+    case COURSE:
+        course.Draw();
+        if (course.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuWindow = DEFAULT;
+        }
         break;
-    // case COURSE:
-    //     course.Draw();
-    //     if (course.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
-    //         menuWindow = SEMESTER;
-    //     }
-    //     break;
     }
 }
 
@@ -300,7 +303,6 @@ void StaffUI::DrawSchoolYear()
             if (Semester.isPRESSED(MOUSE_BUTTON_LEFT)) {
                 menuWindow = SEMESTER;
                 _Semester.SchoolYear = ListOfSchoolYear[i]; 
-                viewSemester(_Semester.SchoolYear, _Semester.ListOfSemesters, _Semester.listSize);
             }
 
             accumulativeHeight += 0.2*windowHeight;
@@ -449,6 +451,41 @@ void StaffUI::DrawChangePassword()
 void StaffUI::DrawViewProfile() {
     
 }
+
+// // menu when a school year in drop down bar is clicked
+// void StaffUI::DrawSchoolYearMenu()
+// {
+//     // draw top bar directory & check if any school year is chosen
+
+//     static Button SchoolYear;
+
+//     static bool buttonChosen = false;
+    
+//     Vector2 accessDir = {0.25*windowWidth, 0.01*windowHeight};
+
+//     for (auto& schoolYearButton : ListOfSchoolYearButtons)
+//     {
+//         if (schoolYearButton.isPRESSED(MOUSE_BUTTON_LEFT))
+//         {
+//             SchoolYear = schoolYearButton;
+//             SchoolYear.Text[0] = '>';
+//             buttonChosen = true;
+//         }
+//     }
+//     if (_Semester.close.isPRESSED(MOUSE_BUTTON_LEFT))
+//         buttonChosen = false;
+
+//     // respond when a school year is chosen or not chosen
+//     if (buttonChosen)
+//     {
+//         DrawTextEx(PT_serif_bold, SchoolYear.Text.c_str(), accessDir, 0.015*windowWidth, 0.5, WHITE);
+
+//     }
+//     else 
+//     {
+//         DrawTextEx(PT_serif_bold, "Choose a school year or create new one.", accessDir, 0.015*windowWidth, 0.5, WHITE);
+//     }
+// }
 
 bool greater_string (std::string& a, std::string& b)
 {

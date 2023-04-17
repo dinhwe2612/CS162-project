@@ -12,7 +12,4 @@
     #include <direct.h>
 #endif
 
-bool CreateSemester(ASemester semester, string*& ListOfSemester, int& n);
-bool AddCourse(string schoolYear, string semester, ACourse course, ACourse* ListOfCourse, int& n);
-
 #endif

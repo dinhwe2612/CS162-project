@@ -115,8 +115,8 @@ bool viewStudentInClass (string Class, string schoolYear, Student*& students, in
 }
 
 // view course IDs of a particular semester in a school year
-bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, int& n) {
-    const filesystem::path path = getPath("Course", semester, schoolYear);
+bool viewCourses(ASemester semester, ACourse*& ListOfCourses, int& n) {
+    const filesystem::path path = getPath("Course", semester.semester, semester.schoolYear);
     if (!checkDirectory(path))
         return false;
     int i = 0;
@@ -132,7 +132,7 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_directory()) {
             ListOfCourses[i].id = entry.path().stem().string();
-            fin.open(entry.path().string() + "/Course_Info.txt");
+            fin.open(entry.path().stem().string() + "Course_Info.txt");
             getline(fin, ListOfCourses[i].name, '\n');
             getline(fin, ListOfCourses[i].Class, '\n');
             getline(fin, ListOfCourses[i].teacher, '\n');
@@ -144,7 +144,6 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
             getline(fin, ListOfCourses[i].dayOfWeek, '\n');
             getline(fin, ListOfCourses[i].session, '\n');
             fin.close();
-            ++i;
         }
     return true;
 }
@@ -245,11 +244,8 @@ bool viewSemester (string schoolYear, string*& semesters, int& n) {
     if (!checkDirectory(path))
         return false;
     for (const auto & entry : filesystem::directory_iterator(path))
-        if (entry.is_directory()) {
-            string semester = entry.path().stem().string();
-            if (semester.compare("Classes") != 0)
-                ++n;
-        }
+        if (entry.is_directory())
+            ++n;
     semesters = new string[n];
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_directory()) {
