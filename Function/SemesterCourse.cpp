@@ -29,9 +29,9 @@ bool CreateSemester(ASemester semester, ASemester* ListOfSemester, int& n) {
 bool AddCourse(ASemester semester, ACourse course, ACourse* ListOfCourse, int& n) {
     ifstream in;
     ofstream out;
-    string address = "Data/SchoolYear/" + semester.schoolYear + "/" + semester.semester;
+    string address = "../Data/SchoolYear/" + semester.schoolYear + "/" + semester.semester;
     string txtaddress = address + "/Semester_Info.txt";
-    out.open(txtaddress.c_str(), fstream::app);
+    out.open(txtaddress.c_str(), ios::app);
     string courseaddress = address + "/" + course.id + "-" + course.Class;
     if(mkdir(courseaddress.c_str()) == -1)
         return false;
@@ -45,9 +45,9 @@ bool AddCourse(ASemester semester, ACourse course, ACourse* ListOfCourse, int& n
     out.close();
     Course_Information(txtaddress, course);
     ACourse* tmp = new ACourse[n + 1];
-    if (n > 0) {
-        for (int i = 0; i < n; ++i)
-            tmp[i] = ListOfCourse[i];
+    if (n > 0) 
+    {
+        for (int i = 0; i < n; ++i) tmp[i] = ListOfCourse[i];
         delete[] ListOfCourse;
     }
     tmp[n] = course;
