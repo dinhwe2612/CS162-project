@@ -98,6 +98,7 @@ bool viewStudentInClass (string Class, string schoolYear, Student*& students, in
         getline(fi, students[i].studentID, '\n');
         getline(fi, students[i].firstName, '\n');
         getline(fi, students[i].lastName, '\n');
+        getline(fi, students[i].Class, '\n');
         getline(fi, gender, '\n');
         if (gender == "0")
             students[i].gender = 0;

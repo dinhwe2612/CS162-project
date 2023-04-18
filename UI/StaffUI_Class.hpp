@@ -71,7 +71,6 @@ struct Class
         void DrawClassList();
         void DrawViewClass();
         void DrawStudentList();
-        void DrawViewStudent();
         void DrawAddStudent();
         void DrawSchoolYearMenu();
         void LoadDroppedFile();
