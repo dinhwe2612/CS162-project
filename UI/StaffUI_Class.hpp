@@ -30,7 +30,7 @@ struct Class
     Button view, drop, add, back;
 
     InputBar inputClass;
-    InputBar StudentID, firstName, lastName, DOB, socialID;
+    InputBar StudentID, firstName, lastName, day, month, year, socialID;
     Button Male, Female, Other;
     Texture2D Tick;
     Rectangle TickRec;

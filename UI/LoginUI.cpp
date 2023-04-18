@@ -203,6 +203,10 @@ void LoginUI::Draw(int &menuLogin)
             isLoginFail = true;
         }
     }
+    if (inputUsername.OnText && IsKeyPressed(KEY_TAB)) {
+        inputUsername.OnText = false;
+        inputPassword.OnText = true;
+    }
     if (isLoginFail) {
         DrawRetry();
     }

@@ -29,7 +29,7 @@ void InputBar::SetInputText() {
         colorBox = colorBox2;
         int key = GetCharPressed();
         while(key > 0) {
-            if (currentInput.size() <= MAX_SIZE) {
+            if (currentInput.size() <= MAX_SIZE && ((onlyNum && IsNum(key)) || (onlyWord && IsWord(key)) || (!onlyNum && !onlyWord))) {
                 currentInput.push_back(key);
                 password.push_back('*');
             }
@@ -47,4 +47,12 @@ void InputBar::SetInputText() {
 
 string InputBar::GetInput() {
     return currentInput;
+}
+
+bool InputBar::IsNum(int x) {
+    return ('0' <= x && x <= '9');
+}
+
+bool InputBar::IsWord(int x) {
+    return (('a' <= x && x <= 'z') || ('A' <= x && x <= 'Z') || x == ' ');
 }

@@ -116,9 +116,9 @@ void StaffUI::Draw(int &menuLogin)
     default:
         DrawBackground();
         DrawStaticElement();
-        DrawDropDownAccount(menuLogin);//for signout button
         DrawCurrentWindow();
         DrawDropDownSchoolYear();
+        DrawDropDownAccount(menuLogin);//for signout button
         break;
     case CHANGE_PASSWORD:
         DrawChangePassword();
@@ -187,6 +187,7 @@ void StaffUI::DrawDropDownAccount(int &menuLogin)
         if (signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = DEFAULT;
             menuLogin = DEFAULT;
+            menuWindow = DEFAULT;
         }
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = CHANGE_PASSWORD;
@@ -270,8 +271,6 @@ void StaffUI::DrawSchoolYear()
 
         if (BUTTON_SchoolYear_isCLICKED[i]) {
             schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            // schoolYear.SetText(PT_serif_bold, "v   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
-            // DrawSchoolYearMenu();
 
             // Draw semester buttons
             Button Semester;
@@ -398,7 +397,7 @@ void StaffUI::DrawChangePassword()
         NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD
     };
 
-    if (Change.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    if (Change.isPRESSED(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER)) {
         int validate = validateAccount(username, oldPassword.GetInput(), true);
         if (validate == 1) {
             if (newPassword.GetInput() == oldPassword.GetInput()) {
@@ -466,7 +465,7 @@ void StaffUI::AddSchoolYear()
     Create.SetRectangle(0.425*windowWidth, 0.55*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
     Create.DrawText();
 
-    if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
+    if (Create.isPRESSED(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER))
     {
         createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
         menuStaff = previousmenuStaff;
@@ -489,5 +488,3 @@ void StaffUI::AddSchoolYear()
         enterSchoolYear.currentInput = "";
     }
 }
-
-

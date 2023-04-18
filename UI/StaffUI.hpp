@@ -98,7 +98,6 @@ struct StaffUI
         void DrawSchoolYear();
         void DrawChangePassword();
         void DrawViewProfile();
-        // void DrawSchoolYearMenu();
         void DrawCurrentWindow();
 };
 

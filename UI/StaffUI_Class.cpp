@@ -30,12 +30,15 @@ void Class::Construct(int windowWidth, int windowHeight)
 
     StudentID.Construct(0.4*windowWidth, 0.3*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.31*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
     StudentID.SetColorBox(WHITE, WHITE);
+    StudentID.onlyNum = true;
 
     firstName.Construct(0.4*windowWidth, 0.37*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.38*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
     firstName.SetColorBox(WHITE, WHITE);
+    firstName.onlyWord = true;
 
     lastName.Construct(0.4*windowWidth, 0.44*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.45*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
     lastName.SetColorBox(WHITE, WHITE);
+    lastName.onlyWord = true;
 
     Male.SetRectangle(0.4*windowWidth + 60, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Female.SetRectangle(0.5*windowWidth + 85 - 10, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
@@ -43,11 +46,21 @@ void Class::Construct(int windowWidth, int windowHeight)
     Tick = LoadTexture("UI/images/down.png");
     TickRec = (Rectangle){0, 0, Tick.width, Tick.height};
 
-    DOB.Construct(0.4*windowWidth, 0.58*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
-    DOB.SetColorBox(WHITE, WHITE);
+    // DOB.Construct(0.4*windowWidth, 0.58*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
+    // DOB.SetColorBox(WHITE, WHITE);
+    day.Construct(0.4*windowWidth, 0.58*windowHeight, 0.05*windowHeight, 0.05*windowHeight, 0.4*windowWidth + 4, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 1, "");
+    day.SetColorBox(WHITE, WHITE);
+    day.onlyNum = true;
+    month.Construct(0.4*windowWidth + 0.05*windowHeight + 35, 0.58*windowHeight, 0.05*windowHeight, 0.05*windowHeight, 0.4*windowWidth + 0.05*windowHeight + 39, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 1, "");
+    month.SetColorBox(WHITE, WHITE);
+    month.onlyNum = true;
+    year.Construct(0.4*windowWidth + 0.05*windowHeight + 35 + 0.05*windowHeight + 35, 0.58*windowHeight, 0.1*windowHeight, 0.05*windowHeight, 0.4*windowWidth + 0.05*windowHeight + 35 + 0.05*windowHeight + 39, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 3, "");
+    year.SetColorBox(WHITE, WHITE);
+    year.onlyNum = true;
 
     socialID.Construct(0.4*windowWidth, 0.65*windowHeight, 0.25*windowWidth, 0.05*windowHeight, 0.4*windowWidth, 0.66*windowHeight - 10, 0.03*windowWidth, 0.5, 10, "");
     socialID.SetColorBox(WHITE, WHITE);
+    socialID.onlyNum = true;
 }
 
 void Class::Deconstruct()
@@ -377,8 +390,15 @@ void Class::DrawAddStudent() {
     DrawRectangleLines(0.6*windowWidth + 70 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     //Draw DOB
     DrawTextEx(PT_serif_bold, "Date of birth", (Vector2){0.25*windowWidth, 0.58*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
-    DrawRectangleLines(0.4*windowWidth - 2, 0.58*windowHeight - 2, 0.25*windowWidth + 3.5, 0.05*windowHeight + 4, BLACK);
-    DOB.Draw();
+    // DOB.Draw();
+    DrawRectangleLines(0.4*windowWidth - 2, 0.58*windowHeight - 2, 0.05*windowHeight + 4, 0.05*windowHeight + 4, BLACK);
+    day.Draw();
+    DrawText("-", 0.4*windowWidth + 0.05*windowHeight + 10, 0.58*windowHeight, 0.05*windowHeight, BLACK);
+    DrawRectangleLines(0.4*windowWidth + 0.05*windowHeight + 33, 0.58*windowHeight - 2, 0.05*windowHeight + 4, 0.05*windowHeight + 4, BLACK);
+    month.Draw();
+    DrawText("-", 0.4*windowWidth + 0.05*windowHeight + 33 + 0.05*windowHeight + 10, 0.58*windowHeight, 0.05*windowHeight, BLACK);
+    DrawRectangleLines(0.4*windowWidth + 0.05*windowHeight + 33 + 0.05*windowHeight + 33, 0.58*windowHeight - 2, 0.1*windowHeight + 5, 0.05*windowHeight + 4, BLACK);
+    year.Draw();
     //Draw socialID
     DrawTextEx(PT_serif_bold, "Social ID", (Vector2){0.25*windowWidth, 0.65*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.65*windowHeight - 2, 0.25*windowWidth + 3.5, 0.05*windowHeight + 3.5, BLACK);
@@ -396,14 +416,16 @@ void Class::DrawAddStudent() {
         newStudent.firstName = firstName.GetInput();
         newStudent.lastName = lastName.GetInput();
         newStudent.gender = Gender;
-        newStudent.DOB = DOB.GetInput();
+        newStudent.DOB = day.GetInput() + "/" + month.GetInput() + "/" + year.GetInput();
         newStudent.socialID = socialID.GetInput();
         newStudent.Class = ListOfClasses[classIndex];
         Gender = 0;
         StudentID.currentInput = "";
         firstName.currentInput = "";
         lastName.currentInput = "";
-        DOB.currentInput = "";
+        day.currentInput = "";
+        month.currentInput = "";
+        year.currentInput = "";
         socialID.currentInput = "";
         addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
     }
@@ -413,7 +435,9 @@ void Class::DrawAddStudent() {
         StudentID.currentInput = "";
         firstName.currentInput = "";
         lastName.currentInput = "";
-        DOB.currentInput = "";
+        day.currentInput = "";
+        month.currentInput = "";
+        year.currentInput = "";
         socialID.currentInput = "";
     }
 }
