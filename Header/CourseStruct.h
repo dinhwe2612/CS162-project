@@ -3,8 +3,6 @@
 
 #include <string>
 
-using namespace std;
-
 struct ACourse {
     string id;
     string name;
