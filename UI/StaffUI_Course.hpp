@@ -18,6 +18,9 @@ struct Course
     Button addCourse;
     Button addCourseClose;
     Button Create;
+    Button viewGPA;
+    Button del, drop, add, back, info, delStudent, exportStudent, studentConfig;
+
 
     Font PT_serif_bold;
     Font PT_serif_regular;
@@ -28,12 +31,18 @@ struct Course
     InputBar teacherName;
     InputBar numberOfCredits;
     InputBar maxStudents;
+    
+    InputBar enterClass;
 
     bool isAddCourse = false;
 
     // std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252", "CM101"};
     ACourse *ListOfCourses;
     int listCourseSize = 7;
+    
+    bool courseClicked = false;
+    int courseIndex;
+
 
     int menuCourse = 0;
 
@@ -49,6 +58,10 @@ struct Course
         void DrawBackground();
         void DrawCourseList();
         void DrawCreateCourse();
+        void DrawViewCourse();
+        void ChooseViewClass();
+        void DrawViewGPA();
+
 
 };
 

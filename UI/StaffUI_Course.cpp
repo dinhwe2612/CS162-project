@@ -13,11 +13,38 @@ void Course::Construct(int windowWidth, int windowHeight)
     close.SetRectangle(0.85*windowWidth, 0.17*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
     close.SetTexture("UI/images/close.png");
 
-    Create.SetText(PT_serif_bold, "Create", 0.48*windowWidth, 0.76*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+    Create.SetText(PT_serif_bold, "Done", 0.48*windowWidth, 0.76*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
     Create.SetRectangle(0.35*windowWidth, 0.75*windowHeight, 0.3*windowWidth, 0.06*windowHeight, BLACK, DARKBLUE);
 
     addCourse.SetRectangle(0.31*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
     addCourse.SetTexture("UI/images/add.png");
+
+    viewGPA.SetRectangle(0.52*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
+    viewGPA.SetTexture("UI/images/statistic.png");
+
+    del.SetRectangle(0.79*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    del.SetText(PT_serif_bold, "Delete course", 0.8*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, RED);
+
+    back.SetRectangle(0.12*windowWidth, 0.17*windowHeight, 0.06*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    back.SetText(PT_serif_bold, "Back", 0.135*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    add.SetRectangle(0.52*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    add.SetText(PT_serif_bold, "Add Student", 0.53*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    studentConfig.SetRectangle(0.61*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    studentConfig.SetText(PT_serif_bold, "Update student", 0.613*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    drop.SetRectangle(0.34*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    drop.SetText(PT_serif_bold, "Import file", 0.355*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    info.SetRectangle(0.25*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    info.SetText(PT_serif_bold, "Course info", 0.263*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+
+    exportStudent.SetRectangle(0.43*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    exportStudent.SetText(PT_serif_bold, "Export file", 0.447*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    
+    delStudent.SetRectangle(0.7*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
+    delStudent.SetText(PT_serif_bold, "Delete student", 0.701*windowWidth + 6, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     addCourseClose.image = close.image;
     addCourseClose.bsrc = (Rectangle){0, 0, addCourse.image.width, addCourse.image.height};
@@ -41,6 +68,9 @@ void Course::Construct(int windowWidth, int windowHeight)
 
     maxStudents.Construct(0.51*windowWidth, 0.49*windowHeight, 0.14*windowWidth, 0.05*windowHeight, 0.515*windowWidth, 0.495*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     maxStudents.SetColorBox(WHITE, WHITE);
+
+    enterClass.Construct(0.425*windowWidth, 0.45*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.46*windowHeight, 0.018*windowWidth, 0.5, 10, "");
+    enterClass.SetColorBox(WHITE, WHITE);
 }
 
 void Course::Deconstruct()
@@ -48,6 +78,7 @@ void Course::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(close.image);
     UnloadTexture(addCourse.image);
+    UnloadTexture(viewGPA.image);
 
     UnloadFont(PT_serif_bold);
     UnloadFont(PT_serif_regular);
@@ -58,7 +89,8 @@ void Course::Draw()
     DrawTextEx(PT_serif_bold, (">  " + schoolYear + "  >  " + semester).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
     DrawBackground();
     DrawCourseList();
-    DrawCreateCourse();
+    DrawCreateCourse(); 
+    ChooseViewClass();
 }
 
 void Course::DrawBackground()
@@ -74,11 +106,13 @@ void Course::DrawBackground()
     DrawRectangleRec(tdest, (Color){222, 215, 251, 255});
 
     // draw "Add new courses" text
-    Vector2 textPos = {0.34*windowWidth, 0.24*windowHeight};
-    DrawTextEx(PT_serif_bold, "Add new course", textPos, 0.02*windowWidth, 0.5, BLACK);
-
+    DrawTextEx(PT_serif_bold, "Add new course", (Vector2){0.34*windowWidth, 0.24*windowHeight}, 0.02*windowWidth, 0.5, BLACK);
     addCourse.DrawTexture();
 
+    // draw "View semester result"
+    DrawTextEx(PT_serif_bold, "View semester result", (Vector2){0.55*windowWidth, 0.24*windowHeight}, 0.02*windowWidth, 0.5, BLACK);
+    viewGPA.DrawTexture();
+    
     close.DrawTexture();
 }
 
@@ -86,7 +120,7 @@ void Course::DrawCourseList()
 {
     float static posY = 0;
 
-    static bool courseClicked = false;
+    // static bool courseClicked = false;
 
     posY += GetMouseWheelMove() * 30;
     
@@ -114,8 +148,11 @@ void Course::DrawCourseList()
             courseClicked = true;
         }
 
-        // if (courseClicked && isAddCourse)
-        //     DrawViewClass();
+        if (courseClicked)
+        {
+            DrawViewCourse();
+        }
+
         
         if (close.isPRESSED(MOUSE_BUTTON_LEFT))
             courseClicked = false;
@@ -126,7 +163,7 @@ void Course::DrawCourseList()
 void Course::DrawCreateCourse()
 {
     
-    if (addCourse.isPRESSED(MOUSE_BUTTON_LEFT))
+    if (addCourse.isPRESSED(MOUSE_BUTTON_LEFT) || info.isPRESSED(MOUSE_BUTTON_LEFT))
         isAddCourse = true;
 
     if (isAddCourse)
@@ -141,11 +178,13 @@ void Course::DrawCreateCourse()
         Vector2 recOrigin = {rec.width/2, rec.height/2};
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
-        
-
         // draw create school year button and its function
         Create.DrawText();
-        
+
+        if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            ListOfCourses[listCourseSize++] = courseID.GetInput();
+        }
 
         // draw course name
         courseName.Draw();
@@ -173,6 +212,7 @@ void Course::DrawCreateCourse()
         DrawTextEx(PT_serif_bold, "Number of credits", (Vector2){0.35*windowWidth, 0.46*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw max number of students
+        maxStudents.currentInput = "50";
         maxStudents.Draw();
         DrawRectangleLines(0.51*windowWidth, 0.49*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
         DrawTextEx(PT_serif_bold, "Max No. of students", (Vector2){0.51*windowWidth, 0.46*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
@@ -194,7 +234,6 @@ void Course::DrawCreateCourse()
 
         if (addCourseClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
             isAddCourse = false;
-            // inputSemester.currentInput = "";
         }
         if (Create.isPRESSED(MOUSE_BUTTON_LEFT)) {
             ACourse newCourse;
@@ -261,3 +300,110 @@ std::string Course::buttonChosen(float x, float y, float width, float height, st
     return labelPressed;
 }
 
+void Course::DrawViewCourse()
+{
+    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    // DrawTextEx(PT_serif_bold, (">  " + ListOfCourses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+
+    del.DrawText();
+    back.DrawText();
+    add.DrawText();
+    drop.DrawText();
+    info.DrawText();
+    delStudent.DrawText();
+    exportStudent.DrawText();
+    studentConfig.DrawText();
+    
+    // if (drop.isPRESSED(MOUSE_BUTTON_LEFT))
+    //     isDropClicked = true;
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT))
+        courseClicked = false;
+
+    if (info.isPRESSED(MOUSE_BUTTON_LEFT))
+    {
+        DrawCreateCourse();
+    }
+    //         menuClass = DEFAULT;
+    // if (isDropClicked)
+    // {
+    //     menuClass = DROP_FILE;
+    // }
+    // if (add.isPRESSED(MOUSE_BUTTON_LEFT))
+    //     menuClass = ADD_STUDENT;
+    // DrawStudentList();
+    // DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), (Vector2){0.353*windowWidth, 0.2*windowHeight}, 0.035*windowWidth, 0.5, BLACK);
+}
+
+void Course::ChooseViewClass()
+{
+    static bool isViewGPAPressed;
+
+    if (viewGPA.isPRESSED(MOUSE_BUTTON_LEFT))
+    {
+        isViewGPAPressed = true;
+    }
+
+    if (isViewGPAPressed)
+    {
+        // draw outer box border
+        Rectangle borders = {windowWidth/2, windowHeight/2, 0.19*windowWidth, 0.14*windowWidth};
+        Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+        DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+
+        // draw outer box
+        Rectangle rec = {windowWidth/2, windowHeight/2, 0.18*windowWidth, 0.13*windowWidth};
+        Vector2 recOrigin = {rec.width/2, rec.height/2};
+        DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+
+        // draw create school year button and its function
+        Button Done;
+        Done.SetText(PT_serif_bold, "Done", 0.48*windowWidth, 0.56*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+        Done.SetRectangle(0.425*windowWidth, 0.55*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+        Done.DrawText();
+        
+        if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            // createSchoolYear(ListOfSchoolYear, ListSize, enterSchoolYear.GetInput());
+            // menuStaff = previousmenuStaff;
+            enterClass.currentInput = "";
+        }
+
+        DrawTextEx(PT_serif_regular, "Class not found", (Vector2){0.46*windowWidth, 0.52*windowHeight}, 0.015*windowWidth, 0.5, RED);
+
+        // draw enter class box
+        enterClass.Draw();
+        DrawRectangleLines(0.425*windowWidth, 0.45*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
+
+        // draw enter school year text
+        Vector2 enterText = {0.425*windowWidth, 0.41*windowHeight};
+        DrawTextEx(PT_serif_bold, "Enter a class to view", enterText, 0.015*windowWidth, 0.5, BLACK);
+
+        // draw close button and its function
+        Button viewGPAClose;
+        viewGPAClose.image = close.image;
+        viewGPAClose.bsrc = (Rectangle){0, 0, close.image.width, close.image.height};
+        viewGPAClose.origin = (Vector2){0, 0};
+        viewGPAClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+        viewGPAClose.DrawTexture();
+
+        if (viewGPAClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            // menuStaff = previousmenuStaff;
+            isViewGPAPressed = false;
+            enterClass.currentInput = "";
+        }
+    }
+}
+
+void Course::DrawViewGPA()
+{
+    // if (class is chosen and class is in database)
+    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+
+    // draw scoreboard
+
+    back.DrawText();
+}
