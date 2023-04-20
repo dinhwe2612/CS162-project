@@ -150,7 +150,7 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
     return true;
 }
 
-// view student ids in a course
+// view student info in a course
 bool viewStudentInCourse(string schoolYear, string semester, string course) {
     string path = getPath("StudentInCourse", semester + "/" + course, schoolYear);
     if (!checkDirectory(path))

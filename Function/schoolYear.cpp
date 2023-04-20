@@ -10,9 +10,11 @@ string getLastSchoolYear (string schoolYear) {
     return year1 + '-' + year2;
 }
 
-void add234(string schoolYear) {
+bool add234(string schoolYear) {
     string lastSchoolYear = getLastSchoolYear(schoolYear);
     string lastYearPath = "Data/SchoolYear/" + lastSchoolYear + "/Classes/"; //path of last year classes
+    if (!filesystem::is_directory(lastYearPath))
+        return false;
     string thisYearPath = "Data/SchoolYear/" + schoolYear + "/Classes/"; // path of this year classes
     string classExclude = to_string((stoi(schoolYear.substr(2, 2)) - 4));
     for (auto& file : filesystem::directory_iterator(lastYearPath)) {
@@ -23,6 +25,7 @@ void add234(string schoolYear) {
             filesystem::copy(sourcePath, targetPath, std::filesystem::copy_options::overwrite_existing);
         }
     }
+    return true;
 }
 
 // return true if execute successfully
@@ -48,7 +51,8 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
     ListOfSchoolYear = tmp;
     ++n;
     sort(ListOfSchoolYear, ListOfSchoolYear + n, greater<string>());
-    add234(schoolYear);
+    if (!add234(schoolYear))
+        cout << "No previous school year so no 2nd, 3rd and 4th year students info will be updated." << endl;
     return true;
 }
 
