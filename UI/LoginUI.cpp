@@ -61,7 +61,7 @@ void LoginUI::Deconstruct()
 void LoginUI::DrawBackground()
 {
     Vector2 origin = {0, 0};
-    Rectangle bsrc = {0, 0, background.width, background.height};
+    Rectangle bsrc = {0, 0, (float)background.width, (float)background.height};
     Rectangle bdest = {0, 0, windowWidth, windowHeight};
     DrawTexturePro(background, bsrc, bdest, origin, 0, WHITE);
 }
@@ -70,51 +70,51 @@ void LoginUI::DrawLoginBox()
 {
     // draw top bar
 
-    Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
+    Rectangle bar = {0, 0, windowWidth, (float)(0.05*windowHeight)};
     DrawRectangleRec(bar, DARKBLUE);
 
     // draw "You are not login" text
 
-    Vector2 loginStatusPos = {0.88*windowWidth, 0.01*windowHeight};
+    Vector2 loginStatusPos = {float(0.88*windowWidth), float(0.01*windowHeight)};
     DrawTextEx(PT_serif_regular, "You are not logged in", loginStatusPos, 0.015*windowWidth, 0.5, RAYWHITE);
 
     // draw outer box border
 
-    Rectangle borders = {windowWidth/2, windowHeight/2, 0.31*windowWidth, 0.31*windowWidth};
+    Rectangle borders = {windowWidth/2, windowHeight/2, float(0.31*windowWidth), float(0.31*windowWidth)};
     Vector2 bordersOrigin = {borders.width/2, borders.height/2};
     DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
     // draw outer box
 
-    Rectangle rec = {windowWidth/2, windowHeight/2, 0.3*windowWidth, 0.3*windowWidth};
+    Rectangle rec = {windowWidth/2, windowHeight/2, float(0.3*windowWidth), float(0.3*windowWidth)};
     Vector2 recOrigin = {rec.width/2, rec.height/2};
     DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
     // draw logo
 
-    Rectangle logoSrc = {0, 0, logo.width, logo.height};
-    Rectangle logoDest = {0.75*windowWidth/2, 0.55*windowHeight/2, 0.07*logo.width, 0.07*logo.height};
+    Rectangle logoSrc = {0, 0, float(logo.width), float(logo.height)};
+    Rectangle logoDest = {float(0.75*windowWidth/2), float(0.55*windowHeight/2), float(0.07*logo.width), float(0.07*logo.height)};
     Vector2 logoOrigin = {0, 0};
     DrawTexturePro(logo, logoSrc, logoDest, logoOrigin, 0, RAYWHITE);
 
     // draw "SIGN IN" text
 
-    Vector2 signInPos = {0.379 * windowWidth, 0.336*windowHeight};
+    Vector2 signInPos = {float(0.379*windowWidth), float(0.336*windowHeight)};
     DrawTextEx(PT_serif_bold, "Sign in", signInPos, 0.02*windowWidth, 0.5, BLACK);
 
     // draw "Are you staff or student?" text
 
-    Vector2 statusChoicePos = {0.383*windowWidth, 0.376*windowHeight};
+    Vector2 statusChoicePos = {float(0.383*windowWidth), float(0.376*windowHeight)};
     DrawTextEx(PT_serif_regular, "Are you staff or student?", statusChoicePos, 0.012*windowWidth, 0.5, BLACK);
 
     // draw username box
 
-    Rectangle usrBox = {0.379*windowWidth, 0.409*windowHeight, 0.24*windowWidth, 0.08*logo.height};
+    Rectangle usrBox = {float(0.379*windowWidth), float(0.409*windowHeight), float(0.24*windowWidth), float(0.08*logo.height)};
     DrawRectangleLinesEx(usrBox, 1, BLACK);
 
     // draw password box
 
-    Rectangle passBox = {0.379*windowWidth, 0.511*windowHeight, 0.24*windowWidth, 0.08*logo.height};
+    Rectangle passBox = {float(0.379*windowWidth), float(0.511*windowHeight), float(0.24*windowWidth), float(0.08*logo.height)};
     DrawRectangleLinesEx(passBox, 1, BLACK);    
 }
 
@@ -126,14 +126,14 @@ void LoginUI::DrawStatusButtons()
 {
     // draw staff icon
 
-    Rectangle staffIconSrc = {0, 0, staffIcon.width, staffIcon.height};
-    Rectangle staffIconDest = {0.512*windowWidth, 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
+    Rectangle staffIconSrc = {0, 0, float(staffIcon.width), float(staffIcon.height)};
+    Rectangle staffIconDest = {float(0.512*windowWidth), float(0.336*windowHeight), float(0.029*windowWidth), float(0.029*windowWidth)};
     Vector2 staffIconOrigin = {0, 0};
 
     // draw student icon
 
-    Rectangle studentIconSrc = {0, 0, studentIcon.width, studentIcon.height};
-    Rectangle studentIconDest = {0.58*windowWidth , 0.336*windowHeight, 0.029*windowWidth, 0.029*windowWidth};
+    Rectangle studentIconSrc = {0, 0, float(studentIcon.width), float(studentIcon.height)};
+    Rectangle studentIconDest = {float(0.58*windowWidth), float(0.336*windowHeight), float(0.029*windowWidth), float(0.029*windowWidth)};
     Vector2 studentIconPos = {0, 0};
 
     if (CheckCollisionPointRec(GetMousePosition(), staffIconDest) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -161,22 +161,22 @@ void LoginUI::DrawLoginIcon()
 {
     // draw username icon
 
-    Rectangle usrIconSrc = {0, 0, usrIcon.width, usrIcon.height};
-    Rectangle usrIconDest = {0.381*windowWidth, 0.420*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
+    Rectangle usrIconSrc = {0, 0, float(usrIcon.width), float(usrIcon.height)};
+    Rectangle usrIconDest = {float(0.381*windowWidth), float(0.420*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)};
     Vector2 usrIconOrigin = {0, 0};
     DrawTexturePro(usrIcon, usrIconSrc, usrIconDest, usrIconOrigin, 0, WHITE);
 
     // draw password icon
 
-    Rectangle passIconSrc = {0, 0, passwordIcon.width, passwordIcon.height};
-    Rectangle passIconDest = {0.381*windowWidth, 0.525*windowHeight, 0.024*windowWidth, 0.024*windowWidth};
+    Rectangle passIconSrc = {0, 0, float(passwordIcon.width), float(passwordIcon.height)};
+    Rectangle passIconDest = {float(0.381*windowWidth), float(0.525*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)};
     Vector2 passOrigin = {0, 0};
     DrawTexturePro(passwordIcon, passIconSrc, passIconDest, passOrigin, 0, WHITE);
 }
 
 void LoginUI::DrawRetry() 
 {
-    Vector2 retryPos = {0.37*windowWidth, 0.61*windowHeight};
+    Vector2 retryPos = {float(0.37*windowWidth), float(0.61*windowHeight)};
     DrawTextEx(PT_serif_regular, "Incorrect username or password. Please try again!", retryPos, 0.015*windowWidth, 0.5, RED);
 }
 

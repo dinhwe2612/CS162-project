@@ -44,7 +44,7 @@ void Class::Construct(int windowWidth, int windowHeight)
     Female.SetRectangle(0.5*windowWidth + 85 - 10, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Other.SetRectangle(0.6*windowWidth + 70, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Tick = LoadTexture("UI/images/down.png");
-    TickRec = (Rectangle){0, 0, Tick.width, Tick.height};
+    TickRec = (Rectangle){0, 0, float(Tick.width), float(Tick.height)};
 
     day.Construct(0.4*windowWidth, 0.58*windowHeight, 0.05*windowHeight, 0.05*windowHeight, 0.4*windowWidth + 4, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 1, "");
     day.SetColorBox(WHITE, WHITE);
@@ -96,17 +96,17 @@ void Class::Draw(int &menuWindow)
 void Class::DrawBackground()
 {
     // background
-    Rectangle bsrc = {0, 0, background.width, background.height};
-    Rectangle bdest = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle bsrc = {0, 0, float(background.width), float(background.height)};
+    Rectangle bdest = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     Vector2 origin = {0, 0};
     DrawTexturePro(background, bsrc, bdest, origin, 0, WHITE);
 
     // top bar
-    Rectangle tdest = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.034*windowHeight};
+    Rectangle tdest = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.034*windowHeight)};
     DrawRectangleRec(tdest, (Color){222, 215, 251, 255});
 
     // draw "Add new class" text
-    Vector2 textPos = {0.34*windowWidth, 0.24*windowHeight};
+    Vector2 textPos = {float(0.34*windowWidth), float(0.24*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add new class", textPos, 0.02*windowWidth, 0.5, BLACK);
 }
 
@@ -123,13 +123,13 @@ void Class::DrawCreateClass()
     if (isAddClass)
     {
         // draw outer box border
-        Rectangle borders = {windowWidth/2, windowHeight/2, 0.19*windowWidth, 0.14*windowWidth};
-        Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
         DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
         // draw outer box
-        Rectangle rec = {windowWidth/2, windowHeight/2, 0.18*windowWidth, 0.13*windowWidth};
-        Vector2 recOrigin = {rec.width/2, rec.height/2};
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
         // draw create school year button and its function
@@ -154,7 +154,7 @@ void Class::DrawCreateClass()
         DrawRectangleLines(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
 
         // draw enter school year text
-        Vector2 enterText = {0.425*windowWidth, 0.44*windowHeight};
+        Vector2 enterText = {float(0.425*windowWidth), float(0.44*windowHeight)};
         DrawTextEx(PT_serif_bold, "Enter class name", enterText, 0.015*windowWidth, 0.5, BLACK);
 
         // draw close button and its function
@@ -212,10 +212,10 @@ void Class::DrawClassList()
 
 void Class::DrawViewClass()
 {
-    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
-    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
+    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){float(0.33*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
 
     drop.DrawText();
     back.DrawText();
@@ -239,9 +239,9 @@ void Class::LoadDroppedFile()
 {
     static FilePathList droppedFiles;
     static string dir = "";
-    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
     back.DrawText();
     if (back.isPRESSED(MOUSE_BUTTON_LEFT))
         menuClass = VIEW_CLASS, 
@@ -249,8 +249,8 @@ void Class::LoadDroppedFile()
         UnloadDroppedFiles(droppedFiles),
         dir = "";
 
-    Rectangle dropInBox = {windowWidth/2, windowHeight/2, 0.3*windowWidth, 0.3*windowHeight};
-    Vector2 dropInOrigin = {dropInBox.width/2, dropInBox.height/2};
+    Rectangle dropInBox = {float(windowWidth/2), float(windowHeight/2), float(0.3*windowWidth), float(0.3*windowHeight)};
+    Vector2 dropInOrigin = {float(dropInBox.width/2), float(dropInBox.height/2)};
     DrawRectanglePro(dropInBox, dropInOrigin, 0, (Color){234, 227, 210, 255});
 
     if (IsFileDropped())
@@ -270,8 +270,8 @@ void Class::LoadDroppedFile()
         UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
-    if (dir == "") DrawTextEx(PT_serif_bold, "Drop file into this window", (Vector2){0.43*windowWidth, 0.5*windowHeight}, 0.016*windowWidth, 0.5, BLACK);
-    else DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){0.37*windowWidth, 0.5*windowHeight}, 0.016*windowWidth, 0.5, BLACK);
+    if (dir == "") DrawTextEx(PT_serif_bold, "Drop file into this window", (Vector2){float(0.43*windowWidth), float(0.5*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
+    else DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){float(0.37*windowWidth), float(0.5*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
 }
 
 void Class::DrawStudentList() {
@@ -286,7 +286,7 @@ void Class::DrawStudentList() {
         posY = 0.8*windowHeight - (0.32*windowHeight + 5 + (listStuSize) * szButton);
     if (posY > 0) posY = 0;
 
-    Rectangle BoxStuList = {0.26*windowWidth + posX, 0.27*windowHeight, 0.58*windowWidth + 20, 0.53*windowHeight};
+    Rectangle BoxStuList = {float(0.26*windowWidth + posX), float(0.27*windowHeight), float(0.58*windowWidth + 20), float(0.53*windowHeight)};
     for (int i = 0; i < listStuSize; ++i)
     {
         if (0.32*windowHeight + 5 + (i + 1) * szButton + posY <= 0.32*windowHeight + 5) continue;
@@ -296,16 +296,16 @@ void Class::DrawStudentList() {
         No.DrawText();
         DrawLine(BoxStuList.x, 0.32*windowHeight + 5 + i * szButton + posY + szButton, BoxStuList.x + BoxStuList.width, 0.32*windowHeight + 5 + i * szButton + posY + szButton, BLACK);
 
-        DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), (Vector2){0.26*windowWidth + 0.01*windowWidth + posX, 0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].firstName.c_str(), (Vector2){0.32*windowWidth + posX, 0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].lastName.c_str(), (Vector2){0.43*windowWidth - 10 + posX, 0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].studentID.c_str(), (Vector2){0.54*windowWidth - 10 + posX, 0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].DOB.c_str(), (Vector2){0.65*windowWidth + posX, 0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].socialID.c_str(), (Vector2){0.76*windowWidth + posX, 0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), (Vector2){float(0.26*windowWidth + 0.01*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].firstName.c_str(), (Vector2){float(0.32*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].lastName.c_str(), (Vector2){float(0.43*windowWidth - 10 + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].studentID.c_str(), (Vector2){float(0.54*windowWidth - 10 + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].DOB.c_str(), (Vector2){float(0.65*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].socialID.c_str(), (Vector2){float(0.76*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
     }
-    Rectangle box1 = {BoxStuList.x, 0.32*windowHeight + 5 - (szButton + 5), BoxStuList.width, szButton + 5};
+    Rectangle box1 = {float(BoxStuList.x), float(0.32*windowHeight + 5 - (szButton + 5)), float(BoxStuList.width), float(szButton + 5)};
     DrawRectanglePro(box1, (Vector2){0, 0}, 0, RAYWHITE);
-    Rectangle box2 = {BoxStuList.x - 1, 0.8*windowHeight, BoxStuList.width + 1, 0.08*windowHeight};
+    Rectangle box2 = {float(BoxStuList.x - 1), float(0.8*windowHeight), float(BoxStuList.width + 1), float(0.08*windowHeight)};
     DrawRectanglePro(box2, (Vector2){0, 0}, 0, RAYWHITE);
 
     DrawLine(BoxStuList.x, 0.32*windowHeight + 5, BoxStuList.x + BoxStuList.width, 0.32*windowHeight + 5, BLACK);
@@ -313,9 +313,9 @@ void Class::DrawStudentList() {
     DrawRectangleRoundedLines(BoxStuList, 0.05, 0.1, 2, BLACK);
 
     string title = "No.       First Name       Last Name       Student ID       Date of birth        Social ID";
-    DrawTextEx(PT_serif_bold, title.c_str(), (Vector2){0.27*windowWidth + posX, 0.28*windowHeight}, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, title.c_str(), (Vector2){float(0.27*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
 
-    DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), (Vector2){0.353*windowWidth, 0.2*windowHeight}, 0.035*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, ("List of students in " + ListOfClasses[classIndex]).c_str(), (Vector2){float(0.353*windowWidth), float(0.2*windowHeight)}, 0.035*windowWidth, 0.5, BLACK);
 
     DrawLine(0.31*windowWidth + posX, 0.27*windowHeight, 0.31*windowWidth + posX, 0.8*windowHeight, BLACK);
     DrawLine(0.42*windowWidth + posX, 0.27*windowHeight, 0.42*windowWidth + posX, 0.8*windowHeight, BLACK);
@@ -327,31 +327,31 @@ void Class::DrawStudentList() {
 void Class::DrawAddStudent() {
     static int Gender = 0;
     
-    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
-    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
-    DrawTextEx(PT_serif_bold, "Add student", (Vector2){0.4*windowWidth, 0.17*windowHeight}, 0.045*windowWidth, 0.5, BLACK);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
+    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){float(0.33*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Add student", (Vector2){float(0.4*windowWidth), float(0.17*windowHeight)}, 0.045*windowWidth, 0.5, BLACK);
 
     back.DrawText();
 
     //Draw student ID
-    DrawTextEx(PT_serif_bold, "Student ID", (Vector2){0.25*windowWidth, 0.3*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Student ID", (Vector2){float(0.25*windowWidth), float(0.3*windowHeight)}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.3*windowHeight - 2, 0.25*windowWidth + 3, 0.05*windowHeight + 3, BLACK);
     StudentID.Draw();
     //Draw first name
-    DrawTextEx(PT_serif_bold, "First name", (Vector2){0.25*windowWidth, 0.37*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "First name", (Vector2){float(0.25*windowWidth), float(0.37*windowHeight)}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.37*windowHeight - 2, 0.25*windowWidth + 3, 0.05*windowHeight + 3, BLACK);
     firstName.Draw();
     //Draw last name
-    DrawTextEx(PT_serif_bold, "Last name", (Vector2){0.25*windowWidth, 0.44*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Last name", (Vector2){float(0.25*windowWidth), float(0.44*windowHeight)}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.44*windowHeight - 2, 0.25*windowWidth + 3.5, 0.05*windowHeight + 4, BLACK);
     lastName.Draw();
     //Draw gender
-    DrawTextEx(PT_serif_bold, "Gender", (Vector2){0.25*windowWidth, 0.51*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Male", (Vector2){0.4*windowWidth, 0.51*windowHeight}, 0.025*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Female", (Vector2){0.5*windowWidth - 10, 0.51*windowHeight}, 0.025*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Other",(Vector2){0.6*windowWidth, 0.51*windowHeight}, 0.025*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Gender", (Vector2){float(0.25*windowWidth), float(0.51*windowHeight)}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Male", (Vector2){float(0.4*windowWidth), float(0.51*windowHeight)}, 0.025*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Female", (Vector2){float(0.5*windowWidth - 10), float(0.51*windowHeight)}, 0.025*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Other",(Vector2){float(0.6*windowWidth), float(0.51*windowHeight)}, 0.025*windowWidth, 0.5, BLACK);
     if (Male.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 0;
     if (Female.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 1;
     if (Other.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 2;
@@ -365,7 +365,7 @@ void Class::DrawAddStudent() {
     DrawRectangleLines(0.5*windowWidth + 85 - 10 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     DrawRectangleLines(0.6*windowWidth + 70 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     //Draw DOB
-    DrawTextEx(PT_serif_bold, "Date of birth", (Vector2){0.25*windowWidth, 0.58*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Date of birth", (Vector2){float(0.25*windowWidth), float(0.58*windowHeight)}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.58*windowHeight - 2, 0.05*windowHeight + 4, 0.05*windowHeight + 4, BLACK);
     day.Draw();
     DrawText("-", 0.4*windowWidth + 0.05*windowHeight + 10, 0.58*windowHeight, 0.05*windowHeight, BLACK);
@@ -375,7 +375,7 @@ void Class::DrawAddStudent() {
     DrawRectangleLines(0.4*windowWidth + 0.05*windowHeight + 33 + 0.05*windowHeight + 33, 0.58*windowHeight - 2, 0.1*windowHeight + 5, 0.05*windowHeight + 4, BLACK);
     year.Draw();
     //Draw socialID
-    DrawTextEx(PT_serif_bold, "Social ID", (Vector2){0.25*windowWidth, 0.65*windowHeight}, 0.027*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Social ID", (Vector2){float(0.25*windowWidth), float(0.65*windowHeight)}, 0.027*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.4*windowWidth - 2, 0.65*windowHeight - 2, 0.25*windowWidth + 3.5, 0.05*windowHeight + 3.5, BLACK);
     socialID.Draw();
 
@@ -418,5 +418,5 @@ void Class::DrawAddStudent() {
 }
 
 void Class::DrawSchoolYearMenu() {
-    DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){float(0.25*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
 }

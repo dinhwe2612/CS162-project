@@ -135,8 +135,8 @@ void StaffUI::Draw(int &menuLogin)
 void StaffUI::DrawBackground()
 {
     Vector2 origin = {0, 0};
-    Rectangle bsrc = {0, 0, background.width, background.height};
-    Rectangle bdest = {0, 0, windowWidth, windowHeight};
+    Rectangle bsrc = {0, 0, float(background.width), float(background.height)};
+    Rectangle bdest = {0, 0, float(windowWidth), float(windowHeight)};
     DrawTexturePro(background, bsrc, bdest, origin, 0, WHITE);
 }
 
@@ -144,12 +144,12 @@ void StaffUI::DrawStaticElement()
 {
     // draw top bar
 
-    Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
+    Rectangle bar = {0, 0, float(windowWidth), float(0.05*windowHeight)};
     DrawRectangleRec(bar, DARKBLUE);
 
     // draw "hello <username>" text
 
-    Vector2 loginStatusPos = {0.97*windowWidth - 63 - 7 * username.size(), 0.01*windowHeight};
+    Vector2 loginStatusPos = {float(0.97*windowWidth - 63 - 7 * username.size()), float(0.01*windowHeight)};
     DrawTextEx(PT_serif_regular, ("Hello <" + username + ">").c_str(), loginStatusPos, 0.015*windowWidth, 0.5, RAYWHITE);
     
     // draw corner stripes in top left corner
@@ -173,7 +173,7 @@ void StaffUI::DrawDropDownAccount(int &menuLogin)
     
     if (dropDown.isPRESSED(MOUSE_BUTTON_LEFT))
         IS_DROPDOWN_CLICKED ^= 1;
-    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.86*windowWidth, 0, 0.14*windowWidth, 0.2*windowHeight}))
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){float(0.86*windowWidth), 0, float(0.14*windowWidth), float(0.2*windowHeight)}))
         IS_DROPDOWN_CLICKED = false;
 
     // draw sign out and drop down
@@ -214,9 +214,9 @@ void StaffUI::DrawDropDownSchoolYear()
             }
         }
     }
-    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, 0.05*windowHeight, 0.2*windowWidth, windowWidth}) 
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){0, float(0.05*windowHeight), float(0.2*windowWidth), float(windowWidth)}) 
                 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)
-                && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){0.41*windowWidth, 0.38*windowHeight, 0.19*windowWidth, 0.14*windowWidth}))
+                && !CheckCollisionPointRec(GetMousePosition(), (Rectangle){float(0.41*windowWidth), float(0.38*windowHeight), float(0.19*windowWidth), float(0.14*windowWidth)}))
         IS_DROPDOWN_CLICKED = false;
 
     // draw school year, number of school year needed here
@@ -315,13 +315,13 @@ void StaffUI::DrawSchoolYear()
 
     // draw School year text
 
-    Vector2 syTextOrigin = {0.01*windowWidth, 0.06*windowHeight};
+    Vector2 syTextOrigin = {float(0.01*windowWidth), float(0.06*windowHeight)};
     DrawTextEx(PT_serif_bold, "School Year", syTextOrigin, 0.025*windowWidth, 0.5, DARKBLUE);
 
     // draw add school year button
 
     addSchoolYear.DrawTexture();
-    Vector2 addTextOrigin = {0.035*windowWidth, 0.12*windowHeight};
+    Vector2 addTextOrigin = {float(0.035*windowWidth), float(0.12*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
 
     DrawStaticElement();
@@ -334,41 +334,41 @@ void StaffUI::DrawChangePassword()
 
     DrawBackground();
     // draw top bar
-    Rectangle bar = {0, 0, windowWidth, 0.05*windowHeight};
+    Rectangle bar = {0, 0, float(windowWidth), float(0.05*windowHeight)};
     DrawRectangleRec(bar, DARKBLUE);
 
     // draw outer box border
-    Rectangle borders = {windowWidth/2, windowHeight/2, 0.31*windowWidth, 0.31*windowWidth};
-    Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+    Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.31*windowWidth), float(0.31*windowWidth)};
+    Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
     DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
     // draw outer box
-    Rectangle rec = {windowWidth/2, windowHeight/2, 0.3*windowWidth, 0.3*windowWidth};
-    Vector2 recOrigin = {rec.width/2, rec.height/2};
+    Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.3*windowWidth), float(0.3*windowWidth)};
+    Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
     DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
     // draw "Change password" text
-    Vector2 changePasswordPos = {windowWidth/2 - 110, 0.2*windowHeight + 33};
+    Vector2 changePasswordPos = {float(windowWidth/2 - 110), float(0.2*windowHeight + 33)};
     DrawTextEx(PT_serif_regular, "Change password", changePasswordPos, 0.03*windowWidth, 0.5, BLACK);
 
     // draw "Old password" box
-    Vector2 oldPasswordPos = {windowWidth/2 - 176, 0.2*windowHeight + 93 + 4};
+    Vector2 oldPasswordPos = {float(windowWidth/2 - 176), float(0.2*windowHeight + 93 + 4)};
     DrawTextEx(PT_serif_regular, "Old password", oldPasswordPos, 0.022*windowWidth, 0.5, BLACK);
-    Rectangle newPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 93 + 4, 200, 32};
+    Rectangle newPasswordBox = (Rectangle){float(windowWidth/2 - 11), float(0.2*windowHeight + 93 + 4), 200, 32};
     DrawRectangleRec(newPasswordBox, BLACK);
     oldPassword.Draw();
 
     // draw "New password" box
-    Vector2 newPasswordPos = {windowWidth/2 - 176, 0.2*windowHeight + 153 + 4 * 2};
+    Vector2 newPasswordPos = {float(windowWidth/2 - 176), float(0.2*windowHeight + 153 + 4 * 2)};
     DrawTextEx(PT_serif_regular, "New password", newPasswordPos, 0.022*windowWidth, 0.5, BLACK);
-    Rectangle oldPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 153 + 4 * 2, 200, 32};
+    Rectangle oldPasswordBox = (Rectangle){float(windowWidth/2 - 11), float(0.2*windowHeight + 153 + 4 * 2), 200, 32};
     DrawRectangleRec(oldPasswordBox, BLACK);
     newPassword.Draw();
 
     // draw "Confirm password" box
-    Vector2 confirmPasswordPos = {windowWidth/2 - 188, 0.2*windowHeight + 213 + 4 * 3};
+    Vector2 confirmPasswordPos = {float(windowWidth/2 - 188), float(0.2*windowHeight + 213 + 4 * 3)};
     DrawTextEx(PT_serif_regular, "Confirm password", confirmPasswordPos, 0.022*windowWidth, 0.5, BLACK);
-    Rectangle confirmPasswordBox = (Rectangle){windowWidth/2 - 11, 0.2*windowHeight + 213 + 4 * 3, 200, 32};
+    Rectangle confirmPasswordBox = (Rectangle){float(windowWidth/2 - 11), float(0.2*windowHeight + 213 + 4 * 3), 200, 32};
     DrawRectangleRec(confirmPasswordBox, BLACK);
     confirmPassword.Draw();
 
@@ -421,19 +421,19 @@ void StaffUI::DrawChangePassword()
     }
 
     if (statusChangePassword == CHANGE_PASSWORD_SUCCESS) {
-        Vector2 changedPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        Vector2 changedPos = {float(windowWidth/2 - 158), float(0.2*windowHeight + 273)};
         DrawTextEx(PT_serif_regular, "Your password has been changed!", changedPos, 0.022*windowWidth, 0.5, BLUE);
     } 
     else if (statusChangePassword == OLD_PASSWORD_IS_NOT_CORRECT) {
-        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        Vector2 failPos = {float(windowWidth/2 - 158), float(0.2*windowHeight + 273)};
         DrawTextEx(PT_serif_regular, "PLease correct your old password", failPos, 0.022*windowWidth, 0.5, RED);
     } 
     else if (statusChangePassword == NEW_PASSWORD_IS_OLD_PASSWORD){
-        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        Vector2 failPos = {float(windowWidth/2 - 158), float(0.2*windowHeight + 273)};
         DrawTextEx(PT_serif_regular, "Please use another new password", failPos, 0.022*windowWidth, 0.5, RED);
     } 
     else if (statusChangePassword == NEW_PASSWORD_IS_NOT_CONFIRM_PASSWORD){
-        Vector2 failPos = {windowWidth/2 - 158, 0.2*windowHeight + 273};
+        Vector2 failPos = {float(windowWidth/2 - 158), float(0.2*windowHeight + 273)};
         DrawTextEx(PT_serif_regular, "Please correct confirm password", failPos, 0.022*windowWidth, 0.5, RED);
     }
 }
@@ -450,13 +450,13 @@ bool greater_string (std::string& a, std::string& b)
 void StaffUI::AddSchoolYear()
 {
     // draw outer box border
-    Rectangle borders = {windowWidth/2, windowHeight/2, 0.19*windowWidth, 0.14*windowWidth};
-    Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+    Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+    Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
     DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
     // draw outer box
-    Rectangle rec = {windowWidth/2, windowHeight/2, 0.18*windowWidth, 0.13*windowWidth};
-    Vector2 recOrigin = {rec.width/2, rec.height/2};
+    Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+    Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
     DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
     // draw create school year button and its function
@@ -477,7 +477,7 @@ void StaffUI::AddSchoolYear()
     DrawRectangleLines(0.425*windowWidth, 0.48*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
 
     // draw enter school year text
-    Vector2 enterText = {0.425*windowWidth, 0.44*windowHeight};
+    Vector2 enterText = {float(0.425*windowWidth), float(0.44*windowHeight)};
     DrawTextEx(PT_serif_bold, "Enter school year", enterText, 0.015*windowWidth, 0.5, BLACK);
 
     // draw close button and its function
