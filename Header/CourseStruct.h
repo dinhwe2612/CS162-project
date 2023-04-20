@@ -2,6 +2,7 @@
 #define CourseStruct_h
 
 #include <string>
+using namespace std;
 
 struct ACourse {
     string id;

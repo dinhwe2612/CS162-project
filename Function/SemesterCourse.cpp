@@ -5,7 +5,9 @@ using namespace std;
 bool CreateSemester(ASemester semester, string*& ListOfSemester, int& n) {
     ifstream in; ofstream out;
     string address = "Data/SchoolYear/" + semester.schoolYear + "/" + semester.semester;
-    if(mkdir(address.c_str()) == -1)
+    if (filesystem::is_directory(address))
+        return false;
+    if (!filesystem::create_directory(address))
         return false;
     address += "/Semester_Info.txt";
     out.open(address.c_str());
@@ -43,10 +45,13 @@ bool AddCourse(string schoolYear, string semester, ACourse course, ACourse*& Lis
     ofstream out;
     string address = "Data/SchoolYear/" + schoolYear + "/" + semester;
     string txtaddress = address + "/Semester_Info.txt";
-    out.open(txtaddress.c_str(), ios::app);
     string courseaddress = address + "/" + course.id + "-" + course.Class;
-    if(mkdir(courseaddress.c_str()) == -1)
+    if (filesystem::is_directory(courseaddress)) {
         return false;
+    }
+    if(!filesystem::create_directory(courseaddress))
+        return false;
+    out.open(txtaddress.c_str(), ios::app);
     out << course.id << "-" << course.Class << '\n';
     out.close();
     txtaddress = courseaddress + "/Course_Info.txt";
