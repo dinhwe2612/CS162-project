@@ -38,13 +38,32 @@ struct Course
 
     // std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252", "CM101"};
     ACourse *ListOfCourses;
-    int listCourseSize = 7;
+    int listCourseSize = 0;
+    
+    ACourse curCourse;
+
+    Student *ListOfStudents;
+    int listStudentSize = 0;
     
     bool courseClicked = false;
     int courseIndex;
 
+    std::string dayLabel[7] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+    bool isDayChosen[7] = {true, false, false, false, false, false, false};
 
-    int menuCourse = 0;
+    std::string sessionLabel[4] = {"S1", "S2", "S3", "S4"};
+    bool isSessionChosen[4] = {true, false, false, false};
+
+    int menuCourse = -1;
+    enum WindowCourse {
+        CREATECOURSE,
+        VIEWCOURSE,
+        VIEWGPA,
+        MODIFYCOURSE,
+        ADDSTUDENT,
+        IMPORTSTUDENTLIST,
+        EXPORTSTUDENTLIST
+    };
 
     string schoolYear;
     string semester;
@@ -58,11 +77,15 @@ struct Course
         void DrawBackground();
         void DrawCourseList();
         void DrawCreateCourse();
+        void DrawModifyCourse();
         void DrawViewCourse();
         void ChooseViewClass();
         void DrawViewGPA();
-
-
+        void DrawStudentList();
+        void DrawAddStudent();
+        void DrawImportStudentList();
+        void DrawExportStudentList();
+        void DrawDeleteStudent();
 };
 
 #endif

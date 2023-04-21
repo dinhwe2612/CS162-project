@@ -56,7 +56,7 @@ void SemesterUI::Draw(int &menuWindow)
         }
     } else if (menuSemester == 1) {//course
         course.Draw();
-        if (course.close.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        if (course.close.isPRESSED(MOUSE_BUTTON_LEFT) && course.menuCourse == -1) {
             menuSemester = 0;
         }
     }

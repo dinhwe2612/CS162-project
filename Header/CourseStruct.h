@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+using namespace std;
+
 struct ACourse {
     string id;
     string name;

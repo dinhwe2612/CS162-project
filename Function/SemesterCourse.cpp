@@ -1,8 +1,7 @@
 #include "../Header/SemesterCourse.h"
 #include "../Header/CourseStruct.h"
 #include "../Header/SemesterStruct.h"
-
-using namespace std;
+#include <algorithm>
 
 bool CreateSemester(ASemester semester, string*& ListOfSemester, int& n) {
     ifstream in; ofstream out;

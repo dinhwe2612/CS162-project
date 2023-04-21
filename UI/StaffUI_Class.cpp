@@ -72,7 +72,6 @@ void Class::Deconstruct()
 
 void Class::Draw(int &menuWindow)
 {
-    DrawBackground();
     DrawSchoolYearMenu();
 
     if (menuClass == VIEW_CLASS) {
@@ -82,6 +81,7 @@ void Class::Draw(int &menuWindow)
     } else if (menuClass == ADD_STUDENT) {
         DrawAddStudent();
     } else {
+        DrawBackground();
         close.DrawTexture();
         addClass.DrawTexture();
         DrawClassList();
