@@ -9,6 +9,7 @@
 #include "CourseStruct.h"
 #include "SemesterStruct.h"
 #include <filesystem>
+#include <algorithm>
 #ifdef _WIN32
     #include <direct.h>
 #endif

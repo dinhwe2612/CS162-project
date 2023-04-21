@@ -279,7 +279,7 @@ bool DeleteACourse(string schoolYear, string semester, ACourse course, ACourse*&
     int x = 0;
         for (int i = 0; i < n; ++i) 
         {
-            if (courses[i] != course) 
+            if (courses[i].Class == course.Class && courses[i].id == course.id) {} else 
             {
                 temp[x] = courses[i];
                 x++;
