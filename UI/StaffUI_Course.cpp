@@ -47,7 +47,7 @@ void Course::Construct(int windowWidth, int windowHeight)
     delStudent.SetText(PT_serif_bold, "Delete student", 0.701*windowWidth + 6, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     addCourseClose.image = close.image;
-    addCourseClose.bsrc = (Rectangle){0, 0, addCourse.image.width, addCourse.image.height};
+    addCourseClose.bsrc = (Rectangle){0, 0, float(addCourse.image.width), float(addCourse.image.height)};
     addCourseClose.origin = (Vector2){0, 0};
     addCourseClose.SetRectangle(0.655*windowWidth, 0.16*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
@@ -86,7 +86,7 @@ void Course::Deconstruct()
 
 void Course::Draw()
 {
-    DrawTextEx(PT_serif_bold, (">  " + schoolYear + "  >  " + semester).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, (">  " + schoolYear + "  >  " + semester).c_str(), (Vector2){float(0.25*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
     DrawBackground();
     DrawCourseList();
     DrawCreateCourse(); 
@@ -96,21 +96,21 @@ void Course::Draw()
 void Course::DrawBackground()
 {
     // background
-    Rectangle bsrc = {0, 0, background.width, background.height};
-    Rectangle bdest = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle bsrc = {0, 0, float(background.width), float(background.height)};
+    Rectangle bdest = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     Vector2 origin = {0, 0};
     DrawTexturePro(background, bsrc, bdest, origin, 0, WHITE);
 
     // top bar
-    Rectangle tdest = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.034*windowHeight};
+    Rectangle tdest = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.034*windowHeight)};
     DrawRectangleRec(tdest, (Color){222, 215, 251, 255});
 
     // draw "Add new courses" text
-    DrawTextEx(PT_serif_bold, "Add new course", (Vector2){0.34*windowWidth, 0.24*windowHeight}, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Add new course", (Vector2){float(0.34*windowWidth),float(0.24*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
     addCourse.DrawTexture();
 
     // draw "View semester result"
-    DrawTextEx(PT_serif_bold, "View semester result", (Vector2){0.55*windowWidth, 0.24*windowHeight}, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "View semester result", (Vector2){float(0.55*windowWidth), float(0.24*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
     viewGPA.DrawTexture();
     
     close.DrawTexture();
@@ -169,65 +169,60 @@ void Course::DrawCreateCourse()
     if (isAddCourse)
     {
         // draw outer box border
-        Rectangle borders = {windowWidth/2, windowHeight/2, 0.36*windowWidth, 0.39*windowWidth};
-        Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.36*windowWidth), float(0.39*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
         DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
         // draw outer box
-        Rectangle rec = {windowWidth/2, windowHeight/2, 0.35*windowWidth, 0.38*windowWidth};
-        Vector2 recOrigin = {rec.width/2, rec.height/2};
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.35*windowWidth), float(0.38*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
         // draw create school year button and its function
         Create.DrawText();
 
-        if (Create.isPRESSED(MOUSE_BUTTON_LEFT))
-        {
-            ListOfCourses[listCourseSize++] = courseID.GetInput();
-        }
-
         // draw course name
         courseName.Draw();
         DrawRectangleLines(0.35*windowWidth, 0.22*windowHeight, 0.3*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter course name", (Vector2){0.35*windowWidth, 0.19*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter course name", (Vector2){float(0.35*windowWidth), float(0.19*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw course id
         courseID.Draw();
         DrawRectangleLines(0.35*windowWidth, 0.31*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter course ID", (Vector2){0.35*windowWidth, 0.28*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter course ID", (Vector2){float(0.35*windowWidth), float(0.28*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
         
         // draw class name
         className.Draw();
         DrawRectangleLines(0.51*windowWidth, 0.31*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter class name", (Vector2){0.51*windowWidth, 0.28*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter class name", (Vector2){float(0.51*windowWidth), float(0.28*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
         
         // draw teacher name
         teacherName.Draw();
         DrawRectangleLines(0.35*windowWidth, 0.4*windowHeight, 0.3*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter teacher name", (Vector2){0.35*windowWidth, 0.37*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter teacher name", (Vector2){float(0.35*windowWidth), float(0.37*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw number of credits
         numberOfCredits.Draw();
         DrawRectangleLines(0.35*windowWidth, 0.49*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Number of credits", (Vector2){0.35*windowWidth, 0.46*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Number of credits", (Vector2){float(0.35*windowWidth), float(0.46*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw max number of students
         maxStudents.currentInput = "50";
         maxStudents.Draw();
         DrawRectangleLines(0.51*windowWidth, 0.49*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Max No. of students", (Vector2){0.51*windowWidth, 0.46*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Max No. of students", (Vector2){float(0.51*windowWidth), float(0.46*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw days of week buttons
         std::string dayLabel[10] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         static bool isDayChosen[10] = {true, false, false, false, false, false, false};
         std::string chosenDay = buttonChosen(0.35*windowWidth, 0.58*windowHeight, 0.37*windowHeight, 0.05*windowHeight, dayLabel, isDayChosen, 7);
-        DrawTextEx(PT_serif_bold, "Select date of course", (Vector2){0.35*windowWidth, 0.55*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Select date of course", (Vector2){float(0.35*windowWidth), float(0.55*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
         
         // draw session
         std::string sessionLabel[10] = {"S1", "S2", "S3", "S4"};
         static bool isSessionChosen[10] = {true, false, false, false};
         std::string chosenSession = buttonChosen(0.35*windowWidth, 0.67*windowHeight, 0.22*windowHeight, 0.05*windowHeight, sessionLabel, isSessionChosen, 4);
-        DrawTextEx(PT_serif_bold, "Select session", (Vector2){0.35*windowWidth, 0.64*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Select session", (Vector2){float(0.35*windowWidth), float(0.64*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw close button
         addCourseClose.DrawTexture();
@@ -302,9 +297,9 @@ std::string Course::buttonChosen(float x, float y, float width, float height, st
 
 void Course::DrawViewCourse()
 {
-    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
     // DrawTextEx(PT_serif_bold, (">  " + ListOfCourses[classIndex]).c_str(), (Vector2){0.33*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
 
     del.DrawText();
@@ -348,13 +343,13 @@ void Course::ChooseViewClass()
     if (isViewGPAPressed)
     {
         // draw outer box border
-        Rectangle borders = {windowWidth/2, windowHeight/2, 0.19*windowWidth, 0.14*windowWidth};
-        Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
         DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
         // draw outer box
-        Rectangle rec = {windowWidth/2, windowHeight/2, 0.18*windowWidth, 0.13*windowWidth};
-        Vector2 recOrigin = {rec.width/2, rec.height/2};
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
         // draw create school year button and its function
@@ -370,20 +365,20 @@ void Course::ChooseViewClass()
             enterClass.currentInput = "";
         }
 
-        DrawTextEx(PT_serif_regular, "Class not found", (Vector2){0.46*windowWidth, 0.52*windowHeight}, 0.015*windowWidth, 0.5, RED);
+        DrawTextEx(PT_serif_regular, "Class not found", (Vector2){float(0.46*windowWidth), float(0.52*windowHeight)}, 0.015*windowWidth, 0.5, RED);
 
         // draw enter class box
         enterClass.Draw();
         DrawRectangleLines(0.425*windowWidth, 0.45*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
 
         // draw enter school year text
-        Vector2 enterText = {0.425*windowWidth, 0.41*windowHeight};
+        Vector2 enterText = {float(0.425*windowWidth), float(0.41*windowHeight)};
         DrawTextEx(PT_serif_bold, "Enter a class to view", enterText, 0.015*windowWidth, 0.5, BLACK);
 
         // draw close button and its function
         Button viewGPAClose;
         viewGPAClose.image = close.image;
-        viewGPAClose.bsrc = (Rectangle){0, 0, close.image.width, close.image.height};
+        viewGPAClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
         viewGPAClose.origin = (Vector2){0, 0};
         viewGPAClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
         viewGPAClose.DrawTexture();
@@ -399,9 +394,9 @@ void Course::ChooseViewClass()
 void Course::DrawViewGPA()
 {
     // if (class is chosen and class is in database)
-    Rectangle box = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     DrawRectangleRec(box, RAYWHITE);
-    DrawRectangleLinesEx((Rectangle){box.x - 2, box.y - 2, box.width + 4, box.height + 4}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
 
     // draw scoreboard
 

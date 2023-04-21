@@ -8,7 +8,7 @@
 #include <sstream>
 #include "CourseStruct.h"
 #include "SemesterStruct.h"
-#include <algorithm>
+#include <filesystem>
 #ifdef _WIN32
     #include <direct.h>
 #endif

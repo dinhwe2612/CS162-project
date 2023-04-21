@@ -1,9 +1,9 @@
 #ifndef CourseStruct_h
 #define CourseStruct_h
 
-#include <cstring>
-#include <string.h>
+#include <string>
 using namespace std;
+
 struct ACourse {
     string id;
     string name;

@@ -17,7 +17,7 @@ void Button::SetText(Font _font, string _Text, float coordX, float coordY, float
 
 void Button::SetTexture(string path) {
     image = LoadTexture(path.c_str());
-    bsrc = (Rectangle){0, 0, image.width, image.height};
+    bsrc = (Rectangle){0, 0, float(image.width), float(image.height)};
     origin = (Vector2){0, 0};
 }
 

@@ -46,7 +46,7 @@ void SemesterUI::Draw(int &menuWindow)
 {
     DrawBackground();
     if (menuSemester == 0) {//default
-        DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){0.25*windowWidth, 0.01*windowHeight}, 0.015*windowWidth, 0.5, WHITE);
+        DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){float(0.25*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
         close.DrawTexture();
         addSemester.DrawTexture();
         DrawSemesterList();
@@ -65,17 +65,17 @@ void SemesterUI::Draw(int &menuWindow)
 void SemesterUI::DrawBackground()
 {
     // background
-    Rectangle bsrc = {0, 0, background.width, background.height};
-    Rectangle bdest = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.71*windowHeight};
+    Rectangle bsrc = {0, 0, float(background.width), float(background.height)};
+    Rectangle bdest = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     Vector2 origin = {0, 0};
     DrawTexturePro(background, bsrc, bdest, origin, 0, WHITE);
 
     // top bar
-    Rectangle tdest = {0.12*windowWidth, 0.17*windowHeight, 0.76*windowWidth, 0.034*windowHeight};
+    Rectangle tdest = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.034*windowHeight)};
     DrawRectangleRec(tdest, (Color){222, 215, 251, 255});
 
     // draw "Add new Semester" text
-    Vector2 textPos = {0.34*windowWidth, 0.24*windowHeight};
+    Vector2 textPos = {float(0.34*windowWidth), float(0.24*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add new Semester", textPos, 0.02*windowWidth, 0.5, BLACK);
 }
 
@@ -88,13 +88,13 @@ void SemesterUI::DrawCreateSemester()
     if (isAddSemester)
     {
         // draw outer box border
-        Rectangle borders = {windowWidth/2, windowHeight/2, 0.18*windowWidth, 0.23*windowWidth};
-        Vector2 bordersOrigin = {borders.width/2, borders.height/2};
+        Rectangle borders = {float(windowWidth/2),float( windowHeight/2), float(0.18*windowWidth), float(0.23*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
         DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
         // draw outer box
-        Rectangle rec = {windowWidth/2, windowHeight/2, 0.17*windowWidth, 0.22*windowWidth};
-        Vector2 recOrigin = {rec.width/2, rec.height/2};
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.17*windowWidth), float(0.22*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
         // draw create school year button and its function
@@ -114,24 +114,24 @@ void SemesterUI::DrawCreateSemester()
         }
         else if (listSize >= 3)
         {
-            DrawTextEx(PT_serif_regular, "Max number of semester is 3", (Vector2){0.425*windowWidth, 0.608*windowHeight}, 0.015*windowWidth, 0.5, RED);
+            DrawTextEx(PT_serif_regular, "Max number of semester is 3", (Vector2){float(0.425*windowWidth), float(0.608*windowHeight)}, 0.015*windowWidth, 0.5, RED);
         }
         
 
         // draw enter school year box
         inputSemester.Draw();
         DrawRectangleLines(0.425*windowWidth, 0.36*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter Semester name", (Vector2){0.425*windowWidth, 0.33*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter Semester name", (Vector2){float(0.425*windowWidth), float(0.33*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw semester start date
         SemesterStartDate.Draw();
         DrawRectangleLines(0.425*windowWidth, 0.46*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter start date", (Vector2){0.425*windowWidth, 0.43*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter start date", (Vector2){float(0.425*windowWidth), float(0.43*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
         
         // draw semester end date
         SemesterEndDate.Draw();
         DrawRectangleLines(0.425*windowWidth, 0.56*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
-        DrawTextEx(PT_serif_bold, "Enter end date", (Vector2){0.425*windowWidth, 0.53*windowHeight}, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "Enter end date", (Vector2){float(0.425*windowWidth), float(0.53*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
         // draw close button and its function
         addSemesterClose.DrawTexture();

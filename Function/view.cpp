@@ -132,8 +132,16 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
     ifstream fin;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_directory()) {
-            ListOfCourses[i].id = entry.path().stem().string();
             fin.open(entry.path().string() + "/Course_Info.txt");
+            getline(fin, ListOfCourses[i].id, '\n');
+            int k = 0;
+            for (int j = 0; j < ListOfCourses[i].id.length(); ++j) {
+                if (ListOfCourses[i].id[j] == '-') {
+                    k = j;
+                    break;
+                }
+            }
+            ListOfCourses[i].id = ListOfCourses[i].id.substr(0, k);
             getline(fin, ListOfCourses[i].name, '\n');
             getline(fin, ListOfCourses[i].Class, '\n');
             getline(fin, ListOfCourses[i].teacher, '\n');
@@ -151,22 +159,56 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
 }
 
 // view student info in a course
-bool viewStudentInCourse(string schoolYear, string semester, string course) {
-    string path = getPath("StudentInCourse", semester + "/" + course, schoolYear);
+// Student students when pass into this function MUST NOT be initialized, otherwise memory leak.
+bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Student*& students, int& n) {
+    string path = getPath("StudentInCourse", semester + "/" + course.id + '-' + course.Class, schoolYear);
     if (!checkDirectory(path))
         return false;
     ifstream fin;
     fin.open(path);
-    cout << "Student IDs of " << course << "course in " << semester << " semester in " << schoolYear;
-    if (!fin.is_open())
-        return false;
+    string tmp;
+    n = 0;
     while(!fin.eof()) {
-        string studentID;
-        fin >> studentID;
-        cout << studentID << endl;
+        getline(fin, tmp, '\n');
+        ++n;
     }
-    return true;
+    fin.close();
+    fin.open(path);
+    students = new Student[n];
+    for (int i = 0; i < n; ++i) {
+        string id;
+        getline(fin, id, '\n');
+        ifstream in("Data/Student/" + id + ".txt");
+        getline(in, students[i].studentID, '\n');
+        getline(in, students[i].firstName, '\n');
+        getline(in, students[i].lastName, '\n');
+        getline(in, students[i].Class, '\n');
+        string gender;
+        getline(in, gender, '\n');
+        students[i].gender = stoi(gender);
+        getline(in, students[i].DOB, '\n');
+        getline(in, students[i].socialID, '\n');
+        in.close();
+    }
+    fin.close();
 }
+
+// bool viewStudentInCourse(string schoolYear, string semester, string course) {
+//     string path = getPath("StudentInCourse", semester + "/" + course, schoolYear);
+//     if (!checkDirectory(path))
+//         return false;
+//     ifstream fin;
+//     fin.open(path);
+//     cout << "Student IDs of " << course << "course in " << semester << " semester in " << schoolYear;
+//     if (!fin.is_open())
+//         return false;
+//     while(!fin.eof()) {
+//         string studentID;
+//         fin >> studentID;
+//         cout << studentID << endl;
+//     }
+//     return true;
+// }
 
 // view courses that a student studied
 bool viewCoursesOfStudent(string id, string schoolYear, string semester) {
@@ -220,7 +262,7 @@ bool viewCoursesOfStudent(string id, string schoolYear, string semester) {
     return true;
 }
 
-bool viewSchoolYear (string*& schoolYears, int& n) {
+bool viewSchoolYear(string*& schoolYears, int& n) {
     n = 0;
     const filesystem::path path = getPath("SchoolYear");
     int i = 0;
@@ -239,7 +281,7 @@ bool viewSchoolYear (string*& schoolYears, int& n) {
     return true;
 }
 
-bool viewSemester (string schoolYear, string*& semesters, int& n) {
+bool viewSemester(string schoolYear, string*& semesters, int& n) {
     n = 0;
     const filesystem::path path = getPath("Semester", "", schoolYear);
     int i = 0;
