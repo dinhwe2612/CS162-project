@@ -379,7 +379,7 @@ void Add1StudenttoCourse(string studentid, string courseaddress)
     address = courseaddress + "/Course_Info.txt";
     string* information; 
     information = Read_File(address);
-    string fileaddress = "../Data/Student/" + id + ".txt";
+    string fileaddress = "../Data/Student/" + studentid + ".txt";
     out.open(fileaddress.c_str(), ios::app);
     out << course << '\n';
     //AddDatatoStudentFile(studentid, schoolyear, semester, course, information);
