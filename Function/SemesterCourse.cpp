@@ -110,7 +110,7 @@ bool Update_CourseInformation(ACourse& course, string schoolYear, string semeste
     string FileName = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string address = FileName + "/Course_Info.txt";
     string *info = new string[9];
-    info[0] = "8";
+    // info[0] = "8";
     info[1] = course.id + "-" + course.Class;
     info[2] = course.name;
     info[3] = course.Class;
@@ -119,8 +119,12 @@ bool Update_CourseInformation(ACourse& course, string schoolYear, string semeste
     info[6] = to_string(course.maxStudent);
     info[7] = course.dayOfWeek;
     info[8] = course.session; 
-    Update_File(address, info);
-    delete[] info;
+    // Update_File(address, info);
+    // delete[] info;
+    ofstream out;
+    out.open(address.c_str());
+    for (int i = 1; i <= 8; i++) out << info[i] << '\n';
+    out.close();
     return true;
 }
 
