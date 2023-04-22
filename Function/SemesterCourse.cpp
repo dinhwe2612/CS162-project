@@ -110,7 +110,7 @@ bool Update_CourseInformation(ACourse& course, string schoolYear, string semeste
     string FileName = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string address = FileName + "/Course_Info.txt";
     string *info = new string[9];
-    info[0] = 8;
+    info[0] = "8";
     info[1] = course.id + "-" + course.Class;
     info[2] = course.name;
     info[3] = course.Class;
