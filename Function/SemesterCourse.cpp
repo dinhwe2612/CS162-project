@@ -125,6 +125,7 @@ bool Update_CourseInformation(ACourse& course, string schoolYear, string semeste
     out.open(address.c_str());
     for (int i = 1; i <= 8; i++) out << info[i] << '\n';
     out.close();
+    delete[] info;
     return true;
 }
 
@@ -272,16 +273,12 @@ bool DeleteACourse(string schoolYear, string semester, ACourse course, ACourse*&
     }
     info[0] = to_string(i - 1);
     Update_File(address, info);
+    filesystem::remove_all(courseid_coursename_address.c_str());
     if (n == 1) 
     {
         n--;
         delete[] courses;
         return true;
-    }
-    if (rmdir(courseid_coursename_address) == -1) 
-    {  // Remove the directory
-      cerr << "Error: " << strerror(errno) << endl;;
-      return(EXIT_FAILURE);
     }
     ACourse* temp = new ACourse[n - 1];
     int x = 0;
