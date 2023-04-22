@@ -37,7 +37,7 @@ void InputBar::SetInputText() {
         }
         if (IsKeyPressed(KEY_BACKSPACE) && !currentInput.empty()) {
             currentInput.pop_back();
-            password.pop_back();
+            if (!password.empty()) password.pop_back();
         }
 
     } else {

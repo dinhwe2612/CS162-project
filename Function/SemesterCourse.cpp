@@ -96,7 +96,7 @@ void Update_File(string fileaddress, string* information)
     int i = 1;
     ofstream out;
     out.open(fileaddress.c_str());
-    while (i <= atoi(information[0].c_str()))
+    while (i <= 8)
     {
         out << information[i] << '\n';
         i++;
@@ -107,15 +107,14 @@ void Update_File(string fileaddress, string* information)
 //
 bool Update_CourseInformation(ACourse& course, string schoolYear, string semester)
 {
-    string FileName = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
+    string FileName = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string address = FileName + "/Course_Info.txt";
     string *info = new string[9];
-    info[0] = 8;
     info[1] = course.id + "-" + course.Class;
     info[2] = course.name;
     info[3] = course.Class;
     info[4] = course.teacher;
-    info[5] = course.credit;
+    info[5] = to_string(course.credit);
     info[6] = to_string(course.maxStudent);
     info[7] = course.dayOfWeek;
     info[8] = course.session; 
@@ -242,7 +241,7 @@ bool Remove1StudentfromCourse(string studentid, ACourse course, string schoolYea
 }
 bool DeleteACourse(string schoolYear, string semester, ACourse course, ACourse*& courses, int& n)
 {
-    string courseid_coursename_address = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
+    string courseid_coursename_address = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string id;
     ifstream in;
     string address = courseid_coursename_address + "/Student_ID_data.txt";
@@ -252,7 +251,7 @@ bool DeleteACourse(string schoolYear, string semester, ACourse course, ACourse*&
         Remove1StudentfromCourse(id, course, schoolYear, semester);
     }
     in.close();
-    address = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/Semester_Info.txt";
+    address = "Data/SchoolYear/" + schoolYear + "/" + semester + "/Semester_Info.txt";
     string* info = Read_File(address);
     string tmp = course.id + "-" + course.Class;
     int i = 1;

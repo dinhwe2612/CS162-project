@@ -103,6 +103,10 @@ void Course::Draw()
         DrawImportStudentList();
     } else if (menuCourse == EXPORTSTUDENTLIST) {
         DrawExportStudentList();
+    } else if (menuCourse == DELETESTUDENT) {
+        DrawDeleteStudent();
+    } else if (menuCourse == DELETECOURSE) {
+        DrawDeleteCourse();
     } else {
         DrawCourseList();
     }
@@ -169,6 +173,7 @@ void Course::DrawCourseList()
         if (course.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuCourse = VIEWCOURSE;
             curCourse = ListOfCourses[i];
+            indexCourse = i;
             viewStudentInCourse(schoolYear, semester, ListOfCourses[i], ListOfStudents, listStudentSize);
             cout << listStudentSize << '\n';
             for(int i = 0;  i < listStudentSize; ++i) {
@@ -331,27 +336,40 @@ void Course::DrawModifyCourse() {
 
     // draw close button
     addCourseClose.DrawTexture();
-
+    
     if (addCourseClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuCourse = VIEWCOURSE;
+        courseName.currentInput = "";
+        courseID.currentInput = "";
+        className.currentInput = "";
+        teacherName.currentInput = "";
+        numberOfCredits.currentInput = "";
+        maxStudents.currentInput = "";
     }
     if (Create.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        ACourse newCourse;
-        newCourse.name = courseName.GetInput();
-        newCourse.id = courseID.GetInput();
-        newCourse.Class = className.GetInput();
-        newCourse.teacher = teacherName.GetInput();
-        newCourse.credit = stoi(numberOfCredits.GetInput());
-        newCourse.maxStudent = stoi(maxStudents.GetInput());
+        curCourse.name = courseName.GetInput();
+        curCourse.id = courseID.GetInput();
+        curCourse.Class = className.GetInput();
+        curCourse.teacher = teacherName.GetInput();
+        curCourse.credit = stoi(numberOfCredits.GetInput());
+        curCourse.maxStudent = stoi(maxStudents.GetInput());
         int tmp = 0;
         for(int i = 0; i < 7; ++i) if (isDayChosen[i]) tmp = i, isDayChosen[i] = false;
         isDayChosen[0] = true;
-        newCourse.dayOfWeek = dayLabel[tmp];
+        curCourse.dayOfWeek = dayLabel[tmp];
         for(int i = 0; i < 4; ++i) if (isSessionChosen[i]) tmp = i, isSessionChosen[i] = false;
         isSessionChosen[0] = true;
-        newCourse.session = sessionLabel[tmp];
-        AddCourse(schoolYear, semester, newCourse, ListOfCourses, listCourseSize);
+        curCourse.session = sessionLabel[tmp];
+        AddCourse(schoolYear, semester, curCourse, ListOfCourses, listCourseSize);
         menuCourse = VIEWCOURSE;
+        Update_CourseInformation(curCourse, schoolYear, semester);
+        courseName.currentInput = "";
+        courseID.currentInput = "";
+        className.currentInput = "";
+        teacherName.currentInput = "";
+        numberOfCredits.currentInput = "";
+        maxStudents.currentInput = "";
+        ListOfCourses[indexCourse] = curCourse;
     }
 }
 
@@ -410,6 +428,12 @@ void Course::DrawViewCourse()
     exportStudent.DrawText();
     studentConfig.DrawText();
     
+    if (del.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuCourse = DELETECOURSE;
+    }
+    if (delStudent.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuCourse = DELETESTUDENT;
+    }
     if (exportStudent.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuCourse = EXPORTSTUDENTLIST;
     }
@@ -735,8 +759,8 @@ void Course::DrawDeleteStudent() {
 
     // draw create school year button and its function
     Button Done;
-    Done.SetText(PT_serif_bold, "Done", 0.48*windowWidth, 0.56*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
-    Done.SetRectangle(0.425*windowWidth, 0.55*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+    Done.SetText(PT_serif_bold, "Yes", 0.484*windowWidth, 0.55*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+    Done.SetRectangle(0.425*windowWidth, 0.54*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
     Done.DrawText();
     
     if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
@@ -745,15 +769,67 @@ void Course::DrawDeleteStudent() {
         enterClass.currentInput = "";
     }
 
-    // DrawTextEx(PT_serif_regular, "Invalid path", (Vector2){float(0.463*windowWidth), float(0.52*windowHeight)}, 0.015*windowWidth, 0.5, RED);
+    // draw enter school year text
+    Vector2 enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+    DrawTextEx(PT_serif_bold, "Do you want to delete", enterText, 0.015*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "this student?", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
-    // draw enter class box
-    enterClass.Draw();
-    DrawRectangleLines(0.425*windowWidth, 0.45*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK);
+    // draw close button and its function
+    Button addStudentClose;
+    addStudentClose.image = close.image;
+    addStudentClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
+    addStudentClose.origin = (Vector2){0, 0};
+    addStudentClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+    addStudentClose.DrawTexture();
+
+    if (addStudentClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuCourse = VIEWCOURSE;
+        enterClass.currentInput = "";
+    }
+}
+
+void Course::DrawDeleteCourse() {
+    DrawTextEx(PT_serif_bold, (">  " + schoolYear + "  >  " + semester + "  >  " + curCourse.name + " - " + curCourse.Class).c_str(), (Vector2){float(0.25*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
+    Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
+    DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
+
+    del.DrawText();
+    back.DrawText();
+    add.DrawText();
+    drop.DrawText();
+    info.DrawText();
+    delStudent.DrawText();
+    exportStudent.DrawText();
+    studentConfig.DrawText();
+
+    // draw outer box border
+    Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+    Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
+    DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+
+    // draw outer box
+    Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+    Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
+    DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+
+    // draw create school year button and its function
+    Button Done;
+    Done.SetText(PT_serif_bold, "Yes", 0.484*windowWidth, 0.55*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+    Done.SetRectangle(0.425*windowWidth, 0.54*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+    Done.DrawText();
+    
+    if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
+    {
+        menuCourse = -1;
+        enterClass.currentInput = "";
+        DeleteACourse(schoolYear, semester, curCourse, ListOfCourses, listCourseSize);
+    }
 
     // draw enter school year text
-    Vector2 enterText = {float(0.425*windowWidth), float(0.41*windowHeight)};
-    DrawTextEx(PT_serif_bold, "Do you want to delete student", enterText, 0.015*windowWidth, 0.5, BLACK);
+    Vector2 enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+    DrawTextEx(PT_serif_bold, "Do you want to delete", enterText, 0.015*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "this course?", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
     // draw close button and its function
     Button addStudentClose;

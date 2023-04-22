@@ -41,6 +41,7 @@ struct Course
     int listCourseSize = 0;
     
     ACourse curCourse;
+    int indexCourse;
 
     Student *ListOfStudents;
     int listStudentSize = 0;
@@ -62,7 +63,9 @@ struct Course
         MODIFYCOURSE,
         ADDSTUDENT,
         IMPORTSTUDENTLIST,
-        EXPORTSTUDENTLIST
+        EXPORTSTUDENTLIST,
+        DELETESTUDENT,
+        DELETECOURSE
     };
 
     string schoolYear;
@@ -86,6 +89,7 @@ struct Course
         void DrawImportStudentList();
         void DrawExportStudentList();
         void DrawDeleteStudent();
+        void DrawDeleteCourse();
 };
 
 #endif
