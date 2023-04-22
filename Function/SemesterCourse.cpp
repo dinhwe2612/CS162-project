@@ -274,6 +274,11 @@ bool DeleteACourse(string schoolYear, string semester, ACourse course, ACourse*&
         delete[] courses;
         return true;
     }
+    if (rmdir(courseid_coursename_address) == -1) 
+    {  // Remove the directory
+      cerr << "Error: " << strerror(errno) << endl;;
+      return(EXIT_FAILURE);
+    }
     ACourse* temp = new ACourse[n - 1];
     int x = 0;
         for (int i = 0; i < n; ++i) 
