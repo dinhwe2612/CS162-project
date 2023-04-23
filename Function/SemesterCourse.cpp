@@ -217,7 +217,7 @@ bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, st
 
 bool Remove1StudentfromCourse(string studentid, ACourse course, string schoolYear, string semester)
 {
-    string courseaddress = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
+    string courseaddress = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string address = courseaddress + "/Student_ID_data.txt";
     string* info;
     info = Read_File(address.c_str());

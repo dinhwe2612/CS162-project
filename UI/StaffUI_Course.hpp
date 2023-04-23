@@ -43,6 +43,8 @@ struct Course
     ACourse curCourse;
     int indexCourse;
 
+    int indexStudent = -1;
+
     Student *ListOfStudents;
     int listStudentSize = 0;
     
