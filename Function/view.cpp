@@ -220,7 +220,6 @@ bool viewCoursesOfStudent(string* coursesOfStudent, int& n, string id, string sc
         return false;
 
     // count the number of course in the semester
-    int n = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_directory())
             ++n;
