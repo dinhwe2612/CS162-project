@@ -581,16 +581,27 @@ void Course::DrawStudentList() {
     DrawRectangleRoundedLines(BoxStuList, 0.05, 0.1, 2, BLACK);
 
     if (posX >= - 0.046875*windowWidth - 1)
-            DrawLine(0.31*windowWidth + posX, 0.27*windowHeight, 0.31*windowWidth + posX, 0.8*windowHeight, BLACK);
+        DrawLine(0.31*windowWidth + posX, 0.27*windowHeight, 0.31*windowWidth + posX, 0.8*windowHeight, BLACK);
     if (posX >= - 0.046875*windowWidth - 1 - 70 * 3)
-            DrawLine(0.42*windowWidth + posX, 0.27*windowHeight, 0.42*windowWidth + posX, 0.8*windowHeight, BLACK);
+        DrawLine(0.42*windowWidth + posX, 0.27*windowHeight, 0.42*windowWidth + posX, 0.8*windowHeight, BLACK);
     DrawLine(0.585*windowWidth + posX, 0.27*windowHeight, 0.585*windowWidth + posX, 0.8*windowHeight, BLACK);
     DrawLine(0.7*windowWidth + posX, 0.27*windowHeight, 0.7*windowWidth + posX, 0.8*windowHeight, BLACK);
     DrawLine(0.837*windowWidth + posX, 0.27*windowHeight, 0.837*windowWidth + posX, 0.8*windowHeight, BLACK);
-    DrawLine(0.95*windowWidth + posX, 0.27*windowHeight, 0.95*windowWidth + posX, 0.8*windowHeight, BLACK);
+    if (posX <= - 0.046875*windowWidth - 1)
+        DrawLine(0.95*windowWidth + posX, 0.27*windowHeight, 0.95*windowWidth + posX, 0.8*windowHeight, BLACK);
 
-    string title = "No.       Student ID       Student Full Name       Other Mark        Midterm Mark        Final Mark        Total Mark";
-    DrawTextEx(PT_serif_bold, title.c_str(), (Vector2){float(0.27*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    // title
+    if (posX >= - 0.046875*windowWidth - 1)
+        DrawTextEx(PT_serif_bold, "No.", (Vector2){float(0.27*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    if (posX > - 0.046875*windowWidth - 1 - 70 * 2)
+        DrawTextEx(PT_serif_bold, "Student ID", (Vector2){float(0.32*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Student Full Name", (Vector2){float(0.43*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Other Mark", (Vector2){float(0.6*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Midterm Mark", (Vector2){float(0.715*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    if (posX <= - 0.046875*windowWidth - 1)
+        DrawTextEx(PT_serif_bold, "Final Mark", (Vector2){float(0.853*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    if (posX <= - 0.046875*windowWidth - 70 * 2 - 1)
+        DrawTextEx(PT_serif_bold, "Total Mark", (Vector2){float(0.965*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
 
     // DrawTextEx(PT_serif_bold, ("List of students in " + curCourse.name).c_str(), (Vector2){float(0.353*windowWidth), float(0.2*windowHeight)}, 0.035*windowWidth, 0.5, BLACK);
 
