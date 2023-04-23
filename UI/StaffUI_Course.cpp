@@ -619,6 +619,7 @@ void Course::DrawStudentList() {
 }
 
 void Course::DrawAddStudent() {
+    static bool canAdd = true;
 
     del.DrawText();
     back.DrawText();
@@ -647,13 +648,14 @@ void Course::DrawAddStudent() {
     
     if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
     {
-        menuCourse = VIEWCOURSE;
-        Add1StudenttoCourse(enterClass.GetInput(), curCourse, schoolYear, semester);
+        canAdd = Add1StudenttoCourse(enterClass.GetInput(), curCourse, schoolYear, semester);
         enterClass.currentInput = "";
         viewStudentInCourse(schoolYear, semester, curCourse, ListOfStudents, listStudentSize);
+        if (canAdd) menuCourse = VIEWCOURSE;
     }
 
-    DrawTextEx(PT_serif_regular, "Student ID is not found", (Vector2){float(0.44*windowWidth), float(0.52*windowHeight)}, 0.015*windowWidth, 0.5, RED);
+    if (!canAdd)
+        DrawTextEx(PT_serif_regular, "Student ID is not found", (Vector2){float(0.44*windowWidth), float(0.52*windowHeight)}, 0.015*windowWidth, 0.5, RED);
 
     // draw enter class box
     enterClass.Draw();
@@ -674,6 +676,7 @@ void Course::DrawAddStudent() {
     if (addStudentClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuCourse = VIEWCOURSE;
         enterClass.currentInput = "";
+        canAdd = true;
     }
 }
 
