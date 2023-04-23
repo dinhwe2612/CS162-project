@@ -174,7 +174,7 @@ void Course::DrawCourseList()
             menuCourse = VIEWCOURSE;
             curCourse = ListOfCourses[i];
             indexCourse = i;
-            viewStudentInCourse(schoolYear, semester, ListOfCourses[i], ListOfStudents, listStudentSize);
+            viewStudentInCourse(schoolYear, semester, curCourse, ListOfStudents, listStudentSize);
             cout << listStudentSize << '\n';
             for(int i = 0;  i < listStudentSize; ++i) {
                 cout << ListOfStudents[i].firstName << ' ' << ListOfStudents[i].lastName << '\n';
@@ -531,15 +531,28 @@ void Course::DrawStudentList() {
     float static posY = 0;
 
     posY += GetMouseWheelMove() * 30;
+    posY += (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_S)) * 30;
+    posY -= (IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)) * 30;
     
     int szButton = 0.08*windowHeight;
-    int posX = -60;
+
+    float static posX = - 0.046875*windowWidth;
+
+    posX += (IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D)) * 70;
+    posX -= (IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A)) * 70;
+
 
     if (0.32*windowHeight + 5 + (listStudentSize) * szButton + posY <= 0.8*windowHeight)
         posY = 0.8*windowHeight - (0.32*windowHeight + 5 + (listStudentSize) * szButton);
     if (posY > 0) posY = 0;
 
-    Rectangle BoxStuList = {float(0.26*windowWidth + posX), float(0.27*windowHeight), float(0.58*windowWidth + 20), float(0.53*windowHeight)};
+    // auto checkCollisionX = [](float x, float windowWidth) {
+    //     return (0.84*windowWidth - 0.046875*windowWidth + 20 <= x && x <= - 0.046875*windowWidth);
+    // };
+    if (1.07*windowWidth + posX < 0.84*windowWidth - 0.046875*windowWidth + 20) posX = 0.84*windowWidth - 0.046875*windowWidth + 20 - 1.07*windowWidth;
+    if (posX > - 0.046875*windowWidth) posX = - 0.046875*windowWidth;
+
+    Rectangle BoxStuList = {float(0.26*windowWidth - 0.046875*windowWidth), float(0.27*windowHeight), float(0.58*windowWidth + 20), float(0.53*windowHeight)};
     for (int i = 0; i < listStudentSize; ++i)
     {
         if (0.32*windowHeight + 5 + (i + 1) * szButton + posY <= 0.32*windowHeight + 5) continue;
@@ -548,28 +561,43 @@ void Course::DrawStudentList() {
         No.SetRectangle(BoxStuList.x, 0.32*windowHeight + 5 + i * szButton + posY, BoxStuList.width, szButton, (Color){210, 195, 195, 255}, LIGHTGRAY);
         No.DrawText();
         DrawLine(BoxStuList.x, 0.32*windowHeight + 5 + i * szButton + posY + szButton, BoxStuList.x + BoxStuList.width, 0.32*windowHeight + 5 + i * szButton + posY + szButton, BLACK);
-
-        
+        // Draw No
+        if (posX >= - 0.046875*windowWidth - 1)
+            DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), (Vector2){float(0.27*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Student ID
+        if (posX >= - 0.046875*windowWidth - 1 - 70 * 2)
+            DrawTextEx(PT_serif_regular, ListOfStudents[i].studentID.c_str(), (Vector2){float(0.32*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Student Name
+        DrawTextEx(PT_serif_regular, (ListOfStudents[i].lastName + " " + ListOfStudents[i].firstName).c_str(), (Vector2){float(0.43*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Student GPA
     }
-    Rectangle box1 = {float(BoxStuList.x), float(0.32*windowHeight + 5 - (szButton + 5)), float(BoxStuList.width), float(szButton + 5)};
-    DrawRectanglePro(box1, (Vector2){0, 0}, 0, RAYWHITE);
-    Rectangle box2 = {float(BoxStuList.x - 1), float(0.8*windowHeight), float(BoxStuList.width + 1), float(0.08*windowHeight)};
-    DrawRectanglePro(box2, (Vector2){0, 0}, 0, RAYWHITE);
+    Rectangle boxUp = {float(BoxStuList.x), float(0.32*windowHeight + 5 - (szButton + 5)), float(BoxStuList.width), float(szButton + 5)};
+    DrawRectanglePro(boxUp, (Vector2){0, 0}, 0, RAYWHITE);
+    Rectangle boxDown = {float(BoxStuList.x - 1), float(0.8*windowHeight), float(BoxStuList.width + 1), float(0.08*windowHeight)};
+    DrawRectanglePro(boxDown, (Vector2){0, 0}, 0, RAYWHITE);
 
     DrawLine(BoxStuList.x, 0.32*windowHeight + 5, BoxStuList.x + BoxStuList.width, 0.32*windowHeight + 5, BLACK);
 
     DrawRectangleRoundedLines(BoxStuList, 0.05, 0.1, 2, BLACK);
 
-    string title = "No.       First Name       Last Name       Student ID       Date of birth        Social ID";
+    if (posX >= - 0.046875*windowWidth - 1)
+            DrawLine(0.31*windowWidth + posX, 0.27*windowHeight, 0.31*windowWidth + posX, 0.8*windowHeight, BLACK);
+    if (posX >= - 0.046875*windowWidth - 1 - 70 * 3)
+            DrawLine(0.42*windowWidth + posX, 0.27*windowHeight, 0.42*windowWidth + posX, 0.8*windowHeight, BLACK);
+    DrawLine(0.585*windowWidth + posX, 0.27*windowHeight, 0.585*windowWidth + posX, 0.8*windowHeight, BLACK);
+    DrawLine(0.7*windowWidth + posX, 0.27*windowHeight, 0.7*windowWidth + posX, 0.8*windowHeight, BLACK);
+    DrawLine(0.837*windowWidth + posX, 0.27*windowHeight, 0.837*windowWidth + posX, 0.8*windowHeight, BLACK);
+    DrawLine(0.95*windowWidth + posX, 0.27*windowHeight, 0.95*windowWidth + posX, 0.8*windowHeight, BLACK);
+
+    string title = "No.       Student ID       Student Full Name       Other Mark        Midterm Mark        Final Mark        Total Mark";
     DrawTextEx(PT_serif_bold, title.c_str(), (Vector2){float(0.27*windowWidth + posX), float(0.28*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
 
-    DrawTextEx(PT_serif_bold, ("List of students in " + curCourse.name).c_str(), (Vector2){float(0.353*windowWidth), float(0.2*windowHeight)}, 0.035*windowWidth, 0.5, BLACK);
+    // DrawTextEx(PT_serif_bold, ("List of students in " + curCourse.name).c_str(), (Vector2){float(0.353*windowWidth), float(0.2*windowHeight)}, 0.035*windowWidth, 0.5, BLACK);
 
-    DrawLine(0.31*windowWidth + posX, 0.27*windowHeight, 0.31*windowWidth + posX, 0.8*windowHeight, BLACK);
-    DrawLine(0.42*windowWidth + posX, 0.27*windowHeight, 0.42*windowWidth + posX, 0.8*windowHeight, BLACK);
-    DrawLine(0.53*windowWidth - 5 + posX, 0.27*windowHeight, 0.53*windowWidth - 5 + posX, 0.8*windowHeight, BLACK);
-    DrawLine(0.64*windowWidth - 10 + posX, 0.27*windowHeight, 0.64*windowWidth - 10 + posX, 0.8*windowHeight, BLACK);
-    DrawLine(0.76*windowWidth - 10 + posX, 0.27*windowHeight, 0.76*windowWidth - 10 + posX, 0.8*windowHeight, BLACK);
+    Rectangle boxLeft = {float(0.12*windowWidth), BoxStuList.y, float(BoxStuList.x - 0.12*windowWidth - 2), BoxStuList.height};
+    DrawRectanglePro(boxLeft, (Vector2){0, 0}, 0, RAYWHITE);
+    Rectangle boxRight = {float(BoxStuList.x + BoxStuList.width + 2), BoxStuList.y, float(0.88*windowWidth - (BoxStuList.x + BoxStuList.width) - 2), BoxStuList.height};
+    DrawRectanglePro(boxRight, (Vector2){0, 0}, 0, RAYWHITE);
 }
 
 void Course::DrawAddStudent() {
@@ -606,7 +634,9 @@ void Course::DrawAddStudent() {
     if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
     {
         menuCourse = VIEWCOURSE;
+        Add1StudenttoCourse(enterClass.GetInput(), curCourse, schoolYear, semester);
         enterClass.currentInput = "";
+        
     }
 
     DrawTextEx(PT_serif_regular, "Student ID is not found", (Vector2){float(0.44*windowWidth), float(0.52*windowHeight)}, 0.015*windowWidth, 0.5, RED);

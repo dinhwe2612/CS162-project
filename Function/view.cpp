@@ -162,14 +162,15 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
 // Student students when pass into this function MUST NOT be initialized, otherwise memory leak.
 bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Student*& students, int& n) {
     string path = getPath("StudentInCourse", semester + "/" + course.id + '-' + course.Class, schoolYear);
-    if (!checkDirectory(path))
-        return false;
+
+    // if (!checkDirectory(path))
+    //     return false;
+    
     ifstream fin;
     fin.open(path);
     string tmp;
     n = 0;
-    while(!fin.eof()) {
-        getline(fin, tmp, '\n');
+    while(getline(fin, tmp)) {
         ++n;
     }
     fin.close();
@@ -185,12 +186,14 @@ bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Stu
         getline(in, students[i].Class, '\n');
         string gender;
         getline(in, gender, '\n');
-        students[i].gender = stoi(gender);
+        if (!gender.empty()) students[i].gender = stoi(gender);
+        else students[i].gender = 0;
         getline(in, students[i].DOB, '\n');
         getline(in, students[i].socialID, '\n');
         in.close();
     }
     fin.close();
+    return true;
 }
 
 // bool viewStudentInCourse(string schoolYear, string semester, string course) {

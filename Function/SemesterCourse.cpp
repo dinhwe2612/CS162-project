@@ -176,7 +176,7 @@ bool AddClasstoCourse_CSV(string fileaddress, ACourse course, string schoolYear,
 
 bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, string semester)
 {
-    string courseaddress = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
+    string courseaddress = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string address = courseaddress + "/Student_ID_data.txt";
     string* check_if_exist = Read_File(address);
     for (int ka = 1; ka <= atoi(check_if_exist[0].c_str()); ka++)
@@ -205,7 +205,7 @@ bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, st
         number++;
     }
     out.close();
-    string fileaddress = "../Data/Student/" + studentid + ".txt";
+    string fileaddress = "Data/Student/" + studentid + ".txt";
     out.open(fileaddress.c_str(), ios::app);
     out << course.id << "-" << course.Class << '\n';
     out.close();
