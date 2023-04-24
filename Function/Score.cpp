@@ -202,17 +202,15 @@ void checkData(string path, string schoolyear, string semester, string course) {
 	string path_out = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	int n = 0, n1 = 0, n2 = 0;
 	n1 = getNumberOf(path) - 1;
-	n2 = getNumberOf(path_out);
 	ScoreBoard* s = new ScoreBoard[51];
 	ScoreBoard* s1 = new ScoreBoard[n1];
-	ScoreBoard* s2 = new ScoreBoard[n2];
 	loadScoreboard(s1, schoolyear, semester, course, n1, path);
 	if (isPathExist(path_out)) {
+		n2 = getNumberOf(path_out);
+		ScoreBoard* s2 = new ScoreBoard[n2];
 		loadScoreboard(s2, schoolyear, semester, course, n2, path_out);
-		//cout << s2[1].studentID << endl;
-		//n1 -= 1;
-		//n2 -= 1;
-		compareData(s1, s2, s, n1, n2, n);;
+		compareData(s1, s2, s, n1, n2, n);
+		delete[] s2;
 	}
 
 	//Show duplicate data
@@ -233,7 +231,6 @@ void checkData(string path, string schoolyear, string semester, string course) {
 	}
 	delete[] s;
 	delete[] s1;
-	delete[] s2;
 }
 
 bool isValid(string s) {
