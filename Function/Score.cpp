@@ -5,7 +5,6 @@
 #include"Score.h"
 
 void create_StudentResult_File(string dir) {
-	
 	int check;
 	check = _mkdir(dir.c_str());
 
@@ -102,7 +101,6 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 void loadScoreboard(ScoreBoard* s, string schoolyear, string semester, string course_name, int& n, string path) {
 	//locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
 	ifstream ifs;
-	//string path_in = pathToSchoolYear + schoolyear + '/' + semester + '/' + course_name + '/' + course_name + ".csv";
 	string path_txt = toSchoolYear + schoolyear + '/' + semester + '/' + course_name + "/Score" + '/' + course_name + ".txt";
 
 	ifs.open(path.c_str());
@@ -113,9 +111,6 @@ void loadScoreboard(ScoreBoard* s, string schoolyear, string semester, string co
 	}
 
 	string no = "";
-	string student_id = "";
-	string student_fn = "";
-	string student_ln = "";
 	string Class = "", gender = "", DOB = "", socialID = "";
 	string total = "", finals = "", midterm = "", other = "";
 	int i = 0;
@@ -194,7 +189,7 @@ void saveScore(string path, ScoreBoard* s, int n, string schoolyear, string seme
 		ofs << s[i].studentid << "," << s[i].lastname << ',' << s[i].firstname << ',' << s[i].total << ',' << s[i].finals << ',' << s[i].midterm << ',' << s[i].other << '\n';
 	}
 	ofs.close();
-	saveScoreOf1Stu(s, schoolyear, semester, course, n);
+	//saveScoreOf1Stu(s, schoolyear, semester, course, n);
 }
 
 void checkData(string path, string schoolyear, string semester, string course) {
@@ -224,6 +219,7 @@ void checkData(string path, string schoolyear, string semester, string course) {
 	//write the new data to file if it has new data from csv file
 	if (n1 > 0) {
 		saveScore(path_out, s1, n1, schoolyear, semester, course);
+		saveScoreOf1Stu(s1, schoolyear, semester, course, n1);
 		cout << "Import Successfully!\n";
 	}
 	else {
@@ -310,10 +306,86 @@ bool importCourseScoreBoard(string path, string schoolyear, string semester, str
 	return true;
 }
 
-
-int main() {
-	//exportCourseStudentList("", "2021-2022", "Autumn", "CS161-22APCS2");
-	//importCourseScoreBoard("", "2021-2022", "Autumn", "CS161-22APCS2");
-	return 0;
+void viewScoreboard(ScoreBoard* s, int n) {
+	cout << "No" << '\t'
+		<< "Student ID" << '\t'
+		<< left << setw(20) << "Last Name"
+		<< left << setw(10) << "First Name\t"
+		<< "Total\t" << "Final\t" << "Midterm\t" << "Other\n";
+	//cin.ignore();
+	for (int i = 0; i < n; i++) {
+		cout << i + 1 << "\t";
+		cout << s[i].studentid << "\t";
+		cout << left << setw(20) << s[i].lastname;
+		cout << left << setw(10) << s[i].firstname << "\t";
+		cout << s[i].total << "\t";
+		cout << s[i].finals << "\t";
+		cout << s[i].midterm << "\t";
+		cout << s[i].other << endl;
+	}
 }
 
+bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, string semester, string course) {
+	string path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	if (!isPathExist(path))
+		return false;
+	loadScoreboard(scoreBoard, schoolYear, semester, course, n, path);
+	viewScoreboard(scoreBoard, n);
+	return true;
+}
+
+bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, string schoolYear, string semester, string course) {
+	string path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + studentScore.studentid + ".txt";
+	if (!isPathExist(path) || studentScore.studentid != modifiedScore.studentid)
+		return false;
+	string* info = Read_File(path);
+	float* a = new float[4]{ modifiedScore.total, modifiedScore.finals, modifiedScore.midterm, modifiedScore.other };
+	int i = 0;
+	while (i < 4) {
+		if (a[i] >= 0 && a[i] <= 10) {
+			info[i + 1] = to_string(a[i]);
+		}
+		i++;
+	}
+	remove(path.c_str());
+	studentScore.total = atof(info[1].c_str());
+	studentScore.finals = atof(info[2].c_str());
+	studentScore.midterm = atof(info[3].c_str());
+	studentScore.other = atof(info[4].c_str());
+	path = toDataStudent + studentScore.studentid + ".txt";
+	Student s;
+	loadStudentInfo(s, path);
+	studentScore.lastname = s.lastName;
+	studentScore.firstname = s.firstName;
+	write_Score(studentScore, semester, schoolYear, course);
+
+	path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	int n = getNumberOf(path);
+	ScoreBoard* score = new ScoreBoard[n];
+	loadScoreboard(score, schoolYear, semester, course, n, path);
+	for (int i = 0; i < n; i++) {
+		if (studentScore.studentid == score[i].studentid) {
+			score[i] = studentScore;
+			break;
+		}
+	}
+
+	remove(path.c_str());
+	saveScore(path, score, n, schoolYear, semester, course);
+	delete[] a;
+	delete[] score;
+	cout << "Update successfully!" << endl;
+	return true;
+}
+
+
+//int main() {
+	//exportCourseStudentList("", "2021-2022", "Autumn", "CS161-22APCS2");
+	//importCourseScoreBoard("", "2021-2022", "Autumn", "CS161-22APCS2");
+	//ScoreBoard studentScore, modifiedScore;
+	//studentScore.studentid = "2212";
+	//modifiedScore.studentid = "2212";
+	//modifiedScore.other = 10;
+	//updateStudentResult(studentScore, modifiedScore, "2021-2022", "Autumn", "CS162-22CTT2");
+	//return 0;
+//}
