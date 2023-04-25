@@ -1,6 +1,7 @@
 // this is a recommendation to follow, details can be changed depending on how you want your code to be. (e.g. change the format of the files)
 // regardless, the requirements for each functions need to be satisfied.
-
+#ifndef score_h
+#define score_h
 #include <string>
 
 using namespace std;
@@ -47,3 +48,4 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 // divided by the total number of credits. for example, if a student earned 10, 9.5 and 9 in 3 courses which have 3, 4, 5 credits respectively,
 // the gpa of the semester will be (10*3 + 9.5*4 + 9*5)/(3 + 4 + 5)
 // the overall gpa is the average of all studied semesters.
+#endif
