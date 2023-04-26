@@ -378,6 +378,277 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 	return true;
 }
 
+void load1Class(ScoreBoard*& s, string path, int n) {
+	ifstream ifs;
+	ifs.open(path.c_str());
+	string no = "";
+	int i = 0;
+	while (!ifs.eof()) {
+		getline(ifs, no, ' ');
+		getline(ifs, s[i].studentid);
+		i++;
+		if (i == n)
+			break;
+	}
+	ifs.close();
+}
+
+string* loadCourseID(string path, int n) {
+	ifstream in;
+	path += "/Semester_Info.txt";
+	in.open(path);
+
+	string line1 = "", line2 = "", line3 = "", line4 = "";
+	getline(in, line1, '\n');
+	getline(in, line2, '\n');
+	getline(in, line3, '\n');
+	getline(in, line4, '\n');
+
+	string id = "";
+	int i = 0;
+	string* info = new string[n];
+	while (!in.eof()) {
+		getline(in, id);
+		in.ignore();
+		info[i] = id;
+		i++;
+	}
+	in.close();
+	return info;
+}
+
+void loadScore1Student(ScoreBoard& s, string path) {
+	ifstream ifs;
+	ifs.open(path);
+	ifs >> s.total;
+	ifs >> s.finals;
+	ifs >> s.midterm;
+	ifs >> s.other;
+	ifs.close();
+}
+
+void loadCredit(string path, int& credit) {
+	path += "/Course_Info.txt";
+	ifstream ifs;
+	ifs.open(path);
+	string info = "";
+	int i = 0;
+	while (getline(ifs, info)) {
+		i++;
+		if (i == 5) {
+			credit = atoi(info.c_str());
+			break;
+		}
+	}
+	ifs.close();
+}
+float** gpaOf1Semester(float** a, int* credits, int row, int column) {
+	float gpa = 0;
+	int times = 0;
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < column; j++) {
+			if (a[i][j] != -1) {
+				gpa += (a[i][j] * credits[j]);
+				times += credits[j];
+			}
+		}
+		if (times > 0) {
+			a[i][column] = gpa / times;
+		}
+		else {
+			a[i][column] = gpa;
+		}
+		gpa = 0;
+		times = 0;
+	}
+	return a;
+}
+
+float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, string semester, string Class, int& column, int& row) {
+	string path = ToSchoolYear + schoolYear + '/' + semester;
+
+	//return false if semester does not exist
+	//if (!isPathExist(path))
+		//return false;
+
+	path = ToSchoolYear + schoolYear + "/Classes/" + Class + ".txt";
+	//return false if class does not exist
+	//if (!isPathExist(path))
+		//return false;
+
+	//Take a list of student id in a class
+	row = getNumberOf(path);
+	classScore = new ScoreBoard[row];
+	load1Class(classScore, path, row);
+	path = ToSchoolYear + schoolYear + '/' + semester;
+	column = getNumberOf(path + "/Semester_Info.txt") - 4;
+
+	//Take courses in this semester
+	string* courses;
+	courses = loadCourseID(path, column);
+
+	//Take credit of courses
+	int* credits = new int[column];
+	string pathToCredit;
+	for (int i = 0; i < column; i++) {
+		pathToCredit = path + '/' + courses[i];
+		loadCredit(pathToCredit, credits[i]);
+	}
+
+	//Take total of each student in a class
+	string pathToScore;
+	float** score = new float* [row];
+	for (int i = 0; i < row; i++) {
+		score[i] = new float[column + 1];
+	}
+	for (int i = 0; i < column; i++) {
+		pathToScore = path + '/' + courses[i] + "/Score/";
+		for (int j = 0; j < row; j++) {
+			pathToScore += classScore[j].studentid + ".txt";
+			if (isPathExist(pathToScore)) {
+				loadScore1Student(classScore[j], pathToScore);
+				score[j][i] = classScore[j].total;
+			}
+			else {
+				score[j][i] = -1;
+			}
+			pathToScore = path + '/' + courses[i] + "/Score/";
+		}
+	}
+	//calculate gpa of each student in one semester
+	score = gpaOf1Semester(score, credits, row, column);
+	delete[] courses;
+	return score;
+}
+
+float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int& row, int& column) {
+	string path = ToSchoolYear + schoolYear + "/Classes/" + Class + ".txt";
+	float** score = nullptr;
+	int times = 0;
+	row = getNumberOf(path.c_str());
+	float** gpa = new float* [row];
+	for (int i = 0; i < row; i++)
+		gpa[i] = new float[4];
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < 4; j++) {
+			gpa[i][j] = 0;
+		}
+	}
+	string semester = "Spring";
+	path = ToSchoolYear + schoolYear + '/' + semester;
+	if (isPathExist(path)) {
+		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+		for (int i = 0; i < row; i++) {
+			gpa[i][0] = score[i][column];
+		}
+		times++;
+	}
+	semester = "Summer";
+	path = ToSchoolYear + schoolYear + '/' + semester;
+	if (isPathExist(path)) {
+		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+		for (int i = 0; i < row; i++) {
+			gpa[i][1] = score[i][column];
+		}
+		times++;
+	}
+	semester = "Autumn";
+	path = ToSchoolYear + schoolYear + '/' + semester;
+	if (isPathExist(path)) {
+		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+		for (int i = 0; i < row; i++) {
+			gpa[i][2] = score[i][column];
+		}
+		times++;
+	}
+	for (int i = 0; i < row; i++)
+		delete[] score[i];
+	delete[] score;
+
+	float sum = 0;
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < 3; j++) {
+			sum += gpa[i][j];
+		}
+		sum /= times;
+		gpa[i][3] = sum;
+		sum = 0;
+	}
+	return gpa;
+}
+
+bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class) {
+	string path = ToSchoolYear + schoolYear;
+	if (!isPathExist(path))
+		return false;
+	path += "/Classes/" + Class + ".txt";
+	if (!isPathExist(path))
+		return false;
+	int row = 0, column = 0;
+	float** scores = getClassOverallGPA(s, schoolYear, Class, row, column);
+	string* semester = new string[3]{ "Spring","Summer","Autumn" };
+	cout << left << setw(10) << "Student ID" << '\t';
+	for (int i = 0; i < 3; i++) {
+		cout << left << setw(15) << semester[i];
+	}
+	cout << left << setw(15) << "GPA" << endl;
+	for (int i = 0; i < row; i++) {
+		cout << left << setw(10) << s[i].studentid << '\t';
+		for (int j = 0; j < 4; j++) {
+			cout << left << setw(15) << scores[i][j];
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < row; i++) {
+		delete[] scores[i];
+	}
+	delete[] scores;
+	return true;
+}
+
+bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class) {
+	string path = ToSchoolYear + schoolYear;
+
+	path += "/Classes/" + Class + ".txt";
+	//return false if class does not exist
+	if (!isPathExist(path))
+		return false;
+
+	path = ToSchoolYear + schoolYear + '/' + semester + "/Semester_Info.txt";
+	int row = 0;
+	int column = getNumberOf(path) - 4;
+
+	//Take courses in this semester
+	string* courses;
+	path = ToSchoolYear + schoolYear + '/' + semester;
+	courses = loadCourseID(path, column);
+
+	//Score of courses that students in a class studied
+	float** scores = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+	cout << left << setw(10) << "Student ID" << '\t';
+	for (int i = 0; i < column; i++) {
+		cout << left << setw(15) << courses[i];
+	}
+	cout << left << setw(15) << "GPA" << endl;
+	for (int i = 0; i < row; i++) {
+		cout << left << setw(10) << s[i].studentid << '\t';
+		for (int j = 0; j < column + 1; j++) {
+			if (scores[i][j] != -1) {
+				cout << left << setw(15) << scores[i][j];
+			}
+			else {
+				//student did not enroll this course
+				cout << left << setw(15) << "-";
+			}
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < row; i++) {
+		delete[] scores[i];
+	}
+	delete[] scores;
+	return true;
+}
 
 //int main() {
 	//exportCourseStudentList("", "2021-2022", "Autumn", "CS161-22APCS2");
@@ -386,6 +657,23 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 	//studentScore.studentid = "2212";
 	//modifiedScore.studentid = "2212";
 	//modifiedScore.other = 10;
-	//updateStudentResult(studentScore, modifiedScore, "2021-2022", "Autumn", "CS162-22CTT2");
+	//updateStudentResult(studentScore, modifiedScore, "2021-2022", "Autumn", "CS162-22CTT1");
+	// //ScoreBoard* s = nullptr;
+	//string* courses = nullptr;
+	//float** scores=nullptr;
+	//int row = 0, column = 0;
+	/*if (!viewClassScoreBoardIn1Semester(s, "2021-2022", "Autumn", "22CTT1")) {
+		cout << "School year, Semester or Class does not exist!\n";
+	}
+	else {
+		cout << "Successfully!" << endl;
+	}*/
+
+	/*if (!viewClassOverallIn1Year(s, "2021-2022", "22CTT1"))
+		cout << "School year or Class does not exist" << endl;
+	else
+		cout << "Successfully!" << endl;*/
+
+		//delete[] s;
 	//return 0;
 //}
