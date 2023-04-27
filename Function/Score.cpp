@@ -2,7 +2,7 @@
 #include"../Header/StaffFunc.h"
 #include"../Header/ScoreStruct.h"
 #include<fstream>
-#include"Score.h"
+#include"../Header/score.h"
 
 void create_StudentResult_File(string dir) {
 	int check;
@@ -15,6 +15,22 @@ void create_StudentResult_File(string dir) {
 		cout << "Unable to create directory\n";
 		return;
 	}
+}
+
+int getNumberOf(string dir) {
+	ifstream in;
+	in.open(dir);
+	string w;
+	int n = 0;
+	while (!in.eof()) {
+		getline(in, w, '\n');
+		//in.ignore(256, '\n');
+		//in.ignore();
+		in.ignore();
+		n++;
+	}
+	in.close();
+	return n;
 }
 
 bool isPathExist(const string& path) {
@@ -48,21 +64,6 @@ void loadStudentInfo(Student& s, string path) {
 	ifs.close();
 }
 
-int getNumberOf(string dir) {
-	ifstream in;
-	in.open(dir);
-	string w;
-	int n = 0;
-	while (!in.eof()) {
-		getline(in, w, '\n');
-		//in.ignore(256, '\n');
-		//in.ignore();
-		in.ignore();
-		n++;
-	}
-	in.close();
-	return n;
-}
 
 bool exportCourseStudentList(string destination, string schoolYear, string semester, string course) {
 	ofstream ofs;
@@ -98,6 +99,31 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 	return true;
 }
 
+bool isValid(string s) {
+	bool valid = false;
+	int counter = 0;
+	int n = strlen(s.c_str());
+	if ((s[0] < '0' || s[0] > '9') || (s[n - 1] < '0' || s[n - 1]>'9')) {
+		valid = false;
+	}
+	else {
+		for (int i = 0; i < strlen(s.c_str()); i++) {
+			if ((s[i] >= '0' && s[i] <= '9') || s[i] == '.') {
+				valid = true;
+				if (s[i] == '.')
+					counter++;
+			}
+			else {
+				valid = false;
+				break;
+			}
+		}
+		if (counter >= 2)
+			valid = false;
+	}
+	return valid;
+}
+
 void loadScoreboard(ScoreBoard* s, string schoolyear, string semester, string course_name, int& n, string path) {
 	//locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
 	ifstream ifs;
@@ -114,7 +140,7 @@ void loadScoreboard(ScoreBoard* s, string schoolyear, string semester, string co
 	string Class = "", gender = "", DOB = "", socialID = "";
 	string total = "", finals = "", midterm = "", other = "";
 	int i = 0;
-	bool v1, v2, v3, v4;
+	//bool v1, v2, v3, v4;
 	while (!ifs.eof()) {
 		if (path != path_txt) {
 			getline(ifs, no, ',');
@@ -135,10 +161,10 @@ void loadScoreboard(ScoreBoard* s, string schoolyear, string semester, string co
 		getline(ifs, midterm, ',');
 		getline(ifs, other);
 		if (path != path_txt) {
-			v1 = isValid(total);
-			v2 = isValid(finals);
-			v3 = isValid(midterm);
-			v4 = isValid(other);
+			bool v1 = isValid(total);
+			bool v2 = isValid(finals);
+			bool v3 = isValid(midterm);
+			bool v4 = isValid(other);
 			try {
 				if (v1 && v2 && v3 && v4) {
 					s[i].total = stof(total);
@@ -192,68 +218,6 @@ void saveScore(string path, ScoreBoard* s, int n, string schoolyear, string seme
 	//saveScoreOf1Stu(s, schoolyear, semester, course, n);
 }
 
-void checkData(string path, string schoolyear, string semester, string course) {
-	path += "/Student_ID_data.csv";
-	string path_out = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
-	int n = 0, n1 = 0, n2 = 0;
-	n1 = getNumberOf(path) - 1;
-	ScoreBoard* s = new ScoreBoard[51];
-	ScoreBoard* s1 = new ScoreBoard[n1];
-	loadScoreboard(s1, schoolyear, semester, course, n1, path);
-	if (isPathExist(path_out)) {
-		n2 = getNumberOf(path_out);
-		ScoreBoard* s2 = new ScoreBoard[n2];
-		loadScoreboard(s2, schoolyear, semester, course, n2, path_out);
-		compareData(s1, s2, s, n1, n2, n);
-		delete[] s2;
-	}
-
-	//Show duplicate data
-	if (n > 0) {
-		cout << "The duplicate data:\n";
-		for (int i = 0; i < n; i++) {
-			cout << s[i].studentid << " " << s[i].lastname << " " << s[i].firstname << " " << s[i].total << " " << s[i].finals << " " << s[i].midterm << " " << s[i].other << endl;
-		}
-	}
-
-	//write the new data to file if it has new data from csv file
-	if (n1 > 0) {
-		saveScore(path_out, s1, n1, schoolyear, semester, course);
-		saveScoreOf1Stu(s1, schoolyear, semester, course, n1);
-		cout << "Import Successfully!\n";
-	}
-	else {
-		cout << "There is no new data to import!\n";
-	}
-	delete[] s;
-	delete[] s1;
-}
-
-bool isValid(string s) {
-	bool valid = false;
-	int counter = 0;
-	int n = strlen(s.c_str());
-	if ((s[0] < '0' || s[0] > '9') || (s[n - 1] < '0' || s[n - 1]>'9')) {
-		valid = false;
-	}
-	else {
-		for (int i = 0; i < strlen(s.c_str()); i++) {
-			if ((s[i] >= '0' && s[i] <= '9') || s[i] == '.') {
-				valid = true;
-				if (s[i] == '.')
-					counter++;
-			}
-			else {
-				valid = false;
-				break;
-			}
-		}
-		if (counter >= 2)
-			valid = false;
-	}
-	return valid;
-}
-
 void compareData(ScoreBoard* s1, ScoreBoard* s2, ScoreBoard* s, int& n1, int& n2, int& n) {
 	int counter = 0;
 	bool update = false;
@@ -291,6 +255,43 @@ void compareData(ScoreBoard* s1, ScoreBoard* s2, ScoreBoard* s, int& n1, int& n2
 		//counter = 0;
 		update = false;
 	}
+}
+
+void checkData(string path, string schoolyear, string semester, string course) {
+	path += "/Student_ID_data.csv";
+	string path_out = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	int n = 0, n1 = 0, n2 = 0;
+	n1 = getNumberOf(path) - 1;
+	ScoreBoard* s = new ScoreBoard[51];
+	ScoreBoard* s1 = new ScoreBoard[n1];
+	loadScoreboard(s1, schoolyear, semester, course, n1, path);
+	if (isPathExist(path_out)) {
+		n2 = getNumberOf(path_out);
+		ScoreBoard* s2 = new ScoreBoard[n2];
+		loadScoreboard(s2, schoolyear, semester, course, n2, path_out);
+		compareData(s1, s2, s, n1, n2, n);
+		delete[] s2;
+	}
+
+	//Show duplicate data
+	if (n > 0) {
+		cout << "The duplicate data:\n";
+		for (int i = 0; i < n; i++) {
+			cout << s[i].studentid << " " << s[i].lastname << " " << s[i].firstname << " " << s[i].total << " " << s[i].finals << " " << s[i].midterm << " " << s[i].other << endl;
+		}
+	}
+
+	//write the new data to file if it has new data from csv file
+	if (n1 > 0) {
+		saveScore(path_out, s1, n1, schoolyear, semester, course);
+		saveScoreOf1Stu(s1, schoolyear, semester, course, n1);
+		cout << "Import Successfully!\n";
+	}
+	else {
+		cout << "There is no new data to import!\n";
+	}
+	delete[] s;
+	delete[] s1;
 }
 
 bool importCourseScoreBoard(string path, string schoolyear, string semester, string course) {
