@@ -2,7 +2,7 @@
 #include"../Header/StaffFunc.h"
 #include"../Header/ScoreStruct.h"
 #include<fstream>
-#include"../Header/score.h"
+#include "../Header/score.h"
 
 void create_StudentResult_File(string dir) {
 	int check;
@@ -327,11 +327,11 @@ void viewScoreboard(ScoreBoard* s, int n) {
 }
 
 bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, string semester, string course) {
-	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score/" + course + ".txt";
 	if (!isPathExist(path))
 		return false;
 	loadScoreboard(scoreBoard, schoolYear, semester, course, n, path);
-	viewScoreboard(scoreBoard, n);
+	// viewScoreboard(scoreBoard, n);
 	return true;
 }
 
