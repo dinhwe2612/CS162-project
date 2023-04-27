@@ -7,6 +7,7 @@
 #include <array>
 #include "../Header/view.h"
 #include "../Header/SemesterCourse.h"
+#include "../Header/score.h"
 
 struct Course 
 {
@@ -57,6 +58,9 @@ struct Course
     std::string sessionLabel[4] = {"S1", "S2", "S3", "S4"};
     bool isSessionChosen[4] = {true, false, false, false};
 
+    ScoreBoard *scoreBoard;
+    int ScoreBoardSize = 0;
+
     int menuCourse = -1;
     enum WindowCourse {
         CREATECOURSE,
@@ -67,8 +71,12 @@ struct Course
         IMPORTSTUDENTLIST,
         EXPORTSTUDENTLIST,
         DELETESTUDENT,
-        DELETECOURSE
+        DELETECOURSE,
+        STUDENTLISTFULLINFO,
+        STUDENTLISTSCORE
     };
+
+    bool viewStudent = true;
 
     string schoolYear;
     string semester;
@@ -86,7 +94,8 @@ struct Course
         void DrawViewCourse();
         void ChooseViewClass();
         void DrawViewGPA();
-        void DrawStudentList();
+        void DrawStudentListFullInfo();
+        void DrawStudentListScore();
         void DrawAddStudent();
         void DrawImportStudentList();
         void DrawExportStudentList();

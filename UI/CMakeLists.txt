@@ -10,4 +10,5 @@ add_library(ui
     ../Function/view.cpp
     ../Function/schoolYear.cpp
     ../Function/SemesterCourse.cpp
+    ../Function/Score.cpp
 )

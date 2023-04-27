@@ -11,6 +11,6 @@
 #include"Score.h"
 using namespace std;
 
-const string toSchoolYear = "../Data/SchoolYear/";
-const string toDataStudent = "../Data/Student/"; 
+const string toSchoolYear = "Data/SchoolYear/";
+const string toDataStudent = "Data/Student/"; 
 #endif
