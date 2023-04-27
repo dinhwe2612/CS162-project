@@ -650,6 +650,173 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string se
 	return true;
 }
 
+void loadScore1Course(string pathToSemester, ScoreBoard*& s, string* courses, int n) {
+	string destination = "";
+	for (int i = 0; i < n; i++) {
+		destination = pathToSemester + "/" + courses[i] + "/Score/" + s[0].studentid + ".txt";
+		if (isPathExist(destination)) {
+			loadScore1Student(s[i], destination);
+		}
+		destination = "";
+	}
+}
+
+bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string studentid, string schoolYear, int& n) {
+	string path = ToSchoolYear + schoolYear;
+	if (!isPathExist(path))
+		return false;
+	string pathToStu = toDataStudent + studentid + ".txt";
+	if (!isPathExist(pathToStu))
+		return false;
+	Student stu;
+	loadStudentInfo(stu, pathToStu);
+	s[0].lastname = stu.lastName + " " + stu.firstName;
+	int times = 0;
+	int columnSp = 0, columnS = 0, columnA = 0, size = 0;
+	string pathToSp = path + "/Spring";
+	s[0].studentid = studentid;
+	if (isPathExist(pathToSp)) {
+		columnSp = getNumberOf(pathToSp + "/Semester_Info.txt") - 4;
+		string* courseSp = loadCourseID(pathToSp, columnSp);
+		for (int i = 0; i < columnS; i++) {
+			courses[i] = courseSp[i];
+		}
+		loadScore1Course(pathToSp, s, courseSp, columnSp);
+		//Take credit of courses
+		int* credits = new int[columnSp];
+		string pathToCredit;
+		for (int i = 0; i < columnSp; i++) {
+			pathToCredit = pathToSp + '/' + courseSp[i];
+			loadCredit(pathToCredit, credits[i]);
+		}
+
+		//Take total of each student in a class
+		string pathToScore;
+		float** score = new float* [1];
+		//column is the number of courses which save total of each course 
+		//column + 1 is for saving gpa
+		score[0] = new float[columnSp + 1];
+
+		//column is the number of courses
+		//each row in Scoreboard array save score of one course
+		for (int i = 0; i < columnSp; i++) {
+			pathToScore = path + '/' + courseSp[i] + "/Score/";
+			pathToScore += studentid + ".txt";
+			if (isPathExist(pathToScore)) {
+				loadScore1Student(s[i], pathToScore);
+				s[i].firstname = "Spring";
+				score[0][i] = s[i].total;
+			}
+			else {
+				score[0][i] = -1;
+			}
+		}
+		//calculate gpa of each student in one semester
+		score = gpaOf1Semester(score, credits, 1, columnSp);
+		gpa[0] = score[0][columnSp];
+		delete[] score[0];
+		delete[] score;
+	}
+	size += columnSp;
+
+
+	pathToSp = path + "/Summer";
+	if (isPathExist(pathToSp)) {
+		//s[size].firstname = "Summer";
+		columnS = getNumberOf(pathToSp + "/Semester_Info.txt") - 4;
+		string* courseSp = loadCourseID(pathToSp, columnS);
+		for (int i = 0; i < columnS; i++) {
+			courses[i + size] = courseSp[i];
+		}
+		loadScore1Course(pathToSp, s, courseSp, columnS);
+		//Take credit of courses
+		int* credits = new int[columnS];
+		string pathToCredit;
+		for (int i = 0; i < columnS; i++) {
+			pathToCredit = pathToSp + '/' + courseSp[i];
+			loadCredit(pathToCredit, credits[i]);
+		}
+
+		//Take total of each student in a class
+		string pathToScore;
+		float** score = new float* [1];
+		//column is the number of courses which save total of each course 
+		//column + 1 is for saving gpa
+		score[0] = new float[columnS + 1];
+
+		//column is the number of courses
+		//each row in Scoreboard array save score of one course
+		for (int i = 0; i < columnS; i++) {
+			pathToScore = path + '/' + courseSp[i] + "/Score/";
+			pathToScore += studentid + ".txt";
+			if (isPathExist(pathToScore)) {
+				loadScore1Student(s[i + size], pathToScore);
+				score[0][i] = s[i + size].total;
+				s[i + size].firstname = "Summer";
+			}
+			else {
+				score[0][i] = -1;
+			}
+		}
+		//calculate gpa of each student in one semester
+		score = gpaOf1Semester(score, credits, 1, columnS);
+		gpa[1] = score[0][columnS];
+		delete[] score[0];
+		delete[] score;
+	}
+	size += columnS;
+
+	pathToSp = path + "/Autumn";
+	if (isPathExist(pathToSp)) {
+		//s[size].firstname = "Autumn";
+		columnA = getNumberOf(pathToSp + "/Semester_Info.txt") - 4;
+		string* courseSp = loadCourseID(pathToSp, columnA);
+		for (int i = 0; i < columnA; i++) {
+			courses[i + size] = courseSp[i];
+		}
+		loadScore1Course(pathToSp, s, courseSp, columnA);
+		//Take credit of courses
+		int* credits = new int[columnA];
+		string pathToCredit;
+		for (int i = 0; i < columnA; i++) {
+			pathToCredit = pathToSp + '/' + courseSp[i];
+			loadCredit(pathToCredit, credits[i]);
+		}
+
+		// Take total of each student in a class
+		string pathToScore;
+		float** score = new float* [1];
+		// column variable stores the number of courses
+		// each column save total score of each course
+		// final column is for saving gpa
+		score[0] = new float[columnA + 1];
+
+		// each row in Scoreboard array save score of one course
+		// the number of elements in the array is the number of courses
+		for (int i = 0; i < columnA; i++) {
+			pathToScore = pathToSp + '/' + courseSp[i] + "/Score/";
+			pathToScore += studentid + ".txt";
+			if (isPathExist(pathToScore)) {
+				loadScore1Student(s[i + size], pathToScore);
+				score[0][i] = s[i + size].total;
+				s[i + size].firstname = "Autumn";
+			}
+			else {
+				score[0][i] = -1;
+			}
+		}
+		size += columnA;
+		//calculate gpa of each student in one semester
+		score = gpaOf1Semester(score, credits, 1, columnA);
+		gpa[2] = score[0][columnA];
+		delete[] score[0];
+		delete[] score;
+	}
+
+	n = size;
+	return true;
+}
+
 //int main() {
 	//exportCourseStudentList("", "2021-2022", "Autumn", "CS161-22APCS2");
 	//importCourseScoreBoard("", "2021-2022", "Autumn", "CS161-22APCS2");
@@ -674,6 +841,43 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string se
 	else
 		cout << "Successfully!" << endl;*/
 
-		//delete[] s;
+	/*ScoreBoard* s = new ScoreBoard[100];
+	string* courses = new string[100];
+	float* gpa = new float[3]{ -1,-1,-1 };
+	int n = 0, z = 0;
+	string* semester = new string[3]{ "Spring","Summer","Autumn" };
+	if (viewStudentScoreboard(s, courses, gpa, "2212", "2021-2022", n)) {
+		cout << "Student ID: " << s[0].studentid << endl;
+		cout << "Full Name: " << s[0].lastname << endl;
+		for (int i = 0; i < 3; i++) {
+			cout << "\n*" << semester[i] << "*" << endl;
+			for (int j = z; j < n; j++) {
+				if (s[j].firstname != semester[i]) {
+					z = j;
+					break;
+				}
+				cout << left << setw(15) << courses[j]
+					<< left << setw(9) << s[j].total
+					<< left << setw(9) << s[j].finals
+					<< left << setw(9) << s[j].midterm
+					<< left << setw(9) << s[j].other << endl;
+			}
+			cout << "GPA: " << gpa[i] << endl;
+		}
+		float overall = 0;
+		for (int i = 0; i < 3; i++) {
+			if (gpa[i] != -1)
+				overall += gpa[i];
+		}
+		cout << "\nOverall GPA: " << overall / 3 << endl;
+	}
+	else {
+		cout << "Student id or school year does not exist" << endl;
+	}
+	delete[] s;
+	delete[] courses;
+	delete[] gpa;
+	delete[] semester;*/
+
 	//return 0;
 //}

@@ -48,4 +48,10 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 // divided by the total number of credits. for example, if a student earned 10, 9.5 and 9 in 3 courses which have 3, 4, 5 credits respectively,
 // the gpa of the semester will be (10*3 + 9.5*4 + 9*5)/(3 + 4 + 5)
 // the overall gpa is the average of all studied semesters.
+
+
+bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class);
+bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class);
+// two functions above can only view scoreboard of a class in one year
+bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n);
 #endif
