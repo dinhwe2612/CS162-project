@@ -295,7 +295,8 @@ void checkData(string path, string schoolyear, string semester, string course) {
 }
 
 bool importCourseScoreBoard(string path, string schoolyear, string semester, string course) {
-	path += toSchoolYear + schoolyear + '/' + semester + '/' + course;
+	path = toSchoolYear + schoolyear + '/' + semester + '/' + course;
+	
 	if (!isPathExist(path))
 		return false;
 	string toScore = toSchoolYear + schoolyear + '/' + semester + '/' + course;

@@ -182,8 +182,6 @@ void Course::DrawCourseList()
             indexCourse = i;
             viewStudentInCourse(schoolYear, semester, curCourse, ListOfStudents, listStudentSize);
             viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
-            cout << ScoreBoardSize << endl;
-            cout << listStudentSize << endl;
         }
     }
 }
@@ -637,10 +635,17 @@ void Course::DrawStudentListScore() {
             DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), (Vector2){float(0.27*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Student ID
         // if (posX >= - 0.046875*windowWidth - 1 - 70 * 2)
-            DrawTextEx(PT_serif_regular, ListOfStudents[i].studentID.c_str(), (Vector2){float(0.305*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+            DrawTextEx(PT_serif_regular, scoreBoard[i].studentid.c_str(), (Vector2){float(0.305*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Student Name
-        DrawTextEx(PT_serif_regular, (ListOfStudents[i].lastName + " " + ListOfStudents[i].firstName).c_str(), (Vector2){float(0.395*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
-        // Draw Student GPA
+        DrawTextEx(PT_serif_regular, (scoreBoard[i].firstname + " " + scoreBoard[i].lastname).c_str(), (Vector2){float(0.395*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Oter Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].other).c_str(), (Vector2){float(0.58*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Midterm Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].midterm).c_str(), (Vector2){float(0.69*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Final Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].finals).c_str(), (Vector2){float(0.8*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Total Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].total).c_str(), (Vector2){float(0.9*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
 
         if (menuCourse == VIEWCOURSE && No.isPRESSED(MOUSE_BUTTON_LEFT)) {
             if (indexStudent == i) indexStudent = -1;
@@ -757,10 +762,11 @@ void Course::DrawImportStudentList() {
     DrawRectangleRec(box, RAYWHITE);
     DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
     back.DrawText();
-    if (back.isPRESSED(MOUSE_BUTTON_LEFT))
-        menuCourse = VIEWCOURSE, 
-        UnloadDroppedFiles(droppedFiles),
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuCourse = VIEWCOURSE;
+        if (IsFileDropped()) UnloadDroppedFiles(droppedFiles);
         dir = "";
+    }
 
     Rectangle dropInBox = {float(windowWidth/2), float(windowHeight/2), float(0.3*windowWidth), float(0.3*windowHeight)};
     Vector2 dropInOrigin = {float(dropInBox.width/2), float(dropInBox.height/2)};
@@ -769,6 +775,7 @@ void Course::DrawImportStudentList() {
     if (IsFileDropped())
     {
         droppedFiles = LoadDroppedFiles();
+        
         if (IsFileExtension(droppedFiles.paths[0], ".csv"))
         {
             dir = droppedFiles.paths[0];
@@ -779,7 +786,8 @@ void Course::DrawImportStudentList() {
     UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
     UploadFile.DrawText();
     if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
-        importCourseScoreBoard(dir, schoolYear, semester, curCourse.name);
+        importCourseScoreBoard(dir, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+        viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
         UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
@@ -788,15 +796,6 @@ void Course::DrawImportStudentList() {
 }
 
 void Course::DrawExportStudentList() {
-    
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
 
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
@@ -816,6 +815,7 @@ void Course::DrawExportStudentList() {
     
     if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
     {
+        if (exportCourseStudentList(enterClass.currentInput, schoolYear, semester, curCourse.id + "-" + curCourse.Class)) cout << "YES\n";
         menuCourse = VIEWCOURSE;
         enterClass.currentInput = "";
     }
@@ -845,15 +845,6 @@ void Course::DrawExportStudentList() {
 }
 
 void Course::DrawDeleteStudent() {
-    
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
 
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
@@ -904,15 +895,6 @@ void Course::DrawDeleteStudent() {
 }
 
 void Course::DrawDeleteCourse() {
-
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
 
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
