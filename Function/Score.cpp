@@ -124,7 +124,7 @@ bool isValid(string s) {
 	return valid;
 }
 
-void loadScoreboard(ScoreBoard* s, string schoolyear, string semester, string course_name, int& n, string path) {
+void loadScoreboard(ScoreBoard* &s, string schoolyear, string semester, string course_name, int& n, string path) {
 	//locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
 	ifstream ifs;
 	string path_txt = toSchoolYear + schoolyear + '/' + semester + '/' + course_name + "/Score" + '/' + course_name + ".txt";
@@ -330,6 +330,8 @@ bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, st
 	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	if (!isPathExist(path))
 		return false;
+	n = getNumberOf(path);
+	scoreBoard = new ScoreBoard[n];
 	loadScoreboard(scoreBoard, schoolYear, semester, course, n, path);
 	viewScoreboard(scoreBoard, n);
 	return true;
