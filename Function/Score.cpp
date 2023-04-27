@@ -44,7 +44,7 @@ void loadStudentInfo(Student& s, string path) {
 	getline(ifs, gender);
 	getline(ifs, s.DOB);
 	getline(ifs, s.socialID);
-	s.Gender = stoi(gender);
+	s.gender = stoi(gender);
 	ifs.close();
 }
 
@@ -71,7 +71,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 		return false;
 
 
-	string path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + '/' + "Student_ID_data.txt";
+	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + '/' + "Student_ID_data.txt";
 	int n = getNumberOf(path);
 	Student* s = new Student[n];
 	loadStudentID(s, path);
@@ -89,7 +89,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 			<< s[i].lastName << ','
 			<< s[i].firstName << ','
 			<< s[i].Class << ','
-			<< s[i].Gender << ','
+			<< s[i].gender << ','
 			<< s[i].DOB << ','
 			<< s[i].socialID << ','
 			<< -1 << ',' << -1 << ',' << -1 << ',' << -1 << '\n';
@@ -326,7 +326,7 @@ void viewScoreboard(ScoreBoard* s, int n) {
 }
 
 bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, string semester, string course) {
-	string path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	if (!isPathExist(path))
 		return false;
 	loadScoreboard(scoreBoard, schoolYear, semester, course, n, path);
@@ -335,7 +335,7 @@ bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, st
 }
 
 bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, string schoolYear, string semester, string course) {
-	string path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + studentScore.studentid + ".txt";
+	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + studentScore.studentid + ".txt";
 	if (!isPathExist(path) || studentScore.studentid != modifiedScore.studentid)
 		return false;
 	string* info = Read_File(path);
@@ -359,7 +359,7 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 	studentScore.firstname = s.firstName;
 	write_Score(studentScore, semester, schoolYear, course);
 
-	path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	int n = getNumberOf(path);
 	ScoreBoard* score = new ScoreBoard[n];
 	loadScoreboard(score, schoolYear, semester, course, n, path);
@@ -465,13 +465,13 @@ float** gpaOf1Semester(float** a, int* credits, int row, int column) {
 }
 
 float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, string semester, string Class, int& column, int& row) {
-	string path = ToSchoolYear + schoolYear + '/' + semester;
+	string path = toSchoolYear + schoolYear + '/' + semester;
 
 	//return false if semester does not exist
 	//if (!isPathExist(path))
 		//return false;
 
-	path = ToSchoolYear + schoolYear + "/Classes/" + Class + ".txt";
+	path = toSchoolYear + schoolYear + "/Classes/" + Class + ".txt";
 	//return false if class does not exist
 	//if (!isPathExist(path))
 		//return false;
@@ -480,7 +480,7 @@ float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, strin
 	row = getNumberOf(path);
 	classScore = new ScoreBoard[row];
 	load1Class(classScore, path, row);
-	path = ToSchoolYear + schoolYear + '/' + semester;
+	path = toSchoolYear + schoolYear + '/' + semester;
 	column = getNumberOf(path + "/Semester_Info.txt") - 4;
 
 	//Take courses in this semester
@@ -522,7 +522,7 @@ float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, strin
 }
 
 float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int& row, int& column) {
-	string path = ToSchoolYear + schoolYear + "/Classes/" + Class + ".txt";
+	string path = toSchoolYear + schoolYear + "/Classes/" + Class + ".txt";
 	float** score = nullptr;
 	int times = 0;
 	row = getNumberOf(path.c_str());
@@ -535,7 +535,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		}
 	}
 	string semester = "Spring";
-	path = ToSchoolYear + schoolYear + '/' + semester;
+	path = toSchoolYear + schoolYear + '/' + semester;
 	if (isPathExist(path)) {
 		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 		for (int i = 0; i < row; i++) {
@@ -544,7 +544,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		times++;
 	}
 	semester = "Summer";
-	path = ToSchoolYear + schoolYear + '/' + semester;
+	path = toSchoolYear + schoolYear + '/' + semester;
 	if (isPathExist(path)) {
 		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 		for (int i = 0; i < row; i++) {
@@ -553,7 +553,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		times++;
 	}
 	semester = "Autumn";
-	path = ToSchoolYear + schoolYear + '/' + semester;
+	path = toSchoolYear + schoolYear + '/' + semester;
 	if (isPathExist(path)) {
 		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 		for (int i = 0; i < row; i++) {
@@ -578,7 +578,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 }
 
 bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class) {
-	string path = ToSchoolYear + schoolYear;
+	string path = toSchoolYear + schoolYear;
 	if (!isPathExist(path))
 		return false;
 	path += "/Classes/" + Class + ".txt";
@@ -607,20 +607,20 @@ bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class) {
 }
 
 bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class) {
-	string path = ToSchoolYear + schoolYear;
+	string path = toSchoolYear + schoolYear;
 
 	path += "/Classes/" + Class + ".txt";
 	//return false if class does not exist
 	if (!isPathExist(path))
 		return false;
 
-	path = ToSchoolYear + schoolYear + '/' + semester + "/Semester_Info.txt";
+	path = toSchoolYear + schoolYear + '/' + semester + "/Semester_Info.txt";
 	int row = 0;
 	int column = getNumberOf(path) - 4;
 
 	//Take courses in this semester
 	string* courses;
-	path = ToSchoolYear + schoolYear + '/' + semester;
+	path = toSchoolYear + schoolYear + '/' + semester;
 	courses = loadCourseID(path, column);
 
 	//Score of courses that students in a class studied
@@ -662,7 +662,7 @@ void loadScore1Course(string pathToSemester, ScoreBoard*& s, string* courses, in
 }
 
 bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string studentid, string schoolYear, int& n) {
-	string path = ToSchoolYear + schoolYear;
+	string path = toSchoolYear + schoolYear;
 	if (!isPathExist(path))
 		return false;
 	string pathToStu = toDataStudent + studentid + ".txt";
