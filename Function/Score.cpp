@@ -103,7 +103,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 		Student* newStudent = new Student[n];
 		ScoreBoard* newScore = new ScoreBoard[n];
 		//ScoreBoard* invalid = new ScoreBoard[n];
-		loadScoreboard(scoreboard, schoolYear, semester, course, n, destination);
+		loadScoreboard(scoreboard, schoolYear, semester, course, n1, destination);
 		for (int i = 0; i < n1; i++) {
 			for (int j = 0; j < n; j++) {
 				if (scoreboard[i].studentid == s[j].studentID) {
