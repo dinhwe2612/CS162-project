@@ -91,19 +91,20 @@ void StudentUI::DrawBackground()
 
 void StudentUI::DrawStaticElements()
 {
-     // draw top bar
+    // draw top bar
     Rectangle bar = {0, 0, float(windowWidth), float(0.05*windowHeight)};
     DrawRectangleRec(bar, DARKBLUE);
 
     // draw "hello <username>" text
-
     Vector2 loginStatusPos = {float(0.97*windowWidth - 63 - 7 * username.size()), float(0.01*windowHeight)};
-    DrawTextEx(PT_serif_regular, ("Hello " + username).c_str(), loginStatusPos, 0.015*windowWidth, 0.5, RAYWHITE);
-
-    // draw profile drop down button 
-    dropdownButton.DrawTexture();
+    DrawTextEx(PT_serif_regular, ("Hello <" + username + ">").c_str(), loginStatusPos, 0.015*windowWidth, 0.5, RAYWHITE);
+    
+    // draw corner stripes in top left corner
 
     cornerStripes.DrawTexture();
+
+    // draw down arrow in top right corner
+    dropdownButton.DrawTexture();
 }
 
 void StudentUI::DrawChangePassword() 
@@ -176,7 +177,7 @@ void StudentUI::DrawChangePassword()
     };
 
     if (Change.isPRESSED(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER)) {
-        int validate = validateAccount(username, oldPassword.GetInput(), true);
+        int validate = validateAccount(username, oldPassword.GetInput(), false);
         if (validate == 1) {
             if (newPassword.GetInput() == oldPassword.GetInput()) {
                 statusChangePassword = NEW_PASSWORD_IS_OLD_PASSWORD;
