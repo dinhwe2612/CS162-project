@@ -35,6 +35,11 @@ struct Course
     
     InputBar enterClass;
 
+    InputBar otherMark;
+    InputBar midtermMark;
+    InputBar finalMark;
+    InputBar totalMark;
+
     bool isAddCourse = false;
 
     // std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252", "CM101"};
@@ -73,7 +78,8 @@ struct Course
         DELETESTUDENT,
         DELETECOURSE,
         STUDENTLISTFULLINFO,
-        STUDENTLISTSCORE
+        STUDENTLISTSCORE,
+        UPDATERESULT
     };
 
     bool viewStudent = true;
@@ -101,6 +107,7 @@ struct Course
         void DrawExportStudentList();
         void DrawDeleteStudent();
         void DrawDeleteCourse();
+        void DrawUpdateResult();
 };
 
 #endif

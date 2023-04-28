@@ -76,7 +76,7 @@ void loadScore1Student(ScoreBoard& s, string path) {
 
 bool exportCourseStudentList(string destination, string schoolYear, string semester, string course) {
 	ofstream ofs;
-	destination = toSchoolYear + schoolYear + '/' + semester + '/' + course;
+	destination += "/";
 	if (!isPathExist(destination))
 		return false;
 
@@ -92,7 +92,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 		//newScore[i].studentid = s[i].studentID;
 	}
 
-	destination += "/Student_ID_data.csv";
+	destination += "Student_ID_data.csv";
 	//int n1 = getNumberOf(destination) - 1;
 	//int counter = 0;
 	//ScoreBoard* newScore = new ScoreBoard[n];
@@ -136,6 +136,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 			loadStudentInfo(newStudent[i], path);
 		}
 		remove(destination.c_str());
+
 		ofs.open(destination.c_str());
 		ofs << "No,Student ID,LastName,FirstName,Class,Gender,DOB,Social ID,Total,Finals,Midterm,Other" << "\n";
 		for (int i = 0; i < n; i++) {
@@ -149,7 +150,6 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 				<< newStudent[i].socialID << ','
 				<< newScore[i].total << ',' << newScore[i].finals << ',' << newScore[i].midterm << ',' << newScore[i].other << '\n';
 		}
-
 		delete[] scoreboard;
 		delete[] newScore;
 		delete[] newStudent;
@@ -169,8 +169,9 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 				<< -1 << ',' << -1 << ',' << -1 << ',' << -1 << '\n';
 		}
 	}
-	delete[] s;
+
 	ofs.close();
+	delete[] s;
 	return true;
 }
 
@@ -326,7 +327,8 @@ void checkData(string path, string schoolyear, string semester, string course) {
 }
 
 bool importCourseScoreBoard(string path, string schoolyear, string semester, string course) {
-	path += toSchoolYear + schoolyear + '/' + semester + '/' + course;
+	path = toSchoolYear + schoolyear + '/' + semester + '/' + course;
+	
 	if (!isPathExist(path))
 		return false;
 	string toScore = toSchoolYear + schoolyear + '/' + semester + '/' + course;

@@ -2,6 +2,7 @@
 #include "UI/InputBar.hpp"
 #include "UI/StaffUI.hpp"
 #include "UI/Button.hpp"
+#include "UI/StudentUI.hpp"
 
 int main()
 {
@@ -17,6 +18,8 @@ int main()
     Login.Construct(WindowWidth, WindowHeight);
     StaffUI Staff;
     Staff.Construct(WindowWidth, WindowHeight);
+    StudentUI Student;
+    Student.Construct(WindowWidth, WindowHeight);
     
     const int DEFAULT = -1;
 
@@ -32,10 +35,18 @@ int main()
             switch (menuLogin) {
             default:
                 Login.Draw(menuLogin);
-                if (Login.isLoginSuccess) {
+                if (Login.isLoginSuccess && Login.status == Login.STAFF_IS_CLICKED) {
                     menuLogin = STAFF;
 
                     Staff.username = Login.inputUsername.GetInput();
+                    Login.inputUsername.currentInput = "";
+                    Login.inputPassword.currentInput = "";
+                    Login.isLoginSuccess = false;
+                }
+                else if (Login.isLoginSuccess && Login.status == Login.STUDENT_IS_CLICKED) {
+                    menuLogin = STUDENT;
+
+                    Student.username = Login.inputUsername.GetInput();
                     Login.inputUsername.currentInput = "";
                     Login.inputPassword.currentInput = "";
                     Login.isLoginSuccess = false;
@@ -44,12 +55,16 @@ int main()
             case STAFF:
                 Staff.Draw(menuLogin);
                 break;
+            case STUDENT:
+                Student.Draw(menuLogin);
+                break;
             }
         EndDrawing();
         
     }
     Login.Deconstruct();
     Staff.Deconstruct();
+    Student.Deconstruct();
     
     CloseWindow();
 }

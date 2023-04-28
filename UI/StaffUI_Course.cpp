@@ -32,7 +32,7 @@ void Course::Construct(int windowWidth, int windowHeight)
     add.SetText(PT_serif_bold, "Add Student", 0.53*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     studentConfig.SetRectangle(0.61*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
-    studentConfig.SetText(PT_serif_bold, "Update student", 0.613*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    studentConfig.SetText(PT_serif_bold, "Update score", 0.619*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
     drop.SetRectangle(0.34*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
     drop.SetText(PT_serif_bold, "Import file", 0.355*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, BLACK);
@@ -72,6 +72,18 @@ void Course::Construct(int windowWidth, int windowHeight)
 
     enterClass.Construct(0.425*windowWidth, 0.45*windowHeight, 0.15*windowWidth, 0.05*windowHeight, 0.43*windowWidth, 0.46*windowHeight, 0.018*windowWidth, 0.5, 10, "");
     enterClass.SetColorBox(WHITE, WHITE);
+
+    otherMark.Construct(0.46*windowWidth, 0.43*windowHeight, 0.045*windowWidth, 0.05*windowHeight, 0.4608*windowWidth, 0.435*windowHeight, 0.02*windowWidth, 0.5, 4, "");
+    otherMark.SetColorBox(WHITE, WHITE);
+
+    midtermMark.Construct(0.46*windowWidth, 0.51*windowHeight, 0.045*windowWidth, 0.05*windowHeight, 0.4608*windowWidth, 0.515*windowHeight, 0.02*windowWidth, 0.5, 4, "");
+    midtermMark.SetColorBox(WHITE, WHITE);
+
+    finalMark.Construct(0.46*windowWidth, 0.59*windowHeight, 0.045*windowWidth, 0.05*windowHeight, 0.4608*windowWidth, 0.595*windowHeight, 0.02*windowWidth, 0.5, 4, "");
+    finalMark.SetColorBox(WHITE, WHITE);
+
+    totalMark.Construct(0.46*windowWidth, 0.67*windowHeight, 0.045*windowWidth, 0.05*windowHeight, 0.4608*windowWidth, 0.675*windowHeight, 0.02*windowWidth, 0.5, 4, "");
+    totalMark.SetColorBox(WHITE, WHITE);
 }
 
 void Course::Deconstruct()
@@ -112,6 +124,9 @@ void Course::Draw()
     } else if (menuCourse == DELETECOURSE) {
         DrawViewCourse();
         DrawDeleteCourse();
+    } else if (menuCourse == UPDATERESULT) {
+        DrawViewCourse();
+        DrawUpdateResult();
     } else {
         DrawCourseList();
     }
@@ -182,8 +197,6 @@ void Course::DrawCourseList()
             indexCourse = i;
             viewStudentInCourse(schoolYear, semester, curCourse, ListOfStudents, listStudentSize);
             viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
-            cout << ScoreBoardSize << endl;
-            cout << listStudentSize << endl;
         }
     }
 }
@@ -274,15 +287,6 @@ void Course::DrawCreateCourse()
 }
 
 void Course::DrawModifyCourse() {
-    
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
 
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.36*windowWidth), float(0.39*windowWidth)};
@@ -303,12 +307,12 @@ void Course::DrawModifyCourse() {
     DrawTextEx(PT_serif_bold, "Enter course name", (Vector2){float(0.35*windowWidth), float(0.19*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
     // draw course id
-    DrawTextEx(PT_serif_bold, courseID.GetInput().c_str(), {0.355*windowWidth, 0.315*windowHeight}, 0.018*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, courseID.GetInput().c_str(), (Vector2){float(0.355*windowWidth), float(0.315*windowHeight)}, 0.018*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.35*windowWidth, 0.31*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
     DrawTextEx(PT_serif_bold, "Enter course ID", (Vector2){float(0.35*windowWidth), float(0.28*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
     
     // draw class name
-    DrawTextEx(PT_serif_bold, className.GetInput().c_str(), {0.515*windowWidth, 0.315*windowHeight}, 0.018*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, className.GetInput().c_str(), (Vector2){float(0.515*windowWidth), float(0.315*windowHeight)}, 0.018*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.51*windowWidth, 0.31*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
     DrawTextEx(PT_serif_bold, "Enter class name", (Vector2){float(0.51*windowWidth), float(0.28*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
     
@@ -443,6 +447,9 @@ void Course::DrawViewCourse()
 
     if (menuCourse != VIEWCOURSE) return;
     
+    if (studentConfig.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuCourse = UPDATERESULT;
+    }
     if (del.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuCourse = DELETECOURSE;
     }
@@ -637,10 +644,17 @@ void Course::DrawStudentListScore() {
             DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), (Vector2){float(0.27*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Student ID
         // if (posX >= - 0.046875*windowWidth - 1 - 70 * 2)
-            DrawTextEx(PT_serif_regular, ListOfStudents[i].studentID.c_str(), (Vector2){float(0.305*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+            DrawTextEx(PT_serif_regular, scoreBoard[i].studentid.c_str(), (Vector2){float(0.305*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Student Name
-        DrawTextEx(PT_serif_regular, (ListOfStudents[i].lastName + " " + ListOfStudents[i].firstName).c_str(), (Vector2){float(0.395*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
-        // Draw Student GPA
+        DrawTextEx(PT_serif_regular, (scoreBoard[i].firstname + " " + scoreBoard[i].lastname).c_str(), (Vector2){float(0.395*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Oter Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].other).c_str(), (Vector2){float(0.58*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Midterm Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].midterm).c_str(), (Vector2){float(0.69*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Final Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].finals).c_str(), (Vector2){float(0.8*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        // Draw Total Mark
+        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].total).c_str(), (Vector2){float(0.9*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
 
         if (menuCourse == VIEWCOURSE && No.isPRESSED(MOUSE_BUTTON_LEFT)) {
             if (indexStudent == i) indexStudent = -1;
@@ -757,10 +771,11 @@ void Course::DrawImportStudentList() {
     DrawRectangleRec(box, RAYWHITE);
     DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
     back.DrawText();
-    if (back.isPRESSED(MOUSE_BUTTON_LEFT))
-        menuCourse = VIEWCOURSE, 
-        UnloadDroppedFiles(droppedFiles),
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuCourse = VIEWCOURSE;
+        if (IsFileDropped()) UnloadDroppedFiles(droppedFiles);
         dir = "";
+    }
 
     Rectangle dropInBox = {float(windowWidth/2), float(windowHeight/2), float(0.3*windowWidth), float(0.3*windowHeight)};
     Vector2 dropInOrigin = {float(dropInBox.width/2), float(dropInBox.height/2)};
@@ -769,6 +784,7 @@ void Course::DrawImportStudentList() {
     if (IsFileDropped())
     {
         droppedFiles = LoadDroppedFiles();
+        
         if (IsFileExtension(droppedFiles.paths[0], ".csv"))
         {
             dir = droppedFiles.paths[0];
@@ -779,7 +795,8 @@ void Course::DrawImportStudentList() {
     UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
     UploadFile.DrawText();
     if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
-        importCourseScoreBoard(dir, schoolYear, semester, curCourse.name);
+        importCourseScoreBoard(dir, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+        viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
         UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
@@ -788,15 +805,6 @@ void Course::DrawImportStudentList() {
 }
 
 void Course::DrawExportStudentList() {
-    
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
 
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
@@ -816,6 +824,7 @@ void Course::DrawExportStudentList() {
     
     if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
     {
+        if (exportCourseStudentList(enterClass.currentInput, schoolYear, semester, curCourse.id + "-" + curCourse.Class)) cout << "YES\n";
         menuCourse = VIEWCOURSE;
         enterClass.currentInput = "";
     }
@@ -845,15 +854,6 @@ void Course::DrawExportStudentList() {
 }
 
 void Course::DrawDeleteStudent() {
-    
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
 
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
@@ -905,15 +905,6 @@ void Course::DrawDeleteStudent() {
 
 void Course::DrawDeleteCourse() {
 
-    del.DrawText();
-    back.DrawText();
-    add.DrawText();
-    drop.DrawText();
-    info.DrawText();
-    delStudent.DrawText();
-    exportStudent.DrawText();
-    studentConfig.DrawText();
-
     // draw outer box border
     Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
     Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
@@ -956,3 +947,115 @@ void Course::DrawDeleteCourse() {
     }
 }
 
+void Course::DrawUpdateResult() {
+
+    // draw create school year button and its function
+    Button Done;
+
+    // draw enter school year text
+    Vector2 enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+    if (indexStudent != -1) {
+        // draw outer box border
+        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.36*windowWidth), float(0.39*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
+        DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+
+        // draw outer box
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.35*windowWidth), float(0.38*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
+        DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+
+        Create.DrawText();
+
+        // draw close button
+        addCourseClose.DrawTexture();
+        if (addCourseClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuCourse = VIEWCOURSE;
+            otherMark.currentInput = "";
+            midtermMark.currentInput = "";
+            finalMark.currentInput = "";
+            totalMark.currentInput = "";
+        }
+
+        // draw update result
+        DrawTextEx(PT_serif_bold, "Update result", (Vector2){float(0.43*windowWidth), float(0.2*windowHeight)}, 0.032*windowWidth, 0.5, BLACK);
+        
+        // draw student name 
+        DrawTextEx(PT_serif_bold, "Student name:", (Vector2){float(0.33*windowWidth), float(0.29*windowHeight)}, 0.023*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, (ListOfStudents[indexStudent].firstName + " " + ListOfStudents[indexStudent].lastName).c_str(), (Vector2){float(0.46*windowWidth), float(0.295*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+
+        // draw student id
+        DrawTextEx(PT_serif_bold, "Student ID:", (Vector2){float(0.33*windowWidth), float(0.35*windowHeight)}, 0.023*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, ListOfStudents[indexStudent].studentID.c_str(), (Vector2){float(0.46*windowWidth), float(0.355*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+
+        // draw other mark
+        DrawTextEx(PT_serif_bold, "Other mark:", (Vector2){float(0.33*windowWidth), float(0.43*windowHeight)}, 0.023*windowWidth, 0.5, BLACK);
+        otherMark.Draw();
+        DrawRectangleLines(0.46*windowWidth, 0.43*windowHeight, 0.045*windowWidth, 0.05*windowHeight, BLACK);
+
+        // draw midterm mark
+        DrawTextEx(PT_serif_bold, "Midterm mark:", (Vector2){float(0.33*windowWidth), float(0.51*windowHeight)}, 0.023*windowWidth, 0.5, BLACK);
+        midtermMark.Draw();
+        DrawRectangleLines(0.46*windowWidth, 0.51*windowHeight, 0.045*windowWidth, 0.05*windowHeight, BLACK);
+
+        // draw final mark
+        DrawTextEx(PT_serif_bold, "Final mark:", (Vector2){float(0.33*windowWidth), float(0.59*windowHeight)}, 0.023*windowWidth, 0.5, BLACK);
+        finalMark.Draw();
+        DrawRectangleLines(0.46*windowWidth, 0.59*windowHeight, 0.045*windowWidth, 0.05*windowHeight, BLACK);
+
+        // draw total mark
+        DrawTextEx(PT_serif_bold, "Total mark:", (Vector2){float(0.33*windowWidth), float(0.67*windowHeight)}, 0.023*windowWidth, 0.5, BLACK);
+        totalMark.Draw();
+        DrawRectangleLines(0.46*windowWidth, 0.67*windowHeight, 0.045*windowWidth, 0.05*windowHeight, BLACK);
+
+        if (Create.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuCourse = VIEWCOURSE;
+
+            ScoreBoard modifiedScore = scoreBoard[indexStudent];
+            modifiedScore.other = stof(otherMark.currentInput);
+            modifiedScore.midterm = stof(midtermMark.currentInput);
+            modifiedScore.finals = stof(finalMark.currentInput);
+            modifiedScore.total = stof(totalMark.currentInput);
+            updateStudentResult(scoreBoard[indexStudent], modifiedScore, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+
+            otherMark.currentInput = "";
+            midtermMark.currentInput = "";
+            finalMark.currentInput = "";
+            totalMark.currentInput = "";
+        }
+    } else {
+        // draw outer box border
+        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
+        DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+
+        // draw outer box
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
+        DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+        
+        // draw close button
+        Button addStudentClose;
+        addStudentClose.image = close.image;
+        addStudentClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
+        addStudentClose.origin = (Vector2){0, 0};
+        addStudentClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+        addStudentClose.DrawTexture();
+
+        // draw Yes button
+        Done.SetText(PT_serif_bold, "Yes", 0.484*windowWidth, 0.55*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+        Done.SetRectangle(0.425*windowWidth, 0.54*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+        Done.DrawText();
+
+        if (addStudentClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuCourse = VIEWCOURSE;
+        }
+        DrawTextEx(PT_serif_bold, "Please select a student", enterText, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "to update!", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
+
+        if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
+        {
+            menuCourse = VIEWCOURSE;
+        }
+    }
+}

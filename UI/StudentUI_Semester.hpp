@@ -1,5 +1,5 @@
-#ifndef StaffUI_Semester_hpp
-#define StaffUI_Semester_hpp
+#ifndef StudentUI_Semester_hpp
+#define StudentUI_Semester_hpp
 
 #include "../external/raylib/src/raylib.h"
 #include "Button.hpp"
@@ -10,7 +10,7 @@
 #include "../Header/SemesterCourse.h"
 #include "StaffUI_Course.hpp"
 
-struct StaffSemesterUI
+struct StudentSemesterUI
 {
     int windowWidth;
     int windowHeight;
