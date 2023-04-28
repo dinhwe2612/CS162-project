@@ -65,7 +65,7 @@ struct StaffUI
 
     Class _Class;
 
-    SemesterUI _Semester;
+    StaffSemesterUI _Semester;
 
 //---------------------------------------------------------------------------------------------//
 //                               FUNCTIONS AND MENU CONTROL 

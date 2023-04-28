@@ -302,12 +302,12 @@ void Course::DrawModifyCourse() {
     DrawTextEx(PT_serif_bold, "Enter course name", (Vector2){float(0.35*windowWidth), float(0.19*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
     // draw course id
-    DrawTextEx(PT_serif_bold, courseID.GetInput().c_str(), {0.355*windowWidth, 0.315*windowHeight}, 0.018*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, courseID.GetInput().c_str(), (Vector2){float(0.355*windowWidth), float(0.315*windowHeight)}, 0.018*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.35*windowWidth, 0.31*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
     DrawTextEx(PT_serif_bold, "Enter course ID", (Vector2){float(0.35*windowWidth), float(0.28*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
     
     // draw class name
-    DrawTextEx(PT_serif_bold, className.GetInput().c_str(), {0.515*windowWidth, 0.315*windowHeight}, 0.018*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, className.GetInput().c_str(), (Vector2){float(0.515*windowWidth), float(0.315*windowHeight)}, 0.018*windowWidth, 0.5, BLACK);
     DrawRectangleLines(0.51*windowWidth, 0.31*windowHeight, 0.14*windowWidth, 0.05*windowHeight, BLACK);
     DrawTextEx(PT_serif_bold, "Enter class name", (Vector2){float(0.51*windowWidth), float(0.28*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
     

@@ -1,6 +1,6 @@
-#include "StaffUI_Semester.hpp"
+#include "StudentUI_Semester.hpp"
 
-void StaffSemesterUI::Construct(int windowWidth, int windowHeight)
+void StudentSemesterUI::Construct(int windowWidth, int windowHeight)
 {
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
@@ -32,7 +32,7 @@ void StaffSemesterUI::Construct(int windowWidth, int windowHeight)
     course.Construct(windowWidth, windowHeight);
 }
 
-void StaffSemesterUI::Deconstruct()
+void StudentSemesterUI::Deconstruct()
 {
     UnloadTexture(background);
     UnloadTexture(close.image);
@@ -42,7 +42,7 @@ void StaffSemesterUI::Deconstruct()
     course.Deconstruct();
 }
 
-void StaffSemesterUI::Draw(int &menuWindow)
+void StudentSemesterUI::Draw(int &menuWindow)
 {
     DrawBackground();
     if (menuSemester == 0) {//default
@@ -62,7 +62,7 @@ void StaffSemesterUI::Draw(int &menuWindow)
     }
 }
 
-void StaffSemesterUI::DrawBackground()
+void StudentSemesterUI::DrawBackground()
 {
     // background
     Rectangle bsrc = {0, 0, float(background.width), float(background.height)};
@@ -79,7 +79,7 @@ void StaffSemesterUI::DrawBackground()
     DrawTextEx(PT_serif_bold, "Add new Semester", textPos, 0.02*windowWidth, 0.5, BLACK);
 }
 
-void StaffSemesterUI::DrawCreateSemester()
+void StudentSemesterUI::DrawCreateSemester()
 {
     
     if (addSemester.isPRESSED(MOUSE_BUTTON_LEFT))
@@ -143,7 +143,7 @@ void StaffSemesterUI::DrawCreateSemester()
     }
 }
 
-void StaffSemesterUI::DrawSemesterList()
+void StudentSemesterUI::DrawSemesterList()
 {
     static bool SemesterClicked = false;
     
