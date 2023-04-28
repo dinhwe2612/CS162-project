@@ -8,7 +8,7 @@
 #include<sys/stat.h>
 #include<sys/types.h>
 #include"StudentStruct.h"
-#include"Score.h"
+#include"score.h"
 using namespace std;
 
 const string toSchoolYear = "Data/SchoolYear/";

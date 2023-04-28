@@ -38,6 +38,72 @@ bool isPathExist(const string& path) {
 	return (stat(path.c_str(), &buffer) == 0);
 }
 
+void loadScoreboard(ScoreBoard*& s, string schoolyear, string semester, string course_name, int& n, string path) {
+	//locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
+	ifstream ifs;
+	ifs.open(path.c_str());
+
+	string ignore_line = "";
+	getline(ifs, ignore_line, '\n');
+
+	string no = "";
+	string student_id = "";
+	string student_fn = "";
+	string student_ln = "";
+	string Class = "", gender = "", DOB = "", socialID = "";
+	string total = "", finals = "", midterm = "", other = "";
+	int i = 0, j = 0;
+	bool v1, v2, v3, v4;
+	while (!ifs.eof()) {
+		getline(ifs, no, ',');
+		getline(ifs, student_id, ',');
+		if (student_id == "")
+			break;
+		getline(ifs, student_ln, ',');
+		getline(ifs, student_fn, ',');
+		getline(ifs, Class, ',');
+		getline(ifs, gender, ',');
+		getline(ifs, DOB, ',');
+		getline(ifs, socialID, ',');
+		getline(ifs, total, ',');
+		getline(ifs, finals, ',');
+		getline(ifs, midterm, ',');
+		getline(ifs, other);
+		v1 = isValid(total);
+		v2 = isValid(finals);
+		v3 = isValid(midterm);
+		v4 = isValid(other);
+		try {
+			if (v1 && v2 && v3 && v4) {
+				s[i].studentid = student_id;
+				s[i].lastname = student_ln;
+				s[i].firstname = student_fn;
+				s[i].total = stof(total);
+				s[i].finals = stof(finals);
+				s[i].midterm = stof(midterm);
+				s[i].other = stof(other);
+				i++;
+			}
+			else
+				throw(505);
+		}
+		catch (...) {
+			s[i].studentid = student_id;
+			s[i].firstname = student_fn;
+			s[i].lastname = student_ln;
+			if (v1) s[i].total = stof(total);
+			if (v2)s[i].finals = stof(finals);
+			if (v3)s[i].midterm = stof(midterm);
+			if (v4)s[i].other = stof(other);
+			i++;
+		}
+		if (i == n)
+			break;
+	}
+	n = i;
+	ifs.close();
+}
+
 void loadStudentID(Student*& s, string path) {
 	ifstream ifs;
 	ifs.open(path.c_str());
@@ -198,71 +264,6 @@ bool isValid(string s) {
 	return valid;
 }
 
-void loadScoreboard(ScoreBoard*& s, string schoolyear, string semester, string course_name, int& n, string path) {
-	//locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
-	ifstream ifs;
-	ifs.open(path.c_str());
-
-	string ignore_line = "";
-	getline(ifs, ignore_line, '\n');
-
-	string no = "";
-	string student_id = "";
-	string student_fn = "";
-	string student_ln = "";
-	string Class = "", gender = "", DOB = "", socialID = "";
-	string total = "", finals = "", midterm = "", other = "";
-	int i = 0, j = 0;
-	bool v1, v2, v3, v4;
-	while (!ifs.eof()) {
-		getline(ifs, no, ',');
-		getline(ifs, student_id, ',');
-		if (student_id == "")
-			break;
-		getline(ifs, student_ln, ',');
-		getline(ifs, student_fn, ',');
-		getline(ifs, Class, ',');
-		getline(ifs, gender, ',');
-		getline(ifs, DOB, ',');
-		getline(ifs, socialID, ',');
-		getline(ifs, total, ',');
-		getline(ifs, finals, ',');
-		getline(ifs, midterm, ',');
-		getline(ifs, other);
-		v1 = isValid(total);
-		v2 = isValid(finals);
-		v3 = isValid(midterm);
-		v4 = isValid(other);
-		try {
-			if (v1 && v2 && v3 && v4) {
-				s[i].studentid = student_id;
-				s[i].lastname = student_ln;
-				s[i].firstname = student_fn;
-				s[i].total = stof(total);
-				s[i].finals = stof(finals);
-				s[i].midterm = stof(midterm);
-				s[i].other = stof(other);
-				i++;
-			}
-			else
-				throw(505);
-		}
-		catch (...) {
-			s[i].studentid = student_id;
-			s[i].firstname = student_fn;
-			s[i].lastname = student_ln;
-			if (v1) s[i].total = stof(total);
-			if (v2)s[i].finals = stof(finals);
-			if (v3)s[i].midterm = stof(midterm);
-			if (v4)s[i].other = stof(other);
-			i++;
-		}
-		if (i == n)
-			break;
-	}
-	n = i;
-	ifs.close();
-}
 void write_Score(ScoreBoard s, string semester, string schoolyear, string course) {
 	ofstream ofs;
 	string path = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + s.studentid + ".txt";
