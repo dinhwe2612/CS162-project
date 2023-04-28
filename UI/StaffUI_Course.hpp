@@ -7,6 +7,7 @@
 #include <array>
 #include "../Header/view.h"
 #include "../Header/SemesterCourse.h"
+#include "../Header/score.h"
 
 struct Course 
 {
@@ -34,6 +35,11 @@ struct Course
     
     InputBar enterClass;
 
+    InputBar otherMark;
+    InputBar midtermMark;
+    InputBar finalMark;
+    InputBar totalMark;
+
     bool isAddCourse = false;
 
     // std::array <std::string, 10> ListOfCourses = {"CS161", "PH211", "MTH251", "CS162", "PH212", "MTH252", "CM101"};
@@ -42,6 +48,8 @@ struct Course
     
     ACourse curCourse;
     int indexCourse;
+
+    int indexStudent = -1;
 
     Student *ListOfStudents;
     int listStudentSize = 0;
@@ -55,6 +63,9 @@ struct Course
     std::string sessionLabel[4] = {"S1", "S2", "S3", "S4"};
     bool isSessionChosen[4] = {true, false, false, false};
 
+    ScoreBoard *scoreBoard;
+    int ScoreBoardSize = 0;
+
     int menuCourse = -1;
     enum WindowCourse {
         CREATECOURSE,
@@ -65,8 +76,13 @@ struct Course
         IMPORTSTUDENTLIST,
         EXPORTSTUDENTLIST,
         DELETESTUDENT,
-        DELETECOURSE
+        DELETECOURSE,
+        STUDENTLISTFULLINFO,
+        STUDENTLISTSCORE,
+        UPDATERESULT
     };
+
+    bool viewStudent = true;
 
     string schoolYear;
     string semester;
@@ -84,12 +100,14 @@ struct Course
         void DrawViewCourse();
         void ChooseViewClass();
         void DrawViewGPA();
-        void DrawStudentList();
+        void DrawStudentListFullInfo();
+        void DrawStudentListScore();
         void DrawAddStudent();
         void DrawImportStudentList();
         void DrawExportStudentList();
         void DrawDeleteStudent();
         void DrawDeleteCourse();
+        void DrawUpdateResult();
 };
 
 #endif

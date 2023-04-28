@@ -162,14 +162,15 @@ bool viewCourses(string schoolYear, string semester, ACourse*& ListOfCourses, in
 // Student students when pass into this function MUST NOT be initialized, otherwise memory leak.
 bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Student*& students, int& n) {
     string path = getPath("StudentInCourse", semester + "/" + course.id + '-' + course.Class, schoolYear);
-    if (!checkDirectory(path))
-        return false;
+
+    // if (!checkDirectory(path))
+    //     return false;
+    
     ifstream fin;
     fin.open(path);
     string tmp;
     n = 0;
-    while(!fin.eof()) {
-        getline(fin, tmp, '\n');
+    while(getline(fin, tmp)) {
         ++n;
     }
     fin.close();
@@ -185,12 +186,14 @@ bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Stu
         getline(in, students[i].Class, '\n');
         string gender;
         getline(in, gender, '\n');
-        students[i].gender = stoi(gender);
+        if (!gender.empty()) students[i].gender = stoi(gender);
+        else students[i].gender = 0;
         getline(in, students[i].DOB, '\n');
         getline(in, students[i].socialID, '\n');
         in.close();
     }
     fin.close();
+    return true;
 }
 
 // bool viewStudentInCourse(string schoolYear, string semester, string course) {
@@ -211,13 +214,13 @@ bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Stu
 // }
 
 // view courses that a student studied
-bool viewCoursesOfStudent(string id, string schoolYear, string semester) {
+bool viewCoursesOfStudent(string* coursesOfStudent, int& n, string id, string schoolYear, string semester) {
     string path = getPath("Course", semester, schoolYear);
     if (!checkDirectory(path))
         return false;
 
     // count the number of course in the semester
-    int n = 0;
+    n = 0;
     for (const auto & entry : filesystem::directory_iterator(path))
         if (entry.is_directory())
             ++n;
@@ -236,27 +239,25 @@ bool viewCoursesOfStudent(string id, string schoolYear, string semester) {
     int j = 0;
     for (int i = 0; i < n; ++i) {
         string coursePath = path + courses[i] + "/Student_ID_data.txt";
-        ifstream fin;
-        fin.open(coursePath);
+        ifstream fin(coursePath);
         if (!fin.is_open())
             continue;
         while (!fin.eof()) {
             string studentID;
-            fin >> studentID;
-            if (studentID.compare("") == 0)
-                break;
+            getline(fin, studentID, '\n');
             if (studentID.compare(id) == 0) {
                 studentCourses[j] = courses[i];
                 ++j;
             }
-            fin.ignore(1000, '\n');
         }
         fin.close();
     }
 
-    // print out
+    // return a string array of courses and the number of courses that the student studies
+    coursesOfStudent = new string[j];
     for (int i = 0; i < j; ++i)
-        cout << studentCourses[i] << ' ';
+        coursesOfStudent[i] = studentCourses[i];
+    n = j;
     delete[]courses;
     delete[]studentCourses;
     return true;
