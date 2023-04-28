@@ -95,6 +95,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 			<< -1 << ',' << -1 << ',' << -1 << ',' << -1 << '\n';
 	}
 	ofs.close();
+	delete []s;
 	return true;
 }
 
