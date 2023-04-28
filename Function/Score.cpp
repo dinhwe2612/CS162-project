@@ -74,22 +74,21 @@ void loadScore1Student(ScoreBoard& s, string path) {
 	ifs.close();
 }
 
+
 bool exportCourseStudentList(string destination, string schoolYear, string semester, string course) {
 	ofstream ofs;
 	destination += "/";
 	if (!isPathExist(destination))
 		return false;
 
-	
+
 	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + '/' + "Student_ID_data.txt";
 	int n = getNumberOf(path);
 	Student* s = new Student[n];
-	//ScoreBoard* newScore = new ScoreBoard[n];
 	loadStudentID(s, path);
 	for (int i = 0; i < n; i++) {
 		path = toDataStudent + s[i].studentID + ".txt";
 		loadStudentInfo(s[i], path);
-		//newScore[i].studentid = s[i].studentID;
 	}
 
 	destination += "Student_ID_data.csv";
@@ -169,7 +168,6 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 				<< -1 << ',' << -1 << ',' << -1 << ',' << -1 << '\n';
 		}
 	}
-
 	ofs.close();
 	delete[] s;
 	return true;
@@ -223,7 +221,6 @@ void loadScoreboard(ScoreBoard*& s, string schoolyear, string semester, string c
 			break;
 		getline(ifs, student_ln, ',');
 		getline(ifs, student_fn, ',');
-	
 		getline(ifs, Class, ',');
 		getline(ifs, gender, ',');
 		getline(ifs, DOB, ',');
@@ -266,7 +263,6 @@ void loadScoreboard(ScoreBoard*& s, string schoolyear, string semester, string c
 	n = i;
 	ifs.close();
 }
-
 void write_Score(ScoreBoard s, string semester, string schoolyear, string course) {
 	ofstream ofs;
 	string path = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + s.studentid + ".txt";
@@ -275,13 +271,11 @@ void write_Score(ScoreBoard s, string semester, string schoolyear, string course
 	ofs << s.total << '\n' << s.finals << '\n' << s.midterm << '\n' << s.other;
 	ofs.close();
 }
-
 void saveScoreOf1Stu(ScoreBoard* s, string schoolyear, string semester, string course, int n) {//called after importing the scoreboard successfully
 	for (int i = 0; i < n; i++) {
 		write_Score(s[i], semester, schoolyear, course);
 	}
 }
-
 void saveScore(string path, ScoreBoard* s, int n, string schoolyear, string semester, string course) {
 	ofstream ofs;
 	ofs.open(path, ios::app | ios::ate);
@@ -294,15 +288,12 @@ void saveScore(string path, ScoreBoard* s, int n, string schoolyear, string seme
 
 void checkData(string path, string schoolyear, string semester, string course) {
 	path += "/Student_ID_data.csv";
-	//string path_out = ToSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	int n = 0, n1=0;
 
 	// take the number of students from a csv file that has been imported before
 	n = getNumberOf(path) - 1;
-	//n2 = getNumberOf(path_out);
 	ScoreBoard* s = new ScoreBoard[n];
 	ScoreBoard* s1 = new ScoreBoard[n];
-	//ScoreBoard* invalid = new ScoreBoard[n];
 	loadScoreboard(s, schoolyear, semester, course, n, path);
 	string pathToFolder = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score/";
 	string pathToFile = "";
@@ -323,7 +314,6 @@ void checkData(string path, string schoolyear, string semester, string course) {
 	}
 	delete[] s;
 	delete[] s1;
-	//delete[] invalid;
 }
 
 bool importCourseScoreBoard(string path, string schoolyear, string semester, string course) {
@@ -395,7 +385,7 @@ bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, st
 		scoreBoard[i].firstname = s[i].firstName;
 		scoreBoard[i].lastname = s[i].lastName;
 	}
-	//loadScoreboard(scoreBoard, schoolYear, semester, course, n, path);
+
 	path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score/";
 	for (int i = 0; i < n; i++) {
 		string toStuFile = path + s[i].studentID + ".txt";
@@ -475,7 +465,6 @@ string* loadCourseID(string path, int n) {
 	in.close();
 	return info;
 }
-
 
 void loadCredit(string path, int& credit) {
 	path += "/Course_Info.txt";
