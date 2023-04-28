@@ -67,10 +67,9 @@ void loadStudentInfo(Student& s, string path) {
 
 bool exportCourseStudentList(string destination, string schoolYear, string semester, string course) {
 	ofstream ofs;
-	destination = toSchoolYear + schoolYear + '/' + semester + '/' + course;
+	destination += "/";
 	if (!isPathExist(destination))
 		return false;
-
 
 	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + '/' + "Student_ID_data.txt";
 	int n = getNumberOf(path);
@@ -81,7 +80,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 		loadStudentInfo(s[i], path);
 	}
 
-	destination += "/Student_ID_data.csv";
+	destination += "Student_ID_data.csv";
 	ofs.open(destination.c_str());
 	ofs << "No,Student ID,LastName,FirstName,Class,Gender,DOB,Social ID,Total,Finals,Midterm,Other" << "\n";
 	for (int i = 0; i < n; i++) {
