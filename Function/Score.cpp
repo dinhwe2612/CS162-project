@@ -4,22 +4,22 @@
 #include<fstream>
 #include "../Header/score.h"
 
-string* Read_File(string fileaddress)
-{
-    ifstream in;
-    string* inf = new string[1000];
-    in.open(fileaddress.c_str());
-    string str;
-    int i = 1;
-    while (getline(in, str))
-    {
-        inf[i] = str;
-        i++;
-    }
-    inf[0] = to_string(i-1); 
-    in.close();
-    return inf; 
-}
+// string* Read_File(string fileaddress)
+// {
+//     ifstream in;
+//     string* inf = new string[1000];
+//     in.open(fileaddress.c_str());
+//     string str;
+//     int i = 1;
+//     while (getline(in, str))
+//     {
+//         inf[i] = str;
+//         i++;
+//     }
+//     inf[0] = to_string(i-1); 
+//     in.close();
+//     return inf; 
+// }
 
 bool isValid(string s) {
 	bool valid = false;
@@ -869,7 +869,7 @@ bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string
 	return true;
 }
 
-int main() {
+// int main() {
 	//string destination = "";
 	//if (exportCourseStudentList(destination, "2021-2022", "Autumn", "CS162-22CTT2")) {
 		//cout << "Successfully!" << endl;
@@ -950,5 +950,5 @@ int main() {
 	delete[] courses;
 	delete[] gpa;
 	delete[] semester;*/
-	return 0;
-}
+// 	return 0;
+// }
