@@ -9,6 +9,10 @@
 #include<sys/types.h>
 #include"StudentStruct.h"
 #include"score.h"
+#include<filesystem>
+#ifdef _WIN32
+    #include <direct.h>
+#endif
 using namespace std;
 
 const string toSchoolYear = "Data/SchoolYear/";

@@ -4,17 +4,81 @@
 #include<fstream>
 #include "../Header/score.h"
 
-void create_StudentResult_File(string dir) {
-	int check;
-	check = _mkdir(dir.c_str());
+string* Read_File(string fileaddress)
+{
+    ifstream in;
+    string* inf = new string[1000];
+    in.open(fileaddress.c_str());
+    string str;
+    int i = 1;
+    while (getline(in, str))
+    {
+        inf[i] = str;
+        i++;
+    }
+    inf[0] = to_string(i-1); 
+    in.close();
+    return inf; 
+}
 
-	// check if directory is created or not
-	if (!check)
-		cout << "Directory created\n";
-	else {
-		cout << "Unable to create directory\n";
-		return;
+bool isValid(string s) {
+	bool valid = false;
+	int counter = 0;
+	int n = strlen(s.c_str());
+	if ((s[0] < '0' || s[0] > '9') || (s[n - 1] < '0' || s[n - 1]>'9')) {
+		valid = false;
 	}
+	else {
+		for (int i = 0; i < s.size(); i++) {
+			if ((s[i] >= '0' && s[i] <= '9') || s[i] == '.') {
+				valid = true;
+				if (s[i] == '.')
+					counter++;
+			}
+			else {
+				valid = false;
+				break;
+			}
+		}
+		if (counter >= 2)
+			valid = false;
+	}
+
+	if (n==2) {
+		if(s[0]=='-' && s[1]=='1'){
+		valid = true;
+		}
+	}
+	return valid;
+}
+
+void loadStudentID(Student *&s, string path, int n) {
+	ifstream ifs;
+	ifs.open(path.c_str());
+	int i = 0;
+	while (!ifs.eof()) {
+		ifs >> s[i].studentID;
+		i++;
+		if (i == n){
+			break;
+		}
+	}
+	ifs.close();
+}
+
+void loadStudentInfo(Student &s, string path) {
+	ifstream ifs;
+	ifs.open(path.c_str());
+	string gender = "";
+	getline(ifs, s.studentID);
+	getline(ifs, s.firstName);
+	getline(ifs, s.lastName);
+	getline(ifs, s.Class);
+	getline(ifs, gender);
+	getline(ifs, s.DOB);
+	getline(ifs, s.socialID);
+	s.gender = stoi(gender);
+	ifs.close();
 }
 
 int getNumberOf(string dir) {
@@ -23,7 +87,7 @@ int getNumberOf(string dir) {
 	string w;
 	int n = 0;
 	while (!in.eof()) {
-		getline(in, w, '\n');
+		getline(in, w);
 		//in.ignore(256, '\n');
 		//in.ignore();
 		in.ignore();
@@ -31,11 +95,16 @@ int getNumberOf(string dir) {
 	}
 	in.close();
 	return n;
-}
+} 
 
-bool isPathExist(const string& path) {
-	struct stat buffer;
-	return (stat(path.c_str(), &buffer) == 0);
+void loadScore1Student(ScoreBoard& s, string path) {
+	ifstream ifs;
+	ifs.open(path);
+	ifs >> s.total;
+	ifs >> s.finals;
+	ifs >> s.midterm;
+	ifs >> s.other;
+	ifs.close();
 }
 
 void loadScoreboard(ScoreBoard*& s, string schoolyear, string semester, string course_name, int& n, string path) {
@@ -104,71 +173,31 @@ void loadScoreboard(ScoreBoard*& s, string schoolyear, string semester, string c
 	ifs.close();
 }
 
-void loadStudentID(Student*& s, string path) {
-	ifstream ifs;
-	ifs.open(path.c_str());
-	int i = 0;
-	while (!ifs.eof()) {
-		ifs >> s[i].studentID;
-		i++;
-	}
-	ifs.close();
-}
-
-void loadStudentInfo(Student& s, string path) {
-	ifstream ifs;
-	ifs.open(path.c_str());
-	string gender = "";
-	getline(ifs, s.studentID);
-	getline(ifs, s.lastName);
-	getline(ifs, s.firstName);
-	getline(ifs, s.Class);
-	getline(ifs, gender);
-	getline(ifs, s.DOB);
-	getline(ifs, s.socialID);
-	s.gender = stoi(gender);
-	ifs.close();
-}
-
-void loadScore1Student(ScoreBoard& s, string path) {
-	ifstream ifs;
-	ifs.open(path);
-	ifs >> s.total;
-	ifs >> s.finals;
-	ifs >> s.midterm;
-	ifs >> s.other;
-	ifs.close();
-}
-
 
 bool exportCourseStudentList(string destination, string schoolYear, string semester, string course) {
 	ofstream ofs;
+	//destination = toSchoolYear + schoolYear + '/' + semester + '/' + course;
 	destination += "/";
-	if (!isPathExist(destination))
+	if (!filesystem::exists(destination))
 		return false;
 
-
-	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + '/' + "Student_ID_data.txt";
+	
+	string path = toSchoolYear + schoolYear + "/" + semester + "/" + course + "/" + "Student_ID_data.txt";
 	int n = getNumberOf(path);
 	Student* s = new Student[n];
-	loadStudentID(s, path);
+	loadStudentID(s, path, n);
 	for (int i = 0; i < n; i++) {
 		path = toDataStudent + s[i].studentID + ".txt";
 		loadStudentInfo(s[i], path);
 	}
 
 	destination += "Student_ID_data.csv";
-	//int n1 = getNumberOf(destination) - 1;
-	//int counter = 0;
-	//ScoreBoard* newScore = new ScoreBoard[n];
-
-	if (isPathExist(destination)) {
+	if (filesystem::exists(destination)) {
 		int n1 = getNumberOf(destination) - 1;
 		int counter = 0;
 		ScoreBoard* scoreboard = new ScoreBoard[n1];
 		Student* newStudent = new Student[n];
 		ScoreBoard* newScore = new ScoreBoard[n];
-		//ScoreBoard* invalid = new ScoreBoard[n];
 		loadScoreboard(scoreboard, schoolYear, semester, course, n1, destination);
 		for (int i = 0; i < n1; i++) {
 			for (int j = 0; j < n; j++) {
@@ -201,7 +230,6 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 			loadStudentInfo(newStudent[i], path);
 		}
 		remove(destination.c_str());
-
 		ofs.open(destination.c_str());
 		ofs << "No,Student ID,LastName,FirstName,Class,Gender,DOB,Social ID,Total,Finals,Midterm,Other" << "\n";
 		for (int i = 0; i < n; i++) {
@@ -215,6 +243,7 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 				<< newStudent[i].socialID << ','
 				<< newScore[i].total << ',' << newScore[i].finals << ',' << newScore[i].midterm << ',' << newScore[i].other << '\n';
 		}
+
 		delete[] scoreboard;
 		delete[] newScore;
 		delete[] newStudent;
@@ -234,39 +263,14 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 				<< -1 << ',' << -1 << ',' << -1 << ',' << -1 << '\n';
 		}
 	}
-	ofs.close();
 	delete[] s;
+	ofs.close();
 	return true;
-}
-
-bool isValid(string s) {
-	bool valid = false;
-	int counter = 0;
-	int n = strlen(s.c_str());
-	if ((s[0] < '0' || s[0] > '9') || (s[n - 1] < '0' || s[n - 1]>'9')) {
-		valid = false;
-	}
-	else {
-		for (int i = 0; i < strlen(s.c_str()); i++) {
-			if ((s[i] >= '0' && s[i] <= '9') || s[i] == '.') {
-				valid = true;
-				if (s[i] == '.')
-					counter++;
-			}
-			else {
-				valid = false;
-				break;
-			}
-		}
-		if (counter >= 2)
-			valid = false;
-	}
-	return valid;
 }
 
 void write_Score(ScoreBoard s, string semester, string schoolyear, string course) {
 	ofstream ofs;
-	string path = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + s.studentid + ".txt";
+	string path = toSchoolYear + schoolyear + "/" + semester + "/" + course + "/Score" + "/" + s.studentid + ".txt";
 	//bool is = isPathExist(path);
 	ofs.open(path, ios::app | ios::ate);
 	ofs << s.total << '\n' << s.finals << '\n' << s.midterm << '\n' << s.other;
@@ -287,20 +291,24 @@ void saveScore(string path, ScoreBoard* s, int n, string schoolyear, string seme
 	//saveScoreOf1Stu(s, schoolyear, semester, course, n);
 }
 
+
 void checkData(string path, string schoolyear, string semester, string course) {
 	path += "/Student_ID_data.csv";
+	//string path_out = ToSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	int n = 0, n1=0;
 
 	// take the number of students from a csv file that has been imported before
 	n = getNumberOf(path) - 1;
+	//n2 = getNumberOf(path_out);
 	ScoreBoard* s = new ScoreBoard[n];
 	ScoreBoard* s1 = new ScoreBoard[n];
+	//ScoreBoard* invalid = new ScoreBoard[n];
 	loadScoreboard(s, schoolyear, semester, course, n, path);
 	string pathToFolder = toSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score/";
 	string pathToFile = "";
 	for (int i = 0; i < n; i++) {
 		pathToFile = pathToFolder + s[i].studentid + ".txt";
-		if (isPathExist(pathToFile)) {
+		if (filesystem::exists(pathToFile)) {
 			loadScore1Student(s1[i], pathToFile);
 			if (s[i].total != s1[i].total || s[i].finals != s1[i].finals ||
 				s[i].midterm != s1[i].midterm || s[i].other != s1[i].other) {
@@ -315,17 +323,16 @@ void checkData(string path, string schoolyear, string semester, string course) {
 	}
 	delete[] s;
 	delete[] s1;
+	//delete[] invalid;
 }
-
 bool importCourseScoreBoard(string path, string schoolyear, string semester, string course) {
-	path = toSchoolYear + schoolyear + '/' + semester + '/' + course;
-	
-	if (!isPathExist(path))
+	path += toSchoolYear + schoolyear + "/" + semester + "/" + course;
+	if (!filesystem::exists(path))
 		return false;
-	string toScore = toSchoolYear + schoolyear + '/' + semester + '/' + course;
+	string toScore = toSchoolYear + schoolyear + "/" + semester + "/" + course;
 	toScore += "/Score";
-	if (!isPathExist(toScore)) {
-		create_StudentResult_File(toScore);
+	if (!filesystem::exists(toScore)) {
+		filesystem::create_directory(toScore);
 	}
 	checkData(path, schoolyear, semester, course);
 	return true;
@@ -372,13 +379,16 @@ void viewScoreboard(ScoreBoard* s, int n) {
 }
 
 bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, string semester, string course) {
-	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score/" + course + ".txt";
-	if (!isPathExist(path))
+	//string path = ToSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
+	string path = toSchoolYear + schoolYear + "/" + semester + "/" + course + "/Student_ID_data.txt";
+
+	if (!filesystem::exists(path))
 		return false;
+
 	n = getNumberOf(path);
 	scoreBoard = new ScoreBoard[n];
 	Student *s = new Student[n];
-	loadStudentID(s, path);
+	loadStudentID(s, path, n);
 	for (int i = 0; i < n; i++) {
 		path = toDataStudent + s[i].studentID + ".txt";
 		loadStudentInfo(s[i], path);
@@ -386,24 +396,24 @@ bool viewCourseScoreBoard(ScoreBoard*& scoreBoard, int& n, string schoolYear, st
 		scoreBoard[i].firstname = s[i].firstName;
 		scoreBoard[i].lastname = s[i].lastName;
 	}
-
+	
 	path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score/";
 	for (int i = 0; i < n; i++) {
 		string toStuFile = path + s[i].studentID + ".txt";
-		if (isPathExist(toStuFile)) {
+		if (filesystem::exists(toStuFile)) {
 			loadScore1Student(scoreBoard[i], toStuFile);
 		}
 	}
-	// viewScoreboard(scoreBoard, n);
+	viewScoreboard(scoreBoard, n);
 	return true;
 }
 
 bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, string schoolYear, string semester, string course) {
 	string path = toSchoolYear + schoolYear + '/' + semester + '/' + course + "/Score" + '/' + studentScore.studentid + ".txt";
-	if (!isPathExist(path) || studentScore.studentid != modifiedScore.studentid)
+	if (!filesystem::exists(path) || studentScore.studentid != modifiedScore.studentid)
 		return false;
 	string* info = Read_File(path);
-	float* a = new float[4]{ modifiedScore.total, modifiedScore.finals, modifiedScore.midterm, modifiedScore.other };
+	float *a = new float[4] { modifiedScore.total, modifiedScore.finals, modifiedScore.midterm, modifiedScore.other };
 	int i = 0;
 	while (i < 4) {
 		if (a[i] >= 0 && a[i] <= 10) {
@@ -411,7 +421,9 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 		}
 		i++;
 	}
+	//Update_File(path, info);
 	remove(path.c_str());
+	//write_Score(studentScore, semester, schoolYear, course);
 	studentScore.total = atof(info[1].c_str());
 	studentScore.finals = atof(info[2].c_str());
 	studentScore.midterm = atof(info[3].c_str());
@@ -456,7 +468,7 @@ string* loadCourseID(string path, int n) {
 
 	string id = "";
 	int i = 0;
-	string* info = new string[n];
+	string *info = new string[n];
 	while (!in.eof()) {
 		getline(in, id);
 		in.ignore();
@@ -467,7 +479,7 @@ string* loadCourseID(string path, int n) {
 	return info;
 }
 
-void loadCredit(string path, int& credit) {
+void loadCredit(string path, int &credit) {
 	path += "/Course_Info.txt";
 	ifstream ifs;
 	ifs.open(path);
@@ -482,7 +494,7 @@ void loadCredit(string path, int& credit) {
 	}
 	ifs.close();
 }
-float** gpaOf1Semester(float** a, int* credits, int row, int column) {
+float** gpaOf1Semester(float** a, int *credits, int row, int column) {
 	float gpa = 0;
 	int times = 0;
 	for (int i = 0; i < row; i++) {
@@ -496,7 +508,7 @@ float** gpaOf1Semester(float** a, int* credits, int row, int column) {
 			a[i][column] = gpa / times;
 		}
 		else {
-			a[i][column] = gpa;
+			a[i][column] = -1;
 		}
 		gpa = 0;
 		times = 0;
@@ -505,7 +517,7 @@ float** gpaOf1Semester(float** a, int* credits, int row, int column) {
 }
 
 float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, string semester, string Class, int& column, int& row) {
-	string path = toSchoolYear + schoolYear + '/' + semester;
+	string path = toSchoolYear + schoolYear + "/" + semester;
 
 	//return false if semester does not exist
 	//if (!isPathExist(path))
@@ -520,7 +532,7 @@ float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, strin
 	row = getNumberOf(path);
 	classScore = new ScoreBoard[row];
 	load1Class(classScore, path, row);
-	path = toSchoolYear + schoolYear + '/' + semester;
+	path = toSchoolYear + schoolYear + "/" + semester;
 	column = getNumberOf(path + "/Semester_Info.txt") - 4;
 
 	//Take courses in this semester
@@ -537,7 +549,7 @@ float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, strin
 
 	//Take total of each student in a class
 	string pathToScore;
-	float** score = new float* [row];
+	float **score = new float* [row];
 	for (int i = 0; i < row; i++) {
 		score[i] = new float[column + 1];
 	}
@@ -545,7 +557,7 @@ float** getClassGPAIn1Semester(ScoreBoard*& classScore, string schoolYear, strin
 		pathToScore = path + '/' + courses[i] + "/Score/";
 		for (int j = 0; j < row; j++) {
 			pathToScore += classScore[j].studentid + ".txt";
-			if (isPathExist(pathToScore)) {
+			if (filesystem::exists(pathToScore)) {
 				loadScore1Student(classScore[j], pathToScore);
 				score[j][i] = classScore[j].total;
 			}
@@ -566,7 +578,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 	float** score = nullptr;
 	int times = 0;
 	row = getNumberOf(path.c_str());
-	float** gpa = new float* [row];
+	float **gpa = new float* [row];
 	for (int i = 0; i < row; i++)
 		gpa[i] = new float[4];
 	for (int i = 0; i < row; i++) {
@@ -575,8 +587,8 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		}
 	}
 	string semester = "Spring";
-	path = toSchoolYear + schoolYear + '/' + semester;
-	if (isPathExist(path)) {
+	path = toSchoolYear + schoolYear + "/" + semester;
+	if (filesystem::exists(path)) {
 		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 		for (int i = 0; i < row; i++) {
 			gpa[i][0] = score[i][column];
@@ -584,8 +596,8 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		times++;
 	}
 	semester = "Summer";
-	path = toSchoolYear + schoolYear + '/' + semester;
-	if (isPathExist(path)) {
+	path = toSchoolYear + schoolYear + "/" + semester;
+	if (filesystem::exists(path)) {
 		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 		for (int i = 0; i < row; i++) {
 			gpa[i][1] = score[i][column];
@@ -593,8 +605,8 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		times++;
 	}
 	semester = "Autumn";
-	path = toSchoolYear + schoolYear + '/' + semester;
-	if (isPathExist(path)) {
+	path = toSchoolYear + schoolYear + "/" + semester;
+	if (filesystem::exists(path)) {
 		score = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 		for (int i = 0; i < row; i++) {
 			gpa[i][2] = score[i][column];
@@ -604,7 +616,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 	for (int i = 0; i < row; i++)
 		delete[] score[i];
 	delete[] score;
-
+	
 	float sum = 0;
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -619,10 +631,10 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 
 bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class) {
 	string path = toSchoolYear + schoolYear;
-	if (!isPathExist(path))
+	if (!filesystem::exists(path))
 		return false;
 	path += "/Classes/" + Class + ".txt";
-	if (!isPathExist(path))
+	if (!filesystem::exists(path))
 		return false;
 	int row = 0, column = 0;
 	float** scores = getClassOverallGPA(s, schoolYear, Class, row, column);
@@ -651,7 +663,7 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string se
 
 	path += "/Classes/" + Class + ".txt";
 	//return false if class does not exist
-	if (!isPathExist(path))
+	if (!filesystem::exists(path))
 		return false;
 
 	path = toSchoolYear + schoolYear + '/' + semester + "/Semester_Info.txt";
@@ -659,12 +671,12 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string se
 	int column = getNumberOf(path) - 4;
 
 	//Take courses in this semester
-	string* courses;
+	string *courses;
 	path = toSchoolYear + schoolYear + '/' + semester;
 	courses = loadCourseID(path, column);
 
 	//Score of courses that students in a class studied
-	float** scores = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+	float **scores = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
 	cout << left << setw(10) << "Student ID" << '\t';
 	for (int i = 0; i < column; i++) {
 		cout << left << setw(15) << courses[i];
@@ -690,23 +702,23 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string se
 	return true;
 }
 
-void loadScore1Course(string pathToSemester, ScoreBoard*& s, string* courses, int n) {
+void loadScore1Course(string pathToSemester, ScoreBoard *&s, string *courses, int n) {
 	string destination = "";
 	for (int i = 0; i < n; i++) {
 		destination = pathToSemester + "/" + courses[i] + "/Score/" + s[0].studentid + ".txt";
-		if (isPathExist(destination)) {
+		if (filesystem::exists(destination)) {
 			loadScore1Student(s[i], destination);
 		}
 		destination = "";
 	}
 }
 
-bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string studentid, string schoolYear, int& n) {
+bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n) {
 	string path = toSchoolYear + schoolYear;
-	if (!isPathExist(path))
+	if (!filesystem::exists(path))
 		return false;
 	string pathToStu = toDataStudent + studentid + ".txt";
-	if (!isPathExist(pathToStu))
+	if (!filesystem::exists(pathToStu))
 		return false;
 	Student stu;
 	loadStudentInfo(stu, pathToStu);
@@ -715,7 +727,7 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 	int columnSp = 0, columnS = 0, columnA = 0, size = 0;
 	string pathToSp = path + "/Spring";
 	s[0].studentid = studentid;
-	if (isPathExist(pathToSp)) {
+	if (filesystem::exists(pathToSp)) {
 		columnSp = getNumberOf(pathToSp + "/Semester_Info.txt") - 4;
 		string* courseSp = loadCourseID(pathToSp, columnSp);
 		for (int i = 0; i < columnS; i++) {
@@ -736,20 +748,20 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 		//column is the number of courses which save total of each course 
 		//column + 1 is for saving gpa
 		score[0] = new float[columnSp + 1];
-
+		
 		//column is the number of courses
 		//each row in Scoreboard array save score of one course
 		for (int i = 0; i < columnSp; i++) {
 			pathToScore = path + '/' + courseSp[i] + "/Score/";
 			pathToScore += studentid + ".txt";
-			if (isPathExist(pathToScore)) {
+			if (filesystem::exists(pathToScore)) {
 				loadScore1Student(s[i], pathToScore);
 				s[i].firstname = "Spring";
 				score[0][i] = s[i].total;
 			}
 			else {
 				score[0][i] = -1;
-			}
+			}	
 		}
 		//calculate gpa of each student in one semester
 		score = gpaOf1Semester(score, credits, 1, columnSp);
@@ -761,7 +773,7 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 
 
 	pathToSp = path + "/Summer";
-	if (isPathExist(pathToSp)) {
+	if (filesystem::exists(pathToSp)) {
 		//s[size].firstname = "Summer";
 		columnS = getNumberOf(pathToSp + "/Semester_Info.txt") - 4;
 		string* courseSp = loadCourseID(pathToSp, columnS);
@@ -773,7 +785,7 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 		int* credits = new int[columnS];
 		string pathToCredit;
 		for (int i = 0; i < columnS; i++) {
-			pathToCredit = pathToSp + '/' + courseSp[i];
+			pathToCredit = pathToSp + "/" + courseSp[i];
 			loadCredit(pathToCredit, credits[i]);
 		}
 
@@ -787,9 +799,9 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 		//column is the number of courses
 		//each row in Scoreboard array save score of one course
 		for (int i = 0; i < columnS; i++) {
-			pathToScore = path + '/' + courseSp[i] + "/Score/";
+			pathToScore = path + "/" + courseSp[i] + "/Score/";
 			pathToScore += studentid + ".txt";
-			if (isPathExist(pathToScore)) {
+			if (filesystem::exists(pathToScore)) {
 				loadScore1Student(s[i + size], pathToScore);
 				score[0][i] = s[i + size].total;
 				s[i + size].firstname = "Summer";
@@ -807,7 +819,7 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 	size += columnS;
 
 	pathToSp = path + "/Autumn";
-	if (isPathExist(pathToSp)) {
+	if (filesystem::exists(pathToSp)) {
 		//s[size].firstname = "Autumn";
 		columnA = getNumberOf(pathToSp + "/Semester_Info.txt") - 4;
 		string* courseSp = loadCourseID(pathToSp, columnA);
@@ -836,7 +848,7 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 		for (int i = 0; i < columnA; i++) {
 			pathToScore = pathToSp + '/' + courseSp[i] + "/Score/";
 			pathToScore += studentid + ".txt";
-			if (isPathExist(pathToScore)) {
+			if (filesystem::exists(pathToScore)) {
 				loadScore1Student(s[i + size], pathToScore);
 				score[0][i] = s[i + size].total;
 				s[i + size].firstname = "Autumn";
@@ -857,14 +869,13 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 	return true;
 }
 
-//int main() {
+int main() {
 	//string destination = "";
 	//if (exportCourseStudentList(destination, "2021-2022", "Autumn", "CS162-22CTT2")) {
 		//cout << "Successfully!" << endl;
 	//}
 	//else
 	//	cout << "File does not exist\n";
-	
 	///*string path = "";
 	//if (importCourseScoreBoard(path, "2021-2022", "Autumn", "CS162-22CTT2")) {
 	//	cout << "Successfully!" << endl;
@@ -872,14 +883,15 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 	//else {
 	//	cout << "File does not exist!" << endl;
 	//}*/
-	/*ScoreBoard* s = new ScoreBoard;
-	int n = 0;
-	if (viewCourseScoreBoard(s, n, "2021-2022", "Autumn", "CS162-22CTT2")) {
-		cout << "Successfully!" << endl;
-	}
-	else {
-		cout << "File does not exist!" << endl;
-	}*/
+	// ScoreBoard* s;
+	// int n = 0;
+	// if (viewCourseScoreBoard(s, n, "2011-2012", "Spring", "CS162-22TT2")) {
+	// 	cout << "Successfully!" << endl;
+	// }
+	// else {
+	// 	cout << "File does not exist!" << endl;
+	// }
+	// delete[] s;
 	//ScoreBoard studentScore, modifiedScore;
 	//studentScore.studentid = "2212";
 	//modifiedScore.studentid = "2212";
@@ -938,6 +950,5 @@ bool viewStudentScoreboard(ScoreBoard*& s, string*& courses, float*& gpa, string
 	delete[] courses;
 	delete[] gpa;
 	delete[] semester;*/
-
-	//return 0;
-//}
+	return 0;
+}
