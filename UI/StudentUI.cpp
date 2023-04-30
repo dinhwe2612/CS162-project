@@ -42,6 +42,7 @@ void StudentUI::Construct(float windowWidth, float windowHeight)
     memset(BUTTON_SchoolYear_isCLICKED, 0, sizeof BUTTON_SchoolYear_isCLICKED);
 
     // Semester initialisation
+    _Semester.Construct(windowWidth, windowHeight);
 }
 
 void StudentUI::Deconstruct()
@@ -49,6 +50,16 @@ void StudentUI::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(dropdownButton.image);
     UnloadTexture(cornerStripes.image);
+}
+
+void StudentUI::DrawCurrentWindow() {
+    switch (menuWindow) {
+    default:
+        break;
+    case SEMESTER:
+        _Semester.Draw(menuWindow);
+        break;
+    }
 }
 
 void StudentUI::Draw(int& menuLogin)
@@ -64,16 +75,6 @@ void StudentUI::Draw(int& menuLogin)
         break;
     case CHANGE_PASSWORD:
         DrawChangePassword();
-        break;
-    }
-}
-
-void StudentUI::DrawCurrentWindow() {
-    switch (menuWindow) {
-    default:
-        break;
-    case SEMESTER:
-        _Semester.Draw(menuWindow);
         break;
     }
 }
