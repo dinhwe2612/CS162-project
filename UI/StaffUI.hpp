@@ -33,7 +33,6 @@ struct StaffUI
     Button dropDown;
     Button signOut;
     Button ChangePassWord;
-    Button ViewProfile;
     Button cornerStripes; 
     Button addSchoolYear;
     Button Close;
@@ -76,7 +75,6 @@ struct StaffUI
     int previousmenuStaff = DEFAULT;
     enum windowStaff {
         CHANGE_PASSWORD,
-        VIEW_PROFILE,
         CREATE_SCHOOLYEAR
     };
 

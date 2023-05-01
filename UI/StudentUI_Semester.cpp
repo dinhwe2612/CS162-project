@@ -75,6 +75,7 @@ void StudentSemesterUI::DrawSemesterList()
         _Semester.SetText(PT_serif_bold, ListOfSemesters[i], 0.33*windowWidth, 0.32*windowHeight + i * 0.18*windowHeight, 0.02*windowWidth, 0.5, BLACK);
         
         _Semester.DrawText();
+        DrawRectangleLinesEx(_Semester.buttonShape, 0.5, BLACK);
     }
 }
 

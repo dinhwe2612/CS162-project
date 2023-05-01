@@ -193,7 +193,10 @@ void Class::DrawClassList()
         _class.SetText(PT_serif_bold, ListOfClasses[i], 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
         
         if (_class.buttonShape.y >= 0.26*windowHeight && _class.buttonShape.y + _class.buttonShape.height <= 0.88*windowHeight)
+        {
             _class.DrawText();
+            DrawRectangleLinesEx(_class.buttonShape, 0.5, BLACK);
+        }
 
         if (_class.isPRESSED(MOUSE_BUTTON_LEFT) && !isAddClass)
         {

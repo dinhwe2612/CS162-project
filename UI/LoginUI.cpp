@@ -115,7 +115,7 @@ void LoginUI::DrawLoginBox()
     // draw password box
 
     Rectangle passBox = {float(0.379*windowWidth), float(0.511*windowHeight), float(0.24*windowWidth), float(0.08*logo.height)};
-    DrawRectangleLinesEx(passBox, 1, BLACK);    
+    DrawRectangleLinesEx(passBox, 1, BLACK);  
 }
 
 //---------------------------------------------------------------------------------------------//
@@ -192,6 +192,7 @@ void LoginUI::Draw(int &menuLogin)
     inputPassword.Draw();
     DrawLoginIcon();
     signInButton.DrawText();
+    DrawRectangleLinesEx(signInButton.buttonShape, 1, BLACK);  
     DrawStatusButtons();
     if (signInButton.isPRESSED(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER)) {
         int loginState = validateAccount(inputUsername.GetInput(), inputPassword.GetInput(), status);

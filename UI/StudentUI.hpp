@@ -24,12 +24,17 @@ struct StudentUI
 
     Texture2D background;
     Texture2D calendar;
+    Texture2D profile;
+    Texture2D gender;
+    Texture2D DOB;
+    Texture2D socialID;
+    Texture2D Class;
+    Texture2D studentID;
 
     Button cornerStripes; 
     Button dropdownButton;
     Button signOut;
     Button ChangePassWord;
-    Button ViewProfile;
 
     Font PT_serif_bold;
     Font PT_serif_regular;

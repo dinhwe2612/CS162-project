@@ -188,7 +188,10 @@ void Course::DrawCourseList()
         course.SetText(PT_serif_bold, ListOfCourses[i].name + " - " + ListOfCourses[i].Class, 0.33*windowWidth, 0.32*windowHeight + i * 0.1*windowHeight + posY, 0.02*windowWidth, 0.5, BLACK);
         
         if (course.buttonShape.y >= 0.26*windowHeight && course.buttonShape.y + course.buttonShape.height <= 0.88*windowHeight)
+        {
             course.DrawText();
+            DrawRectangleLinesEx(course.buttonShape, 0.5, BLACK);
+        }
 
         if (course.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuCourse = VIEWCOURSE;

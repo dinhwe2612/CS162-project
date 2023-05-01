@@ -26,14 +26,11 @@ void StaffUI::Construct(float windowWidth, float windowHeight)
     cornerStripes.SetTexture("UI/images/stripes.png");
     cornerStripes.SetRectangle(0.01*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
-    signOut.SetRectangle(0.86*windowWidth, 0.15*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.16*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    signOut.SetRectangle(0.86*windowWidth, 0.1*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
+    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.11*windowHeight, 0.015*windowWidth, 0.5, BLACK);
 
-    ChangePassWord.SetRectangle(0.86*windowWidth, 0.1*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    ChangePassWord.SetText(PT_serif_regular, ">    Change password", 0.88*windowWidth, 0.11*windowHeight, 0.015*windowWidth, 0.5, BLACK);
-
-    ViewProfile.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    ViewProfile.SetText(PT_serif_regular, ">    View profile", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    ChangePassWord.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
+    ChangePassWord.SetText(PT_serif_regular, ">    Change password", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
     
     addSchoolYear.SetTexture("UI/images/add.png");
     addSchoolYear.SetRectangle(0.01*windowWidth, 0.12*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
@@ -182,7 +179,6 @@ void StaffUI::DrawDropDownAccount(int &menuLogin)
     {
         signOut.DrawText();
         ChangePassWord.DrawText();
-        ViewProfile.DrawText();
 
         if (signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = DEFAULT;
@@ -191,9 +187,6 @@ void StaffUI::DrawDropDownAccount(int &menuLogin)
         }
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStaff = CHANGE_PASSWORD;
-        }
-        if (ViewProfile.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuStaff = VIEW_PROFILE;
         }
     }
 }

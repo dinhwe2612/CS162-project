@@ -7,6 +7,12 @@ void StudentUI::Construct(float windowWidth, float windowHeight)
 
     background = LoadTexture("UI/images/background5.png");
     calendar = LoadTexture("UI/images/calendar (2).png");
+    profile = LoadTexture("UI/images/user.png");
+    gender = LoadTexture("UI/images/followers (1).png");
+    DOB = LoadTexture("UI/images/calendar-silhouette (1).png");
+    socialID = LoadTexture("UI/images/social_id.png");
+    Class = LoadTexture("UI/images/mortarboard.png");
+    studentID = LoadTexture("UI/images/id-card (1).png");
 
     PT_serif_regular = LoadFont("UI/font/PT_Serif/PTSerif-Regular.ttf");
     PT_serif_bold = LoadFont("UI/font/PT_Serif/PTSerif-Bold.ttf");
@@ -17,14 +23,11 @@ void StudentUI::Construct(float windowWidth, float windowHeight)
     cornerStripes.SetTexture("UI/images/stripes.png");
     cornerStripes.SetRectangle(0.01*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
-    signOut.SetRectangle(0.86*windowWidth, 0.15*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    signOut.SetText(PT_serif_regular, ">    Sign out", 0.88*windowWidth, 0.16*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    signOut.SetRectangle(0.8*windowWidth, 0.67*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+    signOut.SetText(PT_serif_bold, "Sign out", 0.865*windowWidth, 0.68*windowHeight, 0.015*windowWidth, 0.5, WHITE);
 
-    ChangePassWord.SetRectangle(0.86*windowWidth, 0.1*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    ChangePassWord.SetText(PT_serif_regular, ">    Change password", 0.88*windowWidth, 0.11*windowHeight, 0.015*windowWidth, 0.5, BLACK);
-
-    ViewProfile.SetRectangle(0.86*windowWidth, 0.05*windowHeight, 0.14*windowWidth, 0.05*windowHeight, GRAY, LIGHTGRAY);
-    ViewProfile.SetText(PT_serif_regular, ">    View profile", 0.88*windowWidth, 0.06*windowHeight, 0.015*windowWidth, 0.5, BLACK);
+    ChangePassWord.SetRectangle(0.8*windowWidth, 0.6*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+    ChangePassWord.SetText(PT_serif_bold, "Change password", 0.842*windowWidth, 0.61*windowHeight, 0.015*windowWidth, 0.5, WHITE);
 
     oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
@@ -50,6 +53,17 @@ void StudentUI::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(dropdownButton.image);
     UnloadTexture(cornerStripes.image);
+    UnloadTexture(profile);
+    UnloadTexture(gender);
+    UnloadTexture(DOB);
+    UnloadTexture(socialID);
+    UnloadTexture(Class);
+    UnloadTexture(studentID);
+
+    UnloadFont(PT_serif_bold);
+    UnloadFont(PT_serif_regular);
+
+    _Semester.Deconstruct();
 }
 
 void StudentUI::DrawCurrentWindow() {
@@ -220,22 +234,63 @@ void StudentUI::DrawChangePassword()
 
 void StudentUI::DrawDropDownAccount(int &menuLogin)
 {
+     Rectangle box = {float(0.785*windowWidth), float(0.05*windowHeight), float(0.21*windowWidth), float(0.7*windowHeight)};
+
     // check if down arrow is clicked
 
     static bool IS_DROPDOWN_CLICKED = false;
     
     if (dropdownButton.isPRESSED(MOUSE_BUTTON_LEFT))
         IS_DROPDOWN_CLICKED ^= 1;
-    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){float(0.86*windowWidth), 0, float(0.14*windowWidth), float(0.2*windowHeight)}))
+    else if (!CheckCollisionPointRec(GetMousePosition(), (Rectangle){float(0.79*windowWidth), 0, float(0.21*windowWidth), float(0.75*windowHeight)}))
         IS_DROPDOWN_CLICKED = false;
 
     // draw sign out and drop down
 
     if (IS_DROPDOWN_CLICKED)
     {
+        // draw drop down box
+        DrawRectangleRounded(box, 0.1, 0, WHITE);
+        DrawRectangleRoundedLines(box, 0.1, 0, 0.5, BLACK);
+
+        Rectangle psrc = {0, 0, float(profile.width), float(profile.height)};
+        Rectangle pdst = {float(0.855*windowWidth), float(0.07*windowHeight), float(0.07*windowWidth), float(0.07*windowWidth)};
+        DrawTexturePro(profile, psrc, pdst, (Vector2){0, 0}, 0, WHITE);
+
+        // draw name in the middle of box
+        Vector2 nameSize =  MeasureTextEx(PT_serif_bold, "Username here", 0.016*windowWidth, 0.5);
+        float nameXCoordinate = (box.width - nameSize.x) / 2 + box.x;
+
+        DrawTextEx(PT_serif_bold, "Username here", (Vector2){nameXCoordinate, float(0.07*windowWidth + 0.08*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
+        DrawLineV((Vector2){box.x, float(0.24*windowHeight)}, (Vector2){box.x + box.width, float(0.24*windowHeight)}, LIGHTGRAY);
+
+        DrawTexturePro(gender, (Rectangle){0, 0, float(gender.width), float(gender.height)}, (Rectangle){float(0.8*windowWidth), float(0.27*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
+        DrawTextEx(PT_serif_bold, "Gender", (Vector2){float(0.84*windowWidth), float(0.27*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
+        DrawTextEx(PT_serif_bold, "Female", (Vector2){float(0.84*windowWidth), float(0.29*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+
+        DrawTexturePro(DOB, (Rectangle){0, 0, float(DOB.width), float(DOB.height)}, (Rectangle){float(0.8*windowWidth), float(0.33*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
+        DrawTextEx(PT_serif_bold, "Date of birth", (Vector2){float(0.84*windowWidth), float(0.33*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
+        DrawTextEx(PT_serif_bold, "17/3/2004", (Vector2){float(0.84*windowWidth), float(0.35*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+
+        DrawTexturePro(socialID, (Rectangle){0, 0, float(socialID.width), float(socialID.height)}, (Rectangle){float(0.8*windowWidth), float(0.39*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
+        DrawTextEx(PT_serif_bold, "Social ID", (Vector2){float(0.84*windowWidth), float(0.39*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
+        DrawTextEx(PT_serif_bold, "72139749283", (Vector2){float(0.84*windowWidth), float(0.41*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+
+        DrawTexturePro(Class, (Rectangle){0, 0, float(Class.width), float(Class.height)}, (Rectangle){float(0.8*windowWidth), float(0.45*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
+        DrawTextEx(PT_serif_bold, "Class", (Vector2){float(0.84*windowWidth), float(0.45*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
+        DrawTextEx(PT_serif_bold, "22TT2", (Vector2){float(0.84*windowWidth), float(0.47*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+
+        DrawTexturePro(studentID, (Rectangle){0, 0, float(studentID.width), float(studentID.height)}, (Rectangle){float(0.797*windowWidth), float(0.5*windowHeight), float(0.032*windowWidth), float(0.034*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
+        DrawTextEx(PT_serif_bold, "Student ID", (Vector2){float(0.84*windowWidth), float(0.51*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
+        DrawTextEx(PT_serif_bold, "22125010", (Vector2){float(0.84*windowWidth), float(0.53*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+        
+        DrawLineV((Vector2){box.x, float(0.58*windowHeight)}, (Vector2){box.x + box.width, float(0.58*windowHeight)}, LIGHTGRAY);
+
         signOut.DrawText();
+        DrawRectangleLinesEx(signOut.buttonShape, 0.5, BLACK);
+
         ChangePassWord.DrawText();
-        ViewProfile.DrawText();
+        DrawRectangleLinesEx(ChangePassWord.buttonShape, 0.5, BLACK);
 
         if (signOut.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStudent = DEFAULT;
@@ -244,9 +299,6 @@ void StudentUI::DrawDropDownAccount(int &menuLogin)
         }
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStudent = CHANGE_PASSWORD;
-        }
-        if (ViewProfile.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            menuStudent = VIEW_PROFILE;
         }
     }
 }
