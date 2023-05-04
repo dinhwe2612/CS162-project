@@ -8,7 +8,7 @@ using namespace std;
 
 struct ScoreBoard {
     string studentid, firstname, lastname;
-    float total, finals, midterm, other;
+    float total=-1, finals=-1, midterm=-1, other=-1;
 }; // similar to Scoreboard in scoreStruct.h, but without string course
 
 bool exportCourseStudentList(string destination, string schoolYear, string semester, string course);
