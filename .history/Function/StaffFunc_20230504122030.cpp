@@ -571,18 +571,18 @@ void DeleteACourse(string courseid_coursename_address)
     return;
 }
 
-// int main ()
-// {
+int main ()
+{
     //Creat_A_Semester();
     //AddCourse("../Data/SchoolYear/2021-2022/Autumn");
     //Update_CourseInformation("../Data/SchoolYear/2021-2022/Autumn");
     //DeleteACourse(".. /Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
-    // AddClasstoCourse_CSV("D:/Student_ID_data.csv", "../Data/SchoolYear/2011-2012/Spring/CS162-22TT2");
+    AddClasstoCourse_CSV("D:/Student_ID_data.csv", "../Data/SchoolYear/2011-2012/Spring/CS162-22TT2");
     //Add1StudenttoCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
     //DeleteACourse("../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
     //Remove1StudentfromCourse("22125003", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
     //Remove1StudentfromCourse("22125040", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
     //Add1StudenttoCourse("22125003", "../Data/SchoolYear/2021-2022/Autumn/CS161-22APCS2");
-//     return 0;
-// }
+    return 0;
+}
 
