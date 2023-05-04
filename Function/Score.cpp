@@ -91,7 +91,7 @@ int getNumberOf(string dir) {
 		//in.ignore(256, '\n');
 		//in.ignore();
 		in.ignore();
-		n++;
+		if (w != "") n++;
 	}
 	in.close();
 	return n;

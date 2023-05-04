@@ -96,7 +96,7 @@ void Update_File(string fileaddress, string* information)
     int i = 1;
     ofstream out;
     out.open(fileaddress.c_str());
-    while (i <= 8)
+    while (i <= atoi(information[0].c_str()))
     {
         out << information[i] << '\n';
         i++;
@@ -133,7 +133,7 @@ bool AddClasstoCourse_CSV(string fileaddress, ACourse course, string schoolYear,
 {
     string* info;
     ifstream in; ofstream out;
-    string courseaddress = "../Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
+    string courseaddress = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
     string newfileaddress = courseaddress + "/Student_ID.csv";
     out.open(newfileaddress.c_str());
     in.open(fileaddress.c_str());
@@ -183,7 +183,7 @@ bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, st
     in.open(fileaddress.c_str());
     if (!in.is_open()) return false;
     string* check_if_exist = Read_File(address);
-    for (int ka = 1; ka <= atoi(check_if_exist[0].c_str()); ka++)
+    for (int ka = 1; ka <= atoll(check_if_exist[0].c_str()); ka++)
     {
         if (check_if_exist[ka] == studentid) return false;
     }
@@ -194,9 +194,9 @@ bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, st
     int number = 1;
     int* sorting = new int[100];
     string *id = Read_File(address);
-    while (number <= atoi(id[0].c_str()))
+    while (number <= atoll(id[0].c_str()))
     {
-        sorting[number] = atoi(id[number].c_str());
+        sorting[number] = atoll(id[number].c_str());
         number++;
     }
     sorting[0] = number - 1;

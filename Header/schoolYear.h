@@ -3,6 +3,7 @@
 #include <fstream>
 #include <filesystem>
 #include <algorithm>
+#include <string>
 #include "../Header/StudentStruct.h"
 
 using namespace std;

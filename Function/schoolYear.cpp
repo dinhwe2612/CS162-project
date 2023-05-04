@@ -194,10 +194,14 @@ void importStudent(Student*& listOfStudent, int& n, string dir, string schoolYea
             student.gender = 2;
         getline(fin, student.DOB, ',');
         fin >> student.socialID;
+        student.Class = Class;
         fin.ignore(1000, '\n');
         fin.ignore();
         addStudentToClass(listOfStudent, n, student, schoolYear, Class);
     }
+    cout << n << '\n';
+    for(int i = 0; i < n; ++i)
+        cout << listOfStudent[i].studentID << '\n';
 }
 
 // int main() {

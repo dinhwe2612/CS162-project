@@ -186,7 +186,7 @@ bool viewStudentInCourse(string schoolYear, string semester, ACourse course, Stu
         getline(in, students[i].Class, '\n');
         string gender;
         getline(in, gender, '\n');
-        if (!gender.empty()) students[i].gender = stoi(gender);
+        if (!gender.empty()) students[i].gender = stoll(gender);
         else students[i].gender = 0;
         getline(in, students[i].DOB, '\n');
         getline(in, students[i].socialID, '\n');

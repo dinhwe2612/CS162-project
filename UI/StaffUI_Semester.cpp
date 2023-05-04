@@ -111,6 +111,7 @@ void StaffSemesterUI::DrawCreateSemester()
             newSemester.endDate = SemesterEndDate.GetInput();
             newSemester.schoolYear = SchoolYear;
             CreateSemester(newSemester, ListOfSemesters, listSize);
+            isAddSemester = false;
         }
         else if (listSize >= 3)
         {

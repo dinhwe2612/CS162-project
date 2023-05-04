@@ -43,7 +43,7 @@ void Class::Construct(int windowWidth, int windowHeight)
     Male.SetRectangle(0.4*windowWidth + 60, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Female.SetRectangle(0.5*windowWidth + 85 - 10, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
     Other.SetRectangle(0.6*windowWidth + 70, 0.51*windowHeight, 35, 0.05*windowHeight, LIGHTGRAY, WHITE);
-    Tick = LoadTexture("UI/images/down.png");
+    Tick = LoadTexture("UI/images/tick.png");
     TickRec = (Rectangle){0, 0, float(Tick.width), float(Tick.height)};
 
     day.Construct(0.4*windowWidth, 0.58*windowHeight, 0.05*windowHeight, 0.05*windowHeight, 0.4*windowWidth + 4, 0.59*windowHeight - 10, 0.03*windowWidth, 0.5, 1, "");
@@ -246,11 +246,13 @@ void Class::LoadDroppedFile()
     DrawRectangleRec(box, RAYWHITE);
     DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
     back.DrawText();
-    if (back.isPRESSED(MOUSE_BUTTON_LEFT))
+    if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS, 
-        isDropClicked = false,
-        UnloadDroppedFiles(droppedFiles),
+        isDropClicked = false;
+        if (IsFileDropped()) UnloadDroppedFiles(droppedFiles);
         dir = "";
+        viewStudentInClass(ListOfClasses[classIndex], SchoolYear, ListOfStudent, listStuSize);
+    }
 
     Rectangle dropInBox = {float(windowWidth/2), float(windowHeight/2), float(0.3*windowWidth), float(0.3*windowHeight)};
     Vector2 dropInOrigin = {float(dropInBox.width/2), float(dropInBox.height/2)};
@@ -269,9 +271,11 @@ void Class::LoadDroppedFile()
     UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
     UploadFile.DrawText();
     if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
+        // cout << ListOfClasses[classIndex] << endl;
         importStudent(ListOfStudent, listStuSize, dir, SchoolYear, ListOfClasses[classIndex]);
         UnloadDroppedFiles(droppedFiles);
         dir = "";
+        isDropClicked = false;
     }
     if (dir == "") DrawTextEx(PT_serif_bold, "Drop file into this window", (Vector2){float(0.43*windowWidth), float(0.5*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
     else DrawTextEx(PT_serif_bold, dir.c_str(), (Vector2){float(0.37*windowWidth), float(0.5*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
@@ -358,12 +362,18 @@ void Class::DrawAddStudent() {
     if (Male.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 0;
     if (Female.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 1;
     if (Other.isPRESSED(MOUSE_BUTTON_LEFT)) Gender = 2;
-    if (Gender == 0) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, WHITE);
-    else Male.DrawText();
-    if (Gender == 1) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);
-    else Female.DrawText();
-    if (Gender == 2) DrawTexturePro(Tick, TickRec, Other.buttonShape, (Vector2){0, 0}, 0, WHITE);
-    else Other.DrawText();
+    // if (Gender == 0) DrawTexturePro(Tick, TickRec, Male.buttonShape, (Vector2){0, 0}, 0, BLACK);
+    // else Male.DrawText();
+    // if (Gender == 1) DrawTexturePro(Tick, TickRec, Female.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    // else Female.DrawText();
+    // if (Gender == 2) DrawTexturePro(Tick, TickRec, Other.buttonShape, (Vector2){0, 0}, 0, WHITE);
+    // else Other.DrawText();
+    Male.DrawText();
+    Female.DrawText();
+    Other.DrawText();
+    if (Gender == 0) DrawRectangle(Male.buttonShape.x, Male.buttonShape.y, Male.buttonShape.height, Male.buttonShape.width, BLACK);
+    else if (Gender == 1) DrawRectangle(Female.buttonShape.x, Female.buttonShape.y, Female.buttonShape.height, Female.buttonShape.width, BLACK);
+    else DrawRectangle(Other.buttonShape.x, Other.buttonShape.y, Other.buttonShape.height, Other.buttonShape.width, BLACK);
     DrawRectangleLines(0.4*windowWidth + 60 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     DrawRectangleLines(0.5*windowWidth + 85 - 10 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);
     DrawRectangleLines(0.6*windowWidth + 70 - 1, 0.51*windowHeight - 1, 35 + 1, 0.05*windowHeight + 1, BLACK);

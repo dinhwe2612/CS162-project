@@ -288,7 +288,7 @@ void Course::DrawCreateCourse()
         menuCourse = -1;
     }
 }
-
+ 
 void Course::DrawModifyCourse() {
 
     // draw outer box border
@@ -737,6 +737,7 @@ void Course::DrawAddStudent() {
         canAdd = Add1StudenttoCourse(enterClass.GetInput(), curCourse, schoolYear, semester);
         enterClass.currentInput = "";
         viewStudentInCourse(schoolYear, semester, curCourse, ListOfStudents, listStudentSize);
+        viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
         if (canAdd) menuCourse = VIEWCOURSE;
     }
 
@@ -798,8 +799,14 @@ void Course::DrawImportStudentList() {
     UploadFile.SetText(PT_serif_bold, "Upload", 0.7*windowWidth + 5, 0.7*windowHeight + 10, 0.025*windowWidth, 0.5, BLACK);
     UploadFile.DrawText();
     if (UploadFile.isPRESSED(MOUSE_BUTTON_LEFT) && dir != "") {
-        importCourseScoreBoard(dir, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
-        viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+        if (viewStudent) {
+            AddClasstoCourse_CSV(dir, curCourse, schoolYear, semester);
+            viewStudentInCourse(schoolYear, semester, curCourse, ListOfStudents, listStudentSize);
+            viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+        } else {
+            importCourseScoreBoard(dir, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+            viewCourseScoreBoard(scoreBoard, ScoreBoardSize, schoolYear, semester, curCourse.id + "-" + curCourse.Class);
+        }
         UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
