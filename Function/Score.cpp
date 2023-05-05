@@ -4,22 +4,22 @@
 #include<fstream>
 #include "../Header/score.h"
 
-// string* Read_File(string fileaddress)
-// {
-//     ifstream in;
-//     string* inf = new string[1000];
-//     in.open(fileaddress.c_str());
-//     string str;
-//     int i = 1;
-//     while (getline(in, str))
-//     {
-//         inf[i] = str;
-//         i++;
-//     }
-//     inf[0] = to_string(i-1); 
-//     in.close();
-//     return inf; 
-// }
+//  string* Read_File(string fileaddress)
+//  {
+//      ifstream in;
+//      string* inf = new string[1000];
+//      in.open(fileaddress.c_str());
+//      string str;
+//      int i = 1;
+//      while (getline(in, str))
+//      {
+//          inf[i] = str;
+//          i++;
+//      }
+//      inf[0] = to_string(i-1); 
+//      in.close();
+//      return inf; 
+//  }
 
 bool isValid(string s) {
 	bool valid = false;
@@ -229,6 +229,14 @@ bool exportCourseStudentList(string destination, string schoolYear, string semes
 			path = toDataStudent + newStudent[i].studentID + ".txt";
 			loadStudentInfo(newStudent[i], path);
 		}
+
+		for (int i = 0; i < n; i++) {
+			path = toSchoolYear + schoolYear + "/" + semester + "/" + course + "/" + "Score/" + newScore[i].studentid + ".txt";
+			if (filesystem::exists(path)) {
+				loadScore1Student(newScore[i], path);
+			}
+		}
+
 		remove(destination.c_str());
 		ofs.open(destination.c_str());
 		ofs << "No,Student ID,LastName,FirstName,Class,Gender,DOB,Social ID,Total,Finals,Midterm,Other" << "\n";
@@ -586,7 +594,7 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 		gpa[i] = new float[4];
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < 4; j++) {
-			gpa[i][j] = 0;
+			gpa[i][j] = -1;
 		}
 	}
 	string semester = "Spring";
@@ -619,49 +627,124 @@ float** getClassOverallGPA(ScoreBoard*& s, string schoolYear, string Class, int&
 	for (int i = 0; i < row; i++)
 		delete[] score[i];
 	delete[] score;
-	
 	float sum = 0;
+	bool empty = false;
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < 3; j++) {
-			sum += gpa[i][j];
+			if (gpa[i][j] >= 0 && gpa[i][j] <= 10) {
+				sum += gpa[i][j];
+				empty = true;
+			}
 		}
-		sum /= times;
-		gpa[i][3] = sum;
-		sum = 0;
+		if (empty) {
+			sum /= times;
+			gpa[i][3] = sum;
+			sum = 0;
+			empty = false;
+		}
+		else {
+			gpa[i][3] = -1;
+		}
 	}
 	return gpa;
 }
 
-bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class) {
-	string path = toSchoolYear + schoolYear;
-	if (!filesystem::exists(path))
-		return false;
-	path += "/Classes/" + Class + ".txt";
-	if (!filesystem::exists(path))
-		return false;
-	int row = 0, column = 0;
-	float** scores = getClassOverallGPA(s, schoolYear, Class, row, column);
-	string* semester = new string[3]{ "Spring","Summer","Autumn" };
-	cout << left << setw(10) << "Student ID" << '\t';
-	for (int i = 0; i < 3; i++) {
-		cout << left << setw(15) << semester[i];
-	}
-	cout << left << setw(15) << "GPA" << endl;
-	for (int i = 0; i < row; i++) {
-		cout << left << setw(10) << s[i].studentid << '\t';
-		for (int j = 0; j < 4; j++) {
-			cout << left << setw(15) << scores[i][j];
-		}
-		cout << endl;
-	}
-	for (int i = 0; i < row; i++) {
-		delete[] scores[i];
-	}
-	delete[] scores;
-	return true;
+bool viewClassOverallIn1Year(ScoreBoard*& s, float *&scores, int &row, string schoolYear, string Class) {
+ 	string path = toSchoolYear + schoolYear;
+ 	if (!filesystem::exists(path))
+ 		return false;
+ 	path += "/Classes/" + Class + ".txt";
+ 	if (!filesystem::exists(path))
+ 		return false;
+ 	int column = 0;
+ 	float** scores1 = getClassOverallGPA(s, schoolYear, Class, row, column);
+ 	scores = new float[row * 4];
+ 	for (int i = 0; i < row; i++) {
+ 		for (int j = 0; j < 4; j++) {
+ 			scores[i * 4 + j] = scores1[i][j];
+ 		}
+ 	}
+ 	for (int i = 0; i < row; i++) {
+ 		delete[] scores1[i];
+ 	}
+ 	delete[] scores1;
+ 	return true;
 }
 
-bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class) {
+// bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class) {
+// 	string path = toSchoolYear + schoolYear;
+// 	if (!filesystem::exists(path))
+// 		return false;
+// 	path += "/Classes/" + Class + ".txt";
+// 	if (!filesystem::exists(path))
+// 		return false;
+// 	int row = 0, column = 0;
+// 	float** scores = getClassOverallGPA(s, schoolYear, Class, row, column);
+// 	string* semester = new string[3]{ "Spring","Summer","Autumn" };
+// 	cout << left << setw(10) << "Student ID" << '\t';
+// 	for (int i = 0; i < 3; i++) {
+// 		cout << left << setw(15) << semester[i];
+// 	}
+// 	cout << left << setw(15) << "GPA" << endl;
+// 	for (int i = 0; i < row; i++) {
+// 		cout << left << setw(10) << s[i].studentid << '\t';
+// 		for (int j = 0; j < 4; j++) {
+// 			cout << left << setw(15) << scores[i][j];
+// 		}
+// 		cout << endl;
+// 	}
+// 	for (int i = 0; i < row; i++) {
+// 		delete[] scores[i];
+// 	}
+// 	delete[] scores;
+// 	return true;
+// }
+
+// bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class) {
+// 	string path = toSchoolYear + schoolYear;
+
+// 	path += "/Classes/" + Class + ".txt";
+// 	//return false if class does not exist
+// 	if (!filesystem::exists(path))
+// 		return false;
+
+// 	path = toSchoolYear + schoolYear + '/' + semester + "/Semester_Info.txt";
+// 	int row = 0;
+// 	int column = getNumberOf(path) - 4;
+
+// 	//Take courses in this semester
+// 	string *courses;
+// 	path = toSchoolYear + schoolYear + '/' + semester;
+// 	courses = loadCourseID(path, column);
+
+// 	//Score of courses that students in a class studied
+// 	float **scores = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+// 	cout << left << setw(10) << "Student ID" << '\t';
+// 	for (int i = 0; i < column; i++) {
+// 		cout << left << setw(15) << courses[i];
+// 	}
+// 	cout << left << setw(15) << "GPA" << endl;
+// 	for (int i = 0; i < row; i++) {
+// 		cout << left << setw(10) << s[i].studentid << '\t';
+// 		for (int j = 0; j < column + 1; j++) {
+// 			if (scores[i][j] != -1) {
+// 				cout << left << setw(15) << scores[i][j];
+// 			}
+// 			else {
+// 				//student did not enroll this course
+// 				cout << left << setw(15) << "-";
+// 			}
+// 		}
+// 		cout << endl;
+// 	}
+// 	for (int i = 0; i < row; i++) {
+// 		delete[] scores[i];
+// 	}
+// 	delete[] scores;
+// 	return true;
+// }
+
+bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&courses, int &row, int &column, string schoolYear, string semester, string Class) {
 	string path = toSchoolYear + schoolYear;
 
 	path += "/Classes/" + Class + ".txt";
@@ -669,39 +752,27 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string se
 	if (!filesystem::exists(path))
 		return false;
 
-	path = toSchoolYear + schoolYear + '/' + semester + "/Semester_Info.txt";
+	path = toSchoolYear + schoolYear + "/" + semester + "/Semester_Info.txt";
 	int row = 0;
 	int column = getNumberOf(path) - 4;
 
 	//Take courses in this semester
-	string *courses;
-	path = toSchoolYear + schoolYear + '/' + semester;
+	//string *courses;
+	path = toSchoolYear + schoolYear + "/" + semester;
 	courses = loadCourseID(path, column);
 
 	//Score of courses that students in a class studied
-	float **scores = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
-	cout << left << setw(10) << "Student ID" << '\t';
-	for (int i = 0; i < column; i++) {
-		cout << left << setw(15) << courses[i];
-	}
-	cout << left << setw(15) << "GPA" << endl;
+	float** scores1 = getClassGPAIn1Semester(s, schoolYear, semester, Class, column, row);
+	scores = new float[row * (column + 1)];
 	for (int i = 0; i < row; i++) {
-		cout << left << setw(10) << s[i].studentid << '\t';
 		for (int j = 0; j < column + 1; j++) {
-			if (scores[i][j] != -1) {
-				cout << left << setw(15) << scores[i][j];
-			}
-			else {
-				//student did not enroll this course
-				cout << left << setw(15) << "-";
-			}
+			scores[i * (column + 1) + j] = scores1[i][j];
 		}
-		cout << endl;
 	}
 	for (int i = 0; i < row; i++) {
-		delete[] scores[i];
+		delete[] scores1[i];
 	}
-	delete[] scores;
+	delete[] scores1;
 	return true;
 }
 
@@ -872,52 +943,105 @@ bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string
 	return true;
 }
 
-// int main() {
-	//string destination = "";
-	//if (exportCourseStudentList(destination, "2021-2022", "Autumn", "CS162-22CTT2")) {
-		//cout << "Successfully!" << endl;
-	//}
-	//else
-	//	cout << "File does not exist\n";
-	///*string path = "";
-	//if (importCourseScoreBoard(path, "2021-2022", "Autumn", "CS162-22CTT2")) {
-	//	cout << "Successfully!" << endl;
-	//}
-	//else {
-	//	cout << "File does not exist!" << endl;
-	//}*/
-	// ScoreBoard* s;
-	// int n = 0;
-	// if (viewCourseScoreBoard(s, n, "2011-2012", "Spring", "CS162-22TT2")) {
-	// 	cout << "Successfully!" << endl;
-	// }
-	// else {
-	// 	cout << "File does not exist!" << endl;
-	// }
-	// delete[] s;
-	//ScoreBoard studentScore, modifiedScore;
-	//studentScore.studentid = "2212";
-	//modifiedScore.studentid = "2212";
-	//modifiedScore.other = 10;
-	//updateStudentResult(studentScore, modifiedScore, "2021-2022", "Autumn", "CS162-22CTT1");
-	// //ScoreBoard* s = nullptr;
-	//string* courses = nullptr;
-	//float** scores=nullptr;
-	//int row = 0, column = 0;
-	/*if (!viewClassScoreBoardIn1Semester(s, "2021-2022", "Autumn", "22CTT1")) {
-		cout << "School year, Semester or Class does not exist!\n";
+ int main() {
+	/////19
+	/*string destination = "";
+	if (exportCourseStudentList(destination, "2021-2022", "Autumn", "CS162-22CTT2")) {
+		cout << "Successfully!" << endl;
+	}
+	else
+		cout << "File does not exist\n";*/
+
+	/////20
+	/*string path = "";
+	if (importCourseScoreBoard(path, "2021-2022", "Autumn", "CS162-22CTT2")) {
+		cout << "Successfully!" << endl;
 	}
 	else {
+		cout << "File does not exist!" << endl;
+	}*/
+
+	/////21
+	//ScoreBoard* s;
+	/*int n = 0;
+	if (viewCourseScoreBoard(s, n, "2021-2022", "Autumn", "CS162-22CTT2")) {
+		cout << "Successfully!" << endl;
+	}
+	else {
+		cout << "File does not exist!" << endl;
+	}
+	delete[] s;*/
+
+	/////22
+	/*ScoreBoard studentScore, modifiedScore;
+	studentScore.studentid = "2212";
+	modifiedScore.studentid = "2212";
+	modifiedScore.other = 9.9;
+	updateStudentResult(studentScore, modifiedScore, "2021-2022", "Autumn", "CS162-22CTT2");
+	cout << studentScore.total << " " << studentScore.finals << " " << studentScore.midterm << " " << studentScore.other << endl;*/
+	
+	/////23
+	/*ScoreBoard* s;
+	string* courses;
+	float *scores;
+	int row = 0, column = 0;
+	if (!viewClassScoreBoardIn1Semester(s, scores, courses, row, column, "2021-2022", "autumn", "22ctt2")) {
+		cout << "school year, semester or class does not exist!\n";
+	}
+	else {
+		cout << left << setw(10) << "student id" << '\t';
+		for (int i = 0; i < column; i++) {
+			cout << left << setw(15) << courses[i];
+		}
+		cout << left << setw(15) << "gpa" << endl;
+		for (int i = 0; i < row; i++) {
+			cout << left << setw(10) << s[i].studentid << '\t';
+			for (int j = 0; j < column + 1; j++) {
+				if (scores[i * (column + 1) + j] != -1) {
+					cout << left << setw(15) << scores[i * (column + 1) + j];
+				}
+				else {
+					//student did not enroll this course
+					cout << left << setw(15) << " ";
+				}
+			}
+			cout << endl;
+		}
+		cout << "successfully!" << endl;
+	}
+	delete[] s;
+	delete[] courses;
+	delete[] scores;*/
+
+	/////23
+	/*ScoreBoard* s;
+	float *scores;
+	int row = 0;
+	if (!viewClassOverallIn1Year(s, scores, row, "2021-2022", "22CTT2"))
+		cout << "School year or Class does not exist" << endl;
+	else {
+		string* semester = new string[3]{ "Spring","Summer","Autumn" };
+		cout << left << setw(10) << "Student ID" << '\t';
+		for (int i = 0; i < 3; i++) {
+			cout << left << setw(15) << semester[i];
+		}
+		cout << left << setw(15) << "GPA" << endl;
+		for (int i = 0; i < row; i++) {
+			cout << left << setw(10) << s[i].studentid << '\t';
+			for (int j = 0; j < 4; j++) {
+				if (scores[i * 4 + j] >= 0 && scores[i * 4 + j] <= 10) {
+					cout << left << setw(15) << scores[i * 4 + j];
+				}
+				else
+					cout << left << setw(15) << " ";
+			}
+			cout << endl;
+		}
 		cout << "Successfully!" << endl;
 	}*/
 
-	/*if (!viewClassOverallIn1Year(s, "2021-2022", "22CTT1"))
-		cout << "School year or Class does not exist" << endl;
-	else
-		cout << "Successfully!" << endl;*/
-
-	/*ScoreBoard* s = new ScoreBoard[100];
-	string* courses = new string[100];
+	/////24
+	/*string* courses = new string[100];
 	float* gpa = new float[3]{ -1,-1,-1 };
 	int n = 0, z = 0;
 	string* semester = new string[3]{ "Spring","Summer","Autumn" };
@@ -953,5 +1077,9 @@ bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string
 	delete[] courses;
 	delete[] gpa;
 	delete[] semester;*/
-// 	return 0;
-// }
+	/*for (int i = 0; i < row; i++) {
+		delete[] scores[i];
+	}
+	delete[] scores;*/
+ 	return 0;
+ }
