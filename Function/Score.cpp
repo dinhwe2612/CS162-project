@@ -753,8 +753,8 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&cou
 		return false;
 
 	path = toSchoolYear + schoolYear + "/" + semester + "/Semester_Info.txt";
-	int row = 0;
-	int column = getNumberOf(path) - 4;
+	// int row = 0;
+	// int column = getNumberOf(path) - 4;
 
 	//Take courses in this semester
 	//string *courses;
@@ -943,7 +943,7 @@ bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string
 	return true;
 }
 
- int main() {
+//  int main() {
 	/////19
 	/*string destination = "";
 	if (exportCourseStudentList(destination, "2021-2022", "Autumn", "CS162-22CTT2")) {
@@ -1081,5 +1081,5 @@ bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string
 		delete[] scores[i];
 	}
 	delete[] scores;*/
- 	return 0;
- }
+//  	return 0;
+//  }
