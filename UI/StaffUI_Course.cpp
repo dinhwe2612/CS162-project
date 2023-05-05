@@ -551,6 +551,30 @@ void Course::DrawViewGPA()
     back.DrawText();
 }
 
+string convertFloatToString(float x) {
+    string ans = to_string(x);
+    int i, sz = ans.size();
+    for(i = 0; i < sz && ans[i] != '.'; ++i);
+    int sur = 0;
+    while(sz - i > 2) {
+        if (sz - i == 3) {
+            if (ans.back() >= '5') sur = 1;
+        }
+        ans.pop_back(), --sz;
+    }
+    for(int i = sz - 1; i >= 0; --i) {
+        if (ans[i] == '.') continue;
+        if (sur) {
+            if (ans[i] == '9') ans[i] = '0';
+            else {
+                ++ans[i];
+                sur = 0;
+            }
+        }
+    }
+    return ans;
+}
+
 void Course::DrawStudentListFullInfo() {
     float static posY = 0;
 
@@ -650,14 +674,15 @@ void Course::DrawStudentListScore() {
             DrawTextEx(PT_serif_regular, scoreBoard[i].studentid.c_str(), (Vector2){float(0.305*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Student Name
         DrawTextEx(PT_serif_regular, (scoreBoard[i].firstname + " " + scoreBoard[i].lastname).c_str(), (Vector2){float(0.395*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
-        // Draw Oter Mark
-        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].other).c_str(), (Vector2){float(0.58*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+
+        // Draw Other Mark
+        if (scoreBoard[i].other != -1) DrawTextEx(PT_serif_regular, convertFloatToString(scoreBoard[i].other).c_str(), (Vector2){float(0.58*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Midterm Mark
-        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].midterm).c_str(), (Vector2){float(0.69*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        if (scoreBoard[i].midterm != -1) DrawTextEx(PT_serif_regular, convertFloatToString(scoreBoard[i].midterm).c_str(), (Vector2){float(0.69*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Final Mark
-        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].finals).c_str(), (Vector2){float(0.8*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        if (scoreBoard[i].finals != -1) DrawTextEx(PT_serif_regular, convertFloatToString(scoreBoard[i].finals).c_str(), (Vector2){float(0.8*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
         // Draw Total Mark
-        DrawTextEx(PT_serif_regular, to_string(scoreBoard[i].total).c_str(), (Vector2){float(0.9*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
+        if (scoreBoard[i].total != -1) DrawTextEx(PT_serif_regular, convertFloatToString(scoreBoard[i].total).c_str(), (Vector2){float(0.9*windowWidth + posX), float(0.34*windowHeight + i * szButton + posY)}, 0.02*windowWidth, 0.5, BLACK);
 
         if (menuCourse == VIEWCOURSE && No.isPRESSED(MOUSE_BUTTON_LEFT)) {
             if (indexStudent == i) indexStudent = -1;

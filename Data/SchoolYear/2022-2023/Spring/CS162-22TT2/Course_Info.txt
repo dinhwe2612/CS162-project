@@ -1,8 +1,8 @@
 CS162-22TT2
-Introduction to Computer Science II
+Introduction to Computer Science
 22TT2
-Dinh Ba Tien
+Din Ba Tien
 4
-60
-Mon
+50
+Wed
 S3

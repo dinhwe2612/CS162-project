@@ -26,7 +26,7 @@ bool isValid(string s) {
 	int counter = 0;
 	int n = strlen(s.c_str());
 	if ((s[0] < '0' || s[0] > '9') || (s[n - 1] < '0' || s[n - 1]>'9')) {
-		valid = false;
+		if (s != "-1") valid = false;
 	}
 	else {
 		for (int i = 0; i < s.size(); i++) {
@@ -293,7 +293,7 @@ void saveScore(string path, ScoreBoard* s, int n, string schoolyear, string seme
 
 
 void checkData(string path, string schoolyear, string semester, string course) {
-	path += "/Student_ID_data.csv";
+	// path += "/Student_ID_data.csv";
 	//string path_out = ToSchoolYear + schoolyear + '/' + semester + '/' + course + "/Score" + '/' + course + ".txt";
 	int n = 0, n1=0;
 
@@ -326,13 +326,16 @@ void checkData(string path, string schoolyear, string semester, string course) {
 	//delete[] invalid;
 }
 bool importCourseScoreBoard(string path, string schoolyear, string semester, string course) {
-	path += toSchoolYear + schoolyear + "/" + semester + "/" + course;
+	// path += toSchoolYear + schoolyear + "/" + semester + "/" + course;
+	cout << endl << path << endl;
 	if (!filesystem::exists(path))
 		return false;
 	string toScore = toSchoolYear + schoolyear + "/" + semester + "/" + course;
 	toScore += "/Score";
+	// cout << toScore << endl;
 	if (!filesystem::exists(toScore)) {
 		filesystem::create_directory(toScore);
+		cout << "Created" << endl;
 	}
 	checkData(path, schoolyear, semester, course);
 	return true;

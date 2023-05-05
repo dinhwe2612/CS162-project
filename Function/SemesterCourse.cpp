@@ -231,7 +231,7 @@ bool Remove1StudentfromCourse(string studentid, ACourse course, string schoolYea
     }
     i = 1;
     out.close();
-    address = "../Data/Student/" + studentid + ".txt";
+    address = "Data/Student/" + studentid + ".txt";
     info = Read_File(address);
     string tmp = course.id + "-" + course.Class;
     while (i <= atoi(info[0].c_str()))
