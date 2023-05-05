@@ -15,7 +15,8 @@ struct StudentSemesterUI
     int windowWidth;
     int windowHeight;
 
-    string SchoolYear;
+    string schoolYear;
+    string semester;
 
     Texture2D background;
     Texture2D world;
@@ -32,6 +33,9 @@ struct StudentSemesterUI
     int menuSemester = 0;
     
     int listSize = 2;
+
+    int listCourseSize = 0;
+    ACourse *ListOfCourses;
     
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
@@ -39,7 +43,8 @@ struct StudentSemesterUI
     void Draw(int &menuWindow);
         void DrawBackground();
         void DrawSemesterList();
-        
+        void DrawCourseList();
+        void DrawScoreBoard();
 };
 
 #endif

@@ -82,10 +82,10 @@ void StudentUI::Draw(int& menuLogin)
     {
     default:
         DrawBackground();
+        DrawCurrentWindow();
         DrawStaticElements();
         DrawDropDownAccount(menuLogin);//for signout button
         DrawDropDownSchoolYear();
-        DrawCurrentWindow();
         break;
     case CHANGE_PASSWORD:
         DrawChangePassword();
@@ -377,8 +377,8 @@ void StudentUI::DrawSchoolYear()
 
             menuWindow = SEMESTER;
             _Semester.menuSemester = 0;
-            _Semester.SchoolYear = ListOfSchoolYear[i]; 
-            viewSemester(_Semester.SchoolYear, _Semester.ListOfSemesters, _Semester.listSize);
+            _Semester.schoolYear = ListOfSchoolYear[i]; 
+            viewSemester(_Semester.schoolYear, _Semester.ListOfSemesters, _Semester.listSize);
         }
 
         else 
