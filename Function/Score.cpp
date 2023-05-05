@@ -754,7 +754,7 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&cou
 
 	path = toSchoolYear + schoolYear + "/" + semester + "/Semester_Info.txt";
 	// int row = 0;
-	// int column = getNumberOf(path) - 4;
+	column = getNumberOf(path) - 4;
 
 	//Take courses in this semester
 	//string *courses;
