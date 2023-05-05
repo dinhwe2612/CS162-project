@@ -50,8 +50,10 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 // the overall gpa is the average of all studied semesters.
 
 
-bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class);
-bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class);
+// bool viewClassOverallIn1Year(ScoreBoard*& s, string schoolYear, string Class);
+// bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, string schoolYear, string semester, string Class);
+bool viewClassOverallIn1Year(ScoreBoard*& s, float *&scores, int &row, string schoolYear, string Class);
+bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&courses, int &row, int &column, string schoolYear, string semester, string Class);
 // two functions above can only view scoreboard of a class in one year
 bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n);
 #endif
