@@ -6,6 +6,7 @@
 #include "../external/raylib/src/raylib.h"
 #include "../Header/login.h"
 #include "../Header/view.h"
+#include "../Header/StudentFunc.h"  
 #include <iostream>
 #include <vector>
 #include "Button.hpp"
@@ -42,6 +43,8 @@ struct StudentUI
     InputBar oldPassword;
     InputBar newPassword;
     InputBar confirmPassword;
+    
+    Student curStu;
 
     const int DEFAULT = -1;
     int menuStudent = DEFAULT;

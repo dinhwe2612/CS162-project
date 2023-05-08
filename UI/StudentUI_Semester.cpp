@@ -84,7 +84,7 @@ void StudentSemesterUI::DrawSemesterList()
         if (_Semester.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuSemester = 1;
             semester = ListOfSemesters[i];
-            viewCourses(schoolYear, semester, ListOfCourses, listCourseSize);
+            if (!ViewCoursesStudent(schoolYear, semester, studentID, ListOfCourses, ListOfScores, listCourseSize)) cerr << "Error: ViewCoursesStudent" << endl;
         }
     }
 }

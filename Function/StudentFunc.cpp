@@ -1,6 +1,6 @@
 #include "../Header/StudentFunc.h"
 
-bool checkDirectory(const filesystem::path& path) {
+bool ValidDirectory(const filesystem::path& path) {
     if (!filesystem::exists(path)) {
         // path does not exist
         return false;
@@ -14,15 +14,31 @@ bool checkDirectory(const filesystem::path& path) {
     return true;
 }
 
+bool LoadDataStudent(Student &stu, string username) {
+    ifstream fin("Data/Student/" + username + ".txt");
+    if (!fin.is_open())
+        return false;
+    getline(fin, stu.studentID);
+    getline(fin, stu.firstName);
+    getline(fin, stu.lastName);
+    getline(fin, stu.Class);
+    fin >> stu.gender;
+    getline(fin, stu.DOB);
+    getline(fin, stu.DOB);
+    getline(fin, stu.socialID);
+    fin.close();
+    return true;
+}
+
 bool ViewSchoolYearStudent(Student &stu, string *&schoolYear, int &n) {
     n = 0;
-    const filesystem::path path = "../Data/SchoolYear/";
+    const filesystem::path path = "Data/SchoolYear/";
     int i = 0;
-    if (!checkDirectory(path))
+    if (!ValidDirectory(path))
         return false;
     for (const auto & entry : filesystem::directory_iterator(path)) {
         if (entry.is_directory()) {
-            const filesystem::path pathtmp = "../Data/SchoolYear/" + entry.path().stem().string() + "/Classes/" + stu.Class + ".txt";
+            const filesystem::path pathtmp = "Data/SchoolYear/" + entry.path().stem().string() + "/Classes/" + stu.Class + ".txt";
             if (filesystem::exists(pathtmp))
                 ++n;
         }
@@ -31,7 +47,7 @@ bool ViewSchoolYearStudent(Student &stu, string *&schoolYear, int &n) {
     n = 0;
     for (const auto & entry : filesystem::directory_iterator(path)) {
         if (entry.is_directory()) {
-            const filesystem::path pathtmp = "../Data/SchoolYear/" + entry.path().stem().string() + "/Classes/" + stu.Class + ".txt";
+            const filesystem::path pathtmp = "Data/SchoolYear/" + entry.path().stem().string() + "/Classes/" + stu.Class + ".txt";
             if (filesystem::exists(pathtmp))
                 schoolYear[n++] = entry.path().stem().string();
         }
@@ -60,50 +76,56 @@ string FindPathCourse(string nameCourseFile) {
     return "";
 }
 
-bool ViewCoursesStudent(Student &stu, ACourse *&course, ScoreBoard *&scores, int &n) {
-    //get name in studentid.txt
-    n = 0;
-    string pathToStudentFile = "../Data/Student/" + stu.studentID + ".txt";
-    ifstream fin(pathToStudentFile);
+bool IsInCourse(string schoolYear, string semester, string courseName, string studentID) {
+    string pathToStudentIDData = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + courseName + "/Student_ID_data.txt";
+    ifstream fin(pathToStudentIDData);
     if (!fin.is_open())
         return false;
-    int cnt = 0;
     string tmp;
-    while(cnt < 7) getline(fin, tmp), ++cnt;
-    while(getline(fin, tmp)) {
-        if (tmp == "") break;
-        ++n;
+    while(!fin.eof()) {
+        getline(fin, tmp);
+        if (tmp == studentID) {
+            fin.close();
+            return true;
+        }
     }
     fin.close();
-    fin.open(pathToStudentFile);
-    cnt = 0;
-    while(cnt < 7) getline(fin, tmp), ++cnt;
-    course = new ACourse[n];
-    cnt = 0;
-    while(getline(fin, tmp)) {
-        if (tmp == "") break;
-        course[cnt++].name = tmp;
+    return false;
+}
+
+bool ViewCoursesStudent(string schoolYear, string semester, string studentID, ACourse *&listOfCourse, ScoreBoard *&scores, int &n) {
+    //count n
+    string pathToSemester = "Data/SchoolYear/" + schoolYear + "/" + semester + "/";
+    n = 0;
+    if (!ValidDirectory(pathToSemester))
+        return false;
+    for(const auto & course : filesystem::directory_iterator(pathToSemester)) {
+        if (IsInCourse(schoolYear, semester, course.path().stem().string(), studentID))
+            ++n;
     }
-    fin.close();
     //get info in course directory
+    listOfCourse = new ACourse[n];
     scores = new ScoreBoard[n];
-    for(int i = 0; i < n; ++i) {
+    int i = 0;
+    ifstream fin;
+    for(const auto & course : filesystem::directory_iterator(pathToSemester)) {
+        if (course.path().stem().string() == "Semester_Info") continue;
         //get info course
-        string pathToCourse = FindPathCourse(course[i].name);
+        string pathToCourse = course.path().string() + "/";
         fin.open(pathToCourse + "Course_Info.txt");
         if (!fin.is_open())
             return false;
-        getline(fin, tmp);
-        getline(fin, course[i].name);
-        getline(fin, course[i].Class);
-        getline(fin, course[i].teacher);
-        fin >> course[i].credit;
-        fin >> course[i].maxStudent;
-        getline(fin, course[i].dayOfWeek);
-        getline(fin, course[i].session);
+        getline(fin, listOfCourse[i].name);
+        getline(fin, listOfCourse[i].name);
+        getline(fin, listOfCourse[i].Class);
+        getline(fin, listOfCourse[i].teacher);
+        fin >> listOfCourse[i].credit;
+        fin >> listOfCourse[i].maxStudent;
+        getline(fin, listOfCourse[i].dayOfWeek);
+        getline(fin, listOfCourse[i].session);
         fin.close();
         //get score
-        fin.open(pathToCourse + "Score/" + stu.studentID + ".txt");
+        fin.open(pathToCourse + "Score/" + studentID + ".txt");
         if (!fin.is_open())
             return false;
         fin >> scores[i].other;
@@ -111,7 +133,9 @@ bool ViewCoursesStudent(Student &stu, ACourse *&course, ScoreBoard *&scores, int
         fin >> scores[i].finals;
         fin >> scores[i].total;
         fin.close();
+        ++i;
     }
+    return true;
 }
 
 // int main() {

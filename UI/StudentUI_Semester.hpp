@@ -8,6 +8,7 @@
 #include <iostream>
 #include "../Header/view.h"
 #include "../Header/SemesterCourse.h"
+#include "../Header/StudentFunc.h"
 #include "StaffUI_Course.hpp"
 
 struct StudentSemesterUI
@@ -17,6 +18,7 @@ struct StudentSemesterUI
 
     string schoolYear;
     string semester;
+    string studentID;
 
     Texture2D background;
     Texture2D world;
@@ -32,10 +34,10 @@ struct StudentSemesterUI
 
     int menuSemester = 0;
     
-    int listSize = 2;
-
+    int listSize = 0;
     int listCourseSize = 0;
     ACourse *ListOfCourses;
+    ScoreBoard *ListOfScores;
     
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();

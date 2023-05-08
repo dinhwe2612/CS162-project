@@ -10,5 +10,6 @@
 
 using namespace std;
 
-bool ViewCoursesStudent(Student &stu, ACourse *&course, ScoreBoard *&scores, int &n);
+bool LoadDataStudent(Student &stu, string username);
+bool ViewCoursesStudent(string schoolYear, string semester, string studentID, ACourse *&course, ScoreBoard *&scores, int &n);
 bool ViewSchoolYearStudent(Student &stu, string *&schoolYear, int &n);

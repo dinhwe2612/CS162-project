@@ -47,6 +47,7 @@ int main()
                     menuLogin = STUDENT;
 
                     Student.username = Login.inputUsername.GetInput();
+                    if (!LoadDataStudent(Student.curStu, Student.username)) cerr << "Load data student failed" << endl;
                     Login.inputUsername.currentInput = "";
                     Login.inputPassword.currentInput = "";
                     Login.isLoginSuccess = false;

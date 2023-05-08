@@ -258,31 +258,34 @@ void StudentUI::DrawDropDownAccount(int &menuLogin)
         DrawTexturePro(profile, psrc, pdst, (Vector2){0, 0}, 0, WHITE);
 
         // draw name in the middle of box
-        Vector2 nameSize =  MeasureTextEx(PT_serif_bold, "Username here", 0.016*windowWidth, 0.5);
+        Vector2 nameSize =  MeasureTextEx(PT_serif_bold, curStu.firstName.c_str(), 0.016*windowWidth, 0.5);
         float nameXCoordinate = (box.width - nameSize.x) / 2 + box.x;
 
-        DrawTextEx(PT_serif_bold, "Username here", (Vector2){nameXCoordinate, float(0.07*windowWidth + 0.08*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, curStu.firstName.c_str(), (Vector2){nameXCoordinate, float(0.07*windowWidth + 0.08*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
         DrawLineV((Vector2){box.x, float(0.24*windowHeight)}, (Vector2){box.x + box.width, float(0.24*windowHeight)}, LIGHTGRAY);
 
         DrawTexturePro(gender, (Rectangle){0, 0, float(gender.width), float(gender.height)}, (Rectangle){float(0.8*windowWidth), float(0.27*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(PT_serif_bold, "Gender", (Vector2){float(0.84*windowWidth), float(0.27*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
-        DrawTextEx(PT_serif_bold, "Female", (Vector2){float(0.84*windowWidth), float(0.29*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+        string Gender;
+        if (curStu.gender == 0) Gender = "Male";
+        else if (curStu.gender == 1) Gender = "Female";
+        else Gender = "Other";
+        DrawTextEx(PT_serif_bold, Gender.c_str(), (Vector2){float(0.84*windowWidth), float(0.29*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
 
         DrawTexturePro(DOB, (Rectangle){0, 0, float(DOB.width), float(DOB.height)}, (Rectangle){float(0.8*windowWidth), float(0.33*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(PT_serif_bold, "Date of birth", (Vector2){float(0.84*windowWidth), float(0.33*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
-        DrawTextEx(PT_serif_bold, "17/3/2004", (Vector2){float(0.84*windowWidth), float(0.35*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
-
+        DrawTextEx(PT_serif_bold, curStu.DOB.c_str(), (Vector2){float(0.84*windowWidth), float(0.35*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
         DrawTexturePro(socialID, (Rectangle){0, 0, float(socialID.width), float(socialID.height)}, (Rectangle){float(0.8*windowWidth), float(0.39*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(PT_serif_bold, "Social ID", (Vector2){float(0.84*windowWidth), float(0.39*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
-        DrawTextEx(PT_serif_bold, "72139749283", (Vector2){float(0.84*windowWidth), float(0.41*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, curStu.socialID.c_str(), (Vector2){float(0.84*windowWidth), float(0.41*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
 
         DrawTexturePro(Class, (Rectangle){0, 0, float(Class.width), float(Class.height)}, (Rectangle){float(0.8*windowWidth), float(0.45*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(PT_serif_bold, "Class", (Vector2){float(0.84*windowWidth), float(0.45*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
-        DrawTextEx(PT_serif_bold, "22TT2", (Vector2){float(0.84*windowWidth), float(0.47*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, curStu.Class.c_str(), (Vector2){float(0.84*windowWidth), float(0.47*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
 
         DrawTexturePro(studentID, (Rectangle){0, 0, float(studentID.width), float(studentID.height)}, (Rectangle){float(0.797*windowWidth), float(0.5*windowHeight), float(0.032*windowWidth), float(0.034*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(PT_serif_bold, "Student ID", (Vector2){float(0.84*windowWidth), float(0.51*windowHeight)}, 0.013*windowWidth, 0.5, GRAY);
-        DrawTextEx(PT_serif_bold, "22125010", (Vector2){float(0.84*windowWidth), float(0.53*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, curStu.studentID.c_str(), (Vector2){float(0.84*windowWidth), float(0.53*windowHeight)}, 0.013*windowWidth, 0.5, BLACK);
         
         DrawLineV((Vector2){box.x, float(0.58*windowHeight)}, (Vector2){box.x + box.width, float(0.58*windowHeight)}, LIGHTGRAY);
 
@@ -313,7 +316,7 @@ void StudentUI::DrawDropDownSchoolYear()
     {
         IS_DROPDOWN_CLICKED ^= 1;
         if (IS_DROPDOWN_CLICKED) {
-            viewSchoolYear(ListOfSchoolYear, ListSize);
+            ViewSchoolYearStudent(curStu, ListOfSchoolYear, ListSize);
             for(int i = 0; i < ListSize; ++i) {
                 BUTTON_SchoolYear_isCLICKED[i] = false;
             }
@@ -379,6 +382,8 @@ void StudentUI::DrawSchoolYear()
             _Semester.menuSemester = 0;
             _Semester.schoolYear = ListOfSchoolYear[i]; 
             viewSemester(_Semester.schoolYear, _Semester.ListOfSemesters, _Semester.listSize);
+            _Semester.schoolYear = ListOfSchoolYear[i];
+            _Semester.studentID = curStu.studentID;
         }
 
         else 
