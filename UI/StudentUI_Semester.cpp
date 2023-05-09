@@ -207,7 +207,7 @@ void StudentSemesterUI::DrawScoreBoard() {
         // draw line between each row
         DrawLine(float(0.03*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*(i+1) + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*(i+1) + dy), BLACK);
         // draw text of each column 
-        DrawTextEx(PT_serif_bold, to_string(i+1).c_str(), Centered(0.03*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.05*windowWidth, 0.05*windowHeight, to_string(i+1), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, to_string(i+1).c_str(), Centered(0.03*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.05*windowWidth, 0.05*windowHeight, to_string(i+1), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
         DrawTextEx(PT_serif_regular, ListOfCourses[i].id.c_str(), Centered(0.08*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.13*windowWidth, 0.05*windowHeight, ListOfCourses[i].id, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
         DrawTextEx(PT_serif_regular, ListOfCourses[i].name.c_str(), Centered(0.21*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.29*windowWidth, 0.05*windowHeight, ListOfCourses[i].name, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
         DrawTextEx(PT_serif_regular, to_string(ListOfCourses[i].credit).c_str(), Centered(0.5*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, to_string(ListOfCourses[i].credit), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);

@@ -368,7 +368,7 @@ void StudentUI::DrawSchoolYear()
     for (int i = 0; i < ListSize; ++i)
     {
         //skip drawing if button is out of screen
-        if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
+        // if (0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight <= 0.05*windowHeight) continue;
 
         Button schoolYear;
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
