@@ -82,8 +82,8 @@ void StudentUI::Draw(int& menuLogin)
     {
     default:
         DrawBackground();
-        DrawCurrentWindow();
         DrawStaticElements();
+        DrawCurrentWindow();
         DrawDropDownAccount(menuLogin);//for signout button
         DrawDropDownSchoolYear();
         break;
@@ -410,6 +410,7 @@ void StudentUI::DrawSchoolYear()
     DrawTexturePro(calendar, (Rectangle){0, 0, float(calendar.width), float(calendar.height)}, (Rectangle){float(0.01*windowWidth), float(0.12*windowHeight), float(0.02*windowWidth), float(0.02*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
     Vector2 addTextOrigin = {float(0.035*windowWidth), float(0.12*windowHeight)};
     DrawTextEx(PT_serif_bold, "Pick a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
-
+    
     DrawStaticElements();
+    DrawLineEx((Vector2){0.2*windowWidth, 0.05*windowHeight}, (Vector2){0.2*windowWidth, windowHeight}, 1, BLUE);
 }

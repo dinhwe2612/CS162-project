@@ -317,6 +317,7 @@ void StaffUI::DrawSchoolYear()
     Vector2 addTextOrigin = {float(0.035*windowWidth), float(0.12*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
 
+    DrawLineEx((Vector2){0.2*windowWidth, 0.05*windowHeight}, (Vector2){0.2*windowWidth, windowHeight}, 1, BLUE);
     DrawStaticElement();
 }
 

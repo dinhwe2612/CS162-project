@@ -115,7 +115,9 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
         fin.open(pathToCourse + "Course_Info.txt");
         if (!fin.is_open())
             return false;
-        getline(fin, listOfCourse[i].name);
+        getline(fin, listOfCourse[i].id);
+        while(listOfCourse[i].id.size() && listOfCourse[i].id.back() != '-') listOfCourse[i].id.pop_back();
+        listOfCourse[i].id.pop_back(); 
         getline(fin, listOfCourse[i].name);
         getline(fin, listOfCourse[i].Class);
         getline(fin, listOfCourse[i].teacher);
