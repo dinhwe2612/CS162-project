@@ -55,5 +55,6 @@ bool updateStudentResult(ScoreBoard& studentScore, ScoreBoard modifiedScore, str
 bool viewClassOverallIn1Year(ScoreBoard*& s, float *&scores, int &row, string schoolYear, string Class);
 bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&courses, int &row, int &column, string schoolYear, string semester, string Class);
 // two functions above can only view scoreboard of a class in one year
-bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n);
+//bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n);
+bool viewStudentScoreboard(Student student, string *&courses, string *&courseName, string *&schoolYears, string *&semesters, ScoreBoard *&s, float &overall, int &n);
 #endif
