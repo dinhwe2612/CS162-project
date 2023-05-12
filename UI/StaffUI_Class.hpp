@@ -65,6 +65,8 @@ struct Class
     void Construct(int windowWidth, int windowHeight);
     void Deconstruct();
 
+    Vector2 GetCenterPos(float x, float y, float width, float height, string text, Font font, float fontSize, float spacing);
+
     void Draw(int &menuWindow);
         void DrawBackground();
         void DrawCreateClass();

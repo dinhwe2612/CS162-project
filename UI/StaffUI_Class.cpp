@@ -303,12 +303,12 @@ void Class::DrawStudentList() {
         No.DrawText();
         DrawLine(BoxStuList.x, 0.32*windowHeight + 5 + i * szButton + posY + szButton, BoxStuList.x + BoxStuList.width, 0.32*windowHeight + 5 + i * szButton + posY + szButton, BLACK);
 
-        DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), (Vector2){float(0.26*windowWidth + 0.01*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].firstName.c_str(), (Vector2){float(0.32*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].lastName.c_str(), (Vector2){float(0.43*windowWidth - 10 + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].studentID.c_str(), (Vector2){float(0.54*windowWidth - 10 + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].DOB.c_str(), (Vector2){float(0.65*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_regular, ListOfStudent[i].socialID.c_str(), (Vector2){float(0.76*windowWidth + posX), float(0.32*windowHeight + 5 + i * szButton + posY + 0.01*windowHeight + 5)}, 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, to_string(i + 1).c_str(), GetCenterPos(BoxStuList.x, 0.32*windowHeight + 5 + i * szButton + posY, 0.31*windowWidth + posX - BoxStuList.x, szButton, to_string(i + 1).c_str(), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].firstName.c_str(), GetCenterPos(0.31*windowWidth + posX, 0.32*windowHeight + 5 + i * szButton + posY, 0.11*windowWidth, szButton, ListOfStudent[i].firstName.c_str(), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].lastName.c_str(), GetCenterPos(0.42*windowWidth + posX, 0.32*windowHeight + 5 + i * szButton + posY, 0.11*windowWidth - 5, szButton, ListOfStudent[i].lastName.c_str(), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].studentID.c_str(), GetCenterPos(0.53*windowWidth - 5 + posX, 0.32*windowHeight + 5 + i * szButton + posY, 0.11*windowWidth - 5, szButton, ListOfStudent[i].studentID.c_str(), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].DOB.c_str(), GetCenterPos(0.64*windowWidth - 10 + posX, 0.32*windowHeight + 5 + i * szButton + posY, 0.12*windowWidth, szButton, ListOfStudent[i].DOB.c_str(), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfStudent[i].socialID.c_str(), GetCenterPos(0.76*windowWidth - 10 + posX, 0.32*windowHeight + 5 + i * szButton + posY, BoxStuList.x + BoxStuList.width - (0.76*windowWidth - 10 + posX), szButton, ListOfStudent[i].socialID.c_str(), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
     }
     Rectangle box1 = {float(BoxStuList.x), float(0.32*windowHeight + 5 - (szButton + 5)), float(BoxStuList.width), float(szButton + 5)};
     DrawRectanglePro(box1, (Vector2){0, 0}, 0, RAYWHITE);
@@ -432,4 +432,9 @@ void Class::DrawAddStudent() {
 
 void Class::DrawSchoolYearMenu() {
     DrawTextEx(PT_serif_bold, (">  " + SchoolYear).c_str(), (Vector2){float(0.25*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
+}
+
+Vector2 Class::GetCenterPos(float x, float y, float width, float height, string text, Font font, float fontSize, float spacing) {
+    Vector2 size = MeasureTextEx(font, text.c_str(), fontSize, spacing);
+    return (Vector2){x + width/2 - size.x/2, y + height/2 - size.y/2};
 }

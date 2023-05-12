@@ -499,7 +499,7 @@ void Course::ChooseViewClass()
     DrawRectangle(0.35*windowWidth, 0.33*windowHeight, 0.32*windowWidth, 0.34*windowHeight, LIGHTGRAY);
 
     // draw outer box
-    DrawRectangle(0.355*windowWidth, 0.33*windowHeight + 0.005*windowWidth, 0.31*windowWidth, 0.34*windowHeight - 0.015*windowWidth, RAYWHITE);
+    DrawRectangle(0.355*windowWidth, 0.33*windowHeight + 0.005*windowWidth, 0.31*windowWidth, 0.34*windowHeight - 0.012*windowWidth, RAYWHITE);
 
     // draw create school year button and its function
     Button Done;
@@ -929,6 +929,10 @@ void Course::DrawImportStudentList() {
         if (IsFileDropped()) UnloadDroppedFiles(droppedFiles);
         dir = "";
     }
+
+    //draw title
+    if (viewStudent) DrawTextEx(PT_serif_bold, "Import Student List", GetCenterPos(float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.04*windowHeight), "Import Student List", PT_serif_bold, 0.025*windowWidth, 0.5), 0.025*windowWidth, 0.5, BLACK);
+    else DrawTextEx(PT_serif_bold, "Import Scoreboard", GetCenterPos(float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.04*windowHeight), "Import Student List", PT_serif_bold, 0.025*windowWidth, 0.5), 0.025*windowWidth, 0.5, BLACK);
 
     Rectangle dropInBox = {float(windowWidth/2), float(windowHeight/2), float(0.3*windowWidth), float(0.3*windowHeight)};
     Vector2 dropInOrigin = {float(dropInBox.width/2), float(dropInBox.height/2)};
