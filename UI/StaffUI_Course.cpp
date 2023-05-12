@@ -639,7 +639,16 @@ void Course::DrawViewGPA()
             DrawTextEx(PT_serif_bold, courseOfClass[i][j].name.c_str(), GetCenterPos(posX4, curPosY, posX5 - posX4, sizeY, courseOfClass[i][j].name, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
             if (scoreBoardOfClass[i][j].total != -1) {
                 DrawTextEx(PT_serif_bold, convertFloatToString(scoreBoardOfClass[i][j].total).c_str(), GetCenterPos(posX5, curPosY, posX6 - posX5, sizeY, convertFloatToString(scoreBoardOfClass[i][j].total), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-                totalScore += scoreBoardOfClass[i][j].total * courseOfClass[i][j].credit;
+                float score = 0;
+                if (scoreBoardOfClass[i][j].total > 8.4) score = 4;
+                else if (scoreBoardOfClass[i][j].total > 7.9) score = 3.5;
+                else if (scoreBoardOfClass[i][j].total > 6.9) score = 3;
+                else if (scoreBoardOfClass[i][j].total > 6.4) score = 2.5;
+                else if (scoreBoardOfClass[i][j].total > 5.4) score = 2;
+                else if (scoreBoardOfClass[i][j].total > 4.9) score = 1.5;
+                else if (scoreBoardOfClass[i][j].total > 3.9) score = 1;
+                else score = 0;
+                totalScore += score * courseOfClass[i][j].credit;
                 totalCredit += courseOfClass[i][j].credit;
             }
             curPosY += sizeY;

@@ -103,6 +103,7 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
         if (IsInCourse(schoolYear, semester, course.path().stem().string(), studentID))
             ++n;
     }
+    // cout << n << endl;
     if (n == 0) return true;
     //get info in course directory
     listOfCourse = new ACourse[n];
@@ -111,6 +112,7 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
     ifstream fin;
     for(const auto & course : filesystem::directory_iterator(pathToSemester)) {
         if (course.path().stem().string() == "Semester_Info") continue;
+        if (!IsInCourse(schoolYear, semester, course.path().stem().string(), studentID)) continue;
         //get info course
         string pathToCourse = course.path().string() + "/";
         fin.open(pathToCourse + "Course_Info.txt");
@@ -129,8 +131,7 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
         fin.close();
         //get score
         fin.open(pathToCourse + "Score/" + studentID + ".txt");
-        // if (!fin.is_open())
-        //     return false;
+        if (!fin.is_open()) continue;
         fin >> scores[i].other;
         fin >> scores[i].midterm;
         fin >> scores[i].finals;
