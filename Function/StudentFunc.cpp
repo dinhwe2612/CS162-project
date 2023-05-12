@@ -103,6 +103,7 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
         if (IsInCourse(schoolYear, semester, course.path().stem().string(), studentID))
             ++n;
     }
+    if (n == 0) return true;
     //get info in course directory
     listOfCourse = new ACourse[n];
     scores = new ScoreBoard[n];
@@ -128,8 +129,8 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
         fin.close();
         //get score
         fin.open(pathToCourse + "Score/" + studentID + ".txt");
-        if (!fin.is_open())
-            return false;
+        // if (!fin.is_open())
+        //     return false;
         fin >> scores[i].other;
         fin >> scores[i].midterm;
         fin >> scores[i].finals;

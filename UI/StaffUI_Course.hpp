@@ -66,10 +66,21 @@ struct Course
     ScoreBoard *scoreBoard;
     int ScoreBoardSize = 0;
 
+    string *listOfClass;
+    int listClassSize = 0;
+    string curClass;
+
+    Student *studentListOfClass;
+    int studentListOfClassSize = 0;
+    ScoreBoard **scoreBoardOfClass;
+    ACourse **courseOfClass;
+    int *scoreBoardOfClassSize = 0;
+
     int menuCourse = -1;
     enum WindowCourse {
         CREATECOURSE,
         VIEWCOURSE,
+        CHOOSECLASS,
         VIEWGPA,
         MODIFYCOURSE,
         ADDSTUDENT,
@@ -91,6 +102,8 @@ struct Course
     void Deconstruct();
 
     std::string buttonChosen(float x, float y, float width, float height, std::string* labels, bool* isButtonPressed, int size);
+    Vector2 GetCenterPos(float x, float y, float width, float height, string text, Font font, float fontSize, float spacing);
+    string convertFloatToString(float x);
 
     void Draw();
         void DrawBackground();

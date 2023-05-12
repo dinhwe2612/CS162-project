@@ -2,12 +2,12 @@
 // regardless, the requirements for each functions need to be satisfied.
 #ifndef score_h
 #define score_h
+#include "../Header/CourseStruct.h"
 #include <string>
-
 using namespace std;
 
 struct ScoreBoard {
-    string studentid, firstname, lastname;
+    string studentid, firstname, lastname, coursename;
     float total = -1, finals = -1, midterm = -1, other = -1;
 }; // similar to Scoreboard in scoreStruct.h, but without string course
 
@@ -57,4 +57,5 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&cou
 // two functions above can only view scoreboard of a class in one year
 //bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n);
 bool viewStudentScoreboard(Student student, string *&courses, string *&courseName, string *&schoolYears, string *&semesters, ScoreBoard *&s, float &overall, int &n);
+bool viewClassScoreBoardInSemester(Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string schoolYear, string semester, string Class);
 #endif

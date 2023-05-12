@@ -1,6 +1,7 @@
 #include"../Header/StudentStruct.h"
 #include"../Header/StaffFunc.h"
 #include"../Header/ScoreStruct.h"
+#include "../Header/StudentFunc.h"
 #include<fstream>
 #include "../Header/score.h"
 
@@ -899,6 +900,48 @@ bool viewStudentScoreboard(Student student, string *&courses, string *&courseNam
 		}
 	}
 	overall=sum/sumOfCredit;
+	return true;
+}
+
+bool viewClassScoreBoardInSemester(Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string schoolYear, string semester, string Class) {
+	string tmp;
+	ifstream fin;
+
+	// load student	
+	string pathToClass = "Data/SchoolYear/" + schoolYear + "/Classes/" + Class + ".txt";
+	cout << pathToClass << endl;
+	fin.open(pathToClass);
+	if (!fin.is_open())
+		return false;
+	stuSize = getNumberOf(pathToClass);
+	// cout << stuSize << endl;
+	fin.close();
+	stu = new Student[stuSize];
+	fin.open(pathToClass);
+	for (int i = 0; i < stuSize; ++i) {
+		fin >> tmp >> stu[i].studentID;
+		string path = "Data/Student/" + stu[i].studentID + ".txt";
+		loadStudentInfo(stu[i], path);
+	}
+	fin.close();
+	
+	//load score
+	scoreBoardSize = new int[stuSize];
+	s = new ScoreBoard*[stuSize];
+	courses = new ACourse*[stuSize];
+	
+	for (int i = 0; i < stuSize; ++i) {
+		ViewCoursesStudent(schoolYear, semester, stu[i].studentID, courses[i], s[i], scoreBoardSize[i]);
+	}
+	// cout << stuSize << endl;
+	// for(int i = 0; i < stuSize; ++i) {
+	// 	cout << stu[i].studentID << ' ' << scoreBoardSize[i] << ": ";
+	// 	for(int j = 0; j < scoreBoardSize[i]; ++j) {
+	// 		cout << courses[i][j].id << ' ';
+	// 	}
+	// 	cout << endl;
+	// }
+
 	return true;
 }
 

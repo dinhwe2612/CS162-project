@@ -372,10 +372,10 @@ void StudentUI::DrawSchoolYear()
 
         Button schoolYear;
         schoolYear.SetRectangle(0, 0.18*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
-        if (GetMouseY() >= 0.18*windowHeight && schoolYear.isPRESSED(MOUSE_BUTTON_LEFT))
-            BUTTON_SchoolYear_isCLICKED[i] ^= 1;
+        // if ()
+        //     BUTTON_SchoolYear_isCLICKED[i] ^= 1;
 
-        if (BUTTON_SchoolYear_isCLICKED[i]) {
+        if (GetMouseY() >= 0.18*windowHeight && schoolYear.isPRESSED(MOUSE_BUTTON_LEFT)) {
             schoolYear.SetText(PT_serif_bold, ">   " + ListOfSchoolYear[i], 0.01*windowWidth, 0.2*windowHeight + i * 0.1*windowHeight + posY + accumulativeHeight, 0.02*windowWidth, 0.5, DARKBLUE);
 
             menuWindow = SEMESTER;
