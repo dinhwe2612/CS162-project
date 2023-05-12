@@ -495,6 +495,8 @@ void Course::DrawViewCourse()
 
 void Course::ChooseViewClass()
 {
+    static bool isError = false;
+        
     // draw outer box border
     DrawRectangle(0.35*windowWidth, 0.33*windowHeight, 0.32*windowWidth, 0.34*windowHeight, LIGHTGRAY);
 
@@ -538,7 +540,7 @@ void Course::ChooseViewClass()
         DrawLine(0.41*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
         DrawLine(0.61*windowWidth, 0.39*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
         
-        if (viewClass.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        if (!isError && viewClass.isPRESSED(MOUSE_BUTTON_LEFT)) {
             indexChosen = i;
         }
     }
@@ -551,22 +553,59 @@ void Course::ChooseViewClass()
     viewGPAClose.SetRectangle(0.644*windowWidth, 0.34*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
     viewGPAClose.DrawTexture();
 
-    if (viewGPAClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+    if (!isError && viewGPAClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
         curIndex = 0;
         indexChosen = -1;
         menuCourse = -1;
     }
 
-    if (Done.isPRESSED(MOUSE_BUTTON_LEFT))
+    if (!isError && Done.isPRESSED(MOUSE_BUTTON_LEFT))
     {
         if (indexChosen == -1) {
-            
+            isError = true;
         } else {
             curIndex = 0;
             curClass = listOfClass[indexChosen];
             indexChosen = -1;
             menuCourse = VIEWGPA;
             if (!viewClassScoreBoardInSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, schoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardInSemester" << endl;
+        }
+    }
+    if (isError) {
+        // draw outer box border
+        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
+        DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+
+        // draw outer box
+        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
+        DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+
+        // draw error message
+        enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+        DrawTextEx(PT_serif_bold, "Please select a class", enterText, 0.015*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, "to view!", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
+
+        Button addStudentClose;
+        addStudentClose.image = close.image;
+        addStudentClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
+        addStudentClose.origin = (Vector2){0, 0};
+        addStudentClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+        addStudentClose.DrawTexture();
+
+        // draw create school year button and its function
+
+        Done.SetText(PT_serif_bold, "OK", 0.49*windowWidth, 0.55*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+        Done.SetRectangle(0.425*windowWidth, 0.54*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+        Done.DrawText();
+
+        if (Done.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            isError = false;
+        }
+
+        if (addStudentClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            isError = false;
         }
     }
 }
