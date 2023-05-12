@@ -10,6 +10,8 @@
 #include "../Header/view.h"
 #include "../Header/schoolYear.h"
 #include "../Header/StudentStruct.h"
+#include "../Header/score.h"
+#include "../Header/StudentFunc.h"
 
 using namespace std;
 
@@ -28,6 +30,7 @@ struct Class
     Button addClass;
     Button close;
     Button view, drop, add, back;
+    Button viewGPA;
 
     InputBar inputClass;
     InputBar StudentID, firstName, lastName, day, month, year, socialID;
@@ -50,13 +53,21 @@ struct Class
     bool isDropClicked = false;
     bool classClicked = false;
 
+    Student *studentListOfClass;
+    int studentListOfClassSize = 0;
+    ScoreBoard **scoreBoardOfClass;
+    ACourse **courseOfClass;
+    int *scoreBoardOfClassSize = 0;
+
     int DEFAULT = -1;
     int menuClass = DEFAULT;
     enum windowCLass {
         VIEW_CLASS,
         VIEW_STUDENT,
         DROP_FILE,
-        ADD_STUDENT
+        ADD_STUDENT,
+        CHOOSEVIEWCLASS,
+        VIEWGPA
     };
 
     // std::array<std::string, 100> ListOfClasses = {"22TT1", "22TT2", "21TT1", "21TT2", "20TT1", "20TT2", "19TT1", "19TT2", "18TT1", "18TT2"}; 
@@ -76,6 +87,8 @@ struct Class
         void DrawAddStudent();
         void DrawSchoolYearMenu();
         void LoadDroppedFile();
+        void ChooseViewClass();
+        void DrawViewGPA();
 };
 
 #endif

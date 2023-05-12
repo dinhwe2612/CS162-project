@@ -19,9 +19,6 @@ void Course::Construct(int windowWidth, int windowHeight)
     addCourse.SetRectangle(0.31*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
     addCourse.SetTexture("UI/images/add.png");
 
-    viewGPA.SetRectangle(0.52*windowWidth, 0.24*windowHeight, 0.025*windowWidth, 0.025*windowWidth, LIGHTGRAY, WHITE);
-    viewGPA.SetTexture("UI/images/statistic.png");
-
     del.SetRectangle(0.79*windowWidth, 0.17*windowHeight, 0.09*windowWidth, 0.05*windowHeight, LIGHTGRAY, RAYWHITE);
     del.SetText(PT_serif_bold, "Delete course", 0.8*windowWidth, 0.18*windowHeight, 0.015*windowWidth, 0.5, RED);
 
@@ -91,7 +88,6 @@ void Course::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(close.image);
     UnloadTexture(addCourse.image);
-    UnloadTexture(viewGPA.image);
 
     UnloadFont(PT_serif_bold);
     UnloadFont(PT_serif_regular);
@@ -105,12 +101,15 @@ void Course::Draw()
         DrawCreateCourse(); 
     } else if (menuCourse == VIEWCOURSE) {
         DrawViewCourse();
-    } else if (menuCourse == CHOOSECLASS) {
-        DrawCourseList();
-        ChooseViewClass();
-    } else if (menuCourse == VIEWGPA) {
+    } 
+    // else if (menuCourse == CHOOSECLASS) {
+    //     DrawCourseList();
+    //     ChooseViewClass();
+    // } 
+    else if (menuCourse == VIEWGPA) {
         DrawViewGPA();
-    } else if (menuCourse == MODIFYCOURSE) {
+    } 
+    else if (menuCourse == MODIFYCOURSE) {
         DrawViewCourse();
         DrawModifyCourse();
     } else if (menuCourse == ADDSTUDENT) {
@@ -150,10 +149,6 @@ void Course::DrawBackground()
     // draw "Add new courses" text
     DrawTextEx(PT_serif_bold, "Add new course", (Vector2){float(0.34*windowWidth),float(0.24*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
     addCourse.DrawTexture();
-
-    // draw "View semester result"
-    DrawTextEx(PT_serif_bold, "View semester result", (Vector2){float(0.55*windowWidth), float(0.24*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
-    viewGPA.DrawTexture();
     
     close.DrawTexture();
 }
@@ -162,11 +157,6 @@ void Course::DrawCourseList()
 {
     if (menuCourse == -1 && addCourse.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuCourse = CREATECOURSE;
-    }
-
-    if (menuCourse == -1 && viewGPA.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        menuCourse = CHOOSECLASS;
-        viewClasses(listOfClass, listClassSize, schoolYear);
     }
 
     float static posY = 0;
@@ -493,235 +483,236 @@ void Course::DrawViewCourse()
     }
 }
 
-void Course::ChooseViewClass()
-{
-    static bool isError = false;
+// void Course::ChooseViewClass()
+// {
+//     static bool isError = false;
         
-    // draw outer box border
-    DrawRectangle(0.35*windowWidth, 0.33*windowHeight, 0.32*windowWidth, 0.34*windowHeight, LIGHTGRAY);
+//     // draw outer box border
+//     DrawRectangle(0.35*windowWidth, 0.33*windowHeight, 0.32*windowWidth, 0.34*windowHeight, LIGHTGRAY);
 
-    // draw outer box
-    DrawRectangle(0.355*windowWidth, 0.33*windowHeight + 0.005*windowWidth, 0.31*windowWidth, 0.34*windowHeight - 0.012*windowWidth, RAYWHITE);
+//     // draw outer box
+//     DrawRectangle(0.355*windowWidth, 0.33*windowHeight + 0.005*windowWidth, 0.31*windowWidth, 0.34*windowHeight - 0.012*windowWidth, RAYWHITE);
 
-    // draw create school year button and its function
-    Button Done;
-    Vector2 posDone = MeasureTextEx(PT_serif_bold, "Done", 0.02*windowWidth, 0.5);
-    posDone.x = 0.425*windowWidth + (0.17*windowWidth - posDone.x) / 2;
-    posDone.y = 0.6*windowHeight + (0.05*windowHeight - posDone.y) / 2;
-    Done.SetText(PT_serif_bold, "Done", posDone.x, posDone.y, 0.018*windowWidth, 0.5, RAYWHITE);
-    Done.SetRectangle(0.425*windowWidth, 0.6*windowHeight, 0.17*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
-    Done.DrawText();
+//     // draw create school year button and its function
+//     Button Done;
+//     Vector2 posDone = MeasureTextEx(PT_serif_bold, "Done", 0.02*windowWidth, 0.5);
+//     posDone.x = 0.425*windowWidth + (0.17*windowWidth - posDone.x) / 2;
+//     posDone.y = 0.6*windowHeight + (0.05*windowHeight - posDone.y) / 2;
+//     Done.SetText(PT_serif_bold, "Done", posDone.x, posDone.y, 0.018*windowWidth, 0.5, RAYWHITE);
+//     Done.SetRectangle(0.425*windowWidth, 0.6*windowHeight, 0.17*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+//     Done.DrawText();
 
-    // draw Choose a class to view text
-    float posXenterText = 0.425*windowWidth + (0.15*windowWidth - MeasureTextEx(PT_serif_bold, "Choose a class to view", 0.02*windowWidth, 0.5).x) / 2;
-    Vector2 enterText = {posXenterText, float(0.345*windowHeight)};
-    DrawTextEx(PT_serif_bold, "Choose a class to view", enterText, 0.02*windowWidth, 0.5, BLACK);
+//     // draw Choose a class to view text
+//     float posXenterText = 0.425*windowWidth + (0.15*windowWidth - MeasureTextEx(PT_serif_bold, "Choose a class to view", 0.02*windowWidth, 0.5).x) / 2;
+//     Vector2 enterText = {posXenterText, float(0.345*windowHeight)};
+//     DrawTextEx(PT_serif_bold, "Choose a class to view", enterText, 0.02*windowWidth, 0.5, BLACK);
 
-    // draw class list
-    static int curIndex = 0;
-    static int indexChosen = -1;
+//     // draw class list
+//     static int curIndex = 0;
+//     static int indexChosen = -1;
 
-    if (GetMouseWheelMove() > 0) curIndex = max(0, curIndex - 1);
-    if (GetMouseWheelMove() < 0) curIndex = min(listClassSize - 3, curIndex + 1);
-    for(int i = curIndex, cnt = 0; i < listClassSize && cnt < 3; ++i, ++cnt) {
+//     if (GetMouseWheelMove() > 0) curIndex = max(0, curIndex - 1);
+//     if (GetMouseWheelMove() < 0) curIndex = min(listClassSize - 3, curIndex + 1);
+//     for(int i = curIndex, cnt = 0; i < listClassSize && cnt < 3; ++i, ++cnt) {
 
-        Button viewClass;
-        Vector2 posTextClass = MeasureTextEx(PT_serif_bold, listOfClass[i].c_str(), 0.016*windowWidth, 0.5);
-        posTextClass.x = 0.41*windowWidth + (0.2*windowWidth - posTextClass.x) / 2;
-        posTextClass.y = 0.39*windowHeight + 0.07*windowHeight*cnt + (0.05*windowHeight - posTextClass.y) / 2;
+//         Button viewClass;
+//         Vector2 posTextClass = MeasureTextEx(PT_serif_bold, listOfClass[i].c_str(), 0.016*windowWidth, 0.5);
+//         posTextClass.x = 0.41*windowWidth + (0.2*windowWidth - posTextClass.x) / 2;
+//         posTextClass.y = 0.39*windowHeight + 0.07*windowHeight*cnt + (0.05*windowHeight - posTextClass.y) / 2;
 
-        viewClass.SetText(PT_serif_bold, listOfClass[i].c_str(), posTextClass.x, posTextClass.y, 0.016*windowWidth, 0.5, BLACK);
-        viewClass.SetRectangle(0.41*windowWidth, 0.39*windowHeight + 0.07*windowHeight*cnt, 0.2*windowWidth, 0.05*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
-        viewClass.DrawText();
-        if (i == indexChosen) {
-            DrawRectangleRounded((Rectangle){0.413*windowWidth, 0.395*windowHeight + 0.07*windowHeight*cnt, 0.005*windowWidth, 0.04*windowHeight}, 0.005*windowWidth, 12, BLUE);
-        }
+//         viewClass.SetText(PT_serif_bold, listOfClass[i].c_str(), posTextClass.x, posTextClass.y, 0.016*windowWidth, 0.5, BLACK);
+//         viewClass.SetRectangle(0.41*windowWidth, 0.39*windowHeight + 0.07*windowHeight*cnt, 0.2*windowWidth, 0.05*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
+//         viewClass.DrawText();
+//         if (i == indexChosen) {
+//             DrawRectangleRounded((Rectangle){0.413*windowWidth, 0.395*windowHeight + 0.07*windowHeight*cnt, 0.005*windowWidth, 0.04*windowHeight}, 0.005*windowWidth, 12, BLUE);
+//         }
 
-        DrawLine(0.41*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
-        DrawLine(0.61*windowWidth, 0.39*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
+//         DrawLine(0.41*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
+//         DrawLine(0.61*windowWidth, 0.39*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
         
-        if (!isError && viewClass.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            indexChosen = i;
-        }
-    }
+//         if (!isError && viewClass.isPRESSED(MOUSE_BUTTON_LEFT)) {
+//             indexChosen = i;
+//         }
+//     }
 
-    // draw close button and its function
-    Button viewGPAClose;
-    viewGPAClose.image = close.image;
-    viewGPAClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
-    viewGPAClose.origin = (Vector2){0, 0};
-    viewGPAClose.SetRectangle(0.644*windowWidth, 0.34*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
-    viewGPAClose.DrawTexture();
+//     // draw close button and its function
+//     Button viewGPAClose;
+//     viewGPAClose.image = close.image;
+//     viewGPAClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
+//     viewGPAClose.origin = (Vector2){0, 0};
+//     viewGPAClose.SetRectangle(0.644*windowWidth, 0.34*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+//     viewGPAClose.DrawTexture();
 
-    if (!isError && viewGPAClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        curIndex = 0;
-        indexChosen = -1;
-        menuCourse = -1;
-    }
+//     if (!isError && viewGPAClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+//         curIndex = 0;
+//         indexChosen = -1;
+//         menuCourse = -1;
+//     }
 
-    if (!isError && Done.isPRESSED(MOUSE_BUTTON_LEFT))
-    {
-        if (indexChosen == -1) {
-            isError = true;
-        } else {
-            curIndex = 0;
-            curClass = listOfClass[indexChosen];
-            indexChosen = -1;
-            menuCourse = VIEWGPA;
-            if (!viewClassScoreBoardInSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, schoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardInSemester" << endl;
-        }
-    }
-    if (isError) {
-        // draw outer box border
-        Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
-        Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
-        DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
+//     if (!isError && Done.isPRESSED(MOUSE_BUTTON_LEFT))
+//     {
+//         if (indexChosen == -1) {
+//             isError = true;
+//         } else {
+//             curIndex = 0;
+//             curClass = listOfClass[indexChosen];
+//             indexChosen = -1;
+//             menuCourse = VIEWGPA;
+//             if (!viewClassScoreBoardInSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, schoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardInSemester" << endl;
+//             if (!viewClassScoreBoardAllSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, schoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardAllSemester" << endl;
+//         }
+//     }
+//     if (isError) {
+//         // draw outer box border
+//         Rectangle borders = {float(windowWidth/2), float(windowHeight/2), float(0.19*windowWidth), float(0.14*windowWidth)};
+//         Vector2 bordersOrigin = {float(borders.width/2), float(borders.height/2)};
+//         DrawRectanglePro(borders, bordersOrigin, 0, LIGHTGRAY);
 
-        // draw outer box
-        Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
-        Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
-        DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
+//         // draw outer box
+//         Rectangle rec = {float(windowWidth/2), float(windowHeight/2), float(0.18*windowWidth), float(0.13*windowWidth)};
+//         Vector2 recOrigin = {float(rec.width/2), float(rec.height/2)};
+//         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
-        // draw error message
-        enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
-        DrawTextEx(PT_serif_bold, "Please select a class", enterText, 0.015*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_bold, "to view!", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
+//         // draw error message
+//         enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+//         DrawTextEx(PT_serif_bold, "Please select a class", enterText, 0.015*windowWidth, 0.5, BLACK);
+//         DrawTextEx(PT_serif_bold, "to view!", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
-        Button addStudentClose;
-        addStudentClose.image = close.image;
-        addStudentClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
-        addStudentClose.origin = (Vector2){0, 0};
-        addStudentClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
-        addStudentClose.DrawTexture();
+//         Button addStudentClose;
+//         addStudentClose.image = close.image;
+//         addStudentClose.bsrc = (Rectangle){0, 0, float(close.image.width), float(close.image.height)};
+//         addStudentClose.origin = (Vector2){0, 0};
+//         addStudentClose.SetRectangle(0.57*windowWidth, 0.39*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
+//         addStudentClose.DrawTexture();
 
-        // draw create school year button and its function
+//         // draw create school year button and its function
 
-        Done.SetText(PT_serif_bold, "OK", 0.49*windowWidth, 0.55*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
-        Done.SetRectangle(0.425*windowWidth, 0.54*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
-        Done.DrawText();
+//         Done.SetText(PT_serif_bold, "OK", 0.49*windowWidth, 0.55*windowHeight, 0.018*windowWidth, 0.5, RAYWHITE);
+//         Done.SetRectangle(0.425*windowWidth, 0.54*windowHeight, 0.15*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+//         Done.DrawText();
 
-        if (Done.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            isError = false;
-        }
+//         if (Done.isPRESSED(MOUSE_BUTTON_LEFT)) {
+//             isError = false;
+//         }
 
-        if (addStudentClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
-            isError = false;
-        }
-    }
-}
+//         if (addStudentClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
+//             isError = false;
+//         }
+//     }
+// }
 
-void Course::DrawViewGPA()
-{
-    Rectangle box = {float(0), float(0.053*windowHeight), float(windowWidth), float(windowHeight)};
-    DrawRectangleRec(box, (Color){150, 190, 200, 255});
-    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, DARKBLUE);
+// void Course::DrawViewGPA()
+// {
+//     Rectangle box = {float(0), float(0.053*windowHeight), float(windowWidth), float(windowHeight)};
+//     DrawRectangleRec(box, (Color){150, 190, 200, 255});
+//     DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, DARKBLUE);
 
-    static int posY = 0;
-    static float lastPosY = 0;
+//     static int posY = 0;
+//     static float lastPosY = 0;
 
-    posY += GetMouseWheelMove() * 30;
-    if (posY > 0) posY = 0;
-    if (lastPosY + 0.02*windowHeight < windowHeight) posY = 0;
+//     posY += GetMouseWheelMove() * 30;
+//     if (posY > 0) posY = 0;
+//     if (lastPosY + 0.02*windowHeight < windowHeight) posY = 0;
 
-    // draw back button
-    Button viewGPAback;
-    viewGPAback.SetRectangle(0, 0.053*windowHeight + posY, 0.1*windowWidth, 0.05*windowHeight, DARKBLUE, BLUE);
-    Vector2 posBack = GetCenterPos(0, 0.053*windowHeight + posY, 0.1*windowWidth, 0.05*windowHeight, "BACK", PT_serif_bold, 0.02*windowWidth, 0.5);
-    viewGPAback.SetText(PT_serif_bold, "BACK", posBack.x, posBack.y, 0.02*windowWidth, 0.5, BLACK);
-    viewGPAback.DrawText();
-    DrawRectangleLines(0, 0.053*windowHeight + posY, 0.1*windowWidth, 0.05*windowHeight, BLACK);
+//     // draw back button
+//     Button viewGPAback;
+//     viewGPAback.SetRectangle(0, 0.053*windowHeight + posY, 0.1*windowWidth, 0.05*windowHeight, DARKBLUE, BLUE);
+//     Vector2 posBack = GetCenterPos(0, 0.053*windowHeight + posY, 0.1*windowWidth, 0.05*windowHeight, "BACK", PT_serif_bold, 0.02*windowWidth, 0.5);
+//     viewGPAback.SetText(PT_serif_bold, "BACK", posBack.x, posBack.y, 0.02*windowWidth, 0.5, BLACK);
+//     viewGPAback.DrawText();
+//     DrawRectangleLines(0, 0.053*windowHeight + posY, 0.1*windowWidth, 0.05*windowHeight, BLACK);
 
-    // draw Scoreboard of class text
-    Vector2 posTittle = GetCenterPos(0, 0.07*windowHeight + posY, windowWidth, 0.05*windowHeight, "Scoreboard of " + curClass, PT_serif_bold, 0.04*windowWidth, 0.5);
-    DrawTextEx(PT_serif_bold, ("Scoreboard of " + curClass).c_str(), posTittle, 0.04*windowWidth, 0.5, RED);
+//     // draw Scoreboard of class text
+//     Vector2 posTittle = GetCenterPos(0, 0.07*windowHeight + posY, windowWidth, 0.05*windowHeight, "Scoreboard of " + curClass, PT_serif_bold, 0.04*windowWidth, 0.5);
+//     DrawTextEx(PT_serif_bold, ("Scoreboard of " + curClass).c_str(), posTittle, 0.04*windowWidth, 0.5, RED);
 
-    // draw table
-        // draw table header includes No., student id, Full name of student, name of course, total mark, GPA
-    float posX1 = 0.05*windowWidth;
-    float posX2 = 0.08*windowWidth;
-    float posX3 = 0.2*windowWidth;
-    float posX4 = 0.4*windowWidth;
-    float posX5 = 0.8*windowWidth;
-    float posX6 = 0.9*windowWidth;
-    float posX7 = 0.95*windowWidth;
-    float sizeY = 0.05*windowHeight;
-    float curPosY = 0.2*windowHeight + posY;
-    DrawRectangle(posX1, curPosY, posX7 - posX1, sizeY, DARKBLUE);
-    DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE);
+//     // draw table
+//         // draw table header includes No., student id, Full name of student, name of course, total mark, GPA
+//     float posX1 = 0.05*windowWidth;
+//     float posX2 = 0.08*windowWidth;
+//     float posX3 = 0.2*windowWidth;
+//     float posX4 = 0.4*windowWidth;
+//     float posX5 = 0.8*windowWidth;
+//     float posX6 = 0.9*windowWidth;
+//     float posX7 = 0.95*windowWidth;
+//     float sizeY = 0.05*windowHeight;
+//     float curPosY = 0.2*windowHeight + posY;
+//     DrawRectangle(posX1, curPosY, posX7 - posX1, sizeY, DARKBLUE);
+//     DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE);
 
-    DrawTextEx(PT_serif_bold, "No.", GetCenterPos(posX1, curPosY, posX2 - posX1, 0.05*windowHeight, "No.", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
-    DrawTextEx(PT_serif_bold, "Student ID", GetCenterPos(posX2, curPosY, posX3 - posX2, 0.05*windowHeight, "Student ID", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
-    DrawTextEx(PT_serif_bold, "Full name of student", GetCenterPos(posX3, curPosY, posX4 - posX3, 0.05*windowHeight, "Full name of student", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
-    DrawTextEx(PT_serif_bold, "Name of course", GetCenterPos(posX4, curPosY, posX5 - posX4, 0.05*windowHeight, "Name of course", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
-    DrawTextEx(PT_serif_bold, "Total mark", GetCenterPos(posX5, curPosY, posX6 - posX5, 0.05*windowHeight, "Total mark", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
-    DrawTextEx(PT_serif_bold, "GPA", GetCenterPos(posX6, curPosY, posX7 - posX6, 0.05*windowHeight, "GPA", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawTextEx(PT_serif_bold, "No.", GetCenterPos(posX1, curPosY, posX2 - posX1, 0.05*windowHeight, "No.", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawTextEx(PT_serif_bold, "Student ID", GetCenterPos(posX2, curPosY, posX3 - posX2, 0.05*windowHeight, "Student ID", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawTextEx(PT_serif_bold, "Full name of student", GetCenterPos(posX3, curPosY, posX4 - posX3, 0.05*windowHeight, "Full name of student", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawTextEx(PT_serif_bold, "Name of course", GetCenterPos(posX4, curPosY, posX5 - posX4, 0.05*windowHeight, "Name of course", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawTextEx(PT_serif_bold, "Total mark", GetCenterPos(posX5, curPosY, posX6 - posX5, 0.05*windowHeight, "Total mark", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawTextEx(PT_serif_bold, "GPA", GetCenterPos(posX6, curPosY, posX7 - posX6, 0.05*windowHeight, "GPA", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
 
-    curPosY += 0.05*windowHeight;
-    DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE);
-        // draw table content
-    float totalGPA = 0;
-    for(int i = 0; i < studentListOfClassSize; ++i) {
-        float lengthY = sizeY * max(1, scoreBoardOfClassSize[i]);
+//     curPosY += 0.05*windowHeight;
+//     DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE);
+//         // draw table content
+//     float totalGPA = 0;
+//     for(int i = 0; i < studentListOfClassSize; ++i) {
+//         float lengthY = sizeY * max(1, scoreBoardOfClassSize[i]);
 
-        Button box;
-        if (i % 2) box.SetRectangle(posX1, curPosY, posX7 - posX1, lengthY, LIGHTGRAY, (Color){245, 230, 255, 255});
-        else box.SetRectangle(posX1, curPosY, posX7 - posX1, lengthY, LIGHTGRAY, WHITE);
-        box.DrawText();
+//         Button box;
+//         if (i % 2) box.SetRectangle(posX1, curPosY, posX7 - posX1, lengthY, LIGHTGRAY, (Color){245, 230, 255, 255});
+//         else box.SetRectangle(posX1, curPosY, posX7 - posX1, lengthY, LIGHTGRAY, WHITE);
+//         box.DrawText();
 
-        DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE); 
-        DrawTextEx(PT_serif_bold, to_string(i + 1).c_str(), GetCenterPos(posX1, curPosY, posX2 - posX1, lengthY, to_string(i + 1), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_bold, studentListOfClass[i].studentID.c_str(), GetCenterPos(posX2, curPosY, posX3 - posX2, lengthY, studentListOfClass[i].studentID, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-        DrawTextEx(PT_serif_bold, (studentListOfClass[i].lastName + " " + studentListOfClass[i].firstName).c_str(), GetCenterPos(posX3, curPosY, posX4 - posX3, lengthY, studentListOfClass[i].lastName + studentListOfClass[i].firstName, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+//         DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE); 
+//         DrawTextEx(PT_serif_bold, to_string(i + 1).c_str(), GetCenterPos(posX1, curPosY, posX2 - posX1, lengthY, to_string(i + 1), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+//         DrawTextEx(PT_serif_bold, studentListOfClass[i].studentID.c_str(), GetCenterPos(posX2, curPosY, posX3 - posX2, lengthY, studentListOfClass[i].studentID, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+//         DrawTextEx(PT_serif_bold, (studentListOfClass[i].lastName + " " + studentListOfClass[i].firstName).c_str(), GetCenterPos(posX3, curPosY, posX4 - posX3, lengthY, studentListOfClass[i].lastName + studentListOfClass[i].firstName, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
 
-        float totalScore = 0, totalCredit = 0;
-        for(int j = 0; j < scoreBoardOfClassSize[i]; ++j) {
-            DrawTextEx(PT_serif_bold, courseOfClass[i][j].name.c_str(), GetCenterPos(posX4, curPosY, posX5 - posX4, sizeY, courseOfClass[i][j].name, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-            if (scoreBoardOfClass[i][j].total != -1) {
-                DrawTextEx(PT_serif_bold, convertFloatToString(scoreBoardOfClass[i][j].total).c_str(), GetCenterPos(posX5, curPosY, posX6 - posX5, sizeY, convertFloatToString(scoreBoardOfClass[i][j].total), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-                float score = 0;
-                if (scoreBoardOfClass[i][j].total > 8.4) score = 4;
-                else if (scoreBoardOfClass[i][j].total > 7.9) score = 3.5;
-                else if (scoreBoardOfClass[i][j].total > 6.9) score = 3;
-                else if (scoreBoardOfClass[i][j].total > 6.4) score = 2.5;
-                else if (scoreBoardOfClass[i][j].total > 5.4) score = 2;
-                else if (scoreBoardOfClass[i][j].total > 4.9) score = 1.5;
-                else if (scoreBoardOfClass[i][j].total > 3.9) score = 1;
-                else score = 0;
-                totalScore += score * courseOfClass[i][j].credit;
-                totalCredit += courseOfClass[i][j].credit;
-            }
-            curPosY += sizeY;
+//         float totalScore = 0, totalCredit = 0;
+//         for(int j = 0; j < scoreBoardOfClassSize[i]; ++j) {
+//             DrawTextEx(PT_serif_bold, courseOfClass[i][j].name.c_str(), GetCenterPos(posX4, curPosY, posX5 - posX4, sizeY, courseOfClass[i][j].name, PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+//             if (scoreBoardOfClass[i][j].total != -1) {
+//                 DrawTextEx(PT_serif_bold, convertFloatToString(scoreBoardOfClass[i][j].total).c_str(), GetCenterPos(posX5, curPosY, posX6 - posX5, sizeY, convertFloatToString(scoreBoardOfClass[i][j].total), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+//                 float score = 0;
+//                 if (scoreBoardOfClass[i][j].total > 8.4) score = 4;
+//                 else if (scoreBoardOfClass[i][j].total > 7.9) score = 3.5;
+//                 else if (scoreBoardOfClass[i][j].total > 6.9) score = 3;
+//                 else if (scoreBoardOfClass[i][j].total > 6.4) score = 2.5;
+//                 else if (scoreBoardOfClass[i][j].total > 5.4) score = 2;
+//                 else if (scoreBoardOfClass[i][j].total > 4.9) score = 1.5;
+//                 else if (scoreBoardOfClass[i][j].total > 3.9) score = 1;
+//                 else score = 0;
+//                 totalScore += score * courseOfClass[i][j].credit;
+//                 totalCredit += courseOfClass[i][j].credit;
+//             }
+//             curPosY += sizeY;
 
-            DrawLine(posX4, curPosY, posX6, curPosY, DARKBLUE);
-        }
-        if (scoreBoardOfClassSize[i] == 0) curPosY += sizeY;
+//             DrawLine(posX4, curPosY, posX6, curPosY, DARKBLUE);
+//         }
+//         if (scoreBoardOfClassSize[i] == 0) curPosY += sizeY;
 
-        if (totalCredit != 0) {
-            DrawTextEx(PT_serif_bold, convertFloatToString(totalScore / totalCredit).c_str(), GetCenterPos(posX6, curPosY - lengthY, posX7 - posX6, lengthY, convertFloatToString(totalScore / totalCredit), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-            totalGPA += totalScore / totalCredit;
-        }
-        DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE);
-    }
-    lastPosY = curPosY;
+//         if (totalCredit != 0) {
+//             DrawTextEx(PT_serif_bold, convertFloatToString(totalScore / totalCredit).c_str(), GetCenterPos(posX6, curPosY - lengthY, posX7 - posX6, lengthY, convertFloatToString(totalScore / totalCredit), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+//             totalGPA += totalScore / totalCredit;
+//         }
+//         DrawLine(posX1, curPosY, posX7, curPosY, DARKBLUE);
+//     }
+//     lastPosY = curPosY;
 
-    if (studentListOfClassSize != 0) totalGPA /= studentListOfClassSize;
+//     if (studentListOfClassSize != 0) totalGPA /= studentListOfClassSize;
 
-    DrawLine(posX1, 0.2*windowHeight + posY, posX1, curPosY, DARKBLUE);
-    DrawLine(posX2, 0.2*windowHeight + posY, posX2, curPosY, DARKBLUE);
-    DrawLine(posX3, 0.2*windowHeight + posY, posX3, curPosY, DARKBLUE);
-    DrawLine(posX4, 0.2*windowHeight + posY, posX4, curPosY, DARKBLUE);
-    DrawLine(posX5, 0.2*windowHeight + posY, posX5, curPosY, DARKBLUE);
-    DrawLine(posX6, 0.2*windowHeight + posY, posX6, curPosY, DARKBLUE);
-    DrawLine(posX7, 0.2*windowHeight + posY, posX7, curPosY, DARKBLUE);
+//     DrawLine(posX1, 0.2*windowHeight + posY, posX1, curPosY, DARKBLUE);
+//     DrawLine(posX2, 0.2*windowHeight + posY, posX2, curPosY, DARKBLUE);
+//     DrawLine(posX3, 0.2*windowHeight + posY, posX3, curPosY, DARKBLUE);
+//     DrawLine(posX4, 0.2*windowHeight + posY, posX4, curPosY, DARKBLUE);
+//     DrawLine(posX5, 0.2*windowHeight + posY, posX5, curPosY, DARKBLUE);
+//     DrawLine(posX6, 0.2*windowHeight + posY, posX6, curPosY, DARKBLUE);
+//     DrawLine(posX7, 0.2*windowHeight + posY, posX7, curPosY, DARKBLUE);
 
-    DrawRectangle(0.8*windowWidth, 0.14*windowHeight, 0.07*windowWidth, 0.04*windowHeight, DARKGREEN);
-    DrawTextEx(PT_serif_bold, ("GPA: " + convertFloatToString(totalGPA)).c_str(), GetCenterPos(0.8*windowWidth, 0.14*windowHeight, 0.07*windowWidth, 0.04*windowHeight, ("GPA: " + convertFloatToString(totalGPA)).c_str(), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+//     DrawRectangle(0.8*windowWidth, 0.14*windowHeight, 0.07*windowWidth, 0.04*windowHeight, DARKGREEN);
+//     DrawTextEx(PT_serif_bold, ("GPA: " + convertFloatToString(totalGPA)).c_str(), GetCenterPos(0.8*windowWidth, 0.14*windowHeight, 0.07*windowWidth, 0.04*windowHeight, ("GPA: " + convertFloatToString(totalGPA)).c_str(), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
 
-    if (viewGPAback.isPRESSED(MOUSE_BUTTON_LEFT))
-    {
-        menuCourse = CHOOSECLASS;
-    }
-}
+//     if (viewGPAback.isPRESSED(MOUSE_BUTTON_LEFT))
+//     {
+//         menuCourse = CHOOSECLASS;
+//     }
+// }
 
 string Course::convertFloatToString(float x) {
     string ans = to_string(x);

@@ -15,6 +15,8 @@ struct ACourse {
     int maxStudent = 50;
     string dayOfWeek;
     string session;
+    string schoolyear;
+    string semester;
 };
 
 #endif

@@ -142,6 +142,71 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
     return true;
 }
 
+bool ViewAllCoursesStudent(string studentID, ACourse *&listOfCourses, ScoreBoard *&scores, int &n) {
+    n = 0;
+    filesystem::path pathToData = "Data/SchoolYear/";
+    //for count n
+    for(const auto & schoolyear : filesystem::directory_iterator(pathToData)) {
+        if (!schoolyear.is_directory()) continue;
+        for(const auto & semester : filesystem::directory_iterator(schoolyear.path())) {
+            if (!semester.is_directory()) continue;
+            for(const auto & course : filesystem::directory_iterator(semester.path())) {
+                if (!course.is_directory()) continue;
+                if (!IsInCourse(schoolyear.path().stem().string(), semester.path().stem().string(), course.path().stem().string(), studentID)) continue;
+                ++n;
+            }
+        }
+    }
+    if (n == 0) return true;
+    //for load data
+    listOfCourses = new ACourse[n];
+    scores = new ScoreBoard[n];
+    int i = 0;
+    for(const auto & schoolyear : filesystem::directory_iterator(pathToData)) {
+        if (!schoolyear.is_directory()) continue;
+        for(const auto & semester : filesystem::directory_iterator(schoolyear.path())) {
+            if (!semester.is_directory()) continue;
+            for(const auto & course : filesystem::directory_iterator(semester.path())) {
+                if (!course.is_directory()) continue;
+                if (!IsInCourse(schoolyear.path().stem().string(), semester.path().stem().string(), course.path().stem().string(), studentID)) continue;
+                
+                // cout << course.path().string() << endl;
+
+                string pathToCourse = course.path().string() + "/";
+                ifstream fin;
+                //get info course
+                fin.open(pathToCourse + "Course_Info.txt");
+                if (!fin.is_open())
+                    return false;
+                getline(fin, listOfCourses[i].id);
+                while(listOfCourses[i].id.size() && listOfCourses[i].id.back() != '-') listOfCourses[i].id.pop_back();
+                listOfCourses[i].id.pop_back(); 
+                getline(fin, listOfCourses[i].name);
+                getline(fin, listOfCourses[i].Class);
+                getline(fin, listOfCourses[i].teacher);
+                fin >> listOfCourses[i].credit;
+                fin >> listOfCourses[i].maxStudent;
+                getline(fin, listOfCourses[i].dayOfWeek);
+                getline(fin, listOfCourses[i].session);
+                fin.close();
+                //get score
+                fin.open(pathToCourse + "Score/" + studentID + ".txt");
+                if (!fin.is_open()) continue;
+                fin >> scores[i].other;
+                fin >> scores[i].midterm;
+                fin >> scores[i].finals;
+                fin >> scores[i].total;
+                fin.close();
+                ++i;
+                // cout << listOfCourses[i].name << '\n';
+            }
+        }
+    }
+    // cout << n << endl;
+
+    return true;
+}
+
 // int main() {
 //     Student stu;
 //     stu.Class = "22TT2";

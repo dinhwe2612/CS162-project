@@ -3,9 +3,12 @@
 #include "UI/StaffUI.hpp"
 #include "UI/Button.hpp"
 #include "UI/StudentUI.hpp"
-
+// #include "Header/StudentFunc.h"
+// #include "Header/ScoreStruct.h"
+// #include "Header/CourseStruct.h"
 int main()
 {
+    
     // init window
     const int WindowWidth = 1280;
     const int WindowHeight = 720;
