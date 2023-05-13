@@ -2,6 +2,7 @@
 #include "../Header/CourseStruct.h"
 #include "../Header/SemesterStruct.h"
 #include <algorithm>
+#include <string>
 
 bool CreateSemester(ASemester semester, string*& ListOfSemester, int& n) {
     ifstream in; ofstream out;
@@ -129,50 +130,7 @@ bool Update_CourseInformation(ACourse& course, string schoolYear, string semeste
     return true;
 }
 
-bool AddClasstoCourse_CSV(string fileaddress, ACourse course, string schoolYear, string semester)
-{
-    string* info;
-    ifstream in; ofstream out;
-    string courseaddress = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
-    string newfileaddress = courseaddress + "/Student_ID.csv";
-    out.open(newfileaddress.c_str());
-    in.open(fileaddress.c_str());
-    info = new string[100];
 
-        
-        string line, word; //temp while in temp. in>>'\n';
-        int index = 1;
-        int i;
-          while (getline(in, line)) 
-          {
-            
-        string* row = new string[100];
-        
-
-        stringstream s(line);
-
-         i = 1;
-        while ( getline(s, word, ',') ) 
-        {
-            // cout << word << '\n';
-            // cout << i << '\n';
-            //ignore;
-            row[i] = word;
-            if (i == 1) info[index] = word;
-            out << word << ',';
-            i++;
-        }
-        out << '\n';
-        index++;
-          }
-          in.close();
-          out.close();
-          info[0] = to_string(index-1);
-  
-    string iddata = courseaddress + "/Student_ID_data.txt";
-    Update_File(iddata, info);
-    return true;
-}
 
 bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, string semester)
 {
@@ -214,6 +172,59 @@ bool Add1StudenttoCourse(string studentid, ACourse course, string schoolYear, st
     out.close();
     return true;
 }
+
+bool AddClasstoCourse_CSV(string fileaddress, ACourse course, string schoolYear, string semester)
+{
+    string* info;
+    ifstream in; ofstream out;
+    string courseaddress = "Data/SchoolYear/" + schoolYear + "/" + semester + "/" + course.id + "-" + course.Class;
+    string newfileaddress = courseaddress + "/Student_ID.csv";
+    out.open(newfileaddress.c_str());
+    in.open(fileaddress.c_str());
+    info = new string[100];
+
+        
+        string line, word; //temp while in temp. in>>'\n';
+        int index = 1;
+        int i;
+          while (getline(in, line)) 
+          {
+            
+        string* row = new string[100];
+        
+
+        stringstream s(line);
+
+         i = 1;
+        while ( getline(s, word, ',') ) 
+        {
+            // cout << word << '\n';
+            // cout << i << '\n';
+            //ignore;
+            row[i] = word;
+            if (i == 1) info[index] = word;
+            out << word << ',';
+            i++;
+        }
+        out << '\n';
+        index++;
+          }
+          in.close();
+          out.close();
+          info[0] = to_string(index-1);
+  
+    //string iddata = courseaddress + "/Student_ID_data.txt";
+    i = 1;
+    while (i <= atoi(info[0].c_str()))
+    {
+        //cout << info[i] << '\n';
+        Add1StudenttoCourse(info[i], course, schoolYear, semester);
+        i++;
+    }
+    //Update_File(iddata, info);
+    return true;
+}
+
 
 bool Remove1StudentfromCourse(string studentid, ACourse course, string schoolYear, string semester)
 {
