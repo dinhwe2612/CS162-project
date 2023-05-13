@@ -106,9 +106,9 @@ void Course::Draw()
     //     DrawCourseList();
     //     ChooseViewClass();
     // } 
-    else if (menuCourse == VIEWGPA) {
-        DrawViewGPA();
-    } 
+    // else if (menuCourse == VIEWGPA) {
+    //     DrawViewGPA();
+    // } 
     else if (menuCourse == MODIFYCOURSE) {
         DrawViewCourse();
         DrawModifyCourse();

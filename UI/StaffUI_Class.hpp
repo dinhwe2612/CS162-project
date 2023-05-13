@@ -59,6 +59,11 @@ struct Class
     ACourse **courseOfClass;
     int *scoreBoardOfClassSize = 0;
 
+    string *listOfSemester;
+    int semesterSize = 0;
+
+    string curClass;
+
     int DEFAULT = -1;
     int menuClass = DEFAULT;
     enum windowCLass {
@@ -77,6 +82,7 @@ struct Class
     void Deconstruct();
 
     Vector2 GetCenterPos(float x, float y, float width, float height, string text, Font font, float fontSize, float spacing);
+    string convertFloatToString(float x);
 
     void Draw(int &menuWindow);
         void DrawBackground();

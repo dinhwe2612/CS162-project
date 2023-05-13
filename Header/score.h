@@ -58,5 +58,5 @@ bool viewClassScoreBoardIn1Semester(ScoreBoard*& s, float *&scores, string *&cou
 //bool viewStudentScoreboard(ScoreBoard *&s, string *&courses, float *&gpa, string studentid, string schoolYear, int &n);
 bool viewStudentScoreboard(Student student, string *&courses, string *&courseName, string *&schoolYears, string *&semesters, ScoreBoard *&s, float &overall, int &n);
 bool viewClassScoreBoardInSemester(Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string schoolYear, string semester, string Class);
-bool viewClassScoreBoardAllSemester(Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string schoolYear, string semester, string Class);
+bool viewClassScoreBoardAllSemester(string *&semester, int &semesterSize, Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string Class);
 #endif

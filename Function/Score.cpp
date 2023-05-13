@@ -909,7 +909,7 @@ bool viewClassScoreBoardInSemester(Student *&stu, int &stuSize, ACourse **&cours
 
 	// load student	
 	string pathToClass = "Data/SchoolYear/" + schoolYear + "/Classes/" + Class + ".txt";
-	cout << pathToClass << endl;
+	// cout << pathToClass << endl;
 	fin.open(pathToClass);
 	if (!fin.is_open())
 		return false;
@@ -945,13 +945,43 @@ bool viewClassScoreBoardInSemester(Student *&stu, int &stuSize, ACourse **&cours
 	return true;
 }
 
-bool viewClassScoreBoardAllSemester(Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string schoolYear, string semester, string Class) {
-string tmp;
+bool viewClassScoreBoardAllSemester(string *&semester, int &semesterSize, Student *&stu, int &stuSize, ACourse **&courses, ScoreBoard **&s, int *&scoreBoardSize, string Class) {
+	string tmp;
 	ifstream fin;
-
+	//load semester
+	semesterSize = 0;
+	filesystem::path pathToSchoolYear = "Data/SchoolYear/";
+	string pathToClass = "";
+	for(const auto & schoolyear : filesystem::directory_iterator(pathToSchoolYear)) {
+		if (schoolyear.is_directory()) {
+			string tmp = schoolyear.path().string() + "/Classes/" + Class + ".txt";
+			if (filesystem::exists(tmp)) {
+				pathToClass = tmp;
+				for(const auto & semes : filesystem::directory_iterator(schoolyear.path())) {
+					if (semes.is_directory() && semes.path().stem().string() != "Classes") {
+						++semesterSize;
+					}
+				}
+			}
+		}	
+	}
+	semester = new string[semesterSize];
+	int i = 0;
+	for(const auto & schoolyear : filesystem::directory_iterator(pathToSchoolYear)) {
+		if (schoolyear.is_directory()) {
+			string tmp = schoolyear.path().string() + "/Classes/" + Class + ".txt";
+			if (filesystem::exists(tmp)) {
+				for(const auto & semes : filesystem::directory_iterator(schoolyear.path())) {
+					if (semes.is_directory() && semes.path().stem().string() != "Classes") {
+						semester[i] = schoolyear.path().stem().string() + " " + semes.path().stem().string();
+						++i;
+					}
+				}
+			}
+		}	
+	}
 	// load student	
-	string pathToClass = "Data/SchoolYear/" + schoolYear + "/Classes/" + Class + ".txt";
-	cout << pathToClass << endl;
+	// cout << pathToClass << endl;
 	fin.open(pathToClass);
 	if (!fin.is_open())
 		return false;

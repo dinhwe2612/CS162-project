@@ -83,12 +83,16 @@ void Class::Draw(int &menuWindow)
         LoadDroppedFile();
     } else if (menuClass == ADD_STUDENT) {
         DrawAddStudent();
+    } else if (menuClass == VIEWGPA) {
+        DrawViewGPA();
     } else {
         DrawBackground();
         close.DrawTexture();
         addClass.DrawTexture();
         DrawClassList();
         DrawCreateClass();
+        if (menuClass == CHOOSEVIEWCLASS)
+            ChooseViewClass();
         if (menuClass == -1 && viewGPA.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuClass = CHOOSEVIEWCLASS;
             viewClasses(ListOfClasses, listSize, SchoolYear);
@@ -128,7 +132,7 @@ bool greater_string1 (std::string& a, std::string& b)
 
 void Class::DrawCreateClass()
 {    
-    if (addClass.isPRESSED(MOUSE_BUTTON_LEFT))
+    if (menuClass == -1 && addClass.isPRESSED(MOUSE_BUTTON_LEFT))
         isAddClass = true;
 
     if (isAddClass)
@@ -209,7 +213,7 @@ void Class::DrawClassList()
             DrawRectangleLinesEx(_class.buttonShape, 0.5, BLACK);
         }
 
-        if (_class.isPRESSED(MOUSE_BUTTON_LEFT) && !isAddClass)
+        if (menuClass == -1 && _class.isPRESSED(MOUSE_BUTTON_LEFT) && !isAddClass)
         {
             static std::string classDir;
 
@@ -513,7 +517,7 @@ void Class::ChooseViewClass()
     if (!isError && viewGPAClose.isPRESSED(MOUSE_BUTTON_LEFT)) {
         curIndex = 0;
         indexChosen = -1;
-        menuCourse = -1;
+        menuClass = -1;
     }
 
     if (!isError && Done.isPRESSED(MOUSE_BUTTON_LEFT))
@@ -522,11 +526,10 @@ void Class::ChooseViewClass()
             isError = true;
         } else {
             curIndex = 0;
-            curClass = listOfClass[indexChosen];
+            curClass = ListOfClasses[indexChosen];
             indexChosen = -1;
-            menuCourse = VIEWGPA;
-            if (!viewClassScoreBoardInSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, schoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardInSemester" << endl;
-            if (!viewClassScoreBoardAllSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, schoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardAllSemester" << endl;
+            menuClass = VIEWGPA;
+            if (!viewClassScoreBoardAllSemester(listOfSemester, semesterSize, studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, curClass)) cerr << "Can't viewClassScoreBoardAllSemester" << endl;
         }
     }
     if (isError) {
@@ -573,6 +576,7 @@ void Class::DrawViewGPA()
     Rectangle box = {float(0), float(0.053*windowHeight), float(windowWidth), float(windowHeight)};
     DrawRectangleRec(box, (Color){150, 190, 200, 255});
     DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, DARKBLUE);
+    DrawTextEx(PT_serif_bold, (">  " + ListOfClasses[classIndex]).c_str(), (Vector2){float(0.33*windowWidth), float(0.01*windowHeight)}, 0.015*windowWidth, 0.5, WHITE);
 
     static int posY = 0;
     static float lastPosY = 0;
@@ -675,8 +679,89 @@ void Class::DrawViewGPA()
     DrawRectangle(0.8*windowWidth, 0.14*windowHeight, 0.07*windowWidth, 0.04*windowHeight, DARKGREEN);
     DrawTextEx(PT_serif_bold, ("GPA: " + convertFloatToString(totalGPA)).c_str(), GetCenterPos(0.8*windowWidth, 0.14*windowHeight, 0.07*windowWidth, 0.04*windowHeight, ("GPA: " + convertFloatToString(totalGPA)).c_str(), PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
 
-    if (viewGPAback.isPRESSED(MOUSE_BUTTON_LEFT))
-    {
+    //draw drop down semester list
+    static int indexSemester = -1;
+    static bool isShowSemesterList = false;
+    float coordY = 0.139*windowHeight + posY;
+    Button isSelect;
+    isSelect.SetRectangle(posX1, coordY, 0.145*windowWidth, 0.04*windowHeight, LIGHTGRAY, WHITE);
+    Vector2 posText;
+    if (indexSemester == -1) {
+        posText = GetCenterPos(posX1, coordY, 0.145*windowWidth, 0.04*windowHeight, "All Semester", PT_serif_bold, 0.02*windowWidth, 0.5);
+        isSelect.SetText(PT_serif_bold, "All Semester", posText.x, posText.y, 0.02*windowWidth, 0.5, BLACK);
+    } else {
+        posText = GetCenterPos(posX1, coordY, 0.145*windowWidth, 0.04*windowHeight, listOfSemester[indexSemester], PT_serif_bold, 0.02*windowWidth, 0.5);
+        isSelect.SetText(PT_serif_bold, listOfSemester[indexSemester], posText.x, posText.y, 0.02*windowWidth, 0.5, BLACK);
+    }
+    isSelect.DrawText();
+    if (isShowSemesterList) DrawRectangleLines(posX1, coordY, 0.1454*windowWidth, 0.042*windowHeight, BLUE);
+    else DrawRectangleLines(posX1, coordY, 0.1454*windowWidth, 0.042*windowHeight, BLACK);
+
+    if (isShowSemesterList) {
+        // cout << semesterSize << '\n';
+        coordY -= 0.003*windowHeight;
+        for(int i = -1, cnt = 0; i < semesterSize; ++i) {
+            if (i == indexSemester) continue;
+            Button semester;
+            semester.SetRectangle(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.145*windowWidth, 0.04*windowHeight, BLUE, WHITE);
+            
+            if (i != -1) {
+                posText = GetCenterPos(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.145*windowWidth, 0.04*windowHeight, listOfSemester[i], PT_serif_bold, 0.02*windowWidth, 0.5);
+                semester.SetText(PT_serif_bold, listOfSemester[i], posX1 + 0.0025*windowWidth, posText.y, 0.02*windowWidth, 0.5, BLACK);
+            } else {
+                posText = GetCenterPos(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.145*windowWidth, 0.04*windowHeight, "All Semester", PT_serif_bold, 0.02*windowWidth, 0.5);
+                semester.SetText(PT_serif_bold, "All Semester", posText.x, posText.y, 0.02*windowWidth, 0.5, BLACK);
+            }
+            semester.DrawText();
+            DrawRectangleLines(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.1454*windowWidth, 0.042*windowHeight, BLACK);
+            if (semester.isPRESSED(MOUSE_BUTTON_LEFT)) {
+                indexSemester = i;
+                isShowSemesterList = false;
+                if (indexSemester == -1) {
+                    if (!viewClassScoreBoardAllSemester(listOfSemester, semesterSize, studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, curClass)) cerr << "Can't viewClassScoreBoardAllSemester" << endl;
+                } else {
+                    string semester;
+                    int j = listOfSemester[i].find(' ');
+                    semester = listOfSemester[i].substr(j + 1, (int)listOfSemester[i].size() - j - 1);
+                    if (!viewClassScoreBoardInSemester(studentListOfClass, studentListOfClassSize, courseOfClass, scoreBoardOfClass, scoreBoardOfClassSize, SchoolYear, semester, curClass)) cerr << "Can't viewClassScoreBoardInSemester" << endl;
+                }
+            }
+            ++cnt;
+        }
+    }
+
+    if (isSelect.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        isShowSemesterList ^= 1;
+    } else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        isShowSemesterList = false;
+    }
+
+    if (viewGPAback.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        isShowSemesterList = false;
         menuClass = CHOOSEVIEWCLASS;
     }
+}
+
+string Class::convertFloatToString(float x) {
+    string ans = to_string(x);
+    int i, sz = ans.size();
+    for(i = 0; i < sz && ans[i] != '.'; ++i);
+    int sur = 0;
+    while(sz - i > 2) {
+        if (sz - i == 3) {
+            if (ans.back() >= '5') sur = 1;
+        }
+        ans.pop_back(), --sz;
+    }
+    for(int i = sz - 1; i >= 0; --i) {
+        if (ans[i] == '.') continue;
+        if (sur) {
+            if (ans[i] == '9') ans[i] = '0';
+            else {
+                ++ans[i];
+                sur = 0;
+            }
+        }
+    }
+    return ans;
 }
