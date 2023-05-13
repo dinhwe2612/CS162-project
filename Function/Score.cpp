@@ -930,7 +930,7 @@ bool viewClassScoreBoardInSemester(Student *&stu, int &stuSize, ACourse **&cours
 	s = new ScoreBoard*[stuSize];
 	courses = new ACourse*[stuSize];
 	
-	for (int i = 0; i < 1; ++i) {
+	for (int i = 0; i < stuSize; ++i) {
 		if (!ViewCoursesStudent(schoolYear, semester, stu[i].studentID, courses[i], s[i], scoreBoardSize[i])) return false;
 		cout << stu[i].studentID << ' ' << scoreBoardSize[i] << ": ";
 		for(int j = 0; j < scoreBoardSize[i]; ++j) {

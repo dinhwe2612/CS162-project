@@ -16,3 +16,4 @@ bool ViewSchoolYearStudent(Student &stu, string *&schoolYear, int &n);
 bool ViewAllCoursesStudent(string studentID, ACourse *&listOfCourses, ScoreBoard *&scores, int &n);
 bool viewScoreBoardInSchoolYear(string schoolYear, string studentID, ACourse* &listOfCourse, ScoreBoard* &scores, int &n);
 bool viewScoreBoardAll(Student &stu, ACourse* &listOfCourse, ScoreBoard* &scores, int &n);
+bool viewDropDownList(string studentID, string *&listOfDropDown, int &n);

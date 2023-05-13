@@ -70,7 +70,7 @@ void Class::Deconstruct()
     UnloadTexture(close.image);
     UnloadTexture(addClass.image);
     UnloadTexture(Tick);
-
+    UnloadTexture(viewGPA.image);
     UnloadFont(PT_serif_bold);
 }
 
@@ -120,6 +120,9 @@ void Class::DrawBackground()
     // draw "Add new class" text
     Vector2 textPos = {float(0.34*windowWidth), float(0.24*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add new class", textPos, 0.02*windowWidth, 0.5, BLACK);
+
+    DrawTextEx(PT_serif_bold, "View semester result", (Vector2){float(0.55*windowWidth), float(0.24*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
+    viewGPA.DrawTexture();
 }
 
 bool greater_string1 (std::string& a, std::string& b)

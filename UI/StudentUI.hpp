@@ -52,7 +52,8 @@ struct StudentUI
     enum windowStudent {
         CHANGE_PASSWORD,
         VIEW_PROFILE,
-        CREATE_SCHOOLYEAR
+        CREATE_SCHOOLYEAR,
+        VIEW_SCOREBOARD
     };
 
     int menuWindow = DEFAULT;
@@ -62,8 +63,18 @@ struct StudentUI
         COURSE
     };
 
+    int listCourseSize = 0;
+    ACourse *ListOfCourses;
+    ScoreBoard *ListOfScores;
+
+    int semesterSize = 0;
+    string *listOfSemester;
+
     void Construct(float windowWidth, float windowHeight);
     void Deconstruct();
+
+    Vector2 Centered(float x, float y, float width, float height, string Text, Font font, float fontSize, float spacing);
+    string convertFloatToString(float x);
 
     void Draw(int& menuLogin);
         void DrawBackground();
@@ -73,7 +84,7 @@ struct StudentUI
         void DrawSchoolYear();
         void DrawStaticElements();
         void DrawCurrentWindow();
-
+        void DrawViewScoreboard();
 };
 
 #endif
