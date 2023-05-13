@@ -142,6 +142,115 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
     return true;
 }
 
+bool viewScoreBoardInSchoolYear(string schoolYear, string studentID, ACourse* &listOfCourse, ScoreBoard* &scores, int &n) {
+    string pathToSchoolYear = "Data/SchoolYear/" + schoolYear + "/";
+    int numberOfSemester = 0;
+    for (const auto& course : filesystem::directory_iterator(pathToSchoolYear))
+        if (course.path().stem().string() != "Classes")
+            ++numberOfSemester;
+    string* semesters = new string[numberOfSemester];
+    int j = 0;
+    for (const auto& course : filesystem::directory_iterator(pathToSchoolYear))
+        if (course.path().stem().string() != "Classes") {
+            semesters[j] = course.path().stem().string();
+            ++j;
+        }
+    //count n
+    n = 0;
+    int* numOfCourseEachSem = new int[numberOfSemester];
+    for (int i = 0; i < numberOfSemester; ++i) {
+        int num = 0;
+        string pathToSemester = "Data/SchoolYear/" + schoolYear + "/" + semesters[i] + "/";
+        if (!ValidDirectory(pathToSemester))
+            return false;
+        for(const auto & course : filesystem::directory_iterator(pathToSemester)) 
+            if (IsInCourse(schoolYear, semesters[i], course.path().stem().string(), studentID))
+                ++num;
+        n += num;
+        numOfCourseEachSem[i] = num;
+    }
+    
+    // cout << n << endl;
+    if (n == 0) return true;
+    //get info in course directory
+    listOfCourse = new ACourse[n];
+    scores = new ScoreBoard[n];
+    int i = 0;
+    ifstream fin;
+    for (int k = 0; k < numberOfSemester; ++k) {
+        string pathToSemester = "Data/SchoolYear/" + schoolYear + "/" + semesters[k] + "/";
+        for(const auto & course : filesystem::directory_iterator(pathToSemester)) {
+            if (course.path().stem().string() == "Semester_Info") continue;
+            if (!IsInCourse(schoolYear, semesters[k], course.path().stem().string(), studentID)) continue;
+            //get info course
+            string pathToCourse = course.path().string() + "/";
+            fin.open(pathToCourse + "Course_Info.txt");
+            if (!fin.is_open())
+                return false;
+            getline(fin, listOfCourse[i].id);
+            while(listOfCourse[i].id.size() && listOfCourse[i].id.back() != '-') listOfCourse[i].id.pop_back();
+            listOfCourse[i].id.pop_back(); 
+            getline(fin, listOfCourse[i].name);
+            getline(fin, listOfCourse[i].Class);
+            getline(fin, listOfCourse[i].teacher);
+            fin >> listOfCourse[i].credit;
+            fin >> listOfCourse[i].maxStudent;
+            getline(fin, listOfCourse[i].dayOfWeek);
+            getline(fin, listOfCourse[i].session);
+            fin.close();
+            //get score
+            fin.open(pathToCourse + "Score/" + studentID + ".txt");
+            if (!fin.is_open()) continue;
+            fin >> scores[i].other;
+            fin >> scores[i].midterm;
+            fin >> scores[i].finals;
+            fin >> scores[i].total;
+            fin.close();
+            ++i;
+        }
+    }
+    return true;
+}
+
+bool viewScoreBoardAll(Student &stu, ACourse* &listOfCourse, ScoreBoard* &scores, int &n) {
+    // get a list of school year the student studied
+    string* schoolYear;
+    int numOfSchoolYear;
+    ViewSchoolYearStudent(stu, schoolYear, numOfSchoolYear);
+
+    // create 2D arrays to store courses and their scores of each year seperately
+    ACourse** listOfCoursesEachYear = new ACourse*[numOfSchoolYear];
+    ScoreBoard** scoresEachYear = new ScoreBoard*[numOfSchoolYear];
+    int* numOfCourseEachYear = new int[numOfSchoolYear];
+    n = 0;
+    for (int i = 0; i < numOfSchoolYear; ++i) {
+        int num = 0;
+        viewScoreBoardInSchoolYear(schoolYear[i], stu.studentID, listOfCoursesEachYear[i], scoresEachYear[i], numOfCourseEachYear[i]);
+        n += num;
+    }
+
+    // merge the list courses and scores of each year above a single list of courses and scores
+    listOfCourse = new ACourse[n];
+    scores = new ScoreBoard[n];
+    int i = 0;
+    for (int j = 0; j < numOfSchoolYear; ++j)
+        for (int k = 0; k < numOfCourseEachYear[i]; ++k) {
+            listOfCourse[i] = listOfCoursesEachYear[j][k];
+            scores[i] = scoresEachYear[j][k];
+            ++i;
+        }
+    
+    // delete temprorary data structures
+    delete[] schoolYear;
+    delete numOfCourseEachYear;
+    for (int j = 0; j < numOfSchoolYear; ++j) {
+        delete[] listOfCoursesEachYear[j];
+        delete[] scoresEachYear[j];
+    }
+    delete[] listOfCoursesEachYear;
+    delete[] scoresEachYear;
+}
+
 bool ViewAllCoursesStudent(string studentID, ACourse *&listOfCourses, ScoreBoard *&scores, int &n) {
     n = 0;
     filesystem::path pathToData = "Data/SchoolYear/";
