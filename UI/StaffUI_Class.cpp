@@ -348,6 +348,7 @@ void Class::DrawStudentList() {
 
 void Class::DrawAddStudent() {
     static int Gender = 0;
+    static bool isError = false;
     
     Rectangle box = {float(0.12*windowWidth), float(0.17*windowHeight), float(0.76*windowWidth), float(0.71*windowHeight)};
     DrawRectangleRec(box, RAYWHITE);
@@ -412,29 +413,40 @@ void Class::DrawAddStudent() {
     AddStudentButton.SetText(PT_serif_bold, "ADD", 0.61*windowWidth - 4, 0.77*windowHeight, 0.03*windowWidth, 0.5, BLACK);
     AddStudentButton.DrawText();
 
+    // draw error
+    if (isError) {
+        DrawTextEx(PT_serif_bold, "Please fill in all the information", (Vector2){float(0.25*windowWidth), float(0.72*windowHeight)}, 0.027*windowWidth, 0.5, RED);
+    }
+
     if (AddStudentButton.isPRESSED(MOUSE_BUTTON_LEFT)) {
-        Student newStudent;
-        newStudent.Class = ListOfClasses[classIndex];
-        newStudent.studentID = StudentID.GetInput();
-        newStudent.firstName = firstName.GetInput();
-        newStudent.lastName = lastName.GetInput();
-        newStudent.gender = Gender;
-        newStudent.DOB = day.GetInput() + "/" + month.GetInput() + "/" + year.GetInput();
-        newStudent.socialID = socialID.GetInput();
-        newStudent.Class = ListOfClasses[classIndex];
-        Gender = 0;
-        StudentID.currentInput = "";
-        firstName.currentInput = "";
-        lastName.currentInput = "";
-        day.currentInput = "";
-        month.currentInput = "";
-        year.currentInput = "";
-        socialID.currentInput = "";
-        addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
+        if (StudentID.GetInput() == "" || firstName.GetInput() == "" || lastName.GetInput() == "" || day.GetInput() == "" || month.GetInput() == "" || year.GetInput() == "" || socialID.GetInput() == "") {
+            isError = true;
+        } else {
+            Student newStudent;
+            newStudent.Class = ListOfClasses[classIndex];
+            newStudent.studentID = StudentID.GetInput();
+            newStudent.firstName = firstName.GetInput();
+            newStudent.lastName = lastName.GetInput();
+            newStudent.gender = Gender;
+            newStudent.DOB = day.GetInput() + "/" + month.GetInput() + "/" + year.GetInput();
+            newStudent.socialID = socialID.GetInput();
+            newStudent.Class = ListOfClasses[classIndex];
+            Gender = 0;
+            StudentID.currentInput = "";
+            firstName.currentInput = "";
+            lastName.currentInput = "";
+            day.currentInput = "";
+            month.currentInput = "";
+            year.currentInput = "";
+            socialID.currentInput = "";
+            isError = false;
+            addStudentToClass(ListOfStudent, listStuSize, newStudent, SchoolYear, ListOfClasses[classIndex]);
+        }
     }
     if (back.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuClass = VIEW_CLASS;
         Gender = 0;
+        isError = false;
         StudentID.currentInput = "";
         firstName.currentInput = "";
         lastName.currentInput = "";
