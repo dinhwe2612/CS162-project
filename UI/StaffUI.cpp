@@ -112,8 +112,8 @@ void StaffUI::Draw(int &menuLogin)
     {
     default:
         DrawBackground();
-        DrawStaticElement();
         DrawCurrentWindow();
+        DrawStaticElement();
         DrawDropDownSchoolYear();
         DrawDropDownAccount(menuLogin);//for signout button
         break;

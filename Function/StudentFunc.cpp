@@ -100,6 +100,7 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
     if (!ValidDirectory(pathToSemester))
         return false;
     for(const auto & course : filesystem::directory_iterator(pathToSemester)) {
+        if (course.path().stem().string() == "Semester_Info") continue;
         if (IsInCourse(schoolYear, semester, course.path().stem().string(), studentID))
             ++n;
     }
@@ -131,14 +132,18 @@ bool ViewCoursesStudent(string schoolYear, string semester, string studentID, AC
         fin.close();
         //get score
         fin.open(pathToCourse + "Score/" + studentID + ".txt");
-        if (!fin.is_open()) continue;
-        fin >> scores[i].other;
-        fin >> scores[i].midterm;
-        fin >> scores[i].finals;
-        fin >> scores[i].total;
+        if (fin.is_open()) {
+            fin >> scores[i].other;
+            fin >> scores[i].midterm;
+            fin >> scores[i].finals;
+            fin >> scores[i].total;
+        }
         fin.close();
         ++i;
     }
+    // for(int i = 0; i < n; ++i) {
+    //     cout << "Course ID: " << listOfCourse[i].id << endl;
+    // }
     return true;
 }
 
@@ -191,11 +196,12 @@ bool ViewAllCoursesStudent(string studentID, ACourse *&listOfCourses, ScoreBoard
                 fin.close();
                 //get score
                 fin.open(pathToCourse + "Score/" + studentID + ".txt");
-                if (!fin.is_open()) continue;
-                fin >> scores[i].other;
-                fin >> scores[i].midterm;
-                fin >> scores[i].finals;
-                fin >> scores[i].total;
+                if (fin.is_open()) {
+                    fin >> scores[i].other;
+                    fin >> scores[i].midterm;
+                    fin >> scores[i].finals;
+                    fin >> scores[i].total;
+                }
                 fin.close();
                 ++i;
                 // cout << listOfCourses[i].name << '\n';
