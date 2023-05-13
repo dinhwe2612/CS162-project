@@ -226,7 +226,6 @@ void StaffUI::DrawDropDownSchoolYear()
             schoolYearButton.SetRectangle(windowWidth, 0.18*windowHeight, 0.2*windowWidth, 0.08*windowHeight, LIGHTGRAY, RAYWHITE);
         }
     }
-    // other objects that belong to drop down obj
 }
 
 // draw school year buttons
@@ -318,7 +317,7 @@ void StaffUI::DrawSchoolYear()
     Vector2 addTextOrigin = {float(0.035*windowWidth), float(0.12*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
 
-    DrawLineEx((Vector2){0.2*windowWidth, 0.05*windowHeight}, (Vector2){0.2*windowWidth, windowHeight}, 1, BLUE);
+    DrawLineEx((Vector2){float(0.2*windowWidth), float(0.05*windowHeight)}, (Vector2){float(0.2*windowWidth), float(windowHeight)}, 1, BLUE);
     DrawStaticElement();
 }
 
@@ -431,15 +430,6 @@ void StaffUI::DrawChangePassword()
         Vector2 failPos = {float(windowWidth/2 - 158), float(0.2*windowHeight + 273)};
         DrawTextEx(PT_serif_regular, "Please correct confirm password", failPos, 0.022*windowWidth, 0.5, RED);
     }
-}
-
-void StaffUI::DrawViewProfile() {
-    
-}
-
-bool greater_string (std::string& a, std::string& b)
-{
-    return (a > b);
 }
 
 void StaffUI::AddSchoolYear()

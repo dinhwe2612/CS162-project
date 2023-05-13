@@ -412,5 +412,5 @@ void StudentUI::DrawSchoolYear()
     DrawTextEx(PT_serif_bold, "Pick a school year", addTextOrigin, 0.018*windowWidth, 0.5, DARKBLUE);
     
     DrawStaticElements();
-    DrawLineEx((Vector2){0.2*windowWidth, 0.05*windowHeight}, (Vector2){0.2*windowWidth, windowHeight}, 1, BLUE);
+    DrawLineEx((Vector2){float(0.2*windowWidth), float(0.05*windowHeight)}, (Vector2){float(0.2*windowWidth), float(windowHeight)}, 1, BLUE);
 }
