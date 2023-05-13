@@ -322,6 +322,61 @@ bool ViewAllCoursesStudent(string studentID, ACourse *&listOfCourses, ScoreBoard
     return true;
 }
 
+bool viewDropDownList(string studentID, string *&listOfDropDown, int &n) {
+    n = 0;
+    filesystem::path pathToData = "Data/SchoolYear/";
+    //for count n
+    for(auto const & schoolyear : filesystem::directory_iterator(pathToData)) {
+        if (!schoolyear.is_directory()) continue;
+        bool ok = false;
+        for(auto const & semester : filesystem::directory_iterator(schoolyear)) {
+            bool ok2 = false;
+            if (!semester.is_directory() || semester.path().stem().string() == "Classes") continue;
+            for(auto const & course : filesystem::directory_iterator(semester)) {
+                if (!course.is_directory()) continue;
+                if (!IsInCourse(schoolyear.path().stem().string(), semester.path().stem().string(), course.path().stem().string(), studentID)) continue;
+                ok2 = true;
+                break;
+            }
+            if (!ok && ok2) {
+                cout << schoolyear.path().stem().string() << endl;
+                ++n;
+                ok = true;
+            }
+            if (ok2) {
+                cout << semester.path().stem().string() << endl;  
+                ++n;
+            }
+        }
+    }
+    //
+    if (n == 0) return true;
+    listOfDropDown = new string[n];
+    int i = 0;
+    for(auto const & schoolyear : filesystem::directory_iterator(pathToData)) {
+        if (!schoolyear.is_directory()) continue;
+        bool ok = false;
+        for(auto const & semester : filesystem::directory_iterator(schoolyear)) {
+            bool ok2 = false;
+            if (!semester.is_directory() || semester.path().stem().string() == "Classes") continue;
+            for(auto const & course : filesystem::directory_iterator(semester)) {
+                if (!course.is_directory()) continue;
+                if (!IsInCourse(schoolyear.path().stem().string(), semester.path().stem().string(), course.path().stem().string(), studentID)) continue;
+                ok2 = true;
+                break;
+            }
+            if (!ok && ok2) {
+                listOfDropDown[i++] = schoolyear.path().stem().string();
+                ok = true;
+            }
+            if (ok2) {
+                listOfDropDown[i++] = schoolyear.path().stem().string() + " " + semester.path().stem().string();
+            }
+        }
+    }
+    return true;
+}
+
 // int main() {
 //     Student stu;
 //     stu.Class = "22TT2";

@@ -23,11 +23,18 @@ void StudentUI::Construct(float windowWidth, float windowHeight)
     cornerStripes.SetTexture("UI/images/stripes.png");
     cornerStripes.SetRectangle(0.01*windowWidth, 0.005*windowHeight, 0.02*windowWidth, 0.02*windowWidth, LIGHTGRAY, WHITE);
 
-    signOut.SetRectangle(0.8*windowWidth, 0.67*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
-    signOut.SetText(PT_serif_bold, "Sign out", 0.865*windowWidth, 0.68*windowHeight, 0.015*windowWidth, 0.5, WHITE);
+    Vector2 posText;
+    posText = MeasureTextEx(PT_serif_bold, "Sign out", 0.015*windowWidth, 0.5);
+    posText.x = 0.8*windowWidth + (0.18*windowWidth - posText.x)/2;
+    posText.y = 0.74*windowHeight + (0.05*windowHeight - posText.y)/2;
+    signOut.SetRectangle(0.8*windowWidth, 0.74*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+    signOut.SetText(PT_serif_bold, "Sign out", posText.x, posText.y, 0.015*windowWidth, 0.5, WHITE);
 
-    ChangePassWord.SetRectangle(0.8*windowWidth, 0.6*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
-    ChangePassWord.SetText(PT_serif_bold, "Change password", 0.842*windowWidth, 0.61*windowHeight, 0.015*windowWidth, 0.5, WHITE);
+    posText = MeasureTextEx(PT_serif_bold, "Change password", 0.015*windowWidth, 0.5);
+    posText.x = 0.8*windowWidth + (0.18*windowWidth - posText.x)/2;
+    posText.y = 0.67*windowHeight + (0.05*windowHeight - posText.y)/2;
+    ChangePassWord.SetRectangle(0.8*windowWidth, 0.67*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+    ChangePassWord.SetText(PT_serif_bold, "Change password", posText.x, posText.y, 0.015*windowWidth, 0.5, WHITE);
 
     oldPassword.Construct(windowWidth/2 + 2 - 11, 0.2*windowHeight + 93 + 2 + 4, 200 - 4, 32 - 4, windowWidth/2 - 11 + 4, 0.2*windowHeight + 93 + 4, 0.022*windowWidth, 0.5, 8, "");
     oldPassword.colorBox1 = WHITE;
@@ -90,6 +97,9 @@ void StudentUI::Draw(int& menuLogin)
     case CHANGE_PASSWORD:
         DrawChangePassword();
         break;
+    case VIEW_SCOREBOARD:
+        DrawViewScoreboard();
+        break;    
     }
 }
 
@@ -234,7 +244,7 @@ void StudentUI::DrawChangePassword()
 
 void StudentUI::DrawDropDownAccount(int &menuLogin)
 {
-     Rectangle box = {float(0.785*windowWidth), float(0.05*windowHeight), float(0.21*windowWidth), float(0.7*windowHeight)};
+    Rectangle box = {float(0.785*windowWidth), float(0.05*windowHeight), float(0.21*windowWidth), float(0.77*windowHeight)};
 
     // check if down arrow is clicked
 
@@ -289,6 +299,12 @@ void StudentUI::DrawDropDownAccount(int &menuLogin)
         
         DrawLineV((Vector2){box.x, float(0.58*windowHeight)}, (Vector2){box.x + box.width, float(0.58*windowHeight)}, LIGHTGRAY);
 
+        Button ViewScoreboard;
+        Vector2 posText = MeasureTextEx(PT_serif_bold, "View Scoreboard", 0.014*windowWidth, 0.5);
+        ViewScoreboard.SetRectangle(0.8*windowWidth, 0.6*windowHeight, 0.18*windowWidth, 0.05*windowHeight, BLACK, DARKBLUE);
+        ViewScoreboard.SetText(PT_serif_bold, "View Scoreboard", 0.8*windowWidth + 0.09*windowWidth - posText.x/2, 0.6*windowHeight + 0.025*windowHeight - posText.y/2, 0.014*windowWidth, 0.5, WHITE);
+        ViewScoreboard.DrawText();
+
         signOut.DrawText();
         DrawRectangleLinesEx(signOut.buttonShape, 0.5, BLACK);
 
@@ -302,6 +318,11 @@ void StudentUI::DrawDropDownAccount(int &menuLogin)
         }
         if (ChangePassWord.isPRESSED(MOUSE_BUTTON_LEFT)) {
             menuStudent = CHANGE_PASSWORD;
+        }
+        if (ViewScoreboard.isPRESSED(MOUSE_BUTTON_LEFT)) {
+            menuStudent = VIEW_SCOREBOARD;
+            if (!ViewAllCoursesStudent(curStu.studentID, ListOfCourses, ListOfScores, listCourseSize)) cerr << "Can't ViewAllCoursesStudent" << endl;
+            if (!viewDropDownList(curStu.studentID, listOfSemester, semesterSize)) cerr << "Can't viewDropDownList" << endl;
         }
     }
 }
@@ -414,3 +435,163 @@ void StudentUI::DrawSchoolYear()
     DrawStaticElements();
     DrawLineEx((Vector2){float(0.2*windowWidth), float(0.05*windowHeight)}, (Vector2){float(0.2*windowWidth), float(windowHeight)}, 1, BLUE);
 }
+
+void StudentUI::DrawViewScoreboard() {
+    Rectangle box = {float(0), float(0.053*windowHeight), float(windowWidth), float(windowHeight)};
+    DrawRectangleRec(box, RAYWHITE);
+    DrawRectangleLinesEx((Rectangle){float(box.x - 2), float(box.y - 2), float(box.width + 4), float(box.height + 4)}, 1, BLACK);
+
+    // draw back button
+    Button BackScoreBoard;
+    BackScoreBoard.SetRectangle(float(0), float(0.052*windowHeight), float(0.05*windowWidth), float(0.04*windowHeight), LIGHTGRAY, RAYWHITE);
+    BackScoreBoard.SetText(PT_serif_bold, "Back", float(0.005*windowWidth), float(0.053*windowHeight), 0.02*windowWidth, 0.5, BLACK);
+    BackScoreBoard.DrawText();
+    if (BackScoreBoard.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        menuStudent = 1;
+    }
+
+    int dx = 0.03*windowWidth, dy = 0.1*windowHeight;
+    // draw table
+    DrawLine(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.9*windowWidth + dx), float(0.1*windowHeight + dy), BLACK);
+    DrawLine(float(0.03*windowWidth + dx), float(0.14*windowHeight + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + dy), BLACK);
+    // draw No., course id, course name, credit, other, midterm, final, total
+    DrawTextEx(PT_serif_bold, "No.", Centered(0.03*windowWidth + dx, 0.1*windowHeight + dy, 0.05*windowWidth, 0.04*windowHeight, "No.", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Course ID", Centered(0.08*windowWidth + dx, 0.1*windowHeight + dy, 0.13*windowWidth, 0.04*windowHeight, "Course ID", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Course name", Centered(0.21*windowWidth + dx, 0.1*windowHeight + dy, 0.29*windowWidth, 0.04*windowHeight, "Course name", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Credit", Centered(0.5*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Credit", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Other", Centered(0.58*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Other", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Midterm", Centered(0.66*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Midterm", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Final", Centered(0.74*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Final", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "Total", Centered(0.82*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Total", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    // draw line between each column
+    float posX1 = 0.03*windowWidth + dx;
+    DrawLine(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.03*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.08*windowWidth + dx), float(0.1*windowHeight + dy), float(0.08*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.21*windowWidth + dx), float(0.1*windowHeight + dy), float(0.21*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.5*windowWidth + dx), float(0.1*windowHeight + dy), float(0.5*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.58*windowWidth + dx), float(0.1*windowHeight + dy), float(0.58*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.66*windowWidth + dx), float(0.1*windowHeight + dy), float(0.66*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.74*windowWidth + dx), float(0.1*windowHeight + dy), float(0.74*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.82*windowWidth + dx), float(0.1*windowHeight + dy), float(0.82*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.9*windowWidth + dx), float(0.1*windowHeight + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    // draw each course
+    float sumTotalMark = 0;
+    for(int i = 0; i < listCourseSize; ++i) {
+        // draw line between each row
+        DrawLine(float(0.03*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*(i+1) + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*(i+1) + dy), BLACK);
+        // draw text of each column 
+        DrawTextEx(PT_serif_regular, to_string(i+1).c_str(), Centered(0.03*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.05*windowWidth, 0.05*windowHeight, to_string(i+1), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfCourses[i].id.c_str(), Centered(0.08*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.13*windowWidth, 0.05*windowHeight, ListOfCourses[i].id, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, ListOfCourses[i].name.c_str(), Centered(0.21*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.29*windowWidth, 0.05*windowHeight, ListOfCourses[i].name, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_regular, to_string(ListOfCourses[i].credit).c_str(), Centered(0.5*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, to_string(ListOfCourses[i].credit), PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        string otherScore = convertFloatToString(ListOfScores[i].other);
+        if (ListOfScores[i].other != -1) DrawTextEx(PT_serif_regular, otherScore.c_str(), Centered(0.58*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, otherScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        string midtermScore = convertFloatToString(ListOfScores[i].midterm);
+        if (ListOfScores[i].other != -1) DrawTextEx(PT_serif_regular, midtermScore.c_str(), Centered(0.66*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, midtermScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        string finalScore = convertFloatToString(ListOfScores[i].finals);
+        if (ListOfScores[i].other != -1) DrawTextEx(PT_serif_regular, finalScore.c_str(), Centered(0.74*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, finalScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        string totalScore = convertFloatToString(ListOfScores[i].total);
+        if (ListOfScores[i].other != -1) {
+            DrawTextEx(PT_serif_regular, totalScore.c_str(), Centered(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, totalScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+            sumTotalMark += ListOfScores[i].total;
+        }
+    }
+
+    // draw overall score
+    if (listCourseSize) {
+        string overallScore = convertFloatToString(sumTotalMark/listCourseSize);
+        DrawTextEx(PT_serif_regular, overallScore.c_str(), Centered(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy, 0.08*windowWidth, 0.05*windowHeight, overallScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+        DrawRectangleLines(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy, 0.08*windowWidth, 0.05*windowHeight, BLACK);
+    }
+
+    //draw drop down semester list
+    static int indexSemester = -1;
+    static bool isShowSemesterList = false;
+    float coordY = 0.139*windowHeight;
+    Button isSelect;
+    isSelect.SetRectangle(posX1, coordY, 0.145*windowWidth, 0.04*windowHeight, LIGHTGRAY, WHITE);
+    Vector2 posText;
+    if (indexSemester == -1) {
+        posText = Centered(posX1, coordY, 0.145*windowWidth, 0.04*windowHeight, "All Semester", PT_serif_bold, 0.02*windowWidth, 0.5);
+        isSelect.SetText(PT_serif_bold, "All Semester", posText.x, posText.y, 0.02*windowWidth, 0.5, BLACK);
+    } else {
+        posText = Centered(posX1, coordY, 0.145*windowWidth, 0.04*windowHeight, listOfSemester[indexSemester], PT_serif_bold, 0.02*windowWidth, 0.5);
+        isSelect.SetText(PT_serif_bold, listOfSemester[indexSemester], posText.x, posText.y, 0.02*windowWidth, 0.5, BLACK);
+    }
+    isSelect.DrawText();
+    if (isShowSemesterList) DrawRectangleLines(posX1, coordY, 0.1454*windowWidth, 0.042*windowHeight, BLUE);
+    else DrawRectangleLines(posX1, coordY, 0.1454*windowWidth, 0.042*windowHeight, BLACK);
+
+    if (isShowSemesterList) {
+        // cout << semesterSize << '\n';
+        coordY -= 0.003*windowHeight;
+        for(int i = -1, cnt = 0; i < semesterSize; ++i) {
+            if (i == indexSemester) continue;
+            Button semester;
+            semester.SetRectangle(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.145*windowWidth, 0.04*windowHeight, BLUE, WHITE);
+            
+            if (i != -1) {
+                posText = Centered(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.145*windowWidth, 0.04*windowHeight, listOfSemester[i], PT_serif_bold, 0.02*windowWidth, 0.5);
+                semester.SetText(PT_serif_bold, listOfSemester[i], posX1 + 0.0025*windowWidth, posText.y, 0.02*windowWidth, 0.5, BLACK);
+            } else {
+                posText = Centered(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.145*windowWidth, 0.04*windowHeight, "All Semester", PT_serif_bold, 0.02*windowWidth, 0.5);
+                semester.SetText(PT_serif_bold, "All Semester", posText.x, posText.y, 0.02*windowWidth, 0.5, BLACK);
+            }
+            semester.DrawText();
+            DrawRectangleLines(posX1, coordY + 0.045*windowHeight + cnt * 0.04*windowHeight, 0.1454*windowWidth, 0.042*windowHeight, BLACK);
+            if (semester.isPRESSED(MOUSE_BUTTON_LEFT)) {
+                indexSemester = i;
+                isShowSemesterList = false;
+                if (indexSemester == -1) {
+                    if (!ViewAllCoursesStudent(curStu.studentID, ListOfCourses, ListOfScores, listCourseSize)) cerr << "Can't ViewAllCoursesStudent" << endl;
+                } else {
+                    int j = listOfSemester[i].find(' ');
+                    if (j != -1) {
+                        string schoolyear = listOfSemester[i].substr(0, j);
+                        string semester = listOfSemester[i].substr(j + 1, (int)listOfSemester[i].size() - j - 1);
+                        if (!ViewCoursesStudent(schoolyear, semester, curStu.studentID, ListOfCourses, ListOfScores, listCourseSize)) cerr << "Can't ViewCoursesStudent" << endl;
+                    } else {
+                        if (!viewScoreBoardInSchoolYear(listOfSemester[i], curStu.studentID, ListOfCourses, ListOfScores, listCourseSize)) cerr << "Can't viewScoreBoardInSchoolYear" << endl;
+                    }
+                }
+            }
+            ++cnt;
+        }
+    }
+
+    if (isSelect.isPRESSED(MOUSE_BUTTON_LEFT)) {
+        isShowSemesterList ^= 1;
+    } else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        isShowSemesterList = false;
+    }
+}
+
+Vector2 StudentUI::Centered(float x, float y, float width, float height, string Text, Font font, float fontSize, float spacing) {
+    Vector2 size = MeasureTextEx(font, Text.c_str(), fontSize, spacing);
+    return (Vector2){x + (width - size.x) / 2, y + (height - size.y) / 2};
+}
+
+string StudentUI::convertFloatToString(float x) {
+    string ans = to_string(x);
+    int i, sz = ans.size();
+    for(i = 0; i < sz && ans[i] != '.'; ++i);
+    int sur = 0;
+    while(sz - i > 2) {
+        if (sz - i == 3) {
+            if (ans.back() >= '5') sur = 1;
+        }
+        ans.pop_back(), --sz;
+    }
+    for(int i = sz - 1; i >= 0; --i) {
+        if (ans[i] == '.') continue;
+        if (sur) {
+            if (ans[i] == '9') ans[i] = '0';
+            else {
+                ++ans[i];
+                sur = 0;
+            }
+        }
+    }
+    return ans;
+}
+
