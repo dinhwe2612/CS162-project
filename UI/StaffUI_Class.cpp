@@ -66,6 +66,7 @@ void Class::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(close.image);
     UnloadTexture(addClass.image);
+    UnloadTexture(Tick);
 
     UnloadFont(PT_serif_bold);
 }
@@ -108,11 +109,6 @@ void Class::DrawBackground()
     // draw "Add new class" text
     Vector2 textPos = {float(0.34*windowWidth), float(0.24*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add new class", textPos, 0.02*windowWidth, 0.5, BLACK);
-}
-
-bool greater_string1 (std::string& a, std::string& b)
-{
-    return (a > b);
 }
 
 void Class::DrawCreateClass()

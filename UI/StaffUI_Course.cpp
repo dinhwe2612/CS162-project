@@ -534,7 +534,7 @@ void Course::ChooseViewClass()
         viewClass.SetRectangle(0.41*windowWidth, 0.39*windowHeight + 0.07*windowHeight*cnt, 0.2*windowWidth, 0.05*windowHeight, LIGHTGRAY, (Color){251, 244, 226, 255});
         viewClass.DrawText();
         if (i == indexChosen) {
-            DrawRectangleRounded((Rectangle){0.413*windowWidth, 0.395*windowHeight + 0.07*windowHeight*cnt, 0.005*windowWidth, 0.04*windowHeight}, 0.005*windowWidth, 12, BLUE);
+            DrawRectangleRounded((Rectangle){float(0.413*windowWidth), float(0.395*windowHeight + 0.07*windowHeight*cnt), float(0.005*windowWidth), float(0.04*windowHeight)}, 0.005*windowWidth, 12, BLUE);
         }
 
         DrawLine(0.41*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, 0.61*windowWidth, 0.44*windowHeight + 0.07*windowHeight*cnt, BLACK);
@@ -583,7 +583,7 @@ void Course::ChooseViewClass()
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
         // draw error message
-        enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+        enterText = (Vector2){float(0.425*windowWidth), float(0.43*windowHeight)};
         DrawTextEx(PT_serif_bold, "Please select a class", enterText, 0.015*windowWidth, 0.5, BLACK);
         DrawTextEx(PT_serif_bold, "to view!", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 

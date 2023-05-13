@@ -97,10 +97,10 @@ void StudentSemesterUI::DrawCourseList() {
     DrawTextEx(PT_serif_bold, "List of course", textPos, 0.02*windowWidth, 0.5, BLACK);
     //draw button view scoreboard
     Button viewScoreboard;
-    viewScoreboard.SetRectangle(0.495*windowWidth, 0.24*windowHeight, 0.135*windowWidth, 0.04*windowHeight, LIGHTGRAY, {255, 20, 194, 80});
+    viewScoreboard.SetRectangle(0.495*windowWidth, 0.24*windowHeight, 0.135*windowWidth, 0.04*windowHeight, LIGHTGRAY, (Color){255, 20, 194, 80});
     viewScoreboard.SetText(PT_serif_bold, "View Scoreboard", 0.5*windowWidth, 0.24*windowHeight, 0.02*windowWidth, 0.5, BLACK);
     viewScoreboard.DrawText();
-    DrawRectangleLinesEx((Rectangle){0.495*windowWidth, 0.24*windowHeight, 0.135*windowWidth, 0.04*windowHeight}, 1, BLACK);
+    DrawRectangleLinesEx((Rectangle){float(0.495*windowWidth), float(0.24*windowHeight), float(0.135*windowWidth), float(0.04*windowHeight)}, 1, BLACK);
     if (viewScoreboard.isPRESSED(MOUSE_BUTTON_LEFT)) {
         menuSemester = 2;
     }
