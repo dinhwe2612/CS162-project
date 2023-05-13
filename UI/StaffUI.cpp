@@ -277,6 +277,7 @@ void StaffUI::DrawSchoolYear()
             Classes.DrawText();
             if (Classes.isPRESSED(MOUSE_BUTTON_LEFT)) {
                 menuWindow = CLASS;
+                _Class.menuClass = -1;
                 _Class.SchoolYear = ListOfSchoolYear[i];
                 viewClasses(_Class.ListOfClasses, _Class.listSize, _Class.SchoolYear);
             }

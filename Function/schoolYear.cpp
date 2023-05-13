@@ -154,6 +154,12 @@ bool addStudent(Student student, string schoolYear, string Class) {
     fout.open(dir, ios_base::app);
     fout << n + 1 << ' ' << student.studentID << endl;
     fout.close();
+    //add account
+    string accountDir = "Data/Login/account-student.txt";
+    fout.open(accountDir, ios_base::app);
+    fout << '\n' << student.studentID << ' ';
+    for(char &i : student.DOB) if (i != '/') fout << i;
+    fout.close();
     return true;
 }
 
@@ -175,6 +181,7 @@ bool addStudentToClass(Student*& listOfStudent, int& n, Student student, string 
 
 // function to import students info from csv file
 // dir parameter is the directory of the csv file
+// No.,studentID,FirstName,LastName,gender,DateOfBirth,SocialID
 void importStudent(Student*& listOfStudent, int& n, string dir, string schoolYear, string Class) {
     ifstream fin;
     fin.open(dir);

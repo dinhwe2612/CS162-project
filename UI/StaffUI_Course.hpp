@@ -19,7 +19,6 @@ struct Course
     Button addCourse;
     Button addCourseClose;
     Button Create;
-    Button viewGPA;
     Button del, drop, add, back, info, delStudent, exportStudent, studentConfig;
 
 
@@ -70,12 +69,6 @@ struct Course
     int listClassSize = 0;
     string curClass;
 
-    Student *studentListOfClass;
-    int studentListOfClassSize = 0;
-    ScoreBoard **scoreBoardOfClass;
-    ACourse **courseOfClass;
-    int *scoreBoardOfClassSize = 0;
-
     int menuCourse = -1;
     enum WindowCourse {
         CREATECOURSE,
@@ -111,8 +104,8 @@ struct Course
         void DrawCreateCourse();
         void DrawModifyCourse();
         void DrawViewCourse();
-        void ChooseViewClass();
-        void DrawViewGPA();
+        // void ChooseViewClass();
+        // void DrawViewGPA();
         void DrawStudentListFullInfo();
         void DrawStudentListScore();
         void DrawAddStudent();
