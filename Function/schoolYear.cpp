@@ -37,9 +37,9 @@ bool createSchoolYear(string *&ListOfSchoolYear, int &n, string schoolYear) {
         return false;
     filesystem::create_directories(dir);
     filesystem::create_directories(dir + "Classes");
-    filesystem::create_directories(dir + "Spring");
-    filesystem::create_directories(dir + "Summer");
-    filesystem::create_directories(dir + "Autumn");
+    // filesystem::create_directories(dir + "Spring");
+    // filesystem::create_directories(dir + "Summer");
+    // filesystem::create_directories(dir + "Autumn");
 
     string *tmp = new string[n + 1];
     if (n > 0) {

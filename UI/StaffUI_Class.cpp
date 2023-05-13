@@ -69,7 +69,8 @@ void Class::Deconstruct()
     UnloadTexture(background);
     UnloadTexture(close.image);
     UnloadTexture(addClass.image);
-    UnloadTexture(viewGPA.image);
+    UnloadTexture(Tick);
+
     UnloadFont(PT_serif_bold);
 }
 
@@ -119,10 +120,6 @@ void Class::DrawBackground()
     // draw "Add new class" text
     Vector2 textPos = {float(0.34*windowWidth), float(0.24*windowHeight)};
     DrawTextEx(PT_serif_bold, "Add new class", textPos, 0.02*windowWidth, 0.5, BLACK);
-
-     // draw "View semester result"
-    DrawTextEx(PT_serif_bold, "View semester result", (Vector2){float(0.55*windowWidth), float(0.24*windowHeight)}, 0.02*windowWidth, 0.5, BLACK);
-    viewGPA.DrawTexture();
 }
 
 bool greater_string1 (std::string& a, std::string& b)
@@ -544,7 +541,7 @@ void Class::ChooseViewClass()
         DrawRectanglePro(rec, recOrigin, 0, RAYWHITE);
 
         // draw error message
-        enterText = {float(0.425*windowWidth), float(0.43*windowHeight)};
+        enterText = (Vector2){float(0.425*windowWidth), float(0.43*windowHeight)};
         DrawTextEx(PT_serif_bold, "Please select a class", enterText, 0.015*windowWidth, 0.5, BLACK);
         DrawTextEx(PT_serif_bold, "to view!", (Vector2){float(0.425*windowWidth), float(0.455*windowHeight)}, 0.015*windowWidth, 0.5, BLACK);
 
