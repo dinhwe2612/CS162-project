@@ -258,10 +258,10 @@ void StudentUI::DrawDropDownAccount(int &menuLogin)
         DrawTexturePro(profile, psrc, pdst, (Vector2){0, 0}, 0, WHITE);
 
         // draw name in the middle of box
-        Vector2 nameSize =  MeasureTextEx(PT_serif_bold, curStu.firstName.c_str(), 0.016*windowWidth, 0.5);
+        Vector2 nameSize =  MeasureTextEx(PT_serif_bold, (curStu.lastName + " " + curStu.firstName).c_str(), 0.016*windowWidth, 0.5);
         float nameXCoordinate = (box.width - nameSize.x) / 2 + box.x;
 
-        DrawTextEx(PT_serif_bold, curStu.firstName.c_str(), (Vector2){nameXCoordinate, float(0.07*windowWidth + 0.08*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
+        DrawTextEx(PT_serif_bold, (curStu.lastName + " " + curStu.firstName).c_str(), (Vector2){nameXCoordinate, float(0.07*windowWidth + 0.08*windowHeight)}, 0.016*windowWidth, 0.5, BLACK);
         DrawLineV((Vector2){box.x, float(0.24*windowHeight)}, (Vector2){box.x + box.width, float(0.24*windowHeight)}, LIGHTGRAY);
 
         DrawTexturePro(gender, (Rectangle){0, 0, float(gender.width), float(gender.height)}, (Rectangle){float(0.8*windowWidth), float(0.27*windowHeight), float(0.024*windowWidth), float(0.024*windowWidth)}, (Vector2){0, 0}, 0, WHITE);
