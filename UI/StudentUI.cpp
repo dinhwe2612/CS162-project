@@ -452,30 +452,32 @@ void StudentUI::DrawViewScoreboard() {
 
     int dx = 0.03*windowWidth, dy = 0.1*windowHeight;
     // draw table
-    DrawLine(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.9*windowWidth + dx), float(0.1*windowHeight + dy), BLACK);
-    DrawLine(float(0.03*windowWidth + dx), float(0.14*windowHeight + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + dy), BLACK);
+    DrawRectangle(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.87*windowWidth), float(0.04*windowHeight), DARKBLUE);
+    DrawLine(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.9*windowWidth + dx), float(0.1*windowHeight + dy), DARKBLUE);
+    DrawLine(float(0.03*windowWidth + dx), float(0.14*windowHeight + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + dy), DARKBLUE);
     // draw No., course id, course name, credit, other, midterm, final, total
-    DrawTextEx(PT_serif_bold, "No.", Centered(0.03*windowWidth + dx, 0.1*windowHeight + dy, 0.05*windowWidth, 0.04*windowHeight, "No.", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Course ID", Centered(0.08*windowWidth + dx, 0.1*windowHeight + dy, 0.13*windowWidth, 0.04*windowHeight, "Course ID", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Course name", Centered(0.21*windowWidth + dx, 0.1*windowHeight + dy, 0.29*windowWidth, 0.04*windowHeight, "Course name", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Credit", Centered(0.5*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Credit", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Other", Centered(0.58*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Other", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Midterm", Centered(0.66*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Midterm", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Final", Centered(0.74*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Final", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-    DrawTextEx(PT_serif_bold, "Total", Centered(0.82*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Total", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
+    DrawTextEx(PT_serif_bold, "No.", Centered(0.03*windowWidth + dx, 0.1*windowHeight + dy, 0.05*windowWidth, 0.04*windowHeight, "No.", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Course ID", Centered(0.08*windowWidth + dx, 0.1*windowHeight + dy, 0.13*windowWidth, 0.04*windowHeight, "Course ID", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Course name", Centered(0.21*windowWidth + dx, 0.1*windowHeight + dy, 0.29*windowWidth, 0.04*windowHeight, "Course name", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Credit", Centered(0.5*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Credit", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Other", Centered(0.58*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Other", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Midterm", Centered(0.66*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Midterm", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Final", Centered(0.74*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Final", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
+    DrawTextEx(PT_serif_bold, "Total", Centered(0.82*windowWidth + dx, 0.1*windowHeight + dy, 0.08*windowWidth, 0.04*windowHeight, "Total", PT_serif_bold, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, WHITE);
     // draw line between each column
     float posX1 = 0.03*windowWidth + dx;
-    DrawLine(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.03*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.08*windowWidth + dx), float(0.1*windowHeight + dy), float(0.08*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.21*windowWidth + dx), float(0.1*windowHeight + dy), float(0.21*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.5*windowWidth + dx), float(0.1*windowHeight + dy), float(0.5*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.58*windowWidth + dx), float(0.1*windowHeight + dy), float(0.58*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.66*windowWidth + dx), float(0.1*windowHeight + dy), float(0.66*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.74*windowWidth + dx), float(0.1*windowHeight + dy), float(0.74*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.82*windowWidth + dx), float(0.1*windowHeight + dy), float(0.82*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
-    DrawLine(float(0.9*windowWidth + dx), float(0.1*windowHeight + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), BLACK);
+    DrawLine(float(0.03*windowWidth + dx), float(0.1*windowHeight + dy), float(0.03*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.08*windowWidth + dx), float(0.1*windowHeight + dy), float(0.08*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.21*windowWidth + dx), float(0.1*windowHeight + dy), float(0.21*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.5*windowWidth + dx), float(0.1*windowHeight + dy), float(0.5*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.58*windowWidth + dx), float(0.1*windowHeight + dy), float(0.58*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.66*windowWidth + dx), float(0.1*windowHeight + dy), float(0.66*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.74*windowWidth + dx), float(0.1*windowHeight + dy), float(0.74*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.82*windowWidth + dx), float(0.1*windowHeight + dy), float(0.82*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
+    DrawLine(float(0.9*windowWidth + dx), float(0.1*windowHeight + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy), DARKBLUE);
     // draw each course
     float sumTotalMark = 0;
+    int cnt = 0;
     for(int i = 0; i < listCourseSize; ++i) {
         // draw line between each row
         DrawLine(float(0.03*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*(i+1) + dy), float(0.9*windowWidth + dx), float(0.14*windowHeight + 0.05*windowHeight*(i+1) + dy), BLACK);
@@ -494,16 +496,16 @@ void StudentUI::DrawViewScoreboard() {
         if (ListOfScores[i].other != -1) {
             DrawTextEx(PT_serif_regular, totalScore.c_str(), Centered(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*i + dy, 0.08*windowWidth, 0.05*windowHeight, totalScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
             sumTotalMark += ListOfScores[i].total;
+            ++cnt;
         }
     }
 
     // draw overall score
-    if (listCourseSize) {
-        string overallScore = convertFloatToString(sumTotalMark/listCourseSize);
-        DrawTextEx(PT_serif_regular, overallScore.c_str(), Centered(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy, 0.08*windowWidth, 0.05*windowHeight, overallScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);
-        DrawRectangleLines(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy, 0.08*windowWidth, 0.05*windowHeight, BLACK);
+    if (cnt) {
+        string overallScore = convertFloatToString(sumTotalMark/cnt);
+        DrawTextEx(PT_serif_regular, overallScore.c_str(), Centered(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy, 0.08*windowWidth, 0.05*windowHeight, overallScore, PT_serif_regular, 0.02*windowWidth, 0.5), 0.02*windowWidth, 0.5, BLACK);   
     }
-
+    DrawRectangleLines(0.82*windowWidth + dx, 0.14*windowHeight + 0.05*windowHeight*listCourseSize + dy, 0.08*windowWidth, 0.05*windowHeight, DARKBLUE);
     //draw drop down semester list
     static int indexSemester = -1;
     static bool isShowSemesterList = false;
