@@ -33,6 +33,13 @@ target_link_libraries(${PROJECT_NAME}
     ui
 )
 
+target_link_libraries(${PROJECT_NAME} 
+    ole32 
+    comctl32 
+    oleaut32 
+    uuid
+)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)

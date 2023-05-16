@@ -12,6 +12,7 @@
 #include "../Header/StudentStruct.h"
 #include "../Header/score.h"
 #include "../Header/StudentFunc.h"
+#include "../Header/FileFolderDialog.h"
 
 using namespace std;
 

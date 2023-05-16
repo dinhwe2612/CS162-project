@@ -14,4 +14,5 @@ add_library(ui
     ../Function/SemesterCourse.cpp
     ../Function/Score.cpp
     ../Function/StudentFunc.cpp
+    ../Function/FileFolderDialog.cpp
 )
